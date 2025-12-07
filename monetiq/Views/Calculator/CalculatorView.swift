@@ -199,16 +199,16 @@ struct CalculatorInputField: View {
     @Binding var text: String
     let suffix: String?
     let helperText: String?
-    @Binding var focusedField: CalculatorView.Field?
+    var focusedField: FocusState<CalculatorView.Field?>.Binding
     let fieldType: CalculatorView.Field
     
-    init(title: String, placeholder: String, text: Binding<String>, suffix: String? = nil, helperText: String? = nil, focusedField: Binding<CalculatorView.Field?>, fieldType: CalculatorView.Field) {
+    init(title: String, placeholder: String, text: Binding<String>, suffix: String? = nil, helperText: String? = nil, focusedField: FocusState<CalculatorView.Field?>.Binding, fieldType: CalculatorView.Field) {
         self.title = title
         self.placeholder = placeholder
         self._text = text
         self.suffix = suffix
         self.helperText = helperText
-        self._focusedField = focusedField
+        self.focusedField = focusedField
         self.fieldType = fieldType
     }
     
@@ -223,7 +223,7 @@ struct CalculatorInputField: View {
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                     .keyboardType(.decimalPad)
-                    .focused($focusedField, equals: fieldType)
+                    .focused(focusedField, equals: fieldType)
                 
                 if let suffix = suffix {
                     Text(suffix)
