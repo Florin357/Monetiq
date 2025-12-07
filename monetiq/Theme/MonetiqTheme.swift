@@ -1,0 +1,76 @@
+//
+//  MonetiqTheme.swift
+//  monetiq
+//
+//  Created by Florin Mihai on 07.12.2025.
+//
+
+import SwiftUI
+
+struct MonetiqTheme {
+    
+    // MARK: - Colors
+    struct Colors {
+        static let primary = Color(red: 0.1, green: 0.2, blue: 0.4)        // Dark blue
+        static let accent = Color(red: 1.0, green: 0.8, blue: 0.0)         // Gold
+        static let background = Color(red: 0.05, green: 0.05, blue: 0.1)   // Very dark blue
+        static let surface = Color(red: 0.15, green: 0.15, blue: 0.2)      // Dark surface
+        static let onPrimary = Color.white
+        static let onBackground = Color.white
+        static let onSurface = Color.white
+        static let success = Color.green
+        static let warning = Color.orange
+        static let error = Color.red
+        static let textSecondary = Color.gray
+    }
+    
+    // MARK: - Typography
+    struct Typography {
+        static let largeTitle = Font.largeTitle.weight(.bold)
+        static let title = Font.title.weight(.semibold)
+        static let title2 = Font.title2.weight(.medium)
+        static let headline = Font.headline.weight(.medium)
+        static let body = Font.body
+        static let callout = Font.callout
+        static let caption = Font.caption
+        static let caption2 = Font.caption2
+    }
+    
+    // MARK: - Spacing
+    struct Spacing {
+        static let xs: CGFloat = 4
+        static let sm: CGFloat = 8
+        static let md: CGFloat = 16
+        static let lg: CGFloat = 24
+        static let xl: CGFloat = 32
+        static let xxl: CGFloat = 48
+    }
+    
+    // MARK: - Corner Radius
+    struct CornerRadius {
+        static let sm: CGFloat = 8
+        static let md: CGFloat = 12
+        static let lg: CGFloat = 16
+        static let xl: CGFloat = 24
+    }
+}
+
+// MARK: - View Extensions for Easy Theme Application
+extension View {
+    func monetiqBackground() -> some View {
+        self.background(MonetiqTheme.Colors.background)
+    }
+    
+    func monetiqSurface() -> some View {
+        self
+            .background(MonetiqTheme.Colors.surface)
+            .cornerRadius(MonetiqTheme.CornerRadius.md)
+    }
+    
+    func monetiqCard() -> some View {
+        self
+            .padding(MonetiqTheme.Spacing.md)
+            .background(MonetiqTheme.Colors.surface)
+            .cornerRadius(MonetiqTheme.CornerRadius.md)
+    }
+}
