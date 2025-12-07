@@ -16,6 +16,12 @@ struct CalculatorView: View {
     @State private var calculationResult: LoanCalculator.CalculatorResult?
     @State private var showValidationError = false
     
+    // Unified focus state for all fields
+    enum Field {
+        case principal, interest, term
+    }
+    @FocusState private var focusedField: Field?
+    
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
     }
@@ -41,14 +47,18 @@ struct CalculatorView: View {
                         title: L10n.string("calculator_principal"),
                         placeholder: L10n.string("calculator_principal_placeholder"),
                         text: $principalAmount,
-                        suffix: appSettings.defaultCurrencyCode
+                        suffix: appSettings.defaultCurrencyCode,
+                        focusedField: $focusedField,
+                        fieldType: .principal
                     )
                     
                     CalculatorInputField(
                         title: L10n.string("calculator_interest_rate"),
                         placeholder: L10n.string("calculator_interest_rate_placeholder"),
                         text: $interestRate,
-                        suffix: "%"
+                        suffix: "%",
+                        focusedField: $focusedField,
+                        fieldType: .interest
                     )
                     
                     CalculatorInputField(
@@ -56,7 +66,9 @@ struct CalculatorView: View {
                         placeholder: L10n.string("calculator_number_of_payments_placeholder"),
                         text: $numberOfPayments,
                         suffix: "payments",
-                        helperText: L10n.string("calculator_number_of_payments_helper")
+                        helperText: L10n.string("calculator_number_of_payments_helper"),
+                        focusedField: $focusedField,
+                        fieldType: .term
                     )
                     
                     // Frequency Picker
@@ -133,7 +145,17 @@ struct CalculatorView: View {
         }
         .monetiqBackground()
         .onTapGesture {
-            hideKeyboard()
+            focusedField = nil
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button(L10n.string("general_done")) {
+                    focusedField = nil
+                }
+                .font(.system(size: 16, weight: .semibold))
+                .foregroundColor(MonetiqTheme.Colors.accent)
+            }
         }
     }
     
@@ -169,10 +191,6 @@ struct CalculatorView: View {
             frequency: selectedFrequency
         )
     }
-    
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
 }
 
 struct CalculatorInputField: View {
@@ -181,14 +199,17 @@ struct CalculatorInputField: View {
     @Binding var text: String
     let suffix: String?
     let helperText: String?
-    @FocusState private var isFocused: Bool
+    @Binding var focusedField: CalculatorView.Field?
+    let fieldType: CalculatorView.Field
     
-    init(title: String, placeholder: String, text: Binding<String>, suffix: String? = nil, helperText: String? = nil) {
+    init(title: String, placeholder: String, text: Binding<String>, suffix: String? = nil, helperText: String? = nil, focusedField: Binding<CalculatorView.Field?>, fieldType: CalculatorView.Field) {
         self.title = title
         self.placeholder = placeholder
         self._text = text
         self.suffix = suffix
         self.helperText = helperText
+        self._focusedField = focusedField
+        self.fieldType = fieldType
     }
     
     var body: some View {
@@ -202,16 +223,7 @@ struct CalculatorInputField: View {
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                     .keyboardType(.decimalPad)
-                    .focused($isFocused)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
-                            Button(L10n.string("general_done")) {
-                                isFocused = false
-                            }
-                            .foregroundColor(MonetiqTheme.Colors.accent)
-                        }
-                    }
+                    .focused($focusedField, equals: fieldType)
                 
                 if let suffix = suffix {
                     Text(suffix)
