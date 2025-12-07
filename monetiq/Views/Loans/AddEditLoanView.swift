@@ -12,6 +12,7 @@ struct AddEditLoanView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query private var existingCounterparties: [Counterparty]
+    @StateObject private var notificationManager = NotificationManager.shared
     
     let editingLoan: Loan?
     
@@ -285,6 +286,24 @@ struct AddEditLoanView: View {
                 loan: loan
             )
             modelContext.insert(payment)
+        }
+        
+        // Save context first
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save loan: \(error)")
+            return
+        }
+        
+        // Schedule notifications for the loan
+        Task {
+            // Get app settings and set them in notification manager
+            let appSettings = AppSettings.getOrCreate(in: modelContext)
+            notificationManager.setAppSettings(appSettings)
+            
+            // Schedule notifications for this loan
+            await notificationManager.schedulePaymentNotifications(for: loan)
         }
         
         dismiss()

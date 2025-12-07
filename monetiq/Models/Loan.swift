@@ -31,6 +31,7 @@ final class Loan {
     var periodicPaymentAmount: Double?
     
     // Relationships
+    @Relationship(inverse: \Counterparty.loans)
     var counterparty: Counterparty?
     
     @Relationship(deleteRule: .cascade, inverse: \Payment.loan)

@@ -6,14 +6,31 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SettingsView: View {
-    @State private var notificationsEnabled = true
-    @State private var biometricEnabled = false
-    @State private var darkModeEnabled = true
-    @State private var defaultCurrency = "RON"
+    @Environment(\.modelContext) private var modelContext
+    @Query private var allSettings: [AppSettings]
+    @StateObject private var notificationManager = NotificationManager.shared
+    
+    @State private var appSettings: AppSettings?
+    @State private var darkModeEnabled = true // Keep as local state for now
     
     private let currencies = ["RON", "EUR", "USD", "GBP"]
+    private let daysBeforeOptions = [1, 2, 3, 5, 7]
+    
+    private var settings: AppSettings {
+        if let appSettings = appSettings {
+            return appSettings
+        }
+        
+        let settings = AppSettings.getOrCreate(in: modelContext)
+        DispatchQueue.main.async {
+            self.appSettings = settings
+            notificationManager.setAppSettings(settings)
+        }
+        return settings
+    }
     
     var body: some View {
         ScrollView {
@@ -36,13 +53,71 @@ struct SettingsView: View {
                     SettingsToggleRow(
                         title: "Push Notifications",
                         subtitle: "Get notified about upcoming payments",
-                        isOn: $notificationsEnabled
+                        isOn: Binding(
+                            get: { settings.notificationsEnabled },
+                            set: { newValue in
+                                let oldValue = settings.notificationsEnabled
+                                settings.notificationsEnabled = newValue
+                                settings.updateTimestamp()
+                                saveContext()
+                                
+                                if oldValue != newValue {
+                                    handleNotificationsToggle(enabled: newValue)
+                                }
+                            }
+                        )
+                    )
+                    
+                    SettingsPickerRow(
+                        title: "Days Before Due",
+                        subtitle: "Notification timing",
+                        selection: Binding(
+                            get: { String(settings.daysBeforeDueNotification) },
+                            set: { newValue in
+                                let oldValue = settings.daysBeforeDueNotification
+                                if let intValue = Int(newValue) {
+                                    settings.daysBeforeDueNotification = intValue
+                                    settings.updateTimestamp()
+                                    saveContext()
+                                    
+                                    if oldValue != intValue {
+                                        handleDaysBeforeChange()
+                                    }
+                                }
+                            }
+                        ),
+                        options: daysBeforeOptions.map(String.init)
+                    )
+                    
+                    SettingsToggleRow(
+                        title: "Weekly Review",
+                        subtitle: "Weekly financial review reminder",
+                        isOn: Binding(
+                            get: { settings.weeklyReviewEnabled },
+                            set: { newValue in
+                                let oldValue = settings.weeklyReviewEnabled
+                                settings.weeklyReviewEnabled = newValue
+                                settings.updateTimestamp()
+                                saveContext()
+                                
+                                if oldValue != newValue {
+                                    handleWeeklyReviewToggle(enabled: newValue)
+                                }
+                            }
+                        )
                     )
                     
                     SettingsPickerRow(
                         title: "Default Currency",
                         subtitle: "Currency for new loans",
-                        selection: $defaultCurrency,
+                        selection: Binding(
+                            get: { settings.defaultCurrencyCode },
+                            set: { newValue in
+                                settings.defaultCurrencyCode = newValue
+                                settings.updateTimestamp()
+                                saveContext()
+                            }
+                        ),
                         options: currencies
                     )
                 }
@@ -52,7 +127,14 @@ struct SettingsView: View {
                     SettingsToggleRow(
                         title: "Biometric Authentication",
                         subtitle: "Use Face ID or Touch ID to unlock",
-                        isOn: $biometricEnabled
+                        isOn: Binding(
+                            get: { settings.biometricLockEnabled },
+                            set: { newValue in
+                                settings.biometricLockEnabled = newValue
+                                settings.updateTimestamp()
+                                saveContext()
+                            }
+                        )
                     )
                 }
                 
@@ -64,6 +146,23 @@ struct SettingsView: View {
                         isOn: $darkModeEnabled
                     )
                 }
+                
+                // Developer Section (for testing)
+                #if DEBUG
+                SettingsSection(title: "Developer") {
+                    SettingsActionRow(
+                        title: "Test Notification",
+                        subtitle: "Send a test notification in 5 seconds",
+                        action: testNotification
+                    )
+                    
+                    SettingsActionRow(
+                        title: "View Pending Notifications",
+                        subtitle: "Check scheduled notifications",
+                        action: viewPendingNotifications
+                    )
+                }
+                #endif
                 
                 // About Section
                 SettingsSection(title: "About") {
@@ -91,6 +190,80 @@ struct SettingsView: View {
             .padding(.vertical, MonetiqTheme.Spacing.lg)
         }
         .monetiqBackground()
+        .onAppear {
+            // Initialize settings and notification manager
+            let currentSettings = AppSettings.getOrCreate(in: modelContext)
+            appSettings = currentSettings
+            notificationManager.setAppSettings(currentSettings)
+        }
+    }
+    
+    private func saveContext() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Failed to save settings: \(error)")
+        }
+    }
+    
+    private func handleNotificationsToggle(enabled: Bool) {
+        Task {
+            if enabled {
+                // Request authorization and reschedule all notifications
+                let authorized = await notificationManager.requestAuthorizationIfNeeded()
+                if authorized {
+                    await rescheduleAllNotifications()
+                }
+            } else {
+                // Cancel all notifications
+                await notificationManager.cancelAllNotifications()
+            }
+        }
+    }
+    
+    private func handleDaysBeforeChange() {
+        Task {
+            if settings.notificationsEnabled {
+                await rescheduleAllNotifications()
+            }
+        }
+    }
+    
+    private func handleWeeklyReviewToggle(enabled: Bool) {
+        Task {
+            if enabled {
+                await notificationManager.scheduleWeeklyReviewNotification()
+            } else {
+                await notificationManager.cancelWeeklyReviewNotification()
+            }
+        }
+    }
+    
+    private func rescheduleAllNotifications() async {
+        // Fetch all loans and reschedule notifications
+        let descriptor = FetchDescriptor<Loan>()
+        do {
+            let loans = try modelContext.fetch(descriptor)
+            await notificationManager.rescheduleAllNotifications(for: loans)
+        } catch {
+            print("Failed to fetch loans for notification rescheduling: \(error)")
+        }
+    }
+    
+    private func testNotification() {
+        Task {
+            await notificationManager.scheduleTestNotification()
+        }
+    }
+    
+    private func viewPendingNotifications() {
+        Task {
+            let pending = await notificationManager.getPendingNotifications()
+            print("Pending notifications: \(pending.count)")
+            for notification in pending {
+                print("- \(notification.identifier): \(notification.content.title)")
+            }
+        }
     }
     
     private func openPrivacyPolicy() {
@@ -222,4 +395,5 @@ struct SettingsActionRow: View {
     NavigationStack {
         SettingsView()
     }
+    .modelContainer(for: [Counterparty.self, Loan.self, Payment.self, AppSettings.self], inMemory: true)
 }

@@ -15,6 +15,7 @@ struct monetiqApp: App {
             Counterparty.self,
             Loan.self,
             Payment.self,
+            AppSettings.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,7 +29,16 @@ struct monetiqApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    initializeNotificationManager()
+                }
         }
         .modelContainer(sharedModelContainer)
+    }
+    
+    private func initializeNotificationManager() {
+        let context = sharedModelContainer.mainContext
+        let appSettings = AppSettings.getOrCreate(in: context)
+        NotificationManager.shared.setAppSettings(appSettings)
     }
 }

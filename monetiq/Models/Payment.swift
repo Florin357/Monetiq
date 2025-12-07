@@ -17,6 +17,7 @@ final class Payment {
     var paidDate: Date?
     
     // Relationship back to loan
+    @Relationship(inverse: \Loan.payments)
     var loan: Loan?
     
     init(

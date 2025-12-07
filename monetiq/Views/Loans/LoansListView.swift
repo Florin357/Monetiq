@@ -11,6 +11,7 @@ import SwiftData
 struct LoansListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
+    @StateObject private var notificationManager = NotificationManager.shared
     @State private var showingAddLoan = false
     
     private var sortedLoans: [Loan] {
@@ -88,7 +89,14 @@ struct LoansListView: View {
     private func deleteLoans(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(sortedLoans[index])
+                let loan = sortedLoans[index]
+                
+                // Cancel notifications for this loan before deletion
+                Task {
+                    await notificationManager.cancelNotifications(for: loan)
+                }
+                
+                modelContext.delete(loan)
             }
         }
     }
@@ -161,5 +169,5 @@ struct LoanRowView: View {
     NavigationStack {
         LoansListView()
     }
-    .modelContainer(for: [Counterparty.self, Loan.self, Payment.self], inMemory: true)
+    .modelContainer(for: [Counterparty.self, Loan.self, Payment.self, AppSettings.self], inMemory: true)
 }

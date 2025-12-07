@@ -11,6 +11,7 @@ import SwiftData
 struct LoanDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var notificationManager = NotificationManager.shared
     
     let loan: Loan
     @State private var showingEditLoan = false
@@ -216,6 +217,11 @@ struct LoanDetailView: View {
     }
     
     private func deleteLoan() {
+        // Cancel notifications for this loan before deletion
+        Task {
+            await notificationManager.cancelNotifications(for: loan)
+        }
+        
         modelContext.delete(loan)
         dismiss()
     }
@@ -223,6 +229,11 @@ struct LoanDetailView: View {
     private func markPaymentAsPaid(_ payment: Payment) {
         payment.markAsPaid()
         loan.updateTimestamp()
+        
+        // Cancel notifications for this specific payment
+        Task {
+            await notificationManager.cancelNotifications(for: payment)
+        }
     }
 }
 
