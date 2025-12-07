@@ -11,8 +11,11 @@ import SwiftData
 struct LoansListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
-    @StateObject private var notificationManager = NotificationManager.shared
     @State private var showingAddLoan = false
+    
+    private var notificationManager: NotificationManager {
+        NotificationManager.shared
+    }
     
     private var sortedLoans: [Loan] {
         loans.sorted { first, second in

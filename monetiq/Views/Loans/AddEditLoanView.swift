@@ -12,9 +12,12 @@ struct AddEditLoanView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query private var existingCounterparties: [Counterparty]
-    @StateObject private var notificationManager = NotificationManager.shared
     
     let editingLoan: Loan?
+    
+    private var notificationManager: NotificationManager {
+        NotificationManager.shared
+    }
     
     @State private var title: String = ""
     @State private var selectedRole: LoanRole = .lent

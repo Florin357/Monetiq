@@ -11,10 +11,13 @@ import SwiftData
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var allSettings: [AppSettings]
-    @StateObject private var notificationManager = NotificationManager.shared
     
     @State private var appSettings: AppSettings?
     @State private var darkModeEnabled = true // Keep as local state for now
+    
+    private var notificationManager: NotificationManager {
+        NotificationManager.shared
+    }
     
     private let currencies = ["RON", "EUR", "USD", "GBP"]
     private let daysBeforeOptions = [1, 2, 3, 5, 7]

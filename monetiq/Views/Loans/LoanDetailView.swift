@@ -11,11 +11,14 @@ import SwiftData
 struct LoanDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var notificationManager = NotificationManager.shared
     
     let loan: Loan
     @State private var showingEditLoan = false
     @State private var showingDeleteAlert = false
+    
+    private var notificationManager: NotificationManager {
+        NotificationManager.shared
+    }
     
     private var sortedPayments: [Payment] {
         loan.payments.sorted { $0.dueDate < $1.dueDate }

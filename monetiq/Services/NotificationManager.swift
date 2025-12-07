@@ -10,7 +10,7 @@ import UserNotifications
 import SwiftData
 
 @MainActor
-class NotificationManager: ObservableObject {
+class NotificationManager {
     static let shared = NotificationManager()
     
     private let notificationCenter = UNUserNotificationCenter.current()
