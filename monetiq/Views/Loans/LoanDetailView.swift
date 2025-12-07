@@ -16,6 +16,10 @@ struct LoanDetailView: View {
     @State private var showingEditLoan = false
     @State private var showingDeleteAlert = false
     
+    private var sortedPayments: [Payment] {
+        loan.payments.sorted { $0.dueDate < $1.dueDate }
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
@@ -39,7 +43,7 @@ struct LoanDetailView: View {
                         Spacer()
                         
                         VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
-                            Text("\(loan.principalAmount, specifier: "%.2f")")
+                            Text(String(format: "%.2f", loan.principalAmount))
                                 .font(MonetiqTheme.Typography.title2)
                                 .foregroundColor(MonetiqTheme.Colors.accent)
                                 .fontWeight(.semibold)
@@ -61,6 +65,20 @@ struct LoanDetailView: View {
                     
                     VStack(spacing: MonetiqTheme.Spacing.md) {
                         DetailRow(title: "Start Date", value: loan.startDate.formatted(date: .abbreviated, time: .omitted))
+                        DetailRow(title: "Payment Frequency", value: loan.frequency.displayName)
+                        DetailRow(title: "Number of Payments", value: String(loan.numberOfPeriods))
+                        DetailRow(title: "Interest Mode", value: loan.interestMode.displayName)
+                        
+                        if let rate = loan.annualInterestRate {
+                            DetailRow(title: "Annual Interest Rate", value: String(format: "%.2f%%", rate))
+                        }
+                        
+                        if let totalToRepay = loan.totalToRepay {
+                            DetailRow(title: "Total to Repay", value: String(format: "%.2f %@", totalToRepay, loan.currencyCode))
+                        }
+                        
+                        DetailRow(title: "Total Paid", value: String(format: "%.2f %@", loan.totalPaid, loan.currencyCode))
+                        DetailRow(title: "Remaining", value: String(format: "%.2f %@", loan.remainingToPay, loan.currencyCode))
                         
                         if let nextDueDate = loan.nextDueDate {
                             DetailRow(title: "Next Due Date", value: nextDueDate.formatted(date: .abbreviated, time: .omitted))
@@ -70,6 +88,29 @@ struct LoanDetailView: View {
                         
                         if loan.updatedAt != loan.createdAt {
                             DetailRow(title: "Last Updated", value: loan.updatedAt.formatted(date: .abbreviated, time: .shortened))
+                        }
+                    }
+                }
+                .monetiqCard()
+                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                
+                // Payment Schedule Section
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                    Text("Payment Schedule")
+                        .font(MonetiqTheme.Typography.headline)
+                        .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    
+                    if loan.payments.isEmpty {
+                        Text("No payment schedule available")
+                            .font(MonetiqTheme.Typography.body)
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    } else {
+                        LazyVStack(spacing: MonetiqTheme.Spacing.sm) {
+                            ForEach(sortedPayments, id: \.id) { payment in
+                                PaymentRowView(payment: payment) {
+                                    markPaymentAsPaid(payment)
+                                }
+                            }
                         }
                     }
                 }
@@ -178,6 +219,11 @@ struct LoanDetailView: View {
         modelContext.delete(loan)
         dismiss()
     }
+    
+    private func markPaymentAsPaid(_ payment: Payment) {
+        payment.markAsPaid()
+        loan.updateTimestamp()
+    }
 }
 
 struct DetailRow: View {
@@ -199,6 +245,72 @@ struct DetailRow: View {
     }
 }
 
+struct PaymentRowView: View {
+    let payment: Payment
+    let onMarkAsPaid: () -> Void
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                Text(payment.dueDate.formatted(date: .abbreviated, time: .omitted))
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                
+                Text(statusText)
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(statusColor)
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
+                Text(String(format: "%.2f %@", payment.amount, payment.loan?.currencyCode ?? "RON"))
+                    .font(MonetiqTheme.Typography.callout)
+                    .foregroundColor(MonetiqTheme.Colors.accent)
+                    .fontWeight(.medium)
+                
+                if payment.status == .planned && !payment.isOverdue {
+                    Button("Mark Paid") {
+                        onMarkAsPaid()
+                    }
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(MonetiqTheme.Colors.success)
+                }
+            }
+        }
+        .padding(MonetiqTheme.Spacing.sm)
+        .background(payment.status == .paid ? MonetiqTheme.Colors.success.opacity(0.1) : 
+                   payment.isOverdue ? MonetiqTheme.Colors.error.opacity(0.1) : 
+                   MonetiqTheme.Colors.surface)
+        .cornerRadius(MonetiqTheme.CornerRadius.sm)
+    }
+    
+    private var statusText: String {
+        switch payment.status {
+        case .paid:
+            if let paidDate = payment.paidDate {
+                return "Paid on \(paidDate.formatted(date: .abbreviated, time: .omitted))"
+            }
+            return "Paid"
+        case .planned:
+            return payment.isOverdue ? "Overdue" : "Planned"
+        case .overdue:
+            return "Overdue"
+        }
+    }
+    
+    private var statusColor: Color {
+        switch payment.status {
+        case .paid:
+            return MonetiqTheme.Colors.success
+        case .planned:
+            return payment.isOverdue ? MonetiqTheme.Colors.error : MonetiqTheme.Colors.textSecondary
+        case .overdue:
+            return MonetiqTheme.Colors.error
+        }
+    }
+}
+
 #Preview {
     let loan = Loan(
         title: "Sample Loan",
@@ -212,5 +324,5 @@ struct DetailRow: View {
     NavigationStack {
         LoanDetailView(loan: loan)
     }
-    .modelContainer(for: [Counterparty.self, Loan.self], inMemory: true)
+    .modelContainer(for: [Counterparty.self, Loan.self, Payment.self], inMemory: true)
 }

@@ -117,7 +117,7 @@ struct LoanRowView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
-                    Text("\(loan.principalAmount, specifier: "%.2f") \(loan.currencyCode)")
+                    Text(String(format: "%.2f %@", loan.principalAmount, loan.currencyCode))
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.accent)
                         .fontWeight(.semibold)
@@ -161,5 +161,5 @@ struct LoanRowView: View {
     NavigationStack {
         LoansListView()
     }
-    .modelContainer(for: [Counterparty.self, Loan.self], inMemory: true)
+    .modelContainer(for: [Counterparty.self, Loan.self, Payment.self], inMemory: true)
 }

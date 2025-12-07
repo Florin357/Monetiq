@@ -26,6 +26,13 @@ struct AddEditLoanView: View {
     @State private var hasNextDueDate: Bool = false
     @State private var notes: String = ""
     
+    // Calculation fields
+    @State private var selectedFrequency: PaymentFrequency = .monthly
+    @State private var numberOfPeriods: String = "12"
+    @State private var selectedInterestMode: InterestMode = .none
+    @State private var annualInterestRate: String = ""
+    @State private var fixedTotalToRepay: String = ""
+    
     private let currencies = ["RON", "EUR", "USD", "GBP"]
     
     init(loan: Loan? = nil) {
@@ -33,11 +40,30 @@ struct AddEditLoanView: View {
     }
     
     var isFormValid: Bool {
-        !title.trimmingCharacters(in: .whitespaces).isEmpty &&
+        let basicFieldsValid = !title.trimmingCharacters(in: .whitespaces).isEmpty &&
         !counterpartyName.trimmingCharacters(in: .whitespaces).isEmpty &&
         !principalAmount.trimmingCharacters(in: .whitespaces).isEmpty &&
         Double(principalAmount) != nil &&
-        Double(principalAmount) ?? 0 > 0
+        Double(principalAmount) ?? 0 > 0 &&
+        !numberOfPeriods.trimmingCharacters(in: .whitespaces).isEmpty &&
+        Int(numberOfPeriods) != nil &&
+        Int(numberOfPeriods) ?? 0 > 0
+        
+        let interestFieldsValid: Bool
+        switch selectedInterestMode {
+        case .none:
+            interestFieldsValid = true
+        case .percentageAnnual:
+            interestFieldsValid = !annualInterestRate.trimmingCharacters(in: .whitespaces).isEmpty &&
+                                Double(annualInterestRate) != nil &&
+                                Double(annualInterestRate) ?? 0 >= 0
+        case .fixedTotal:
+            interestFieldsValid = !fixedTotalToRepay.trimmingCharacters(in: .whitespaces).isEmpty &&
+                                Double(fixedTotalToRepay) != nil &&
+                                Double(fixedTotalToRepay) ?? 0 > 0
+        }
+        
+        return basicFieldsValid && interestFieldsValid
     }
     
     var body: some View {
@@ -79,6 +105,40 @@ struct AddEditLoanView: View {
                             }
                         }
                         .pickerStyle(.menu)
+                    }
+                }
+                
+                Section("Repayment Schedule") {
+                    Picker("Payment Frequency", selection: $selectedFrequency) {
+                        ForEach(PaymentFrequency.allCases, id: \.self) { frequency in
+                            Text(frequency.displayName).tag(frequency)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    TextField("Number of Payments", text: $numberOfPeriods)
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(.roundedBorder)
+                }
+                
+                Section("Interest") {
+                    Picker("Interest Mode", selection: $selectedInterestMode) {
+                        ForEach(InterestMode.allCases, id: \.self) { mode in
+                            Text(mode.displayName).tag(mode)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    
+                    if selectedInterestMode == .percentageAnnual {
+                        TextField("Annual Interest Rate (%)", text: $annualInterestRate)
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(.roundedBorder)
+                    }
+                    
+                    if selectedInterestMode == .fixedTotal {
+                        TextField("Fixed Total to Repay", text: $fixedTotalToRepay)
+                            .keyboardType(.decimalPad)
+                            .textFieldStyle(.roundedBorder)
                     }
                 }
                 
@@ -132,6 +192,13 @@ struct AddEditLoanView: View {
         selectedCurrency = loan.currencyCode
         startDate = loan.startDate
         
+        // Load calculation fields
+        selectedFrequency = loan.frequency
+        numberOfPeriods = String(loan.numberOfPeriods)
+        selectedInterestMode = loan.interestMode
+        annualInterestRate = loan.annualInterestRate != nil ? String(loan.annualInterestRate!) : ""
+        fixedTotalToRepay = loan.fixedTotalToRepay != nil ? String(loan.fixedTotalToRepay!) : ""
+        
         if let nextDue = loan.nextDueDate {
             nextDueDate = nextDue
             hasNextDueDate = true
@@ -146,31 +213,78 @@ struct AddEditLoanView: View {
         // Find or create counterparty
         let counterparty = findOrCreateCounterparty()
         
+        // Prepare calculation input
+        let calculationInput = LoanCalculationInput(
+            principal: Double(principalAmount) ?? 0,
+            annualInterestRate: selectedInterestMode == .percentageAnnual ? Double(annualInterestRate) : nil,
+            numberOfPeriods: Int(numberOfPeriods) ?? 12,
+            frequency: selectedFrequency,
+            interestMode: selectedInterestMode,
+            fixedTotalToRepay: selectedInterestMode == .fixedTotal ? Double(fixedTotalToRepay) : nil,
+            startDate: startDate
+        )
+        
+        // Calculate schedule
+        let calculationOutput = LoanCalculator.generateSchedule(input: calculationInput)
+        
+        let loan: Loan
         if let existingLoan = editingLoan {
             // Update existing loan
-            existingLoan.title = title.trimmingCharacters(in: .whitespaces)
-            existingLoan.role = selectedRole
-            existingLoan.principalAmount = Double(principalAmount) ?? 0
-            existingLoan.currencyCode = selectedCurrency
-            existingLoan.startDate = startDate
-            existingLoan.nextDueDate = hasNextDueDate ? nextDueDate : nil
-            existingLoan.notes = notes.trimmingCharacters(in: .whitespaces).isEmpty ? nil : notes.trimmingCharacters(in: .whitespaces)
-            existingLoan.counterparty = counterparty
-            existingLoan.updateTimestamp()
+            loan = existingLoan
+            loan.title = title.trimmingCharacters(in: .whitespaces)
+            loan.role = selectedRole
+            loan.principalAmount = Double(principalAmount) ?? 0
+            loan.currencyCode = selectedCurrency
+            loan.startDate = startDate
+            loan.frequency = selectedFrequency
+            loan.numberOfPeriods = Int(numberOfPeriods) ?? 12
+            loan.interestMode = selectedInterestMode
+            loan.annualInterestRate = selectedInterestMode == .percentageAnnual ? Double(annualInterestRate) : nil
+            loan.fixedTotalToRepay = selectedInterestMode == .fixedTotal ? Double(fixedTotalToRepay) : nil
+            loan.totalToRepay = calculationOutput.totalToRepay
+            loan.periodicPaymentAmount = calculationOutput.periodicPaymentAmount
+            loan.nextDueDate = hasNextDueDate ? nextDueDate : calculationOutput.schedule.first?.dueDate
+            loan.notes = notes.trimmingCharacters(in: .whitespaces).isEmpty ? nil : notes.trimmingCharacters(in: .whitespaces)
+            loan.counterparty = counterparty
+            loan.updateTimestamp()
+            
+            // Remove existing payments
+            for payment in loan.payments {
+                modelContext.delete(payment)
+            }
         } else {
             // Create new loan
-            let newLoan = Loan(
+            loan = Loan(
                 title: title.trimmingCharacters(in: .whitespaces),
                 role: selectedRole,
                 principalAmount: Double(principalAmount) ?? 0,
                 currencyCode: selectedCurrency,
                 startDate: startDate,
-                nextDueDate: hasNextDueDate ? nextDueDate : nil,
+                frequency: selectedFrequency,
+                numberOfPeriods: Int(numberOfPeriods) ?? 12,
+                interestMode: selectedInterestMode,
+                annualInterestRate: selectedInterestMode == .percentageAnnual ? Double(annualInterestRate) : nil,
+                fixedTotalToRepay: selectedInterestMode == .fixedTotal ? Double(fixedTotalToRepay) : nil,
+                nextDueDate: hasNextDueDate ? nextDueDate : calculationOutput.schedule.first?.dueDate,
                 notes: notes.trimmingCharacters(in: .whitespaces).isEmpty ? nil : notes.trimmingCharacters(in: .whitespaces),
                 counterparty: counterparty
             )
             
-            modelContext.insert(newLoan)
+            loan.totalToRepay = calculationOutput.totalToRepay
+            loan.periodicPaymentAmount = calculationOutput.periodicPaymentAmount
+            
+            modelContext.insert(loan)
+        }
+        
+        // Create new payments from schedule
+        for scheduleItem in calculationOutput.schedule {
+            let payment = Payment(
+                dueDate: scheduleItem.dueDate,
+                amount: scheduleItem.amount,
+                status: .planned,
+                loan: loan
+            )
+            modelContext.insert(payment)
         }
         
         dismiss()
@@ -201,5 +315,5 @@ struct AddEditLoanView: View {
 
 #Preview {
     AddEditLoanView()
-        .modelContainer(for: [Counterparty.self, Loan.self], inMemory: true)
+        .modelContainer(for: [Counterparty.self, Loan.self, Payment.self], inMemory: true)
 }

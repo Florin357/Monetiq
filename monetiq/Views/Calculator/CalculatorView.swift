@@ -11,9 +11,8 @@ struct CalculatorView: View {
     @State private var principalAmount: String = ""
     @State private var interestRate: String = ""
     @State private var loanTerm: String = ""
-    @State private var selectedFrequency: String = "Monthly"
-    
-    private let frequencies = ["Weekly", "Monthly", "Quarterly", "Yearly"]
+    @State private var selectedFrequency: PaymentFrequency = .monthly
+    @State private var calculationResult: LoanCalculator.CalculatorResult?
     
     var body: some View {
         ScrollView {
@@ -61,8 +60,8 @@ struct CalculatorView: View {
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
                         Picker("Frequency", selection: $selectedFrequency) {
-                            ForEach(frequencies, id: \.self) { frequency in
-                                Text(frequency).tag(frequency)
+                            ForEach(PaymentFrequency.allCases, id: \.self) { frequency in
+                                Text(frequency.displayName).tag(frequency)
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -90,9 +89,15 @@ struct CalculatorView: View {
                         .foregroundColor(MonetiqTheme.Colors.onSurface)
                     
                     VStack(spacing: MonetiqTheme.Spacing.sm) {
-                        ResultRow(title: "Monthly Payment", value: "0.00 RON")
-                        ResultRow(title: "Total Interest", value: "0.00 RON")
-                        ResultRow(title: "Total Amount", value: "0.00 RON")
+                        if let result = calculationResult {
+                            ResultRow(title: "\(selectedFrequency.displayName) Payment", value: String(format: "%.2f RON", result.periodicPaymentAmount))
+                            ResultRow(title: "Total Interest", value: String(format: "%.2f RON", result.totalInterest))
+                            ResultRow(title: "Total Amount", value: String(format: "%.2f RON", result.totalToRepay))
+                        } else {
+                            ResultRow(title: "\(selectedFrequency.displayName) Payment", value: "0.00 RON")
+                            ResultRow(title: "Total Interest", value: "0.00 RON")
+                            ResultRow(title: "Total Amount", value: "0.00 RON")
+                        }
                     }
                 }
                 .monetiqCard()
@@ -106,8 +111,20 @@ struct CalculatorView: View {
     }
     
     private func calculatePayment() {
-        // Placeholder for calculation logic
-        // In a real app, this would perform loan calculations
+        guard let principal = Double(principalAmount),
+              let rate = Double(interestRate),
+              let term = Int(loanTerm),
+              principal > 0, rate >= 0, term > 0 else {
+            calculationResult = nil
+            return
+        }
+        
+        calculationResult = LoanCalculator.calculateForDisplay(
+            principal: principal,
+            annualInterestRate: rate,
+            numberOfPeriods: term,
+            frequency: selectedFrequency
+        )
     }
 }
 

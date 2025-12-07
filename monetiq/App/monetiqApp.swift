@@ -14,6 +14,7 @@ struct monetiqApp: App {
         let schema = Schema([
             Counterparty.self,
             Loan.self,
+            Payment.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

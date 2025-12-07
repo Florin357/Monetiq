@@ -21,8 +21,20 @@ final class Loan {
     var createdAt: Date
     var updatedAt: Date
     
+    // Calculation fields
+    var frequency: PaymentFrequency
+    var numberOfPeriods: Int
+    var interestMode: InterestMode
+    var annualInterestRate: Double?
+    var fixedTotalToRepay: Double?
+    var totalToRepay: Double?
+    var periodicPaymentAmount: Double?
+    
     // Relationships
     var counterparty: Counterparty?
+    
+    @Relationship(deleteRule: .cascade, inverse: \Payment.loan)
+    var payments: [Payment] = []
     
     init(
         title: String,
@@ -30,6 +42,11 @@ final class Loan {
         principalAmount: Double,
         currencyCode: String = "RON",
         startDate: Date = Date(),
+        frequency: PaymentFrequency = .monthly,
+        numberOfPeriods: Int = 12,
+        interestMode: InterestMode = .none,
+        annualInterestRate: Double? = nil,
+        fixedTotalToRepay: Double? = nil,
         nextDueDate: Date? = nil,
         notes: String? = nil,
         counterparty: Counterparty? = nil
@@ -40,6 +57,11 @@ final class Loan {
         self.principalAmount = principalAmount
         self.currencyCode = currencyCode
         self.startDate = startDate
+        self.frequency = frequency
+        self.numberOfPeriods = numberOfPeriods
+        self.interestMode = interestMode
+        self.annualInterestRate = annualInterestRate
+        self.fixedTotalToRepay = fixedTotalToRepay
         self.nextDueDate = nextDueDate
         self.notes = notes
         self.counterparty = counterparty
@@ -49,6 +71,20 @@ final class Loan {
     
     func updateTimestamp() {
         self.updatedAt = Date()
+    }
+    
+    var totalPaid: Double {
+        payments.filter { $0.status == .paid }.reduce(0) { $0 + $1.amount }
+    }
+    
+    var remainingToPay: Double {
+        (totalToRepay ?? principalAmount) - totalPaid
+    }
+    
+    var upcomingPayments: [Payment] {
+        payments
+            .filter { $0.status == .planned }
+            .sorted { $0.dueDate < $1.dueDate }
     }
 }
 
@@ -65,6 +101,43 @@ enum LoanRole: String, CaseIterable, Codable {
             return "Borrowed"
         case .bankCredit:
             return "Bank Credit"
+        }
+    }
+}
+
+enum PaymentFrequency: String, CaseIterable, Codable {
+    case weekly = "weekly"
+    case monthly = "monthly"
+    case quarterly = "quarterly"
+    case yearly = "yearly"
+    
+    var displayName: String {
+        switch self {
+        case .weekly:
+            return "Weekly"
+        case .monthly:
+            return "Monthly"
+        case .quarterly:
+            return "Quarterly"
+        case .yearly:
+            return "Yearly"
+        }
+    }
+}
+
+enum InterestMode: String, CaseIterable, Codable {
+    case none = "none"
+    case percentageAnnual = "percentageAnnual"
+    case fixedTotal = "fixedTotal"
+    
+    var displayName: String {
+        switch self {
+        case .none:
+            return "No Interest"
+        case .percentageAnnual:
+            return "Annual Percentage"
+        case .fixedTotal:
+            return "Fixed Total"
         }
     }
 }
