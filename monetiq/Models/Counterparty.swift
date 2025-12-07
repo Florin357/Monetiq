@@ -30,13 +30,4 @@ final class Counterparty {
 enum CounterpartyType: String, CaseIterable, Codable {
     case person = "person"
     case institution = "institution"
-    
-    var displayName: String {
-        switch self {
-        case .person:
-            return "Person"
-        case .institution:
-            return "Institution"
-        }
-    }
 }

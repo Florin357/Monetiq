@@ -16,7 +16,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "chart.pie.fill")
-                Text("Dashboard")
+                Text(L10n.string("tab_dashboard"))
             }
             
             NavigationStack {
@@ -24,7 +24,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "banknote.fill")
-                Text("Loans")
+                Text(L10n.string("tab_loans"))
             }
             
             NavigationStack {
@@ -32,7 +32,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "calculator.fill")
-                Text("Calculator")
+                Text(L10n.string("tab_calculator"))
             }
             
             NavigationStack {
@@ -40,7 +40,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "gear.fill")
-                Text("Settings")
+                Text(L10n.string("tab_settings"))
             }
         }
         .monetiqBackground()

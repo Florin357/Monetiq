@@ -8,60 +8,64 @@
 import SwiftUI
 
 struct CalculatorView: View {
+    @Environment(\.modelContext) private var modelContext
     @State private var principalAmount: String = ""
     @State private var interestRate: String = ""
     @State private var loanTerm: String = ""
     @State private var selectedFrequency: PaymentFrequency = .monthly
     @State private var calculationResult: LoanCalculator.CalculatorResult?
     
+    private var appSettings: AppSettings {
+        AppSettings.getOrCreate(in: modelContext)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                    Text("Loan Calculator")
+                    Text(L10n.string("calculator_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                     
-                    Text("Calculate loan payments and interest")
+                    Text(L10n.string("calculator_subtitle"))
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                .monetiqHeader()
                 
                 // Input Form
                 VStack(spacing: MonetiqTheme.Spacing.md) {
                     CalculatorInputField(
-                        title: "Principal Amount",
-                        placeholder: "Enter amount",
+                        title: L10n.string("calculator_principal"),
+                        placeholder: L10n.string("calculator_principal_placeholder"),
                         text: $principalAmount,
-                        suffix: "RON"
+                        suffix: appSettings.defaultCurrencyCode
                     )
                     
                     CalculatorInputField(
-                        title: "Annual Interest Rate",
-                        placeholder: "Enter rate",
+                        title: L10n.string("calculator_interest_rate"),
+                        placeholder: L10n.string("calculator_interest_rate_placeholder"),
                         text: $interestRate,
                         suffix: "%"
                     )
                     
                     CalculatorInputField(
-                        title: "Loan Term",
-                        placeholder: "Enter duration",
+                        title: L10n.string("calculator_term"),
+                        placeholder: L10n.string("calculator_term_placeholder"),
                         text: $loanTerm,
                         suffix: "periods"
                     )
                     
                     // Frequency Picker
                     VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                        Text("Payment Frequency")
+                        Text(L10n.string("calculator_frequency"))
                             .font(MonetiqTheme.Typography.headline)
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
-                        Picker("Frequency", selection: $selectedFrequency) {
+                        Picker(L10n.string("calculator_frequency"), selection: $selectedFrequency) {
                             ForEach(PaymentFrequency.allCases, id: \.self) { frequency in
-                                Text(frequency.displayName).tag(frequency)
+                                Text(frequency.localizedLabel).tag(frequency)
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -72,31 +76,44 @@ struct CalculatorView: View {
                 
                 // Calculate Button
                 Button(action: calculatePayment) {
-                    Text("Calculate Payment")
-                        .font(MonetiqTheme.Typography.headline)
-                        .foregroundColor(MonetiqTheme.Colors.onPrimary)
-                        .frame(maxWidth: .infinity)
-                        .padding(MonetiqTheme.Spacing.md)
-                        .background(MonetiqTheme.Colors.accent)
-                        .cornerRadius(MonetiqTheme.CornerRadius.md)
+                    Text(L10n.string("calculator_calculate"))
+                        .monetiqButton()
                 }
                 .padding(.horizontal, MonetiqTheme.Spacing.md)
                 
                 // Results Placeholder
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("Results")
+                    Text(L10n.string("calculator_results"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onSurface)
                     
                     VStack(spacing: MonetiqTheme.Spacing.sm) {
                         if let result = calculationResult {
-                            ResultRow(title: "\(selectedFrequency.displayName) Payment", value: String(format: "%.2f RON", result.periodicPaymentAmount))
-                            ResultRow(title: "Total Interest", value: String(format: "%.2f RON", result.totalInterest))
-                            ResultRow(title: "Total Amount", value: String(format: "%.2f RON", result.totalToRepay))
+                            ResultRow(
+                                title: L10n.string("calculator_payment", selectedFrequency.localizedLabel),
+                                value: CurrencyFormatter.shared.format(amount: result.periodicPaymentAmount, currencyCode: appSettings.defaultCurrencyCode)
+                            )
+                            ResultRow(
+                                title: L10n.string("calculator_total_interest"),
+                                value: CurrencyFormatter.shared.format(amount: result.totalInterest, currencyCode: appSettings.defaultCurrencyCode)
+                            )
+                            ResultRow(
+                                title: L10n.string("calculator_total_amount"),
+                                value: CurrencyFormatter.shared.format(amount: result.totalToRepay, currencyCode: appSettings.defaultCurrencyCode)
+                            )
                         } else {
-                            ResultRow(title: "\(selectedFrequency.displayName) Payment", value: "0.00 RON")
-                            ResultRow(title: "Total Interest", value: "0.00 RON")
-                            ResultRow(title: "Total Amount", value: "0.00 RON")
+                            ResultRow(
+                                title: L10n.string("calculator_payment", selectedFrequency.localizedLabel),
+                                value: CurrencyFormatter.shared.format(amount: 0, currencyCode: appSettings.defaultCurrencyCode)
+                            )
+                            ResultRow(
+                                title: L10n.string("calculator_total_interest"),
+                                value: CurrencyFormatter.shared.format(amount: 0, currencyCode: appSettings.defaultCurrencyCode)
+                            )
+                            ResultRow(
+                                title: L10n.string("calculator_total_amount"),
+                                value: CurrencyFormatter.shared.format(amount: 0, currencyCode: appSettings.defaultCurrencyCode)
+                            )
                         }
                     }
                 }

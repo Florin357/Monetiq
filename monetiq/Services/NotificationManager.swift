@@ -137,13 +137,14 @@ class NotificationManager {
         daysUntilDue: Int
     ) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
+        let formattedAmount = CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: loan.currencyCode)
         
         if isReminder {
-            content.title = "Payment Reminder"
-            content.body = "Payment for '\(loan.title)' is due in \(daysUntilDue) day\(daysUntilDue == 1 ? "" : "s"): \(String(format: "%.2f %@", payment.amount, loan.currencyCode))"
+            content.title = L10n.string("notification_payment_reminder_title")
+            content.body = L10n.string("notification_payment_reminder_body", loan.title, daysUntilDue, formattedAmount)
         } else {
-            content.title = "Payment Due Today"
-            content.body = "Payment for '\(loan.title)' is due today: \(String(format: "%.2f %@", payment.amount, loan.currencyCode))"
+            content.title = L10n.string("notification_payment_due_title")
+            content.body = L10n.string("notification_payment_due_body", loan.title, formattedAmount)
         }
         
         content.sound = .default
@@ -199,8 +200,8 @@ class NotificationManager {
         await cancelWeeklyReviewNotification()
         
         let content = UNMutableNotificationContent()
-        content.title = "Weekly Financial Review"
-        content.body = "Time to review your loans and upcoming payments in Monetiq"
+        content.title = L10n.string("notification_weekly_review_title")
+        content.body = L10n.string("notification_weekly_review_body")
         content.sound = .default
         content.badge = 1
         content.userInfo = ["type": "weekly_review"]
@@ -262,8 +263,8 @@ class NotificationManager {
         }
         
         let content = UNMutableNotificationContent()
-        content.title = "Test Notification"
-        content.body = "This is a test notification from Monetiq"
+        content.title = L10n.string("notification_test_title")
+        content.body = L10n.string("notification_test_body")
         content.sound = .default
         
         // Schedule for 5 seconds from now

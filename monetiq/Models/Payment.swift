@@ -48,15 +48,4 @@ enum PaymentStatus: String, CaseIterable, Codable {
     case planned = "planned"
     case paid = "paid"
     case overdue = "overdue"
-    
-    var displayName: String {
-        switch self {
-        case .planned:
-            return "Planned"
-        case .paid:
-            return "Paid"
-        case .overdue:
-            return "Overdue"
-        }
-    }
 }

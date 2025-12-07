@@ -13,21 +13,24 @@ struct DashboardView: View {
     @Query private var loans: [Loan]
     @Query private var payments: [Payment]
     
+    private var appSettings: AppSettings {
+        AppSettings.getOrCreate(in: modelContext)
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                    Text("Dashboard")
+                    Text(L10n.string("dashboard_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                     
-                    Text("Financial Overview")
+                    Text(L10n.string("dashboard_subtitle"))
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                .monetiqHeader()
                 
                 // Summary Cards
                 LazyVGrid(columns: [
@@ -35,16 +38,16 @@ struct DashboardView: View {
                     GridItem(.flexible())
                 ], spacing: MonetiqTheme.Spacing.md) {
                     SummaryCard(
-                        title: "To Receive",
+                        title: L10n.string("dashboard_to_receive"),
                         amount: calculateToReceive(),
-                        currency: "RON",
+                        currency: appSettings.defaultCurrencyCode,
                         color: MonetiqTheme.Colors.success
                     )
                     
                     SummaryCard(
-                        title: "To Pay",
+                        title: L10n.string("dashboard_to_pay"),
                         amount: calculateToPay(),
-                        currency: "RON",
+                        currency: appSettings.defaultCurrencyCode,
                         color: MonetiqTheme.Colors.warning
                     )
                 }
@@ -52,16 +55,21 @@ struct DashboardView: View {
                 
                 // Upcoming Payments
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("Upcoming Payments")
+                    Text(L10n.string("dashboard_upcoming_payments"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
                     if upcomingPayments.isEmpty {
-                        Text("No upcoming payments")
-                            .font(MonetiqTheme.Typography.body)
-                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                            .padding(.horizontal, MonetiqTheme.Spacing.md)
+                        VStack(spacing: MonetiqTheme.Spacing.xs) {
+                            Text(L10n.string("dashboard_no_payments"))
+                                .font(MonetiqTheme.Typography.body)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            Text(L10n.string("dashboard_no_payments_subtitle"))
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        }
+                        .padding(.horizontal, MonetiqTheme.Spacing.md)
                     } else {
                         LazyVStack(spacing: MonetiqTheme.Spacing.sm) {
                             ForEach(upcomingPayments.prefix(5), id: \.id) { payment in
@@ -136,7 +144,7 @@ struct SummaryCard: View {
                 .font(MonetiqTheme.Typography.caption)
                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
             
-            Text(String(format: "%.2f %@", amount, currency))
+            Text(CurrencyFormatter.shared.format(amount: amount, currencyCode: currency))
                 .font(MonetiqTheme.Typography.title2)
                 .foregroundColor(color)
                 .fontWeight(.semibold)
@@ -169,7 +177,7 @@ struct DashboardPaymentRowView: View {
             
             Spacer()
             
-            Text(String(format: "%.2f %@", payment.amount, payment.loan?.currencyCode ?? "RON"))
+            Text(CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: payment.loan?.currencyCode ?? "RON"))
                 .font(MonetiqTheme.Typography.callout)
                 .foregroundColor(MonetiqTheme.Colors.accent)
                 .fontWeight(.medium)

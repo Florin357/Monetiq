@@ -39,6 +39,10 @@ struct AddEditLoanView: View {
     
     private let currencies = ["RON", "EUR", "USD", "GBP"]
     
+    private var appSettings: AppSettings {
+        AppSettings.getOrCreate(in: modelContext)
+    }
+    
     init(loan: Loan? = nil) {
         self.editingLoan = loan
     }
@@ -182,6 +186,10 @@ struct AddEditLoanView: View {
         }
         .onAppear {
             loadLoanData()
+            // Set default currency if creating new loan
+            if editingLoan == nil && selectedCurrency == "RON" {
+                selectedCurrency = appSettings.defaultCurrencyCode
+            }
         }
     }
     

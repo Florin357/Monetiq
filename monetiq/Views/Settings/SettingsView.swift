@@ -40,22 +40,21 @@ struct SettingsView: View {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                    Text("Settings")
+                    Text(L10n.string("settings_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                     
-                    Text("Customize your Monetiq experience")
+                    Text(L10n.string("settings_subtitle"))
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                .monetiqHeader()
                 
                 // General Settings
-                SettingsSection(title: "General") {
+                SettingsSection(title: L10n.string("settings_general")) {
                     SettingsToggleRow(
-                        title: "Push Notifications",
-                        subtitle: "Get notified about upcoming payments",
+                        title: L10n.string("settings_notifications"),
+                        subtitle: L10n.string("settings_notifications_subtitle"),
                         isOn: Binding(
                             get: { settings.notificationsEnabled },
                             set: { newValue in
@@ -72,8 +71,8 @@ struct SettingsView: View {
                     )
                     
                     SettingsPickerRow(
-                        title: "Days Before Due",
-                        subtitle: "Notification timing",
+                        title: L10n.string("settings_days_before"),
+                        subtitle: L10n.string("settings_days_before_subtitle"),
                         selection: Binding(
                             get: { String(settings.daysBeforeDueNotification) },
                             set: { newValue in
@@ -93,8 +92,8 @@ struct SettingsView: View {
                     )
                     
                     SettingsToggleRow(
-                        title: "Weekly Review",
-                        subtitle: "Weekly financial review reminder",
+                        title: L10n.string("settings_weekly_review"),
+                        subtitle: L10n.string("settings_weekly_review_subtitle"),
                         isOn: Binding(
                             get: { settings.weeklyReviewEnabled },
                             set: { newValue in
@@ -111,8 +110,8 @@ struct SettingsView: View {
                     )
                     
                     SettingsPickerRow(
-                        title: "Default Currency",
-                        subtitle: "Currency for new loans",
+                        title: L10n.string("settings_default_currency"),
+                        subtitle: L10n.string("settings_default_currency_subtitle"),
                         selection: Binding(
                             get: { settings.defaultCurrencyCode },
                             set: { newValue in
@@ -126,10 +125,10 @@ struct SettingsView: View {
                 }
                 
                 // Security Settings
-                SettingsSection(title: "Security") {
+                SettingsSection(title: L10n.string("settings_security")) {
                     SettingsToggleRow(
-                        title: "Biometric Authentication",
-                        subtitle: "Use Face ID or Touch ID to unlock",
+                        title: L10n.string("settings_biometric"),
+                        subtitle: L10n.string("settings_biometric_subtitle"),
                         isOn: Binding(
                             get: { settings.biometricLockEnabled },
                             set: { newValue in
@@ -142,48 +141,48 @@ struct SettingsView: View {
                 }
                 
                 // Appearance Settings
-                SettingsSection(title: "Appearance") {
+                SettingsSection(title: L10n.string("settings_appearance")) {
                     SettingsToggleRow(
-                        title: "Dark Mode",
-                        subtitle: "Use dark theme",
+                        title: L10n.string("settings_dark_mode"),
+                        subtitle: L10n.string("settings_dark_mode_subtitle"),
                         isOn: $darkModeEnabled
                     )
                 }
                 
                 // Developer Section (for testing)
                 #if DEBUG
-                SettingsSection(title: "Developer") {
+                SettingsSection(title: L10n.string("settings_developer")) {
                     SettingsActionRow(
-                        title: "Test Notification",
-                        subtitle: "Send a test notification in 5 seconds",
+                        title: L10n.string("settings_test_notification"),
+                        subtitle: L10n.string("settings_test_notification_subtitle"),
                         action: testNotification
                     )
                     
                     SettingsActionRow(
-                        title: "View Pending Notifications",
-                        subtitle: "Check scheduled notifications",
+                        title: L10n.string("settings_view_notifications"),
+                        subtitle: L10n.string("settings_view_notifications_subtitle"),
                         action: viewPendingNotifications
                     )
                 }
                 #endif
                 
                 // About Section
-                SettingsSection(title: "About") {
+                SettingsSection(title: L10n.string("settings_about")) {
                     SettingsActionRow(
-                        title: "Version",
+                        title: L10n.string("settings_version"),
                         subtitle: "1.0.0",
                         action: {}
                     )
                     
                     SettingsActionRow(
-                        title: "Privacy Policy",
-                        subtitle: "View our privacy policy",
+                        title: L10n.string("settings_privacy"),
+                        subtitle: L10n.string("settings_privacy_subtitle"),
                         action: openPrivacyPolicy
                     )
                     
                     SettingsActionRow(
-                        title: "Terms of Service",
-                        subtitle: "View terms and conditions",
+                        title: L10n.string("settings_terms"),
+                        subtitle: L10n.string("settings_terms_subtitle"),
                         action: openTermsOfService
                     )
                 }

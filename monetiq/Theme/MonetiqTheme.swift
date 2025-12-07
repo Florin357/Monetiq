@@ -73,4 +73,56 @@ extension View {
             .background(MonetiqTheme.Colors.surface)
             .cornerRadius(MonetiqTheme.CornerRadius.md)
     }
+    
+    func monetiqButton(style: MonetiqButtonStyle = .primary) -> some View {
+        self
+            .font(MonetiqTheme.Typography.headline)
+            .foregroundColor(style.foregroundColor)
+            .frame(maxWidth: .infinity)
+            .padding(MonetiqTheme.Spacing.md)
+            .background(style.backgroundColor)
+            .cornerRadius(MonetiqTheme.CornerRadius.md)
+    }
+    
+    func monetiqHeader() -> some View {
+        self
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, MonetiqTheme.Spacing.md)
+            .padding(.top, MonetiqTheme.Spacing.lg)
+    }
+    
+    func monetiqEmptyState() -> some View {
+        self
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .multilineTextAlignment(.center)
+    }
+}
+
+// MARK: - Button Styles
+enum MonetiqButtonStyle {
+    case primary
+    case secondary
+    case destructive
+    
+    var backgroundColor: Color {
+        switch self {
+        case .primary:
+            return MonetiqTheme.Colors.accent
+        case .secondary:
+            return MonetiqTheme.Colors.surface
+        case .destructive:
+            return MonetiqTheme.Colors.error
+        }
+    }
+    
+    var foregroundColor: Color {
+        switch self {
+        case .primary:
+            return MonetiqTheme.Colors.onPrimary
+        case .secondary:
+            return MonetiqTheme.Colors.onSurface
+        case .destructive:
+            return MonetiqTheme.Colors.onPrimary
+        }
+    }
 }

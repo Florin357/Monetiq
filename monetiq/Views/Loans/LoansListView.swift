@@ -30,17 +30,15 @@ struct LoansListView: View {
         VStack(spacing: 0) {
             // Header
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                Text("Loans")
+                Text(L10n.string("loans_title"))
                     .font(MonetiqTheme.Typography.largeTitle)
                     .foregroundColor(MonetiqTheme.Colors.onBackground)
                 
-                Text("Manage your loans and debts")
+                Text(L10n.string("loans_subtitle"))
                     .font(MonetiqTheme.Typography.callout)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, MonetiqTheme.Spacing.md)
-            .padding(.top, MonetiqTheme.Spacing.lg)
+            .monetiqHeader()
             
             if loans.isEmpty {
                 Spacer()
@@ -49,11 +47,11 @@ struct LoansListView: View {
                         .font(.system(size: 60))
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     
-                    Text("No loans yet")
+                    Text(L10n.string("loans_empty_title"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     
-                    Text("Add your first loan to get started")
+                    Text(L10n.string("loans_empty_subtitle"))
                         .font(MonetiqTheme.Typography.body)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                         .multilineTextAlignment(.center)
@@ -116,7 +114,7 @@ struct LoanRowView: View {
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onSurface)
                     
-                    Text(loan.role.displayName)
+                    Text(loan.role.localizedLabel)
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(roleColor(for: loan.role))
                         .padding(.horizontal, MonetiqTheme.Spacing.sm)
@@ -128,13 +126,13 @@ struct LoanRowView: View {
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
-                    Text(String(format: "%.2f %@", loan.principalAmount, loan.currencyCode))
+                    Text(CurrencyFormatter.shared.format(amount: loan.principalAmount, currencyCode: loan.currencyCode))
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.accent)
                         .fontWeight(.semibold)
                     
                     if let nextDueDate = loan.nextDueDate {
-                        Text("Next: \(nextDueDate, style: .date)")
+                        Text(L10n.string("loans_next_due", nextDueDate.formatted(date: .abbreviated, time: .omitted)))
                             .font(MonetiqTheme.Typography.caption2)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     }

@@ -92,17 +92,6 @@ enum LoanRole: String, CaseIterable, Codable {
     case lent = "lent"                   // "am dat" - I lent money
     case borrowed = "borrowed"           // "m-am împrumutat" - I borrowed money
     case bankCredit = "bankCredit"       // "credit" - bank/institution loan
-    
-    var displayName: String {
-        switch self {
-        case .lent:
-            return "Lent"
-        case .borrowed:
-            return "Borrowed"
-        case .bankCredit:
-            return "Bank Credit"
-        }
-    }
 }
 
 enum PaymentFrequency: String, CaseIterable, Codable {
@@ -110,35 +99,11 @@ enum PaymentFrequency: String, CaseIterable, Codable {
     case monthly = "monthly"
     case quarterly = "quarterly"
     case yearly = "yearly"
-    
-    var displayName: String {
-        switch self {
-        case .weekly:
-            return "Weekly"
-        case .monthly:
-            return "Monthly"
-        case .quarterly:
-            return "Quarterly"
-        case .yearly:
-            return "Yearly"
-        }
-    }
 }
 
 enum InterestMode: String, CaseIterable, Codable {
     case none = "none"
     case percentageAnnual = "percentageAnnual"
     case fixedTotal = "fixedTotal"
-    
-    var displayName: String {
-        switch self {
-        case .none:
-            return "No Interest"
-        case .percentageAnnual:
-            return "Annual Percentage"
-        case .fixedTotal:
-            return "Fixed Total"
-        }
-    }
 }
 

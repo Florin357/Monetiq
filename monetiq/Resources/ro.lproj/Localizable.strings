@@ -1,0 +1,164 @@
+/* 
+  Localizable.strings (Romanian)
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+*/
+
+// MARK: - General
+"general_save" = "Salvează";
+"general_cancel" = "Anulează";
+"general_delete" = "Șterge";
+"general_edit" = "Editează";
+"general_add" = "Adaugă";
+"general_done" = "Gata";
+"general_ok" = "OK";
+"general_yes" = "Da";
+"general_no" = "Nu";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Panou";
+"tab_loans" = "Împrumuturi";
+"tab_calculator" = "Calculator";
+"tab_settings" = "Setări";
+
+// MARK: - Dashboard
+"dashboard_title" = "Panou de Control";
+"dashboard_subtitle" = "Prezentarea generală financiară";
+"dashboard_to_receive" = "De Primit";
+"dashboard_to_pay" = "De Plătit";
+"dashboard_upcoming_payments" = "Plăți Viitoare";
+"dashboard_no_payments" = "Nicio plată viitoare";
+"dashboard_no_payments_subtitle" = "Toate plățile sunt la zi";
+
+// MARK: - Loans
+"loans_title" = "Împrumuturi";
+"loans_subtitle" = "Gestionează împrumuturile și datoriile";
+"loans_empty_title" = "Încă nu ai împrumuturi";
+"loans_empty_subtitle" = "Adaugă primul tău împrumut pentru a începe";
+"loans_add_title" = "Adaugă Împrumut";
+"loans_edit_title" = "Editează Împrumut";
+"loans_delete_title" = "Șterge Împrumut";
+"loans_delete_message" = "Ești sigur că vrei să ștergi acest împrumut? Această acțiune nu poate fi anulată.";
+"loans_next_due" = "Următoarea: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Titlu";
+"loan_form_title_placeholder" = "Introdu titlul împrumutului";
+"loan_form_role" = "Rol";
+"loan_form_counterparty" = "Contrapartida";
+"loan_form_counterparty_name" = "Nume";
+"loan_form_counterparty_name_placeholder" = "Introdu numele";
+"loan_form_counterparty_type" = "Tip";
+"loan_form_amount" = "Suma Principală";
+"loan_form_amount_placeholder" = "Introdu suma";
+"loan_form_currency" = "Moneda";
+"loan_form_start_date" = "Data de Început";
+"loan_form_frequency" = "Frecvența Plăților";
+"loan_form_periods" = "Numărul de Perioade";
+"loan_form_periods_placeholder" = "Introdu numărul";
+"loan_form_interest_mode" = "Modul de Dobândă";
+"loan_form_interest_rate" = "Rata Anuală a Dobânzii";
+"loan_form_interest_rate_placeholder" = "Introdu rata";
+"loan_form_fixed_total" = "Total Fix de Rambursat";
+"loan_form_fixed_total_placeholder" = "Introdu totalul";
+"loan_form_next_due_date" = "Următoarea Dată Scadentă";
+"loan_form_notes" = "Notițe";
+"loan_form_notes_placeholder" = "Notițe opționale";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Prezentare Generală";
+"loan_detail_principal" = "Suma Principală";
+"loan_detail_total_to_repay" = "Total de Rambursat";
+"loan_detail_total_paid" = "Total Plătit";
+"loan_detail_remaining" = "Rămas";
+"loan_detail_start_date" = "Data de Început";
+"loan_detail_frequency" = "Frecvența";
+"loan_detail_counterparty" = "Contrapartida";
+"loan_detail_payments" = "Programul de Plăți";
+"loan_detail_mark_paid" = "Marchează ca Plătit";
+"loan_detail_no_payments" = "Nicio plată programată";
+
+// MARK: - Calculator
+"calculator_title" = "Calculator Împrumuturi";
+"calculator_subtitle" = "Calculează plățile și dobânda împrumutului";
+"calculator_principal" = "Suma Principală";
+"calculator_principal_placeholder" = "Introdu suma";
+"calculator_interest_rate" = "Rata Anuală a Dobânzii";
+"calculator_interest_rate_placeholder" = "Introdu rata";
+"calculator_term" = "Durata Împrumutului";
+"calculator_term_placeholder" = "Introdu durata";
+"calculator_frequency" = "Frecvența Plăților";
+"calculator_calculate" = "Calculează Plata";
+"calculator_results" = "Rezultate";
+"calculator_payment" = "Plata %@";
+"calculator_total_interest" = "Dobânda Totală";
+"calculator_total_amount" = "Suma Totală";
+
+// MARK: - Settings
+"settings_title" = "Setări";
+"settings_subtitle" = "Personalizează experiența Monetiq";
+"settings_general" = "General";
+"settings_security" = "Securitate";
+"settings_appearance" = "Aspect";
+"settings_about" = "Despre";
+"settings_developer" = "Dezvoltator";
+
+"settings_notifications" = "Notificări Push";
+"settings_notifications_subtitle" = "Primește notificări despre plățile viitoare";
+"settings_days_before" = "Zile Înainte de Scadență";
+"settings_days_before_subtitle" = "Momentul notificării";
+"settings_weekly_review" = "Revizuire Săptămânală";
+"settings_weekly_review_subtitle" = "Memento săptămânal pentru revizuirea financiară";
+"settings_default_currency" = "Moneda Implicită";
+"settings_default_currency_subtitle" = "Moneda pentru împrumuturi noi";
+"settings_biometric" = "Autentificare Biometrică";
+"settings_biometric_subtitle" = "Folosește Face ID sau Touch ID pentru deblocare";
+"settings_dark_mode" = "Mod Întunecat";
+"settings_dark_mode_subtitle" = "Folosește tema întunecată";
+
+"settings_version" = "Versiunea";
+"settings_privacy" = "Politica de Confidențialitate";
+"settings_privacy_subtitle" = "Vezi politica noastră de confidențialitate";
+"settings_terms" = "Termenii de Utilizare";
+"settings_terms_subtitle" = "Vezi termenii și condițiile";
+
+"settings_test_notification" = "Testează Notificarea";
+"settings_test_notification_subtitle" = "Trimite o notificare de test în 5 secunde";
+"settings_view_notifications" = "Vezi Notificările Programate";
+"settings_view_notifications_subtitle" = "Verifică notificările programate";
+
+// MARK: - Loan Roles
+"role_lent" = "Am Dat";
+"role_borrowed" = "Am Împrumutat";
+"role_bank_credit" = "Credit Bancar";
+
+// MARK: - Payment Status
+"status_planned" = "Planificat";
+"status_paid" = "Plătit";
+"status_overdue" = "Întârziat";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Săptămânal";
+"frequency_monthly" = "Lunar";
+"frequency_quarterly" = "Trimestrial";
+"frequency_yearly" = "Anual";
+
+// MARK: - Interest Mode
+"interest_none" = "Fără Dobândă";
+"interest_percentage" = "Procent Anual";
+"interest_fixed" = "Total Fix";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Persoană";
+"counterparty_institution" = "Instituție";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Memento Plată";
+"notification_payment_reminder_body" = "Plata pentru '%@' scade în %d zi(le): %@";
+"notification_payment_due_title" = "Plată Scadentă Astăzi";
+"notification_payment_due_body" = "Plata pentru '%@' scade astăzi: %@";
+"notification_weekly_review_title" = "Revizuire Financiară Săptămânală";
+"notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Monetiq";
+"notification_test_title" = "Notificare de Test";
+"notification_test_body" = "Aceasta este o notificare de test de la Monetiq";
