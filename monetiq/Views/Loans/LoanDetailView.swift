@@ -35,7 +35,7 @@ struct LoanDetailView: View {
                                 .font(MonetiqTheme.Typography.title)
                                 .foregroundColor(MonetiqTheme.Colors.onSurface)
                             
-                            Text(loan.role.displayName)
+                            Text(loan.role.localizedLabel)
                                 .font(MonetiqTheme.Typography.callout)
                                 .foregroundColor(roleColor(for: loan.role))
                                 .padding(.horizontal, MonetiqTheme.Spacing.md)
@@ -69,9 +69,9 @@ struct LoanDetailView: View {
                     
                     VStack(spacing: MonetiqTheme.Spacing.md) {
                         DetailRow(title: "Start Date", value: loan.startDate.formatted(date: .abbreviated, time: .omitted))
-                        DetailRow(title: "Payment Frequency", value: loan.frequency.displayName)
+                        DetailRow(title: "Payment Frequency", value: loan.frequency.localizedLabel)
                         DetailRow(title: "Number of Payments", value: String(loan.numberOfPeriods))
-                        DetailRow(title: "Interest Mode", value: loan.interestMode.displayName)
+                        DetailRow(title: "Interest Mode", value: loan.interestMode.localizedLabel)
                         
                         if let rate = loan.annualInterestRate {
                             DetailRow(title: "Annual Interest Rate", value: String(format: "%.2f%%", rate))
@@ -138,7 +138,7 @@ struct LoanDetailView: View {
                                     .font(MonetiqTheme.Typography.body)
                                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                                 
-                                Text(counterparty.type.displayName)
+                                Text(counterparty.type.localizedLabel)
                                     .font(MonetiqTheme.Typography.caption)
                                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             }

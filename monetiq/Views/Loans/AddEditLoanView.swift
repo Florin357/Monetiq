@@ -83,7 +83,7 @@ struct AddEditLoanView: View {
                     
                     Picker("Role", selection: $selectedRole) {
                         ForEach(LoanRole.allCases, id: \.self) { role in
-                            Text(role.displayName).tag(role)
+                            Text(role.localizedLabel).tag(role)
                         }
                     }
                     .pickerStyle(.segmented)
@@ -95,7 +95,7 @@ struct AddEditLoanView: View {
                     
                     Picker("Type", selection: $counterpartyType) {
                         ForEach(CounterpartyType.allCases, id: \.self) { type in
-                            Text(type.displayName).tag(type)
+                            Text(type.localizedLabel).tag(type)
                         }
                     }
                     .pickerStyle(.segmented)
@@ -119,7 +119,7 @@ struct AddEditLoanView: View {
                 Section("Repayment Schedule") {
                     Picker("Payment Frequency", selection: $selectedFrequency) {
                         ForEach(PaymentFrequency.allCases, id: \.self) { frequency in
-                            Text(frequency.displayName).tag(frequency)
+                            Text(frequency.localizedLabel).tag(frequency)
                         }
                     }
                     .pickerStyle(.segmented)
@@ -132,7 +132,7 @@ struct AddEditLoanView: View {
                 Section("Interest") {
                     Picker("Interest Mode", selection: $selectedInterestMode) {
                         ForEach(InterestMode.allCases, id: \.self) { mode in
-                            Text(mode.displayName).tag(mode)
+                            Text(mode.localizedLabel).tag(mode)
                         }
                     }
                     .pickerStyle(.segmented)

@@ -196,7 +196,7 @@ struct DashboardLoanRowView: View {
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                 
-                Text(loan.role.displayName)
+                Text(loan.role.localizedLabel)
                     .font(MonetiqTheme.Typography.caption)
                     .foregroundColor(roleColor(for: loan.role))
             }
