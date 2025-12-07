@@ -11,7 +11,9 @@ struct CalculatorView: View {
     @State private var principalAmount: String = ""
     @State private var interestRate: String = ""
     @State private var loanTerm: String = ""
-    @State private var selectedFrequency: PaymentFrequency = .monthly
+    @State private var selectedFrequency: String = "Monthly"
+    
+    private let frequencies = ["Weekly", "Monthly", "Quarterly", "Yearly"]
     
     var body: some View {
         ScrollView {
@@ -59,8 +61,8 @@ struct CalculatorView: View {
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
                         Picker("Frequency", selection: $selectedFrequency) {
-                            ForEach(PaymentFrequency.allCases, id: \.self) { frequency in
-                                Text(frequency.displayName).tag(frequency)
+                            ForEach(frequencies, id: \.self) { frequency in
+                                Text(frequency).tag(frequency)
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())

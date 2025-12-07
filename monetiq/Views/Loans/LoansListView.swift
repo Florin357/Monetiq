@@ -11,6 +11,16 @@ import SwiftData
 struct LoansListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
+    @State private var showingAddLoan = false
+    
+    private var sortedLoans: [Loan] {
+        loans.sorted { first, second in
+            if first.role != second.role {
+                return first.role.rawValue < second.role.rawValue
+            }
+            return first.title < second.title
+        }
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -48,9 +58,13 @@ struct LoansListView: View {
             } else {
                 ScrollView {
                     LazyVStack(spacing: MonetiqTheme.Spacing.md) {
-                        ForEach(loans, id: \.id) { loan in
-                            LoanRowView(loan: loan)
+                        ForEach(sortedLoans, id: \.id) { loan in
+                            NavigationLink(destination: LoanDetailView(loan: loan)) {
+                                LoanRowView(loan: loan)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
+                        .onDelete(perform: deleteLoans)
                     }
                     .padding(.horizontal, MonetiqTheme.Spacing.md)
                     .padding(.vertical, MonetiqTheme.Spacing.lg)
@@ -60,17 +74,23 @@ struct LoansListView: View {
         .monetiqBackground()
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: addSampleLoan) {
+                Button(action: { showingAddLoan = true }) {
                     Image(systemName: "plus")
                         .foregroundColor(MonetiqTheme.Colors.accent)
                 }
             }
         }
+        .sheet(isPresented: $showingAddLoan) {
+            AddEditLoanView()
+        }
     }
     
-    private func addSampleLoan() {
-        // Placeholder for adding new loan
-        // In a real app, this would open a form
+    private func deleteLoans(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(sortedLoans[index])
+            }
+        }
     }
 }
 
@@ -102,8 +122,8 @@ struct LoanRowView: View {
                         .foregroundColor(MonetiqTheme.Colors.accent)
                         .fontWeight(.semibold)
                     
-                    if let nextPayment = nextPaymentDate(for: loan) {
-                        Text("Next: \(nextPayment, style: .date)")
+                    if let nextDueDate = loan.nextDueDate {
+                        Text("Next: \(nextDueDate, style: .date)")
                             .font(MonetiqTheme.Typography.caption2)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     }
@@ -127,20 +147,13 @@ struct LoanRowView: View {
     
     private func roleColor(for role: LoanRole) -> Color {
         switch role {
-        case .creditor:
+        case .lent:
             return MonetiqTheme.Colors.success
-        case .debtor:
+        case .borrowed:
             return MonetiqTheme.Colors.warning
-        case .creditInstitution:
+        case .bankCredit:
             return MonetiqTheme.Colors.error
         }
-    }
-    
-    private func nextPaymentDate(for loan: Loan) -> Date? {
-        loan.payments
-            .filter { $0.status == .planned }
-            .sorted { $0.dueDate < $1.dueDate }
-            .first?.dueDate
     }
 }
 
@@ -148,5 +161,5 @@ struct LoanRowView: View {
     NavigationStack {
         LoansListView()
     }
-    .modelContainer(SampleData.previewContainer())
+    .modelContainer(for: [Counterparty.self, Loan.self], inMemory: true)
 }

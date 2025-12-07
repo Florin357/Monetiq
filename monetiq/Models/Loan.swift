@@ -16,18 +16,13 @@ final class Loan {
     var principalAmount: Double
     var currencyCode: String
     var startDate: Date
-    var frequency: PaymentFrequency
-    var durationInPeriods: Int
-    var interestMode: InterestMode
-    var interestRateAnnual: Double?
-    var totalToRepay: Double?
+    var nextDueDate: Date?
     var notes: String?
+    var createdAt: Date
+    var updatedAt: Date
     
     // Relationships
     var counterparty: Counterparty?
-    
-    @Relationship(deleteRule: .cascade, inverse: \Payment.loan)
-    var payments: [Payment] = []
     
     init(
         title: String,
@@ -35,11 +30,7 @@ final class Loan {
         principalAmount: Double,
         currencyCode: String = "RON",
         startDate: Date = Date(),
-        frequency: PaymentFrequency = .monthly,
-        durationInPeriods: Int = 12,
-        interestMode: InterestMode = .none,
-        interestRateAnnual: Double? = nil,
-        totalToRepay: Double? = nil,
+        nextDueDate: Date? = nil,
         notes: String? = nil,
         counterparty: Counterparty? = nil
     ) {
@@ -49,66 +40,32 @@ final class Loan {
         self.principalAmount = principalAmount
         self.currencyCode = currencyCode
         self.startDate = startDate
-        self.frequency = frequency
-        self.durationInPeriods = durationInPeriods
-        self.interestMode = interestMode
-        self.interestRateAnnual = interestRateAnnual
-        self.totalToRepay = totalToRepay
+        self.nextDueDate = nextDueDate
         self.notes = notes
         self.counterparty = counterparty
+        self.createdAt = Date()
+        self.updatedAt = Date()
+    }
+    
+    func updateTimestamp() {
+        self.updatedAt = Date()
     }
 }
 
 enum LoanRole: String, CaseIterable, Codable {
-    case creditor = "creditor"           // "am dat" - I lent money
-    case debtor = "debtor"               // "m-am împrumutat" - I borrowed money
-    case creditInstitution = "credit"    // "credit" - bank/institution loan
+    case lent = "lent"                   // "am dat" - I lent money
+    case borrowed = "borrowed"           // "m-am împrumutat" - I borrowed money
+    case bankCredit = "bankCredit"       // "credit" - bank/institution loan
     
     var displayName: String {
         switch self {
-        case .creditor:
-            return "Lent Money"
-        case .debtor:
-            return "Borrowed Money"
-        case .creditInstitution:
+        case .lent:
+            return "Lent"
+        case .borrowed:
+            return "Borrowed"
+        case .bankCredit:
             return "Bank Credit"
         }
     }
 }
 
-enum PaymentFrequency: String, CaseIterable, Codable {
-    case weekly = "weekly"
-    case monthly = "monthly"
-    case quarterly = "quarterly"
-    case yearly = "yearly"
-    
-    var displayName: String {
-        switch self {
-        case .weekly:
-            return "Weekly"
-        case .monthly:
-            return "Monthly"
-        case .quarterly:
-            return "Quarterly"
-        case .yearly:
-            return "Yearly"
-        }
-    }
-}
-
-enum InterestMode: String, CaseIterable, Codable {
-    case none = "none"
-    case percentageAnnual = "percentageAnnual"
-    case fixedTotal = "fixedTotal"
-    
-    var displayName: String {
-        switch self {
-        case .none:
-            return "No Interest"
-        case .percentageAnnual:
-            return "Annual Percentage"
-        case .fixedTotal:
-            return "Fixed Total"
-        }
-    }
-}

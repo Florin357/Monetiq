@@ -11,7 +11,6 @@ import SwiftData
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
-    @Query private var payments: [Payment]
     
     var body: some View {
         ScrollView {
@@ -50,22 +49,22 @@ struct DashboardView: View {
                 }
                 .padding(.horizontal, MonetiqTheme.Spacing.md)
                 
-                // Upcoming Payments
+                // Recent Loans
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("Upcoming Payments")
+                    Text("Recent Loans")
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
-                    if upcomingPayments.isEmpty {
-                        Text("No upcoming payments")
+                    if recentLoans.isEmpty {
+                        Text("No loans yet")
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             .padding(.horizontal, MonetiqTheme.Spacing.md)
                     } else {
                         LazyVStack(spacing: MonetiqTheme.Spacing.sm) {
-                            ForEach(upcomingPayments.prefix(5), id: \.id) { payment in
-                                PaymentRowView(payment: payment)
+                            ForEach(recentLoans.prefix(3), id: \.id) { loan in
+                                DashboardLoanRowView(loan: loan)
                             }
                         }
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
@@ -77,24 +76,18 @@ struct DashboardView: View {
         .monetiqBackground()
     }
     
-    private var upcomingPayments: [Payment] {
-        payments
-            .filter { $0.status == .planned }
-            .sorted { $0.dueDate < $1.dueDate }
+    private var recentLoans: [Loan] {
+        loans.sorted { $0.createdAt > $1.createdAt }
     }
     
     private func calculateToReceive() -> Double {
-        let creditorLoans = loans.filter { $0.role == .creditor }
-        let allPayments = creditorLoans.flatMap { $0.payments }
-        let plannedPayments = allPayments.filter { $0.status == .planned }
-        return plannedPayments.reduce(0) { $0 + $1.amount }
+        let lentLoans = loans.filter { $0.role == .lent }
+        return lentLoans.reduce(0) { $0 + $1.principalAmount }
     }
     
     private func calculateToPay() -> Double {
-        let debtorLoans = loans.filter { $0.role == .debtor || $0.role == .creditInstitution }
-        let allPayments = debtorLoans.flatMap { $0.payments }
-        let plannedPayments = allPayments.filter { $0.status == .planned }
-        return plannedPayments.reduce(0) { $0 + $1.amount }
+        let borrowedLoans = loans.filter { $0.role == .borrowed || $0.role == .bankCredit }
+        return borrowedLoans.reduce(0) { $0 + $1.principalAmount }
     }
 }
 
@@ -120,33 +113,44 @@ struct SummaryCard: View {
     }
 }
 
-struct PaymentRowView: View {
-    let payment: Payment
+struct DashboardLoanRowView: View {
+    let loan: Loan
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                Text(payment.loan?.title ?? "Unknown Loan")
+                Text(loan.title)
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                 
-                Text(payment.dueDate, style: .date)
+                Text(loan.role.displayName)
                     .font(MonetiqTheme.Typography.caption)
-                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .foregroundColor(roleColor(for: loan.role))
             }
             
             Spacer()
             
-            Text("\(payment.amount, specifier: "%.2f") \(payment.loan?.currencyCode ?? "RON")")
+            Text("\(loan.principalAmount, specifier: "%.2f") \(loan.currencyCode)")
                 .font(MonetiqTheme.Typography.callout)
                 .foregroundColor(MonetiqTheme.Colors.accent)
                 .fontWeight(.medium)
         }
         .monetiqCard()
     }
+    
+    private func roleColor(for role: LoanRole) -> Color {
+        switch role {
+        case .lent:
+            return MonetiqTheme.Colors.success
+        case .borrowed:
+            return MonetiqTheme.Colors.warning
+        case .bankCredit:
+            return MonetiqTheme.Colors.error
+        }
+    }
 }
 
 #Preview {
     DashboardView()
-        .modelContainer(SampleData.previewContainer())
+        .modelContainer(for: [Counterparty.self, Loan.self], inMemory: true)
 }

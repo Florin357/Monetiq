@@ -50,5 +50,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(SampleData.previewContainer())
+        .modelContainer(for: [Counterparty.self, Loan.self], inMemory: true)
 }

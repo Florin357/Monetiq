@@ -14,7 +14,6 @@ struct monetiqApp: App {
         let schema = Schema([
             Counterparty.self,
             Loan.self,
-            Payment.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -28,27 +27,7 @@ struct monetiqApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .onAppear {
-                    // Add sample data for development
-                    #if DEBUG
-                    addSampleDataIfNeeded()
-                    #endif
-                }
         }
         .modelContainer(sharedModelContainer)
-    }
-    
-    private func addSampleDataIfNeeded() {
-        let context = sharedModelContainer.mainContext
-        let descriptor = FetchDescriptor<Loan>()
-        
-        do {
-            let existingLoans = try context.fetch(descriptor)
-            if existingLoans.isEmpty {
-                SampleData.createSampleData(in: context)
-            }
-        } catch {
-            print("Failed to check for existing data: \(error)")
-        }
     }
 }
