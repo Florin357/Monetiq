@@ -14,6 +14,7 @@ struct CalculatorView: View {
     @State private var loanTerm: String = ""
     @State private var selectedFrequency: PaymentFrequency = .monthly
     @State private var calculationResult: LoanCalculator.CalculatorResult?
+    @State private var showValidationError = false
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
@@ -75,9 +76,20 @@ struct CalculatorView: View {
                 .padding(.horizontal, MonetiqTheme.Spacing.md)
                 
                 // Calculate Button
-                Button(action: calculatePayment) {
-                    Text(L10n.string("calculator_calculate"))
-                        .monetiqButton()
+                VStack(spacing: MonetiqTheme.Spacing.sm) {
+                    Button(action: calculatePayment) {
+                        Text(L10n.string("calculator_calculate"))
+                            .monetiqButton()
+                    }
+                    .disabled(!isInputValid)
+                    .opacity(isInputValid ? 1.0 : 0.6)
+                    
+                    if showValidationError {
+                        Text("Please enter valid values for all fields")
+                            .font(MonetiqTheme.Typography.caption)
+                            .foregroundColor(MonetiqTheme.Colors.error)
+                            .multilineTextAlignment(.center)
+                    }
                 }
                 .padding(.horizontal, MonetiqTheme.Spacing.md)
                 
@@ -91,28 +103,28 @@ struct CalculatorView: View {
                         if let result = calculationResult {
                             ResultRow(
                                 title: L10n.string("calculator_payment", selectedFrequency.localizedLabel),
-                                value: CurrencyFormatter.shared.format(amount: result.periodicPaymentAmount, currencyCode: appSettings.defaultCurrencyCode)
+                                value: result.periodicPaymentAmount.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_interest"),
-                                value: CurrencyFormatter.shared.format(amount: result.totalInterest, currencyCode: appSettings.defaultCurrencyCode)
+                                value: result.totalInterest.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_amount"),
-                                value: CurrencyFormatter.shared.format(amount: result.totalToRepay, currencyCode: appSettings.defaultCurrencyCode)
+                                value: result.totalToRepay.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                         } else {
                             ResultRow(
                                 title: L10n.string("calculator_payment", selectedFrequency.localizedLabel),
-                                value: CurrencyFormatter.shared.format(amount: 0, currencyCode: appSettings.defaultCurrencyCode)
+                                value: (0.0).formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_interest"),
-                                value: CurrencyFormatter.shared.format(amount: 0, currencyCode: appSettings.defaultCurrencyCode)
+                                value: (0.0).formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_amount"),
-                                value: CurrencyFormatter.shared.format(amount: 0, currencyCode: appSettings.defaultCurrencyCode)
+                                value: (0.0).formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                         }
                     }
@@ -127,14 +139,30 @@ struct CalculatorView: View {
         .monetiqBackground()
     }
     
-    private func calculatePayment() {
+    private var isInputValid: Bool {
         guard let principal = Double(principalAmount),
-              let rate = Double(interestRate),
+              let rate = Double(interestRate.isEmpty ? "0" : interestRate),
               let term = Int(loanTerm),
               principal > 0, rate >= 0, term > 0 else {
+            return false
+        }
+        return true
+    }
+    
+    private func calculatePayment() {
+        guard let principal = Double(principalAmount),
+              let term = Int(loanTerm),
+              principal > 0, term > 0 else {
+            showValidationError = true
             calculationResult = nil
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                showValidationError = false
+            }
             return
         }
+        
+        let rate = Double(interestRate.isEmpty ? "0" : interestRate) ?? 0.0
+        showValidationError = false
         
         calculationResult = LoanCalculator.calculateForDisplay(
             principal: principal,

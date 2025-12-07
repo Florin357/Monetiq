@@ -31,7 +31,7 @@ struct ContentView: View {
                 CalculatorView()
             }
             .tabItem {
-                Image(systemName: "calculator.fill")
+                Image(systemName: "function")
                 Text(L10n.string("tab_calculator"))
             }
             
@@ -39,7 +39,7 @@ struct ContentView: View {
                 SettingsView()
             }
             .tabItem {
-                Image(systemName: "gear.fill")
+                Image(systemName: "gearshape.fill")
                 Text(L10n.string("tab_settings"))
             }
         }
