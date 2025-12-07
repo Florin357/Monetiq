@@ -1,0 +1,168 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Chinese (Simplified) Localization
+*/
+
+// MARK: - General
+"general_save" = "保存";
+"general_cancel" = "取消";
+"general_delete" = "删除";
+"general_edit" = "编辑";
+"general_add" = "添加";
+"general_done" = "完成";
+"general_ok" = "确定";
+"general_yes" = "是";
+"general_no" = "否";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "仪表板";
+"tab_loans" = "贷款";
+"tab_calculator" = "计算器";
+"tab_settings" = "设置";
+
+// MARK: - Dashboard
+"dashboard_title" = "仪表板";
+"dashboard_subtitle" = "您的财务概览";
+"dashboard_to_receive" = "应收";
+"dashboard_to_pay" = "应付";
+"dashboard_upcoming_payments" = "即将到期的付款";
+"dashboard_no_payments" = "没有即将到期的付款";
+"dashboard_no_payments_subtitle" = "您的所有付款都是最新的";
+
+// MARK: - Loans
+"loans_title" = "贷款";
+"loans_subtitle" = "管理您的贷款和债务";
+"loans_empty_title" = "暂无贷款";
+"loans_empty_subtitle" = "添加您的第一笔贷款开始使用";
+"loans_add_title" = "添加贷款";
+"loans_edit_title" = "编辑贷款";
+"loans_delete_title" = "删除贷款";
+"loans_delete_message" = "您确定要删除这笔贷款吗？此操作无法撤销。";
+"loans_next_due" = "下次：%@";
+
+// MARK: - Loan Form
+"loan_form_title" = "标题";
+"loan_form_title_placeholder" = "输入贷款标题";
+"loan_form_role" = "角色";
+"loan_form_counterparty" = "对方";
+"loan_form_counterparty_name" = "姓名";
+"loan_form_counterparty_name_placeholder" = "输入姓名";
+"loan_form_counterparty_type" = "类型";
+"loan_form_amount" = "本金金额";
+"loan_form_amount_placeholder" = "输入金额";
+"loan_form_currency" = "货币";
+"loan_form_start_date" = "开始日期";
+"loan_form_frequency" = "付款频率";
+"loan_form_periods" = "期数";
+"loan_form_periods_placeholder" = "输入期数";
+"loan_form_interest_mode" = "利息模式";
+"loan_form_interest_rate" = "年利率";
+"loan_form_interest_rate_placeholder" = "输入利率";
+"loan_form_fixed_total" = "固定还款总额";
+"loan_form_fixed_total_placeholder" = "输入总额";
+"loan_form_next_due_date" = "下次到期日";
+"loan_form_notes" = "备注";
+"loan_form_notes_placeholder" = "可选备注";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "概览";
+"loan_detail_principal" = "本金金额";
+"loan_detail_total_to_repay" = "还款总额";
+"loan_detail_total_paid" = "已付总额";
+"loan_detail_remaining" = "剩余";
+"loan_detail_start_date" = "开始日期";
+"loan_detail_frequency" = "频率";
+"loan_detail_counterparty" = "对方";
+"loan_detail_payments" = "付款计划";
+"loan_detail_mark_paid" = "标记为已付";
+"loan_detail_no_payments" = "没有计划的付款";
+
+// MARK: - Calculator
+"calculator_title" = "贷款计算器";
+"calculator_subtitle" = "计算贷款付款和利息";
+"calculator_principal" = "本金金额";
+"calculator_principal_placeholder" = "输入金额";
+"calculator_interest_rate" = "年利率";
+"calculator_interest_rate_placeholder" = "输入利率";
+"calculator_number_of_payments" = "付款次数";
+"calculator_number_of_payments_placeholder" = "输入付款次数";
+"calculator_number_of_payments_helper" = "例如：12表示1年的月付款";
+"calculator_frequency" = "付款频率";
+"calculator_calculate" = "计算付款";
+"calculator_results" = "结果";
+"calculator_payment_per_period" = "每%@付款";
+"calculator_total_to_repay" = "还款总额";
+"calculator_total_interest" = "利息总额";
+"calculator_enter_values" = "在上方输入值以计算贷款付款";
+"calculator_validation_error" = "请为所有字段输入有效值";
+
+// MARK: - Settings
+"settings_title" = "设置";
+"settings_subtitle" = "自定义您的Monetiq体验";
+"settings_general" = "常规";
+"settings_security" = "安全";
+"settings_appearance" = "外观";
+"settings_about" = "关于";
+"settings_developer" = "开发者";
+
+"settings_notifications" = "推送通知";
+"settings_notifications_subtitle" = "获取即将到期付款的通知";
+"settings_days_before" = "到期前天数";
+"settings_days_before_subtitle" = "通知时间";
+"settings_weekly_review" = "每周回顾";
+"settings_weekly_review_subtitle" = "每周财务回顾提醒";
+"settings_default_currency" = "默认货币";
+"settings_default_currency_subtitle" = "新贷款的货币";
+"settings_biometric" = "生物识别认证";
+"settings_biometric_subtitle" = "使用Face ID或Touch ID解锁";
+"settings_dark_mode" = "深色模式";
+"settings_dark_mode_subtitle" = "使用深色主题";
+
+"settings_version" = "版本";
+"settings_privacy" = "隐私政策";
+"settings_privacy_subtitle" = "查看我们的隐私政策";
+"settings_terms" = "服务条款";
+"settings_terms_subtitle" = "查看条款和条件";
+
+"settings_test_notification" = "测试通知";
+"settings_test_notification_subtitle" = "5秒后发送测试通知";
+"settings_view_notifications" = "查看待处理通知";
+"settings_view_notifications_subtitle" = "检查计划的通知";
+
+// MARK: - Loan Roles
+"role_lent" = "借出";
+"role_borrowed" = "借入";
+"role_bank_credit" = "银行信贷";
+
+// MARK: - Payment Status
+"status_planned" = "计划中";
+"status_paid" = "已付";
+"status_overdue" = "逾期";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "每周";
+"frequency_monthly" = "每月";
+"frequency_quarterly" = "每季度";
+"frequency_yearly" = "每年";
+
+// MARK: - Interest Mode
+"interest_none" = "无利息";
+"interest_percentage" = "年百分比";
+"interest_fixed" = "固定总额";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "个人";
+"counterparty_institution" = "机构";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "付款提醒";
+"notification_payment_reminder_body" = "'%@'的付款将在%d天后到期：%@";
+"notification_payment_due_title" = "今日付款到期";
+"notification_payment_due_body" = "'%@'的付款今日到期：%@";
+"notification_weekly_review_title" = "每周财务回顾";
+"notification_weekly_review_body" = "是时候在Monetiq中回顾您的贷款和即将到期的付款了";
+"notification_test_title" = "测试通知";
+"notification_test_body" = "这是来自Monetiq的测试通知";

@@ -86,14 +86,17 @@
 "calculator_principal_placeholder" = "Introdu suma";
 "calculator_interest_rate" = "Rata Anuală a Dobânzii";
 "calculator_interest_rate_placeholder" = "Introdu rata";
-"calculator_term" = "Durata Împrumutului";
-"calculator_term_placeholder" = "Introdu durata";
+"calculator_number_of_payments" = "Numărul de Plăți";
+"calculator_number_of_payments_placeholder" = "Introdu numărul de plăți";
+"calculator_number_of_payments_helper" = "Exemplu: 12 pentru 1 an de plăți lunare";
 "calculator_frequency" = "Frecvența Plăților";
 "calculator_calculate" = "Calculează Plata";
 "calculator_results" = "Rezultate";
-"calculator_payment" = "Plata %@";
+"calculator_payment_per_period" = "Plata per %@";
+"calculator_total_to_repay" = "Total de Rambursat";
 "calculator_total_interest" = "Dobânda Totală";
-"calculator_total_amount" = "Suma Totală";
+"calculator_enter_values" = "Introdu valorile de mai sus pentru a calcula plățile împrumutului";
+"calculator_validation_error" = "Te rog introdu valori valide pentru toate câmpurile";
 
 // MARK: - Settings
 "settings_title" = "Setări";

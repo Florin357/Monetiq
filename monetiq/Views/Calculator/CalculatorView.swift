@@ -11,7 +11,7 @@ struct CalculatorView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var principalAmount: String = ""
     @State private var interestRate: String = ""
-    @State private var loanTerm: String = ""
+    @State private var numberOfPayments: String = ""
     @State private var selectedFrequency: PaymentFrequency = .monthly
     @State private var calculationResult: LoanCalculator.CalculatorResult?
     @State private var showValidationError = false
@@ -52,10 +52,11 @@ struct CalculatorView: View {
                     )
                     
                     CalculatorInputField(
-                        title: L10n.string("calculator_term"),
-                        placeholder: L10n.string("calculator_term_placeholder"),
-                        text: $loanTerm,
-                        suffix: "periods"
+                        title: L10n.string("calculator_number_of_payments"),
+                        placeholder: L10n.string("calculator_number_of_payments_placeholder"),
+                        text: $numberOfPayments,
+                        suffix: "payments",
+                        helperText: L10n.string("calculator_number_of_payments_helper")
                     )
                     
                     // Frequency Picker
@@ -85,7 +86,7 @@ struct CalculatorView: View {
                     .opacity(isInputValid ? 1.0 : 0.6)
                     
                     if showValidationError {
-                        Text("Please enter valid values for all fields")
+                        Text(L10n.string("calculator_validation_error"))
                             .font(MonetiqTheme.Typography.caption)
                             .foregroundColor(MonetiqTheme.Colors.error)
                             .multilineTextAlignment(.center)
@@ -102,30 +103,24 @@ struct CalculatorView: View {
                     VStack(spacing: MonetiqTheme.Spacing.sm) {
                         if let result = calculationResult {
                             ResultRow(
-                                title: L10n.string("calculator_payment", selectedFrequency.localizedLabel),
-                                value: result.periodicPaymentAmount.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
+                                title: L10n.string("calculator_payment_per_period", selectedFrequency.localizedLabel),
+                                value: result.periodicPaymentAmount.formattedWithSymbol(currency: appSettings.defaultCurrencyCode),
+                                isHighlighted: true
+                            )
+                            ResultRow(
+                                title: L10n.string("calculator_total_to_repay"),
+                                value: result.totalToRepay.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_interest"),
                                 value: result.totalInterest.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
                             )
-                            ResultRow(
-                                title: L10n.string("calculator_total_amount"),
-                                value: result.totalToRepay.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
-                            )
                         } else {
-                            ResultRow(
-                                title: L10n.string("calculator_payment", selectedFrequency.localizedLabel),
-                                value: (0.0).formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
-                            )
-                            ResultRow(
-                                title: L10n.string("calculator_total_interest"),
-                                value: (0.0).formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
-                            )
-                            ResultRow(
-                                title: L10n.string("calculator_total_amount"),
-                                value: (0.0).formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
-                            )
+                            Text(L10n.string("calculator_enter_values"))
+                                .font(MonetiqTheme.Typography.body)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                .multilineTextAlignment(.center)
+                                .padding(MonetiqTheme.Spacing.lg)
                         }
                     }
                 }
@@ -137,12 +132,15 @@ struct CalculatorView: View {
             .padding(.vertical, MonetiqTheme.Spacing.lg)
         }
         .monetiqBackground()
+        .onTapGesture {
+            hideKeyboard()
+        }
     }
     
     private var isInputValid: Bool {
         guard let principal = Double(principalAmount),
               let rate = Double(interestRate.isEmpty ? "0" : interestRate),
-              let term = Int(loanTerm),
+              let term = Int(numberOfPayments),
               principal > 0, rate >= 0, term > 0 else {
             return false
         }
@@ -151,7 +149,7 @@ struct CalculatorView: View {
     
     private func calculatePayment() {
         guard let principal = Double(principalAmount),
-              let term = Int(loanTerm),
+              let term = Int(numberOfPayments),
               principal > 0, term > 0 else {
             showValidationError = true
             calculationResult = nil
@@ -171,6 +169,10 @@ struct CalculatorView: View {
             frequency: selectedFrequency
         )
     }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 struct CalculatorInputField: View {
@@ -178,12 +180,15 @@ struct CalculatorInputField: View {
     let placeholder: String
     @Binding var text: String
     let suffix: String?
+    let helperText: String?
+    @FocusState private var isFocused: Bool
     
-    init(title: String, placeholder: String, text: Binding<String>, suffix: String? = nil) {
+    init(title: String, placeholder: String, text: Binding<String>, suffix: String? = nil, helperText: String? = nil) {
         self.title = title
         self.placeholder = placeholder
         self._text = text
         self.suffix = suffix
+        self.helperText = helperText
     }
     
     var body: some View {
@@ -197,6 +202,16 @@ struct CalculatorInputField: View {
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                     .keyboardType(.decimalPad)
+                    .focused($isFocused)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button(L10n.string("general_done")) {
+                                isFocused = false
+                            }
+                            .foregroundColor(MonetiqTheme.Colors.accent)
+                        }
+                    }
                 
                 if let suffix = suffix {
                     Text(suffix)
@@ -207,6 +222,13 @@ struct CalculatorInputField: View {
             .padding(MonetiqTheme.Spacing.md)
             .background(MonetiqTheme.Colors.background)
             .cornerRadius(MonetiqTheme.CornerRadius.sm)
+            
+            if let helperText = helperText {
+                Text(helperText)
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .multilineTextAlignment(.leading)
+            }
         }
         .monetiqCard()
     }
@@ -215,20 +237,31 @@ struct CalculatorInputField: View {
 struct ResultRow: View {
     let title: String
     let value: String
+    let isHighlighted: Bool
+    
+    init(title: String, value: String, isHighlighted: Bool = false) {
+        self.title = title
+        self.value = value
+        self.isHighlighted = isHighlighted
+    }
     
     var body: some View {
         HStack {
             Text(title)
-                .font(MonetiqTheme.Typography.body)
+                .font(isHighlighted ? MonetiqTheme.Typography.headline : MonetiqTheme.Typography.body)
                 .foregroundColor(MonetiqTheme.Colors.onSurface)
+                .fontWeight(isHighlighted ? .semibold : .regular)
             
             Spacer()
             
             Text(value)
-                .font(MonetiqTheme.Typography.callout)
+                .font(isHighlighted ? MonetiqTheme.Typography.title2 : MonetiqTheme.Typography.callout)
                 .foregroundColor(MonetiqTheme.Colors.accent)
                 .fontWeight(.semibold)
         }
+        .padding(.vertical, isHighlighted ? MonetiqTheme.Spacing.sm : 0)
+        .background(isHighlighted ? MonetiqTheme.Colors.accent.opacity(0.1) : Color.clear)
+        .cornerRadius(MonetiqTheme.CornerRadius.sm)
     }
 }
 

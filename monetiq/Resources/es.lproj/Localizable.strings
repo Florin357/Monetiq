@@ -1,0 +1,168 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Spanish Localization
+*/
+
+// MARK: - General
+"general_save" = "Guardar";
+"general_cancel" = "Cancelar";
+"general_delete" = "Eliminar";
+"general_edit" = "Editar";
+"general_add" = "Añadir";
+"general_done" = "Hecho";
+"general_ok" = "OK";
+"general_yes" = "Sí";
+"general_no" = "No";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Panel";
+"tab_loans" = "Préstamos";
+"tab_calculator" = "Calculadora";
+"tab_settings" = "Ajustes";
+
+// MARK: - Dashboard
+"dashboard_title" = "Panel";
+"dashboard_subtitle" = "Tu resumen financiero";
+"dashboard_to_receive" = "Por Recibir";
+"dashboard_to_pay" = "Por Pagar";
+"dashboard_upcoming_payments" = "Próximos Pagos";
+"dashboard_no_payments" = "No hay próximos pagos";
+"dashboard_no_payments_subtitle" = "Todos tus pagos están al día";
+
+// MARK: - Loans
+"loans_title" = "Préstamos";
+"loans_subtitle" = "Gestiona tus préstamos y deudas";
+"loans_empty_title" = "Aún no hay préstamos";
+"loans_empty_subtitle" = "Añade tu primer préstamo para comenzar";
+"loans_add_title" = "Añadir Préstamo";
+"loans_edit_title" = "Editar Préstamo";
+"loans_delete_title" = "Eliminar Préstamo";
+"loans_delete_message" = "¿Estás seguro de que quieres eliminar este préstamo? Esta acción no se puede deshacer.";
+"loans_next_due" = "Próximo: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Título";
+"loan_form_title_placeholder" = "Ingresa el título del préstamo";
+"loan_form_role" = "Rol";
+"loan_form_counterparty" = "Contraparte";
+"loan_form_counterparty_name" = "Nombre";
+"loan_form_counterparty_name_placeholder" = "Ingresa el nombre";
+"loan_form_counterparty_type" = "Tipo";
+"loan_form_amount" = "Monto Principal";
+"loan_form_amount_placeholder" = "Ingresa el monto";
+"loan_form_currency" = "Moneda";
+"loan_form_start_date" = "Fecha de Inicio";
+"loan_form_frequency" = "Frecuencia de Pago";
+"loan_form_periods" = "Número de Períodos";
+"loan_form_periods_placeholder" = "Ingresa el número";
+"loan_form_interest_mode" = "Modo de Interés";
+"loan_form_interest_rate" = "Tasa de Interés Anual";
+"loan_form_interest_rate_placeholder" = "Ingresa la tasa";
+"loan_form_fixed_total" = "Total Fijo a Reembolsar";
+"loan_form_fixed_total_placeholder" = "Ingresa el total";
+"loan_form_next_due_date" = "Próxima Fecha de Vencimiento";
+"loan_form_notes" = "Notas";
+"loan_form_notes_placeholder" = "Notas opcionales";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Resumen";
+"loan_detail_principal" = "Monto Principal";
+"loan_detail_total_to_repay" = "Total a Reembolsar";
+"loan_detail_total_paid" = "Total Pagado";
+"loan_detail_remaining" = "Restante";
+"loan_detail_start_date" = "Fecha de Inicio";
+"loan_detail_frequency" = "Frecuencia";
+"loan_detail_counterparty" = "Contraparte";
+"loan_detail_payments" = "Cronograma de Pagos";
+"loan_detail_mark_paid" = "Marcar como Pagado";
+"loan_detail_no_payments" = "No hay pagos programados";
+
+// MARK: - Calculator
+"calculator_title" = "Calculadora de Préstamos";
+"calculator_subtitle" = "Calcula los pagos e intereses del préstamo";
+"calculator_principal" = "Monto Principal";
+"calculator_principal_placeholder" = "Ingresa el monto";
+"calculator_interest_rate" = "Tasa de Interés Anual";
+"calculator_interest_rate_placeholder" = "Ingresa la tasa";
+"calculator_number_of_payments" = "Número de Pagos";
+"calculator_number_of_payments_placeholder" = "Ingresa el número de pagos";
+"calculator_number_of_payments_helper" = "Ejemplo: 12 para 1 año de pagos mensuales";
+"calculator_frequency" = "Frecuencia de Pago";
+"calculator_calculate" = "Calcular Pago";
+"calculator_results" = "Resultados";
+"calculator_payment_per_period" = "Pago por %@";
+"calculator_total_to_repay" = "Total a Reembolsar";
+"calculator_total_interest" = "Interés Total";
+"calculator_enter_values" = "Ingresa los valores arriba para calcular los pagos del préstamo";
+"calculator_validation_error" = "Por favor ingresa valores válidos para todos los campos";
+
+// MARK: - Settings
+"settings_title" = "Ajustes";
+"settings_subtitle" = "Personaliza tu experiencia Monetiq";
+"settings_general" = "General";
+"settings_security" = "Seguridad";
+"settings_appearance" = "Apariencia";
+"settings_about" = "Acerca de";
+"settings_developer" = "Desarrollador";
+
+"settings_notifications" = "Notificaciones Push";
+"settings_notifications_subtitle" = "Recibe notificaciones sobre próximos pagos";
+"settings_days_before" = "Días Antes del Vencimiento";
+"settings_days_before_subtitle" = "Tiempo de notificación";
+"settings_weekly_review" = "Revisión Semanal";
+"settings_weekly_review_subtitle" = "Recordatorio de revisión financiera semanal";
+"settings_default_currency" = "Moneda Predeterminada";
+"settings_default_currency_subtitle" = "Moneda para nuevos préstamos";
+"settings_biometric" = "Autenticación Biométrica";
+"settings_biometric_subtitle" = "Usa Face ID o Touch ID para desbloquear";
+"settings_dark_mode" = "Modo Oscuro";
+"settings_dark_mode_subtitle" = "Usar tema oscuro";
+
+"settings_version" = "Versión";
+"settings_privacy" = "Política de Privacidad";
+"settings_privacy_subtitle" = "Ver nuestra política de privacidad";
+"settings_terms" = "Términos de Servicio";
+"settings_terms_subtitle" = "Ver términos y condiciones";
+
+"settings_test_notification" = "Notificación de Prueba";
+"settings_test_notification_subtitle" = "Enviar una notificación de prueba en 5 segundos";
+"settings_view_notifications" = "Ver Notificaciones Pendientes";
+"settings_view_notifications_subtitle" = "Revisar notificaciones programadas";
+
+// MARK: - Loan Roles
+"role_lent" = "Prestado";
+"role_borrowed" = "Prestado";
+"role_bank_credit" = "Crédito Bancario";
+
+// MARK: - Payment Status
+"status_planned" = "Planificado";
+"status_paid" = "Pagado";
+"status_overdue" = "Vencido";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Semanal";
+"frequency_monthly" = "Mensual";
+"frequency_quarterly" = "Trimestral";
+"frequency_yearly" = "Anual";
+
+// MARK: - Interest Mode
+"interest_none" = "Sin Interés";
+"interest_percentage" = "Porcentaje Anual";
+"interest_fixed" = "Total Fijo";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Persona";
+"counterparty_institution" = "Institución";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Recordatorio de Pago";
+"notification_payment_reminder_body" = "El pago de '%@' vence en %d día(s): %@";
+"notification_payment_due_title" = "Pago Vence Hoy";
+"notification_payment_due_body" = "El pago de '%@' vence hoy: %@";
+"notification_weekly_review_title" = "Revisión Financiera Semanal";
+"notification_weekly_review_body" = "Es hora de revisar tus préstamos y próximos pagos en Monetiq";
+"notification_test_title" = "Notificación de Prueba";
+"notification_test_body" = "Esta es una notificación de prueba de Monetiq";

@@ -1,0 +1,168 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Hindi Localization
+*/
+
+// MARK: - General
+"general_save" = "सेव करें";
+"general_cancel" = "रद्द करें";
+"general_delete" = "डिलीट करें";
+"general_edit" = "एडिट करें";
+"general_add" = "जोड़ें";
+"general_done" = "हो गया";
+"general_ok" = "ठीक है";
+"general_yes" = "हाँ";
+"general_no" = "नहीं";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "डैशबोर्ड";
+"tab_loans" = "लोन";
+"tab_calculator" = "कैलकुलेटर";
+"tab_settings" = "सेटिंग्स";
+
+// MARK: - Dashboard
+"dashboard_title" = "डैशबोर्ड";
+"dashboard_subtitle" = "आपका वित्तीय अवलोकन";
+"dashboard_to_receive" = "प्राप्त करना है";
+"dashboard_to_pay" = "भुगतान करना है";
+"dashboard_upcoming_payments" = "आगामी भुगतान";
+"dashboard_no_payments" = "कोई आगामी भुगतान नहीं";
+"dashboard_no_payments_subtitle" = "आपके सभी भुगतान अप टू डेट हैं";
+
+// MARK: - Loans
+"loans_title" = "लोन";
+"loans_subtitle" = "अपने लोन और कर्ज़ का प्रबंधन करें";
+"loans_empty_title" = "अभी तक कोई लोन नहीं";
+"loans_empty_subtitle" = "शुरुआत करने के लिए अपना पहला लोन जोड़ें";
+"loans_add_title" = "लोन जोड़ें";
+"loans_edit_title" = "लोन एडिट करें";
+"loans_delete_title" = "लोन डिलीट करें";
+"loans_delete_message" = "क्या आप वाकई इस लोन को डिलीट करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।";
+"loans_next_due" = "अगला: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "शीर्षक";
+"loan_form_title_placeholder" = "लोन का शीर्षक दर्ज करें";
+"loan_form_role" = "भूमिका";
+"loan_form_counterparty" = "काउंटरपार्टी";
+"loan_form_counterparty_name" = "नाम";
+"loan_form_counterparty_name_placeholder" = "नाम दर्ज करें";
+"loan_form_counterparty_type" = "प्रकार";
+"loan_form_amount" = "मूल राशि";
+"loan_form_amount_placeholder" = "राशि दर्ज करें";
+"loan_form_currency" = "मुद्रा";
+"loan_form_start_date" = "शुरुआती तारीख";
+"loan_form_frequency" = "भुगतान आवृत्ति";
+"loan_form_periods" = "अवधि की संख्या";
+"loan_form_periods_placeholder" = "संख्या दर्ज करें";
+"loan_form_interest_mode" = "ब्याज मोड";
+"loan_form_interest_rate" = "वार्षिक ब्याज दर";
+"loan_form_interest_rate_placeholder" = "दर दर्ज करें";
+"loan_form_fixed_total" = "निश्चित कुल चुकौती";
+"loan_form_fixed_total_placeholder" = "कुल दर्ज करें";
+"loan_form_next_due_date" = "अगली देय तारीख";
+"loan_form_notes" = "नोट्स";
+"loan_form_notes_placeholder" = "वैकल्पिक नोट्स";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "अवलोकन";
+"loan_detail_principal" = "मूल राशि";
+"loan_detail_total_to_repay" = "कुल चुकौती";
+"loan_detail_total_paid" = "कुल भुगतान";
+"loan_detail_remaining" = "शेष";
+"loan_detail_start_date" = "शुरुआती तारीख";
+"loan_detail_frequency" = "आवृत्ति";
+"loan_detail_counterparty" = "काउंटरपार्टी";
+"loan_detail_payments" = "भुगतान अनुसूची";
+"loan_detail_mark_paid" = "भुगतान के रूप में चिह्नित करें";
+"loan_detail_no_payments" = "कोई भुगतान निर्धारित नहीं";
+
+// MARK: - Calculator
+"calculator_title" = "लोन कैलकुलेटर";
+"calculator_subtitle" = "लोन भुगतान और ब्याज की गणना करें";
+"calculator_principal" = "मूल राशि";
+"calculator_principal_placeholder" = "राशि दर्ज करें";
+"calculator_interest_rate" = "वार्षिक ब्याज दर";
+"calculator_interest_rate_placeholder" = "दर दर्ज करें";
+"calculator_number_of_payments" = "भुगतानों की संख्या";
+"calculator_number_of_payments_placeholder" = "भुगतानों की संख्या दर्ज करें";
+"calculator_number_of_payments_helper" = "उदाहरण: मासिक भुगतान के 1 साल के लिए 12";
+"calculator_frequency" = "भुगतान आवृत्ति";
+"calculator_calculate" = "भुगतान की गणना करें";
+"calculator_results" = "परिणाम";
+"calculator_payment_per_period" = "प्रति %@ भुगतान";
+"calculator_total_to_repay" = "कुल चुकौती";
+"calculator_total_interest" = "कुल ब्याज";
+"calculator_enter_values" = "लोन भुगतान की गणना के लिए ऊपर मान दर्ज करें";
+"calculator_validation_error" = "कृपया सभी फ़ील्ड के लिए वैध मान दर्ज करें";
+
+// MARK: - Settings
+"settings_title" = "सेटिंग्स";
+"settings_subtitle" = "अपने Monetiq अनुभव को कस्टमाइज़ करें";
+"settings_general" = "सामान्य";
+"settings_security" = "सुरक्षा";
+"settings_appearance" = "दिखावट";
+"settings_about" = "के बारे में";
+"settings_developer" = "डेवलपर";
+
+"settings_notifications" = "पुश नोटिफिकेशन";
+"settings_notifications_subtitle" = "आगामी भुगतानों के बारे में सूचना प्राप्त करें";
+"settings_days_before" = "देय से पहले दिन";
+"settings_days_before_subtitle" = "नोटिफिकेशन टाइमिंग";
+"settings_weekly_review" = "साप्ताहिक समीक्षा";
+"settings_weekly_review_subtitle" = "साप्ताहिक वित्तीय समीक्षा रिमाइंडर";
+"settings_default_currency" = "डिफ़ॉल्ट मुद्रा";
+"settings_default_currency_subtitle" = "नए लोन के लिए मुद्रा";
+"settings_biometric" = "बायोमेट्रिक प्रमाणीकरण";
+"settings_biometric_subtitle" = "अनलॉक करने के लिए Face ID या Touch ID का उपयोग करें";
+"settings_dark_mode" = "डार्क मोड";
+"settings_dark_mode_subtitle" = "डार्क थीम का उपयोग करें";
+
+"settings_version" = "संस्करण";
+"settings_privacy" = "गोपनीयता नीति";
+"settings_privacy_subtitle" = "हमारी गोपनीयता नीति देखें";
+"settings_terms" = "सेवा की शर्तें";
+"settings_terms_subtitle" = "नियम और शर्तें देखें";
+
+"settings_test_notification" = "टेस्ट नोटिफिकेशन";
+"settings_test_notification_subtitle" = "5 सेकंड में टेस्ट नोटिफिकेशन भेजें";
+"settings_view_notifications" = "पेंडिंग नोटिफिकेशन देखें";
+"settings_view_notifications_subtitle" = "निर्धारित नोटिफिकेशन जांचें";
+
+// MARK: - Loan Roles
+"role_lent" = "उधार दिया";
+"role_borrowed" = "उधार लिया";
+"role_bank_credit" = "बैंक क्रेडिट";
+
+// MARK: - Payment Status
+"status_planned" = "नियोजित";
+"status_paid" = "भुगतान किया गया";
+"status_overdue" = "अतिदेय";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "साप्ताहिक";
+"frequency_monthly" = "मासिक";
+"frequency_quarterly" = "त्रैमासिक";
+"frequency_yearly" = "वार्षिक";
+
+// MARK: - Interest Mode
+"interest_none" = "कोई ब्याज नहीं";
+"interest_percentage" = "वार्षिक प्रतिशत";
+"interest_fixed" = "निश्चित कुल";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "व्यक्ति";
+"counterparty_institution" = "संस्थान";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "भुगतान रिमाइंडर";
+"notification_payment_reminder_body" = "'%@' के लिए भुगतान %d दिन(ों) में देय है: %@";
+"notification_payment_due_title" = "आज भुगतान देय है";
+"notification_payment_due_body" = "'%@' के लिए भुगतान आज देय है: %@";
+"notification_weekly_review_title" = "साप्ताहिक वित्तीय समीक्षा";
+"notification_weekly_review_body" = "Monetiq में अपने लोन और आगामी भुगतानों की समीक्षा करने का समय है";
+"notification_test_title" = "टेस्ट नोटिफिकेशन";
+"notification_test_body" = "यह Monetiq से एक टेस्ट नोटिफिकेशन है";

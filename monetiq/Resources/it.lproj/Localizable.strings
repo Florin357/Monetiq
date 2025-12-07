@@ -1,0 +1,168 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Italian Localization
+*/
+
+// MARK: - General
+"general_save" = "Salva";
+"general_cancel" = "Annulla";
+"general_delete" = "Elimina";
+"general_edit" = "Modifica";
+"general_add" = "Aggiungi";
+"general_done" = "Fatto";
+"general_ok" = "OK";
+"general_yes" = "Sì";
+"general_no" = "No";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Dashboard";
+"tab_loans" = "Prestiti";
+"tab_calculator" = "Calcolatrice";
+"tab_settings" = "Impostazioni";
+
+// MARK: - Dashboard
+"dashboard_title" = "Dashboard";
+"dashboard_subtitle" = "La tua panoramica finanziaria";
+"dashboard_to_receive" = "Da Ricevere";
+"dashboard_to_pay" = "Da Pagare";
+"dashboard_upcoming_payments" = "Pagamenti Imminenti";
+"dashboard_no_payments" = "Nessun pagamento imminente";
+"dashboard_no_payments_subtitle" = "Tutti i tuoi pagamenti sono aggiornati";
+
+// MARK: - Loans
+"loans_title" = "Prestiti";
+"loans_subtitle" = "Gestisci i tuoi prestiti e debiti";
+"loans_empty_title" = "Nessun prestito ancora";
+"loans_empty_subtitle" = "Aggiungi il tuo primo prestito per iniziare";
+"loans_add_title" = "Aggiungi Prestito";
+"loans_edit_title" = "Modifica Prestito";
+"loans_delete_title" = "Elimina Prestito";
+"loans_delete_message" = "Sei sicuro di voler eliminare questo prestito? Questa azione non può essere annullata.";
+"loans_next_due" = "Prossimo: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Titolo";
+"loan_form_title_placeholder" = "Inserisci il titolo del prestito";
+"loan_form_role" = "Ruolo";
+"loan_form_counterparty" = "Controparte";
+"loan_form_counterparty_name" = "Nome";
+"loan_form_counterparty_name_placeholder" = "Inserisci il nome";
+"loan_form_counterparty_type" = "Tipo";
+"loan_form_amount" = "Importo Principale";
+"loan_form_amount_placeholder" = "Inserisci l'importo";
+"loan_form_currency" = "Valuta";
+"loan_form_start_date" = "Data di Inizio";
+"loan_form_frequency" = "Frequenza di Pagamento";
+"loan_form_periods" = "Numero di Periodi";
+"loan_form_periods_placeholder" = "Inserisci il numero";
+"loan_form_interest_mode" = "Modalità Interesse";
+"loan_form_interest_rate" = "Tasso di Interesse Annuale";
+"loan_form_interest_rate_placeholder" = "Inserisci il tasso";
+"loan_form_fixed_total" = "Totale Fisso da Rimborsare";
+"loan_form_fixed_total_placeholder" = "Inserisci il totale";
+"loan_form_next_due_date" = "Prossima Data di Scadenza";
+"loan_form_notes" = "Note";
+"loan_form_notes_placeholder" = "Note opzionali";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Panoramica";
+"loan_detail_principal" = "Importo Principale";
+"loan_detail_total_to_repay" = "Totale da Rimborsare";
+"loan_detail_total_paid" = "Totale Pagato";
+"loan_detail_remaining" = "Rimanente";
+"loan_detail_start_date" = "Data di Inizio";
+"loan_detail_frequency" = "Frequenza";
+"loan_detail_counterparty" = "Controparte";
+"loan_detail_payments" = "Piano di Pagamento";
+"loan_detail_mark_paid" = "Segna come Pagato";
+"loan_detail_no_payments" = "Nessun pagamento programmato";
+
+// MARK: - Calculator
+"calculator_title" = "Calcolatrice Prestiti";
+"calculator_subtitle" = "Calcola i pagamenti e gli interessi del prestito";
+"calculator_principal" = "Importo Principale";
+"calculator_principal_placeholder" = "Inserisci l'importo";
+"calculator_interest_rate" = "Tasso di Interesse Annuale";
+"calculator_interest_rate_placeholder" = "Inserisci il tasso";
+"calculator_number_of_payments" = "Numero di Pagamenti";
+"calculator_number_of_payments_placeholder" = "Inserisci il numero di pagamenti";
+"calculator_number_of_payments_helper" = "Esempio: 12 per 1 anno di pagamenti mensili";
+"calculator_frequency" = "Frequenza di Pagamento";
+"calculator_calculate" = "Calcola Pagamento";
+"calculator_results" = "Risultati";
+"calculator_payment_per_period" = "Pagamento per %@";
+"calculator_total_to_repay" = "Totale da Rimborsare";
+"calculator_total_interest" = "Interesse Totale";
+"calculator_enter_values" = "Inserisci i valori sopra per calcolare i pagamenti del prestito";
+"calculator_validation_error" = "Inserisci valori validi per tutti i campi";
+
+// MARK: - Settings
+"settings_title" = "Impostazioni";
+"settings_subtitle" = "Personalizza la tua esperienza Monetiq";
+"settings_general" = "Generale";
+"settings_security" = "Sicurezza";
+"settings_appearance" = "Aspetto";
+"settings_about" = "Informazioni";
+"settings_developer" = "Sviluppatore";
+
+"settings_notifications" = "Notifiche Push";
+"settings_notifications_subtitle" = "Ricevi notifiche sui pagamenti imminenti";
+"settings_days_before" = "Giorni Prima della Scadenza";
+"settings_days_before_subtitle" = "Tempistica delle notifiche";
+"settings_weekly_review" = "Revisione Settimanale";
+"settings_weekly_review_subtitle" = "Promemoria di revisione finanziaria settimanale";
+"settings_default_currency" = "Valuta Predefinita";
+"settings_default_currency_subtitle" = "Valuta per i nuovi prestiti";
+"settings_biometric" = "Autenticazione Biometrica";
+"settings_biometric_subtitle" = "Usa Face ID o Touch ID per sbloccare";
+"settings_dark_mode" = "Modalità Scura";
+"settings_dark_mode_subtitle" = "Usa il tema scuro";
+
+"settings_version" = "Versione";
+"settings_privacy" = "Politica sulla Privacy";
+"settings_privacy_subtitle" = "Visualizza la nostra politica sulla privacy";
+"settings_terms" = "Termini di Servizio";
+"settings_terms_subtitle" = "Visualizza termini e condizioni";
+
+"settings_test_notification" = "Notifica di Test";
+"settings_test_notification_subtitle" = "Invia una notifica di test tra 5 secondi";
+"settings_view_notifications" = "Visualizza Notifiche in Sospeso";
+"settings_view_notifications_subtitle" = "Controlla le notifiche programmate";
+
+// MARK: - Loan Roles
+"role_lent" = "Prestato";
+"role_borrowed" = "Preso in Prestito";
+"role_bank_credit" = "Credito Bancario";
+
+// MARK: - Payment Status
+"status_planned" = "Pianificato";
+"status_paid" = "Pagato";
+"status_overdue" = "In Ritardo";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Settimanale";
+"frequency_monthly" = "Mensile";
+"frequency_quarterly" = "Trimestrale";
+"frequency_yearly" = "Annuale";
+
+// MARK: - Interest Mode
+"interest_none" = "Nessun Interesse";
+"interest_percentage" = "Percentuale Annuale";
+"interest_fixed" = "Totale Fisso";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Persona";
+"counterparty_institution" = "Istituzione";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Promemoria Pagamento";
+"notification_payment_reminder_body" = "Il pagamento per '%@' è dovuto tra %d giorno(i): %@";
+"notification_payment_due_title" = "Pagamento Dovuto Oggi";
+"notification_payment_due_body" = "Il pagamento per '%@' è dovuto oggi: %@";
+"notification_weekly_review_title" = "Revisione Finanziaria Settimanale";
+"notification_weekly_review_body" = "È ora di rivedere i tuoi prestiti e i pagamenti imminenti in Monetiq";
+"notification_test_title" = "Notifica di Test";
+"notification_test_body" = "Questa è una notifica di test da Monetiq";

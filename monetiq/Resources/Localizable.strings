@@ -86,14 +86,17 @@
 "calculator_principal_placeholder" = "Enter amount";
 "calculator_interest_rate" = "Annual Interest Rate";
 "calculator_interest_rate_placeholder" = "Enter rate";
-"calculator_term" = "Loan Term";
-"calculator_term_placeholder" = "Enter duration";
+"calculator_number_of_payments" = "Number of Payments";
+"calculator_number_of_payments_placeholder" = "Enter number of payments";
+"calculator_number_of_payments_helper" = "Example: 12 for 1 year of monthly payments";
 "calculator_frequency" = "Payment Frequency";
 "calculator_calculate" = "Calculate Payment";
 "calculator_results" = "Results";
-"calculator_payment" = "%@ Payment";
+"calculator_payment_per_period" = "Payment per %@";
+"calculator_total_to_repay" = "Total to Repay";
 "calculator_total_interest" = "Total Interest";
-"calculator_total_amount" = "Total Amount";
+"calculator_enter_values" = "Enter values above to calculate loan payments";
+"calculator_validation_error" = "Please enter valid values for all fields";
 
 // MARK: - Settings
 "settings_title" = "Settings";
