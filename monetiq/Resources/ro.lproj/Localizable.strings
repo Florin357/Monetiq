@@ -251,3 +251,8 @@
 "notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Monetiq";
 "notification_test_title" = "Notificare de Test";
 "notification_test_body" = "Aceasta este o notificare de test de la Monetiq";
+
+// MARK: - Settings - Notifications
+"settings_notifications_denied_title" = "Notificări Dezactivate";
+"settings_notifications_denied_message" = "Pentru a primi mementouri de plată, vă rugăm să activați notificările în Setări";
+"settings_open_settings" = "Deschide Setările";

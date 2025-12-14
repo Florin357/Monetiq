@@ -21,6 +21,7 @@ struct SettingsView: View {
     @State private var biometricAlertMessage = ""
     @State private var biometricAlertTitle = ""
     @State private var isEnablingBiometrics = false
+    @State private var showingNotificationDeniedAlert = false
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
@@ -248,6 +249,14 @@ struct SettingsView: View {
         } message: {
             Text(biometricAlertMessage)
         }
+        .alert(L10n.string("settings_notifications_denied_title"), isPresented: $showingNotificationDeniedAlert) {
+            Button(L10n.string("general_cancel"), role: .cancel) { }
+            Button(L10n.string("settings_open_settings")) {
+                openAppSettings()
+            }
+        } message: {
+            Text(L10n.string("settings_notifications_denied_message"))
+        }
     }
     
     private func saveContext() {
@@ -265,10 +274,22 @@ struct SettingsView: View {
                 let authorized = await notificationManager.requestAuthorizationIfNeeded()
                 if authorized {
                     await rescheduleAllNotifications()
+                } else {
+                    // Check if permission was denied
+                    let status = await notificationManager.getAuthorizationStatus()
+                    if status == .denied {
+                        // Revert toggle and show alert
+                        await MainActor.run {
+                            settings.notificationsEnabled = false
+                            saveContext()
+                            showingNotificationDeniedAlert = true
+                        }
+                    }
                 }
             } else {
-                // Cancel all notifications
+                // Cancel all notifications and clear badge
                 await notificationManager.cancelAllNotifications()
+                notificationManager.clearBadgeCount()
             }
         }
     }
@@ -309,6 +330,14 @@ struct SettingsView: View {
     
     private func openTermsOfService() {
         showingTermsOfService = true
+    }
+    
+    private func openAppSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+        
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl)
+        }
     }
     
     private func showResetConfirmation() {

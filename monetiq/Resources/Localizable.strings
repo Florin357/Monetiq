@@ -164,8 +164,20 @@
 "biometric_unavailable_message" = "Biometric authentication is not available on this device";
 "general_ok" = "OK";
 
-"settings_test_notification" = "Test Notification";
-"settings_test_notification_subtitle" = "Send a test notification in 5 seconds";
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Payment Reminder";
+"notification_payment_reminder_body" = "%@ payment is due in %d days. Amount: %@";
+"notification_payment_due_title" = "Payment Due Today";
+"notification_payment_due_body" = "%@ payment is due today. Amount: %@";
+"notification_weekly_review_title" = "Weekly Financial Review";
+"notification_weekly_review_body" = "Review your loans and upcoming payments";
+"notification_test_title" = "Test Notification";
+"notification_test_body" = "This is a test notification from Monetiq";
+
+// MARK: - Settings - Notifications
+"settings_notifications_denied_title" = "Notifications Disabled";
+"settings_notifications_denied_message" = "To receive payment reminders, please enable notifications in Settings";
+"settings_open_settings" = "Open Settings";
 
 // MARK: - About
 "about_privacy_title" = "Privacy Policy";

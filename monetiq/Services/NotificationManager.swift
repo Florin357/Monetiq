@@ -9,6 +9,36 @@ import Foundation
 import UserNotifications
 import SwiftData
 
+/*
+ NOTIFICATION VALIDATION CHECKLIST (Manual Testing):
+ 
+ ✅ PERMISSIONS & UX:
+ 1. Enable notifications in Settings → should request permission
+ 2. Deny permission → should show alert with "Open Settings" option
+ 3. Disable notifications → should cancel all pending notifications
+ 
+ ✅ SCHEDULING LOGIC:
+ 4. Create loan with payments → should schedule notifications
+ 5. Change "Days Before Due" → should reschedule all notifications
+ 6. Mark payment as paid → should cancel that payment's notifications
+ 7. Edit loan dates → should reschedule affected notifications
+ 8. Delete loan → should cancel all loan's notifications
+ 
+ ✅ CONTENT QUALITY:
+ 9. Check notification content includes loan title, amount, currency
+ 10. Verify localization works in different languages
+ 11. Confirm no duplicate notifications are created
+ 
+ ✅ APP BEHAVIOR:
+ 12. Reset app → should cancel all notifications
+ 13. Weekly review toggle → should schedule/cancel weekly notifications
+ 14. App backgrounded → notifications should still fire
+ 
+ ✅ DEBUG SAFETY:
+ 15. Test notification only available in DEBUG builds
+ 16. No developer UI in production builds
+ */
+
 @MainActor
 class NotificationManager {
     static let shared = NotificationManager()
@@ -39,6 +69,17 @@ class NotificationManager {
             return true
         @unknown default:
             return false
+        }
+    }
+    
+    func getAuthorizationStatus() async -> UNAuthorizationStatus {
+        let settings = await notificationCenter.notificationSettings()
+        return settings.authorizationStatus
+    }
+    
+    func clearBadgeCount() {
+        Task { @MainActor in
+            UIApplication.shared.applicationIconBadgeNumber = 0
         }
     }
     
@@ -257,6 +298,7 @@ class NotificationManager {
         return await notificationCenter.pendingNotificationRequests()
     }
     
+    #if DEBUG
     func scheduleTestNotification() async {
         let authorized = await requestAuthorizationIfNeeded()
         guard authorized else { 
@@ -284,4 +326,5 @@ class NotificationManager {
             print("Failed to schedule test notification: \(error)")
         }
     }
+    #endif
 }

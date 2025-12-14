@@ -247,6 +247,21 @@
 "lock_screen_title" = "Gesperrt";
 "lock_screen_subtitle" = "Mit %@ entsperren";
 "lock_screen_unlock_button" = "Mit %@ entsperren";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Zahlungserinnerung";
+"notification_payment_reminder_body" = "%@ Zahlung ist in %d Tagen fällig. Betrag: %@";
+"notification_payment_due_title" = "Zahlung heute fällig";
+"notification_payment_due_body" = "%@ Zahlung ist heute fällig. Betrag: %@";
+"notification_weekly_review_title" = "Wöchentliche Finanzübersicht";
+"notification_weekly_review_body" = "Überprüfen Sie Ihre Darlehen und anstehenden Zahlungen";
+"notification_test_title" = "Test-Benachrichtigung";
+"notification_test_body" = "Dies ist eine Test-Benachrichtigung von Monetiq";
+
+// MARK: - Settings - Notifications
+"settings_notifications_denied_title" = "Benachrichtigungen deaktiviert";
+"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie bitte Benachrichtigungen in den Einstellungen";
+"settings_open_settings" = "Einstellungen öffnen";
 "biometric_error_title" = "Authentifizierung fehlgeschlagen";
 "biometric_error_unknown" = "Ein unbekannter Fehler ist aufgetreten";
 "biometric_unavailable_title" = "Biometrie nicht verfügbar";
