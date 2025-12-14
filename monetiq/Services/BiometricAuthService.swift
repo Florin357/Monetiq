@@ -63,8 +63,8 @@ enum BiometricAuthError: LocalizedError {
     }
 }
 
-@MainActor
-class BiometricAuthService: ObservableObject {
+@Observable
+class BiometricAuthService {
     static let shared = BiometricAuthService()
     
     private init() {}
@@ -75,38 +75,66 @@ class BiometricAuthService: ObservableObject {
     func checkBiometricAvailability() -> (available: Bool, biometricType: BiometricType, error: BiometricAuthError?) {
         var error: NSError?
         
+        #if DEBUG
+        print("🔒 BiometricAuthService: Checking biometric availability...")
+        #endif
+        
         guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
             let biometricError = mapLAError(error)
+            #if DEBUG
+            print("🔒 BiometricAuthService: Biometrics not available: \(biometricError.errorDescription ?? "Unknown")")
+            #endif
             return (false, .none, biometricError)
         }
         
         let biometricType = getBiometricType()
+        #if DEBUG
+        print("🔒 BiometricAuthService: Biometrics available: \(biometricType.displayName)")
+        #endif
         return (true, biometricType, nil)
     }
     
     /// Perform biometric authentication
     func authenticateWithBiometrics(reason: String) async -> Result<Void, BiometricAuthError> {
-        let context = LAContext()
+        #if DEBUG
+        print("🔒 BiometricAuthService: Starting authentication with reason: \(reason)")
+        #endif
         
-        // Check availability first
-        let availability = checkBiometricAvailability()
-        guard availability.available else {
-            return .failure(availability.error ?? .notAvailable)
+        // Use a fresh context for each authentication attempt
+        let authContext = LAContext()
+        
+        // Check availability first using the same context
+        var error: NSError?
+        guard authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            let biometricError = mapLAError(error)
+            #if DEBUG
+            print("🔒 BiometricAuthService: Authentication failed - biometrics not available: \(biometricError.errorDescription ?? "Unknown")")
+            #endif
+            return .failure(biometricError)
         }
         
         do {
-            let success = try await context.evaluatePolicy(
+            let success = try await authContext.evaluatePolicy(
                 .deviceOwnerAuthenticationWithBiometrics,
                 localizedReason: reason
             )
             
             if success {
+                #if DEBUG
+                print("🔒 BiometricAuthService: Authentication successful")
+                #endif
                 return .success(())
             } else {
+                #if DEBUG
+                print("🔒 BiometricAuthService: Authentication failed - success was false")
+                #endif
                 return .failure(.authenticationFailed)
             }
         } catch {
             let biometricError = mapLAError(error as NSError)
+            #if DEBUG
+            print("🔒 BiometricAuthService: Authentication failed with error: \(biometricError.errorDescription ?? "Unknown")")
+            #endif
             return .failure(biometricError)
         }
     }

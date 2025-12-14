@@ -128,10 +128,10 @@ class AppResetService {
         
         // Clear any app-specific UserDefaults keys if they exist
         // For now, we're using SwiftData for settings, but this is here for future use
-        let defaults = UserDefaults.standard
+        let _ = UserDefaults.standard
         
         // Remove any app-specific keys (add them here if needed in the future)
-        // defaults.removeObject(forKey: "SomeAppSpecificKey")
+        // UserDefaults.standard.removeObject(forKey: "SomeAppSpecificKey")
         
         print("✅ UserDefaults cleared")
     }
