@@ -129,6 +129,14 @@
 "settings_terms" = "Nutzungsbedingungen";
 "settings_terms_subtitle" = "Geschäftsbedingungen anzeigen";
 
+// MARK: - Settings Data
+"settings_data" = "Daten";
+"settings_reset_app" = "App Zurücksetzen";
+"settings_reset_app_subtitle" = "Alle Daten löschen und auf Standardeinstellungen zurücksetzen";
+"settings_reset_app_confirm_title" = "App Zurücksetzen?";
+"settings_reset_app_confirm_message" = "Dies wird alle Kredite, Zahlungen und Einstellungen von diesem Gerät dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.";
+"settings_reset_app_confirm_action" = "Alle Daten Löschen";
+
 "settings_test_notification" = "Test-Benachrichtigung";
 "settings_test_notification_subtitle" = "Test-Benachrichtigung in 5 Sekunden senden";
 

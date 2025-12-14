@@ -16,6 +16,7 @@ struct SettingsView: View {
     @State private var darkModeEnabled = true // Keep as local state for now
     @State private var showingPrivacyPolicy = false
     @State private var showingTermsOfService = false
+    @State private var showingResetConfirmation = false
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
@@ -171,22 +172,15 @@ struct SettingsView: View {
                     )
                 }
                 
-                // Developer Section (for testing)
-                #if DEBUG
-                SettingsSection(title: L10n.string("settings_developer")) {
-                    SettingsActionRow(
-                        title: L10n.string("settings_test_notification"),
-                        subtitle: L10n.string("settings_test_notification_subtitle"),
-                        action: testNotification
-                    )
-                    
-                    SettingsActionRow(
-                        title: L10n.string("settings_view_notifications"),
-                        subtitle: L10n.string("settings_view_notifications_subtitle"),
-                        action: viewPendingNotifications
+                
+                // Data Section
+                SettingsSection(title: L10n.string("settings_data")) {
+                    SettingsDestructiveActionRow(
+                        title: L10n.string("settings_reset_app"),
+                        subtitle: L10n.string("settings_reset_app_subtitle"),
+                        action: showResetConfirmation
                     )
                 }
-                #endif
                 
                 // About Section
                 SettingsSection(title: L10n.string("settings_about")) {
@@ -225,6 +219,14 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showingTermsOfService) {
             TermsOfServiceView()
+        }
+        .alert(L10n.string("settings_reset_app_confirm_title"), isPresented: $showingResetConfirmation) {
+            Button(L10n.string("general_cancel"), role: .cancel) { }
+            Button(L10n.string("settings_reset_app_confirm_action"), role: .destructive) {
+                performAppReset()
+            }
+        } message: {
+            Text(L10n.string("settings_reset_app_confirm_message"))
         }
     }
     
@@ -280,21 +282,6 @@ struct SettingsView: View {
         }
     }
     
-    private func testNotification() {
-        Task {
-            await notificationManager.scheduleTestNotification()
-        }
-    }
-    
-    private func viewPendingNotifications() {
-        Task {
-            let pending = await notificationManager.getPendingNotifications()
-            print("Pending notifications: \(pending.count)")
-            for notification in pending {
-                print("- \(notification.identifier): \(notification.content.title)")
-            }
-        }
-    }
     
     private func openPrivacyPolicy() {
         showingPrivacyPolicy = true
@@ -302,6 +289,27 @@ struct SettingsView: View {
     
     private func openTermsOfService() {
         showingTermsOfService = true
+    }
+    
+    private func showResetConfirmation() {
+        showingResetConfirmation = true
+    }
+    
+    private func performAppReset() {
+        Task {
+            await AppResetService.shared.resetApp(modelContext: modelContext)
+            
+            // Reset local state on main actor
+            await MainActor.run {
+                // Reset local state
+                appSettings = nil
+                
+                // Reinitialize settings
+                let newSettings = AppSettings.getOrCreate(in: modelContext)
+                appSettings = newSettings
+                notificationManager.setAppSettings(newSettings)
+            }
+        }
     }
 }
 
@@ -413,6 +421,38 @@ struct SettingsActionRow: View {
                 Image(systemName: "chevron.right")
                     .font(.caption)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
+            }
+            .padding(MonetiqTheme.Spacing.md)
+            .background(MonetiqTheme.Colors.surface)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct SettingsDestructiveActionRow: View {
+    let title: String
+    let subtitle: String
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                    Text(title)
+                        .font(MonetiqTheme.Typography.body)
+                        .foregroundColor(MonetiqTheme.Colors.error)
+                        .fontWeight(.medium)
+                    
+                    Text(subtitle)
+                        .font(MonetiqTheme.Typography.caption)
+                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "exclamationmark.triangle")
+                    .font(.caption)
+                    .foregroundColor(MonetiqTheme.Colors.error)
             }
             .padding(MonetiqTheme.Spacing.md)
             .background(MonetiqTheme.Colors.surface)

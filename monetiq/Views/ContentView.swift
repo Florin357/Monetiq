@@ -13,6 +13,7 @@ struct ContentView: View {
     @Query private var allSettings: [AppSettings]
     @State private var localizationManager = LocalizationManager.shared
     @State private var refreshTrigger = UUID()
+    @State private var appState = AppState.shared
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
@@ -96,6 +97,7 @@ struct ContentView: View {
         .environment(\.locale, effectiveLocale)
         .id(effectiveLanguageKey)
         .id(refreshTrigger)
+        .id(appState.resetToken)
         .onAppear {
             updateLocalizationManager()
         }

@@ -128,6 +128,14 @@
 "settings_terms" = "Termenii de Utilizare";
 "settings_terms_subtitle" = "Vezi termenii și condițiile";
 
+// MARK: - Settings Data
+"settings_data" = "Date";
+"settings_reset_app" = "Resetează Aplicația";
+"settings_reset_app_subtitle" = "Șterge toate datele și resetează la setările implicite";
+"settings_reset_app_confirm_title" = "Resetezi Aplicația?";
+"settings_reset_app_confirm_message" = "Aceasta va șterge permanent toate împrumuturile, plățile și setările de pe acest dispozitiv. Această acțiune nu poate fi anulată.";
+"settings_reset_app_confirm_action" = "Șterge Toate Datele";
+
 "settings_test_notification" = "Testează Notificarea";
 "settings_test_notification_subtitle" = "Trimite o notificare de test în 5 secunde";
 "settings_view_notifications" = "Vezi Notificările Programate";

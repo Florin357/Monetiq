@@ -138,6 +138,14 @@
 "settings_terms" = "Terms of Service";
 "settings_terms_subtitle" = "View terms and conditions";
 
+// MARK: - Settings Data
+"settings_data" = "Data";
+"settings_reset_app" = "Reset App";
+"settings_reset_app_subtitle" = "Delete all data and reset to defaults";
+"settings_reset_app_confirm_title" = "Reset App?";
+"settings_reset_app_confirm_message" = "This will permanently delete all loans, payments, and settings from this device. This cannot be undone.";
+"settings_reset_app_confirm_action" = "Delete All Data";
+
 "settings_test_notification" = "Test Notification";
 "settings_test_notification_subtitle" = "Send a test notification in 5 seconds";
 

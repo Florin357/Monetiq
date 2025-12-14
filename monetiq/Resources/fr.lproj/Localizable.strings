@@ -230,3 +230,11 @@
 
 
 
+
+// MARK: - Settings Data
+"settings_data" = "Données";
+"settings_reset_app" = "Réinitialiser l'App";
+"settings_reset_app_subtitle" = "Supprimer toutes les données et réinitialiser aux paramètres par défaut";
+"settings_reset_app_confirm_title" = "Réinitialiser l'App?";
+"settings_reset_app_confirm_message" = "Cela supprimera définitivement tous les prêts, paiements et paramètres de cet appareil. Cette action ne peut pas être annulée.";
+"settings_reset_app_confirm_action" = "Supprimer Toutes les Données";

@@ -129,6 +129,14 @@
 "settings_terms" = "Termini di Servizio";
 "settings_terms_subtitle" = "Visualizza termini e condizioni";
 
+// MARK: - Settings Data
+"settings_data" = "Dati";
+"settings_reset_app" = "Ripristina App";
+"settings_reset_app_subtitle" = "Elimina tutti i dati e ripristina le impostazioni predefinite";
+"settings_reset_app_confirm_title" = "Ripristinare l'App?";
+"settings_reset_app_confirm_message" = "Questo eliminerà permanentemente tutti i prestiti, pagamenti e impostazioni da questo dispositivo. Questa azione non può essere annullata.";
+"settings_reset_app_confirm_action" = "Elimina Tutti i Dati";
+
 "settings_test_notification" = "Notifica di Test";
 "settings_test_notification_subtitle" = "Invia una notifica di test tra 5 secondi";
 "settings_view_notifications" = "Visualizza Notifiche in Sospeso";

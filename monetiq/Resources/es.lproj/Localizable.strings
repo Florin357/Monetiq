@@ -230,3 +230,11 @@
 
 
 
+
+// MARK: - Settings Data
+"settings_data" = "Datos";
+"settings_reset_app" = "Restablecer App";
+"settings_reset_app_subtitle" = "Eliminar todos los datos y restablecer a valores predeterminados";
+"settings_reset_app_confirm_title" = "¿Restablecer App?";
+"settings_reset_app_confirm_message" = "Esto eliminará permanentemente todos los préstamos, pagos y configuraciones de este dispositivo. Esta acción no se puede deshacer.";
+"settings_reset_app_confirm_action" = "Eliminar Todos los Datos";

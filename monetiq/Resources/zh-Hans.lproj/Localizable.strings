@@ -230,3 +230,11 @@
 
 
 
+
+// MARK: - Settings Data
+"settings_data" = "数据";
+"settings_reset_app" = "重置应用";
+"settings_reset_app_subtitle" = "删除所有数据并重置为默认设置";
+"settings_reset_app_confirm_title" = "重置应用？";
+"settings_reset_app_confirm_message" = "这将永久删除此设备上的所有贷款、付款和设置。此操作无法撤消。";
+"settings_reset_app_confirm_action" = "删除所有数据";

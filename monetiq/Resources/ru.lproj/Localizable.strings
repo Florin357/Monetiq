@@ -230,3 +230,11 @@
 
 
 
+
+// MARK: - Settings Data
+"settings_data" = "Данные";
+"settings_reset_app" = "Сбросить Приложение";
+"settings_reset_app_subtitle" = "Удалить все данные и сбросить к настройкам по умолчанию";
+"settings_reset_app_confirm_title" = "Сбросить Приложение?";
+"settings_reset_app_confirm_message" = "Это навсегда удалит все кредиты, платежи и настройки с этого устройства. Это действие нельзя отменить.";
+"settings_reset_app_confirm_action" = "Удалить Все Данные";

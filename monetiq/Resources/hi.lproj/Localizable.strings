@@ -230,3 +230,11 @@
 
 
 
+
+// MARK: - Settings Data
+"settings_data" = "डेटा";
+"settings_reset_app" = "ऐप रीसेट करें";
+"settings_reset_app_subtitle" = "सभी डेटा हटाएं और डिफ़ॉल्ट सेटिंग्स पर रीसेट करें";
+"settings_reset_app_confirm_title" = "ऐप रीसेट करें?";
+"settings_reset_app_confirm_message" = "यह इस डिवाइस से सभी ऋण, भुगतान और सेटिंग्स को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।";
+"settings_reset_app_confirm_action" = "सभी डेटा हटाएं";
