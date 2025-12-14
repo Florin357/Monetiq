@@ -353,14 +353,16 @@ struct DashboardLoanRowView: View {
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(roleColor)
                     
-                    Text("•")
-                        .font(MonetiqTheme.Typography.caption)
-                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
-                    
-                    Text(loan.counterparty.name)
-                        .font(MonetiqTheme.Typography.caption)
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                        .lineLimit(1)
+                    if let counterparty = loan.counterparty {
+                        Text("•")
+                            .font(MonetiqTheme.Typography.caption)
+                            .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        
+                        Text(counterparty.name)
+                            .font(MonetiqTheme.Typography.caption)
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            .lineLimit(1)
+                    }
                 }
             }
             
