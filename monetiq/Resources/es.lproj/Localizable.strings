@@ -238,3 +238,15 @@
 "settings_reset_app_confirm_title" = "¿Restablecer App?";
 "settings_reset_app_confirm_message" = "Esto eliminará permanentemente todos los préstamos, pagos y configuraciones de este dispositivo. Esta acción no se puede deshacer.";
 "settings_reset_app_confirm_action" = "Eliminar Todos los Datos";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Desbloquea Monetiq para acceder a tus datos financieros";
+"biometric_enable_reason" = "Autentícate para habilitar la seguridad biométrica";
+"lock_screen_title" = "Bloqueado";
+"lock_screen_subtitle" = "Desbloquear con %@";
+"lock_screen_unlock_button" = "Desbloquear con %@";
+"biometric_error_title" = "Autenticación Fallida";
+"biometric_error_unknown" = "Ocurrió un error desconocido";
+"biometric_unavailable_title" = "Biometría No Disponible";
+"biometric_unavailable_message" = "La autenticación biométrica no está disponible en este dispositivo";
+"general_ok" = "OK";

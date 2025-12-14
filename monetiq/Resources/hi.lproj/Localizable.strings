@@ -238,3 +238,15 @@
 "settings_reset_app_confirm_title" = "ऐप रीसेट करें?";
 "settings_reset_app_confirm_message" = "यह इस डिवाइस से सभी ऋण, भुगतान और सेटिंग्स को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।";
 "settings_reset_app_confirm_action" = "सभी डेटा हटाएं";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "अपने वित्तीय डेटा तक पहुंचने के लिए Monetiq को अनलॉक करें";
+"biometric_enable_reason" = "बायोमेट्रिक सुरक्षा सक्षम करने के लिए प्रमाणीकरण करें";
+"lock_screen_title" = "लॉक्ड";
+"lock_screen_subtitle" = "%@ के साथ अनलॉक करें";
+"lock_screen_unlock_button" = "%@ के साथ अनलॉक करें";
+"biometric_error_title" = "प्रमाणीकरण विफल";
+"biometric_error_unknown" = "एक अज्ञात त्रुटि हुई";
+"biometric_unavailable_title" = "बायोमेट्रिक्स उपलब्ध नहीं";
+"biometric_unavailable_message" = "इस डिवाइस पर बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है";
+"general_ok" = "ठीक है";

@@ -238,3 +238,15 @@
 "settings_reset_app_confirm_title" = "重置应用？";
 "settings_reset_app_confirm_message" = "这将永久删除此设备上的所有贷款、付款和设置。此操作无法撤消。";
 "settings_reset_app_confirm_action" = "删除所有数据";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "解锁 Monetiq 以访问您的财务数据";
+"biometric_enable_reason" = "进行身份验证以启用生物识别安全";
+"lock_screen_title" = "已锁定";
+"lock_screen_subtitle" = "使用 %@ 解锁";
+"lock_screen_unlock_button" = "使用 %@ 解锁";
+"biometric_error_title" = "身份验证失败";
+"biometric_error_unknown" = "发生未知错误";
+"biometric_unavailable_title" = "生物识别不可用";
+"biometric_unavailable_message" = "此设备上不支持生物识别认证";
+"general_ok" = "确定";

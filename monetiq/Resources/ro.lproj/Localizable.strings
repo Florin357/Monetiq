@@ -136,6 +136,18 @@
 "settings_reset_app_confirm_message" = "Aceasta va șterge permanent toate împrumuturile, plățile și setările de pe acest dispozitiv. Această acțiune nu poate fi anulată.";
 "settings_reset_app_confirm_action" = "Șterge Toate Datele";
 
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Deblochează Monetiq pentru a accesa datele tale financiare";
+"biometric_enable_reason" = "Autentifică-te pentru a activa securitatea biometrică";
+"lock_screen_title" = "Blocat";
+"lock_screen_subtitle" = "Deblochează cu %@";
+"lock_screen_unlock_button" = "Deblochează cu %@";
+"biometric_error_title" = "Autentificare Eșuată";
+"biometric_error_unknown" = "A apărut o eroare necunoscută";
+"biometric_unavailable_title" = "Biometria Indisponibilă";
+"biometric_unavailable_message" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
+"general_ok" = "OK";
+
 "settings_test_notification" = "Testează Notificarea";
 "settings_test_notification_subtitle" = "Trimite o notificare de test în 5 secunde";
 "settings_view_notifications" = "Vezi Notificările Programate";

@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var localizationManager = LocalizationManager.shared
     @State private var refreshTrigger = UUID()
     @State private var appState = AppState.shared
+    @State private var lockState = AppLockState.shared
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
@@ -59,6 +60,28 @@ struct ContentView: View {
     }
     
     var body: some View {
+        ZStack {
+            if lockState.isLocked && appSettings.biometricLockEnabled {
+                LockScreenView()
+            } else {
+                mainTabView
+            }
+        }
+        .onAppear {
+            initializeApp()
+        }
+        .onChange(of: appSettings.languageOverride) { _, _ in
+            updateLocalizationManager()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            handleAppWillEnterForeground()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            handleAppDidEnterBackground()
+        }
+    }
+    
+    private var mainTabView: some View {
         TabView {
             NavigationStack {
                 DashboardView()
@@ -98,11 +121,26 @@ struct ContentView: View {
         .id(effectiveLanguageKey)
         .id(refreshTrigger)
         .id(appState.resetToken)
-        .onAppear {
-            updateLocalizationManager()
+    }
+    
+    private func initializeApp() {
+        updateLocalizationManager()
+        
+        // Initialize lock state based on biometric settings
+        lockState.initializeLockState(biometricEnabled: appSettings.biometricLockEnabled)
+    }
+    
+    private func handleAppWillEnterForeground() {
+        // Re-initialize lock state when app comes to foreground
+        if appSettings.biometricLockEnabled {
+            lockState.initializeLockState(biometricEnabled: true)
         }
-        .onChange(of: appSettings.languageOverride) { _, _ in
-            updateLocalizationManager()
+    }
+    
+    private func handleAppDidEnterBackground() {
+        // Lock the app when it goes to background (if biometrics enabled)
+        if appSettings.biometricLockEnabled {
+            lockState.lockApp()
         }
     }
 }

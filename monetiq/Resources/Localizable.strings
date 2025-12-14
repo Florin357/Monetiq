@@ -146,6 +146,18 @@
 "settings_reset_app_confirm_message" = "This will permanently delete all loans, payments, and settings from this device. This cannot be undone.";
 "settings_reset_app_confirm_action" = "Delete All Data";
 
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Unlock Monetiq to access your financial data";
+"biometric_enable_reason" = "Authenticate to enable biometric security";
+"lock_screen_title" = "Locked";
+"lock_screen_subtitle" = "Unlock with %@";
+"lock_screen_unlock_button" = "Unlock with %@";
+"biometric_error_title" = "Authentication Failed";
+"biometric_error_unknown" = "An unknown error occurred";
+"biometric_unavailable_title" = "Biometrics Unavailable";
+"biometric_unavailable_message" = "Biometric authentication is not available on this device";
+"general_ok" = "OK";
+
 "settings_test_notification" = "Test Notification";
 "settings_test_notification_subtitle" = "Send a test notification in 5 seconds";
 

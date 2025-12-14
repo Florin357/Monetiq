@@ -17,6 +17,9 @@ struct SettingsView: View {
     @State private var showingPrivacyPolicy = false
     @State private var showingTermsOfService = false
     @State private var showingResetConfirmation = false
+    @State private var showingBiometricAlert = false
+    @State private var biometricAlertMessage = ""
+    @State private var biometricAlertTitle = ""
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
@@ -155,9 +158,7 @@ struct SettingsView: View {
                         isOn: Binding(
                             get: { settings.biometricLockEnabled },
                             set: { newValue in
-                                settings.biometricLockEnabled = newValue
-                                settings.updateTimestamp()
-                                saveContext()
+                                handleBiometricToggle(newValue: newValue)
                             }
                         )
                     )
@@ -227,6 +228,11 @@ struct SettingsView: View {
             }
         } message: {
             Text(L10n.string("settings_reset_app_confirm_message"))
+        }
+        .alert(biometricAlertTitle, isPresented: $showingBiometricAlert) {
+            Button(L10n.string("general_ok"), role: .cancel) { }
+        } message: {
+            Text(biometricAlertMessage)
         }
     }
     
@@ -309,6 +315,58 @@ struct SettingsView: View {
                 appSettings = newSettings
                 notificationManager.setAppSettings(newSettings)
             }
+        }
+    }
+    
+    private func handleBiometricToggle(newValue: Bool) {
+        if newValue {
+            // User wants to enable biometrics - check availability and authenticate
+            Task {
+                let biometricService = BiometricAuthService.shared
+                let availability = biometricService.checkBiometricAvailability()
+                
+                await MainActor.run {
+                    if availability.available {
+                        // Biometrics available, prompt for authentication to confirm
+                        Task {
+                            let reason = L10n.string("biometric_enable_reason")
+                            let result = await biometricService.authenticateWithBiometrics(reason: reason)
+                            
+                            await MainActor.run {
+                                switch result {
+                                case .success:
+                                    // Authentication successful, enable biometrics
+                                    settings.biometricLockEnabled = true
+                                    settings.updateTimestamp()
+                                    saveContext()
+                                    
+                                    // Initialize lock state
+                                    AppLockState.shared.initializeLockState(biometricEnabled: true)
+                                    
+                                case .failure(let error):
+                                    // Authentication failed, show error and keep toggle off
+                                    biometricAlertTitle = L10n.string("biometric_error_title")
+                                    biometricAlertMessage = error.errorDescription ?? L10n.string("biometric_error_unknown")
+                                    showingBiometricAlert = true
+                                }
+                            }
+                        }
+                    } else {
+                        // Biometrics not available, show error and keep toggle off
+                        biometricAlertTitle = L10n.string("biometric_unavailable_title")
+                        biometricAlertMessage = availability.error?.errorDescription ?? L10n.string("biometric_unavailable_message")
+                        showingBiometricAlert = true
+                    }
+                }
+            }
+        } else {
+            // User wants to disable biometrics
+            settings.biometricLockEnabled = false
+            settings.updateTimestamp()
+            saveContext()
+            
+            // Unlock the app immediately
+            AppLockState.shared.unlockWithoutBiometrics()
         }
     }
 }

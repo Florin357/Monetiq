@@ -238,3 +238,15 @@
 "settings_reset_app_confirm_title" = "Сбросить Приложение?";
 "settings_reset_app_confirm_message" = "Это навсегда удалит все кредиты, платежи и настройки с этого устройства. Это действие нельзя отменить.";
 "settings_reset_app_confirm_action" = "Удалить Все Данные";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Разблокируйте Monetiq для доступа к вашим финансовым данным";
+"biometric_enable_reason" = "Аутентифицируйтесь для включения биометрической безопасности";
+"lock_screen_title" = "Заблокировано";
+"lock_screen_subtitle" = "Разблокировать с %@";
+"lock_screen_unlock_button" = "Разблокировать с %@";
+"biometric_error_title" = "Ошибка Аутентификации";
+"biometric_error_unknown" = "Произошла неизвестная ошибка";
+"biometric_unavailable_title" = "Биометрия Недоступна";
+"biometric_unavailable_message" = "Биометрическая аутентификация недоступна на этом устройстве";
+"general_ok" = "OK";

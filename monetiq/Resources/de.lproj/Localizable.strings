@@ -235,3 +235,15 @@
 "notification_weekly_review_body" = "Zeit, Ihre Darlehen und anstehenden Zahlungen in Monetiq zu überprüfen";
 "notification_test_title" = "Test-Benachrichtigung";
 "notification_test_body" = "Dies ist eine Test-Benachrichtigung von Monetiq";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Entsperre Monetiq, um auf deine Finanzdaten zuzugreifen";
+"biometric_enable_reason" = "Authentifiziere dich, um biometrische Sicherheit zu aktivieren";
+"lock_screen_title" = "Gesperrt";
+"lock_screen_subtitle" = "Mit %@ entsperren";
+"lock_screen_unlock_button" = "Mit %@ entsperren";
+"biometric_error_title" = "Authentifizierung fehlgeschlagen";
+"biometric_error_unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"biometric_unavailable_title" = "Biometrie nicht verfügbar";
+"biometric_unavailable_message" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
+"general_ok" = "OK";
