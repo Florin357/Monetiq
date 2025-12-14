@@ -79,7 +79,7 @@ class BiometricAuthService {
         print("🔒 BiometricAuthService: Checking biometric availability...")
         #endif
         
-        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
             let biometricError = mapLAError(error)
             #if DEBUG
             print("🔒 BiometricAuthService: Biometrics not available: \(biometricError.errorDescription ?? "Unknown")")
@@ -105,7 +105,7 @@ class BiometricAuthService {
         
         // Check availability first using the same context
         var error: NSError?
-        guard authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+        guard authContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
             let biometricError = mapLAError(error)
             #if DEBUG
             print("🔒 BiometricAuthService: Authentication failed - biometrics not available: \(biometricError.errorDescription ?? "Unknown")")
@@ -115,7 +115,7 @@ class BiometricAuthService {
         
         do {
             let success = try await authContext.evaluatePolicy(
-                .deviceOwnerAuthenticationWithBiometrics,
+                .deviceOwnerAuthentication,
                 localizedReason: reason
             )
             
