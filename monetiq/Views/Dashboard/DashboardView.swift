@@ -22,11 +22,11 @@ struct DashboardView: View {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                    Text(L10n.string("dashboard_title"))
+                    Text("dashboard_title", bundle: .main)
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                     
-                    Text(L10n.string("dashboard_subtitle"))
+                    Text("dashboard_subtitle", bundle: .main)
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 }
@@ -37,17 +37,15 @@ struct DashboardView: View {
                     GridItem(.flexible()),
                     GridItem(.flexible())
                 ], spacing: MonetiqTheme.Spacing.md) {
-                    SummaryCard(
-                        title: L10n.string("dashboard_to_receive"),
-                        amount: calculateToReceive(),
-                        currency: appSettings.defaultCurrencyCode,
+                    MultiCurrencySummaryCard(
+                        title: String(localized: "dashboard_to_receive"),
+                        totals: calculateToReceiveByCurrency(),
                         color: MonetiqTheme.Colors.success
                     )
                     
-                    SummaryCard(
-                        title: L10n.string("dashboard_to_pay"),
-                        amount: calculateToPay(),
-                        currency: appSettings.defaultCurrencyCode,
+                    MultiCurrencySummaryCard(
+                        title: String(localized: "dashboard_to_pay"),
+                        totals: calculateToPayByCurrency(),
                         color: MonetiqTheme.Colors.warning
                     )
                 }
@@ -55,17 +53,17 @@ struct DashboardView: View {
                 
                 // Upcoming Payments
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text(L10n.string("dashboard_upcoming_payments"))
+                    Text("dashboard_upcoming_payments", bundle: .main)
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
                     if upcomingPayments.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.xs) {
-                            Text(L10n.string("dashboard_no_payments"))
+                            Text("dashboard_no_payments", bundle: .main)
                                 .font(MonetiqTheme.Typography.body)
                                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                            Text(L10n.string("dashboard_no_payments_subtitle"))
+                            Text("dashboard_no_payments_subtitle", bundle: .main)
                                 .font(MonetiqTheme.Typography.caption)
                                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
                         }
@@ -82,13 +80,13 @@ struct DashboardView: View {
                 
                 // Recent Loans
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text(L10n.string("dashboard_recent_loans"))
+                    Text("dashboard_recent_loans", bundle: .main)
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
                     if recentLoans.isEmpty {
-                        Text(L10n.string("dashboard_no_loans"))
+                        Text("dashboard_no_loans", bundle: .main)
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             .padding(.horizontal, MonetiqTheme.Spacing.md)
@@ -108,8 +106,15 @@ struct DashboardView: View {
     }
     
     private var upcomingPayments: [Payment] {
-        payments
-            .filter { $0.status == .planned && $0.dueDate >= Date() }
+        let today = Date()
+        let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
+        
+        return payments
+            .filter { 
+                $0.status == .planned && 
+                $0.dueDate >= today && 
+                $0.dueDate < thirtyDaysFromNow 
+            }
             .sorted { $0.dueDate < $1.dueDate }
     }
     
@@ -117,18 +122,32 @@ struct DashboardView: View {
         loans.sorted { $0.createdAt > $1.createdAt }
     }
     
-    private func calculateToReceive() -> Double {
+    private func calculateToReceiveByCurrency() -> [String: Double] {
         let lentLoans = loans.filter { $0.role == .lent }
-        return lentLoans.reduce(0) { total, loan in
-            total + (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+        var totals: [String: Double] = [:]
+        
+        for loan in lentLoans {
+            let remaining = (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+            if remaining > 0 {
+                totals[loan.currencyCode, default: 0] += remaining
+            }
         }
+        
+        return totals
     }
     
-    private func calculateToPay() -> Double {
+    private func calculateToPayByCurrency() -> [String: Double] {
         let borrowedLoans = loans.filter { $0.role == .borrowed || $0.role == .bankCredit }
-        return borrowedLoans.reduce(0) { total, loan in
-            total + (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+        var totals: [String: Double] = [:]
+        
+        for loan in borrowedLoans {
+            let remaining = (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+            if remaining > 0 {
+                totals[loan.currencyCode, default: 0] += remaining
+            }
         }
+        
+        return totals
     }
 }
 
@@ -148,6 +167,48 @@ struct SummaryCard: View {
                 .font(MonetiqTheme.Typography.title2)
                 .foregroundColor(color)
                 .fontWeight(.semibold)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .monetiqCard()
+    }
+}
+
+struct MultiCurrencySummaryCard: View {
+    let title: String
+    let totals: [String: Double]
+    let color: Color
+    
+    private var sortedTotals: [(String, Double)] {
+        totals.sorted { $0.value > $1.value }
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+            Text(title)
+                .font(MonetiqTheme.Typography.caption)
+                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+            
+            if totals.isEmpty {
+                Text("0.00")
+                    .font(MonetiqTheme.Typography.title2)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .fontWeight(.semibold)
+            } else {
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                    ForEach(Array(sortedTotals.prefix(3)), id: \.0) { currency, amount in
+                        Text(CurrencyFormatter.shared.format(amount: amount, currencyCode: currency))
+                            .font(sortedTotals.count == 1 ? MonetiqTheme.Typography.title2 : MonetiqTheme.Typography.callout)
+                            .foregroundColor(color)
+                            .fontWeight(.semibold)
+                    }
+                    
+                    if sortedTotals.count > 3 {
+                        Text("+\(sortedTotals.count - 3) more")
+                            .font(MonetiqTheme.Typography.caption2)
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    }
+                }
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .monetiqCard()

@@ -11,6 +11,7 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var allSettings: [AppSettings]
+    @State private var localizationManager = LocalizationManager.shared
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
@@ -27,14 +28,24 @@ struct ContentView: View {
             let locale = Locale(identifier: languageCode)
             #if DEBUG
             print("🌐 Applying locale: \(locale.identifier)")
+            print("🌐 Test localization: \(L10n.string("tab_dashboard"))")
             #endif
             return locale
         } else {
             #if DEBUG
             print("🌐 Using system locale: \(Locale.current.identifier)")
+            print("🌐 Test localization: \(L10n.string("tab_dashboard"))")
             #endif
             return Locale.current
         }
+    }
+    
+    private var effectiveLanguageKey: String {
+        return appSettings.languageOverride ?? "system"
+    }
+    
+    private func updateLocalizationManager() {
+        localizationManager.currentLanguageCode = appSettings.languageOverride
     }
     
     var body: some View {
@@ -44,7 +55,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "chart.pie.fill")
-                Text(L10n.string("tab_dashboard"))
+                Text("tab_dashboard", bundle: .main)
             }
             
             NavigationStack {
@@ -52,7 +63,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "banknote.fill")
-                Text(L10n.string("tab_loans"))
+                Text("tab_loans", bundle: .main)
             }
             
             NavigationStack {
@@ -60,7 +71,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "function")
-                Text(L10n.string("tab_calculator"))
+                Text("tab_calculator", bundle: .main)
             }
             
             NavigationStack {
@@ -68,13 +79,19 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "gearshape.fill")
-                Text(L10n.string("tab_settings"))
+                Text("tab_settings", bundle: .main)
             }
         }
         .monetiqBackground()
         .preferredColorScheme(.dark)
         .environment(\.locale, effectiveLocale)
-        .id(appSettings.languageOverride ?? "system")
+        .id(effectiveLanguageKey)
+        .onAppear {
+            updateLocalizationManager()
+        }
+        .onChange(of: appSettings.languageOverride) { _, _ in
+            updateLocalizationManager()
+        }
     }
 }
 

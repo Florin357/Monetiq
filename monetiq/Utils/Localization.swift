@@ -6,11 +6,64 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: - Localization Helper
 struct L10n {
     static func string(_ key: String, _ args: CVarArg...) -> String {
         let format = NSLocalizedString(key, comment: "")
+        return String(format: format, arguments: args)
+    }
+    
+    // Language-aware localization that respects the current override
+    static func localizedString(_ key: String, languageCode: String? = nil, _ args: CVarArg...) -> String {
+        guard let languageCode = languageCode, languageCode != "system" else {
+            // Use default NSLocalizedString
+            let format = NSLocalizedString(key, comment: "")
+            return String(format: format, arguments: args)
+        }
+        
+        // Try to get the specific language bundle
+        guard let path = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+              let bundle = Bundle(path: path) else {
+            // Fallback to default
+            let format = NSLocalizedString(key, comment: "")
+            return String(format: format, arguments: args)
+        }
+        
+        let format = bundle.localizedString(forKey: key, value: key, table: nil)
+        return String(format: format, arguments: args)
+    }
+}
+
+// MARK: - Localization Manager
+@Observable
+class LocalizationManager {
+    static let shared = LocalizationManager()
+    
+    private init() {}
+    
+    var currentLanguageCode: String? = nil {
+        didSet {
+            #if DEBUG
+            print("🌐 LocalizationManager: Language changed to \(currentLanguageCode ?? "system")")
+            #endif
+        }
+    }
+    
+    func localizedString(_ key: String, _ args: CVarArg...) -> String {
+        guard let languageCode = currentLanguageCode, languageCode != "system" else {
+            let format = NSLocalizedString(key, comment: "")
+            return String(format: format, arguments: args)
+        }
+        
+        guard let path = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+              let bundle = Bundle(path: path) else {
+            let format = NSLocalizedString(key, comment: "")
+            return String(format: format, arguments: args)
+        }
+        
+        let format = bundle.localizedString(forKey: key, value: key, table: nil)
         return String(format: format, arguments: args)
     }
 }
