@@ -22,11 +22,11 @@ struct DashboardView: View {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                    Text("dashboard_title", bundle: .main)
+                    Text(L10n.string("dashboard_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                     
-                    Text("dashboard_subtitle", bundle: .main)
+                    Text(L10n.string("dashboard_subtitle"))
                         .font(MonetiqTheme.Typography.callout)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 }
@@ -38,13 +38,13 @@ struct DashboardView: View {
                     GridItem(.flexible())
                 ], spacing: MonetiqTheme.Spacing.md) {
                     MultiCurrencySummaryCard(
-                        title: String(localized: "dashboard_to_receive"),
+                        title: L10n.string("dashboard_to_receive"),
                         totals: calculateToReceiveByCurrency(),
                         color: MonetiqTheme.Colors.success
                     )
                     
                     MultiCurrencySummaryCard(
-                        title: String(localized: "dashboard_to_pay"),
+                        title: L10n.string("dashboard_to_pay"),
                         totals: calculateToPayByCurrency(),
                         color: MonetiqTheme.Colors.warning
                     )
@@ -53,17 +53,17 @@ struct DashboardView: View {
                 
                 // Upcoming Payments
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("dashboard_upcoming_payments", bundle: .main)
+                    Text(L10n.string("dashboard_upcoming_payments"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
                     if upcomingPayments.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.xs) {
-                            Text("dashboard_no_payments", bundle: .main)
+                            Text(L10n.string("dashboard_no_payments"))
                                 .font(MonetiqTheme.Typography.body)
                                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                            Text("dashboard_no_payments_subtitle", bundle: .main)
+                            Text(L10n.string("dashboard_no_payments_subtitle"))
                                 .font(MonetiqTheme.Typography.caption)
                                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
                         }
@@ -80,13 +80,13 @@ struct DashboardView: View {
                 
                 // Recent Loans
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("dashboard_recent_loans", bundle: .main)
+                    Text(L10n.string("dashboard_recent_loans"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
                     if recentLoans.isEmpty {
-                        Text("dashboard_no_loans", bundle: .main)
+                        Text(L10n.string("dashboard_no_loans"))
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             .padding(.horizontal, MonetiqTheme.Spacing.md)

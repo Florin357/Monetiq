@@ -11,8 +11,8 @@ import SwiftUI
 // MARK: - Localization Helper
 struct L10n {
     static func string(_ key: String, _ args: CVarArg...) -> String {
-        let format = NSLocalizedString(key, comment: "")
-        return String(format: format, arguments: args)
+        // Use LocalizationManager for language-aware localization
+        return LocalizationManager.shared.localizedString(key, args)
     }
     
     // Language-aware localization that respects the current override

@@ -12,6 +12,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var allSettings: [AppSettings]
     @State private var localizationManager = LocalizationManager.shared
+    @State private var refreshTrigger = UUID()
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
@@ -50,6 +51,10 @@ struct ContentView: View {
     
     private func updateLocalizationManager() {
         localizationManager.currentLanguageCode = appSettings.languageOverride
+        refreshTrigger = UUID() // Force UI refresh
+        #if DEBUG
+        print("🌐 ContentView: LocalizationManager updated, new refresh trigger: \(refreshTrigger)")
+        #endif
     }
     
     var body: some View {
@@ -59,7 +64,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "chart.pie.fill")
-                Text("tab_dashboard", bundle: .main)
+                Text(L10n.string("tab_dashboard"))
             }
             
             NavigationStack {
@@ -67,7 +72,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "banknote.fill")
-                Text("tab_loans", bundle: .main)
+                Text(L10n.string("tab_loans"))
             }
             
             NavigationStack {
@@ -75,7 +80,7 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "function")
-                Text("tab_calculator", bundle: .main)
+                Text(L10n.string("tab_calculator"))
             }
             
             NavigationStack {
@@ -83,13 +88,14 @@ struct ContentView: View {
             }
             .tabItem {
                 Image(systemName: "gearshape.fill")
-                Text("tab_settings", bundle: .main)
+                Text(L10n.string("tab_settings"))
             }
         }
         .monetiqBackground()
         .preferredColorScheme(.dark)
         .environment(\.locale, effectiveLocale)
         .id(effectiveLanguageKey)
+        .id(refreshTrigger)
         .onAppear {
             updateLocalizationManager()
         }
