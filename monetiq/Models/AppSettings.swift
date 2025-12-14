@@ -46,9 +46,20 @@ final class AppSettings {
     var defaultCurrencyCode: String
     var biometricLockEnabled: Bool
     var languageOverride: String?
-    var appearanceMode: AppearanceMode
+    var appearanceModeRaw: String?
     var createdAt: Date
     var updatedAt: Date
+    
+    // Computed property to work with AppearanceMode enum
+    var appearanceMode: AppearanceMode {
+        get {
+            guard let rawValue = appearanceModeRaw else { return .system }
+            return AppearanceMode(rawValue: rawValue) ?? .system
+        }
+        set {
+            appearanceModeRaw = newValue.rawValue
+        }
+    }
     
     init(
         notificationsEnabled: Bool = true,
@@ -66,7 +77,7 @@ final class AppSettings {
         self.defaultCurrencyCode = defaultCurrencyCode
         self.biometricLockEnabled = biometricLockEnabled
         self.languageOverride = languageOverride
-        self.appearanceMode = appearanceMode
+        self.appearanceModeRaw = appearanceMode.rawValue
         self.createdAt = Date()
         self.updatedAt = Date()
     }
@@ -82,10 +93,26 @@ final class AppSettings {
         do {
             let existingSettings = try context.fetch(descriptor)
             if let settings = existingSettings.first {
+                // Ensure appearanceModeRaw has a valid value for migration
+                if settings.appearanceModeRaw == nil {
+                    settings.appearanceModeRaw = AppearanceMode.system.rawValue
+                    settings.updateTimestamp()
+                    try context.save()
+                }
                 return settings
             }
         } catch {
             print("Failed to fetch AppSettings: \(error)")
+            // If there's an error (likely due to schema changes), delete all settings and recreate
+            do {
+                let allSettings = try context.fetch(FetchDescriptor<AppSettings>())
+                for setting in allSettings {
+                    context.delete(setting)
+                }
+                try context.save()
+            } catch {
+                print("Failed to clean up old AppSettings: \(error)")
+            }
         }
         
         // Create new settings if none exist
