@@ -35,6 +35,8 @@ class NotificationManager {
             }
         case .denied:
             return false
+        case .ephemeral:
+            return true
         @unknown default:
             return false
         }
