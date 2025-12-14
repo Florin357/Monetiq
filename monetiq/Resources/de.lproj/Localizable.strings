@@ -131,6 +131,24 @@
 
 "settings_test_notification" = "Test-Benachrichtigung";
 "settings_test_notification_subtitle" = "Test-Benachrichtigung in 5 Sekunden senden";
+
+// MARK: - About
+"about_privacy_title" = "Datenschutzrichtlinie";
+"about_privacy_last_updated" = "Zuletzt aktualisiert: 14. Dezember 2025";
+"about_privacy_disclaimer" = "Diese Datenschutzrichtlinie ist vorläufig und kann aktualisiert werden. Die App wurde entwickelt, um Ihre Privatsphäre zu respektieren und Ihre Finanzdaten sicher und privat zu halten.";
+"about_terms_title" = "Nutzungsbedingungen";
+"about_terms_last_updated" = "Zuletzt aktualisiert: 14. Dezember 2025";
+"about_terms_disclaimer" = "Diese Nutzungsbedingungen sind vorläufig und können aktualisiert werden. Bitte verwenden Sie die App verantwortungsbewusst und konsultieren Sie Finanzexperten für wichtige Entscheidungen.";
+"about_close" = "Schließen";
+
+// MARK: - Additional UI
+"calculator_currency" = "Währung";
+"dashboard_no_loans" = "Noch keine Darlehen";
+"dashboard_recent_loans" = "Aktuelle Darlehen";
+"loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
+"loan_detail_details" = "Details";
+"loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
+"loan_detail_notes" = "Notizen";
 "settings_view_notifications" = "Ausstehende Benachrichtigungen anzeigen";
 "settings_view_notifications_subtitle" = "Geplante Benachrichtigungen überprüfen";
 

@@ -159,6 +159,24 @@
 "counterparty_person" = "व्यक्ति";
 "counterparty_institution" = "संस्थान";
 
+// MARK: - About
+"about_privacy_title" = "गोपनीयता नीति";
+"about_privacy_last_updated" = "अंतिम अपडेट: 14 दिसंबर 2025";
+"about_privacy_disclaimer" = "यह गोपनीयता नीति अस्थायी है और अपडेट की जा सकती है। ऐप आपकी गोपनीयता का सम्मान करने और आपके वित्तीय डेटा को सुरक्षित और निजी रखने के लिए डिज़ाइन किया गया है।";
+"about_terms_title" = "सेवा की शर्तें";
+"about_terms_last_updated" = "अंतिम अपडेट: 14 दिसंबर 2025";
+"about_terms_disclaimer" = "ये सेवा की शर्तें अस्थायी हैं और अपडेट की जा सकती हैं। कृपया ऐप का जिम्मेदारी से उपयोग करें और महत्वपूर्ण निर्णयों के लिए वित्तीय पेशेवरों से सलाह लें।";
+"about_close" = "बंद करें";
+
+// MARK: - Additional UI
+"calculator_currency" = "मुद्रा";
+"dashboard_no_loans" = "अभी तक कोई लोन नहीं";
+"dashboard_recent_loans" = "हाल के लोन";
+"loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।";
+"loan_detail_details" = "विवरण";
+"loan_detail_no_schedule" = "कोई भुगतान अनुसूची उपलब्ध नहीं";
+"loan_detail_notes" = "नोट्स";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "भुगतान रिमाइंडर";
 "notification_payment_reminder_body" = "'%@' के लिए भुगतान %d दिन(ों) में देय है: %@";

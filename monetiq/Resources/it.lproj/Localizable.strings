@@ -159,6 +159,24 @@
 "counterparty_person" = "Persona";
 "counterparty_institution" = "Istituzione";
 
+// MARK: - About
+"about_privacy_title" = "Informativa sulla privacy";
+"about_privacy_last_updated" = "Ultimo aggiornamento: 14 dicembre 2025";
+"about_privacy_disclaimer" = "Questa informativa sulla privacy è provvisoria e può essere aggiornata. L'app è progettata per rispettare la tua privacy e mantenere i tuoi dati finanziari sicuri e privati.";
+"about_terms_title" = "Termini di servizio";
+"about_terms_last_updated" = "Ultimo aggiornamento: 14 dicembre 2025";
+"about_terms_disclaimer" = "Questi termini di servizio sono provvisori e possono essere aggiornati. Si prega di utilizzare l'app responsabilmente e consultare professionisti finanziari per decisioni importanti.";
+"about_close" = "Chiudi";
+
+// MARK: - Additional UI
+"calculator_currency" = "Valuta";
+"dashboard_no_loans" = "Nessun prestito ancora";
+"dashboard_recent_loans" = "Prestiti recenti";
+"loan_detail_delete_confirm" = "Sei sicuro di voler eliminare '%@'? Questa azione non può essere annullata.";
+"loan_detail_details" = "Dettagli";
+"loan_detail_no_schedule" = "Nessun piano di pagamento disponibile";
+"loan_detail_notes" = "Note";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Promemoria Pagamento";
 "notification_payment_reminder_body" = "Il pagamento per '%@' è dovuto tra %d giorno(i): %@";

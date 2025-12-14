@@ -9,6 +9,34 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var allSettings: [AppSettings]
+    
+    private var appSettings: AppSettings {
+        AppSettings.getOrCreate(in: modelContext)
+    }
+    
+    private var effectiveLocale: Locale {
+        let languageCode = appSettings.languageOverride
+        
+        #if DEBUG
+        print("🌐 Language Override: \(languageCode ?? "nil (system)")")
+        #endif
+        
+        if let languageCode = languageCode, languageCode != "system" {
+            let locale = Locale(identifier: languageCode)
+            #if DEBUG
+            print("🌐 Applying locale: \(locale.identifier)")
+            #endif
+            return locale
+        } else {
+            #if DEBUG
+            print("🌐 Using system locale: \(Locale.current.identifier)")
+            #endif
+            return Locale.current
+        }
+    }
+    
     var body: some View {
         TabView {
             NavigationStack {
@@ -45,6 +73,8 @@ struct ContentView: View {
         }
         .monetiqBackground()
         .preferredColorScheme(.dark)
+        .environment(\.locale, effectiveLocale)
+        .id(appSettings.languageOverride ?? "system")
     }
 }
 

@@ -15,11 +15,11 @@ struct TermsOfServiceView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
                     VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                        Text("Terms of Service")
+                        Text(L10n.string("about_terms_title"))
                             .font(MonetiqTheme.Typography.title)
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
-                        Text("Last updated: December 14, 2025")
+                        Text(L10n.string("about_terms_last_updated"))
                             .font(MonetiqTheme.Typography.caption)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     }
@@ -61,7 +61,7 @@ struct TermsOfServiceView: View {
                         )
                     }
                     
-                    Text("These terms of service are provisional and may be updated. Please use the app responsibly and consult financial professionals for important decisions.")
+                    Text(L10n.string("about_terms_disclaimer"))
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                         .padding(.top, MonetiqTheme.Spacing.lg)
@@ -73,7 +73,7 @@ struct TermsOfServiceView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
+                    Button(L10n.string("about_close")) {
                         dismiss()
                     }
                     .foregroundColor(MonetiqTheme.Colors.accent)

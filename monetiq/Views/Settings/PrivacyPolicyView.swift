@@ -15,11 +15,11 @@ struct PrivacyPolicyView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
                     VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                        Text("Privacy Policy")
+                        Text(L10n.string("about_privacy_title"))
                             .font(MonetiqTheme.Typography.title)
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
-                        Text("Last updated: December 14, 2025")
+                        Text(L10n.string("about_privacy_last_updated"))
                             .font(MonetiqTheme.Typography.caption)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     }
@@ -56,7 +56,7 @@ struct PrivacyPolicyView: View {
                         )
                     }
                     
-                    Text("This privacy policy is provisional and may be updated. The app is designed to respect your privacy and keep your financial data secure and private.")
+                    Text(L10n.string("about_privacy_disclaimer"))
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                         .padding(.top, MonetiqTheme.Spacing.lg)
@@ -68,7 +68,7 @@ struct PrivacyPolicyView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
+                    Button(L10n.string("about_close")) {
                         dismiss()
                     }
                     .foregroundColor(MonetiqTheme.Colors.accent)

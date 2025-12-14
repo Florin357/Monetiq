@@ -82,13 +82,13 @@ struct DashboardView: View {
                 
                 // Recent Loans
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("Recent Loans")
+                    Text(L10n.string("dashboard_recent_loans"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onBackground)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                     
                     if recentLoans.isEmpty {
-                        Text("No loans yet")
+                        Text(L10n.string("dashboard_no_loans"))
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             .padding(.horizontal, MonetiqTheme.Spacing.md)

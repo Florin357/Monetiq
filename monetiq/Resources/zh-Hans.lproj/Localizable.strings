@@ -159,6 +159,24 @@
 "counterparty_person" = "个人";
 "counterparty_institution" = "机构";
 
+// MARK: - About
+"about_privacy_title" = "隐私政策";
+"about_privacy_last_updated" = "最后更新：2025年12月14日";
+"about_privacy_disclaimer" = "此隐私政策为临时版本，可能会更新。该应用旨在尊重您的隐私，保护您的财务数据安全和私密。";
+"about_terms_title" = "服务条款";
+"about_terms_last_updated" = "最后更新：2025年12月14日";
+"about_terms_disclaimer" = "这些服务条款为临时版本，可能会更新。请负责任地使用该应用，并就重要决定咨询金融专业人士。";
+"about_close" = "关闭";
+
+// MARK: - Additional UI
+"calculator_currency" = "货币";
+"dashboard_no_loans" = "暂无贷款";
+"dashboard_recent_loans" = "最近贷款";
+"loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤销。";
+"loan_detail_details" = "详情";
+"loan_detail_no_schedule" = "无可用还款计划";
+"loan_detail_notes" = "备注";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "付款提醒";
 "notification_payment_reminder_body" = "'%@'的付款将在%d天后到期：%@";

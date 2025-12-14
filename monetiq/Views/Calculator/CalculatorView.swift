@@ -57,7 +57,7 @@ struct CalculatorView: View {
                         
                         // Currency Picker
                         HStack {
-                            Text("Currency")
+                            Text(L10n.string("calculator_currency"))
                                 .font(MonetiqTheme.Typography.caption)
                                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             

@@ -133,7 +133,11 @@ struct SettingsView: View {
                         selection: Binding(
                             get: { settings.languageOverride ?? "system" },
                             set: { newValue in
-                                settings.languageOverride = newValue == "system" ? nil : newValue
+                                let finalValue = newValue == "system" ? nil : newValue
+                                #if DEBUG
+                                print("🌐 Settings: Language changed from '\(settings.languageOverride ?? "system")' to '\(finalValue ?? "system")'")
+                                #endif
+                                settings.languageOverride = finalValue
                                 settings.updateTimestamp()
                                 saveContext()
                             }

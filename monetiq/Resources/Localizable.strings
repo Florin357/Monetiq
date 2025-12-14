@@ -30,6 +30,8 @@
 "dashboard_upcoming_payments" = "Upcoming Payments";
 "dashboard_no_payments" = "No upcoming payments";
 "dashboard_no_payments_subtitle" = "All your payments are up to date";
+"dashboard_recent_loans" = "Recent Loans";
+"dashboard_no_loans" = "No loans yet";
 
 // MARK: - Loans
 "loans_title" = "Loans";
@@ -78,6 +80,10 @@
 "loan_detail_payments" = "Payment Schedule";
 "loan_detail_mark_paid" = "Mark as Paid";
 "loan_detail_no_payments" = "No payments scheduled";
+"loan_detail_details" = "Details";
+"loan_detail_no_schedule" = "No payment schedule available";
+"loan_detail_notes" = "Notes";
+"loan_detail_delete_confirm" = "Are you sure you want to delete '%@'? This action cannot be undone.";
 
 // MARK: - Calculator
 "calculator_title" = "Loan Calculator";
@@ -97,6 +103,7 @@
 "calculator_total_interest" = "Total Interest";
 "calculator_enter_values" = "Enter values above to calculate loan payments";
 "calculator_validation_error" = "Please enter valid values for all fields";
+"calculator_currency" = "Currency";
 
 // MARK: - Settings
 "settings_title" = "Settings";
@@ -130,6 +137,15 @@
 
 "settings_test_notification" = "Test Notification";
 "settings_test_notification_subtitle" = "Send a test notification in 5 seconds";
+
+// MARK: - About
+"about_privacy_title" = "Privacy Policy";
+"about_privacy_last_updated" = "Last updated: December 14, 2025";
+"about_privacy_disclaimer" = "This privacy policy is provisional and may be updated. The app is designed to respect your privacy and keep your financial data secure and private.";
+"about_terms_title" = "Terms of Service";
+"about_terms_last_updated" = "Last updated: December 14, 2025";
+"about_terms_disclaimer" = "These terms of service are provisional and may be updated. Please use the app responsibly and consult financial professionals for important decisions.";
+"about_close" = "Close";
 "settings_view_notifications" = "View Pending Notifications";
 "settings_view_notifications_subtitle" = "Check scheduled notifications";
 

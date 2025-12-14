@@ -158,6 +158,24 @@
 "counterparty_person" = "Persoană";
 "counterparty_institution" = "Instituție";
 
+// MARK: - About
+"about_privacy_title" = "Politica de confidențialitate";
+"about_privacy_last_updated" = "Ultima actualizare: 14 decembrie 2025";
+"about_privacy_disclaimer" = "Această politică de confidențialitate este provizorie și poate fi actualizată. Aplicația este concepută să respecte confidențialitatea dvs. și să păstreze datele financiare sigure și private.";
+"about_terms_title" = "Termeni și condiții";
+"about_terms_last_updated" = "Ultima actualizare: 14 decembrie 2025";
+"about_terms_disclaimer" = "Acești termeni și condiții sunt provizori și pot fi actualizați. Vă rugăm să folosiți aplicația responsabil și să consultați profesioniști financiari pentru decizii importante.";
+"about_close" = "Închide";
+
+// MARK: - Additional UI
+"calculator_currency" = "Monedă";
+"dashboard_no_loans" = "Încă nu aveți împrumuturi";
+"dashboard_recent_loans" = "Împrumuturi recente";
+"loan_detail_delete_confirm" = "Sunteți sigur că doriți să ștergeți '%@'? Această acțiune nu poate fi anulată.";
+"loan_detail_details" = "Detalii";
+"loan_detail_no_schedule" = "Nu există program de plăți disponibil";
+"loan_detail_notes" = "Notițe";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Memento Plată";
 "notification_payment_reminder_body" = "Plata pentru '%@' scade în %d zi(le): %@";

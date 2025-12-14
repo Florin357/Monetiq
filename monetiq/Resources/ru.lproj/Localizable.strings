@@ -159,6 +159,24 @@
 "counterparty_person" = "Физическое лицо";
 "counterparty_institution" = "Учреждение";
 
+// MARK: - About
+"about_privacy_title" = "Политика конфиденциальности";
+"about_privacy_last_updated" = "Последнее обновление: 14 декабря 2025 г.";
+"about_privacy_disclaimer" = "Эта политика конфиденциальности является временной и может быть обновлена. Приложение разработано с уважением к вашей конфиденциальности и для обеспечения безопасности ваших финансовых данных.";
+"about_terms_title" = "Условия использования";
+"about_terms_last_updated" = "Последнее обновление: 14 декабря 2025 г.";
+"about_terms_disclaimer" = "Эти условия использования являются временными и могут быть обновлены. Пожалуйста, используйте приложение ответственно и консультируйтесь с финансовыми специалистами по важным решениям.";
+"about_close" = "Закрыть";
+
+// MARK: - Additional UI
+"calculator_currency" = "Валюта";
+"dashboard_no_loans" = "Пока нет займов";
+"dashboard_recent_loans" = "Недавние займы";
+"loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";
+"loan_detail_details" = "Подробности";
+"loan_detail_no_schedule" = "График платежей недоступен";
+"loan_detail_notes" = "Заметки";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Напоминание о платеже";
 "notification_payment_reminder_body" = "Платеж по '%@' должен быть произведен через %d день(дней): %@";

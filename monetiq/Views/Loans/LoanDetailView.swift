@@ -63,7 +63,7 @@ struct LoanDetailView: View {
                 
                 // Details Section
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("Details")
+                    Text(L10n.string("loan_detail_details"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onSurface)
                     
@@ -100,12 +100,12 @@ struct LoanDetailView: View {
                 
                 // Payment Schedule Section
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text("Payment Schedule")
+                    Text(L10n.string("loan_detail_payments"))
                         .font(MonetiqTheme.Typography.headline)
                         .foregroundColor(MonetiqTheme.Colors.onSurface)
                     
                     if loan.payments.isEmpty {
-                        Text("No payment schedule available")
+                        Text(L10n.string("loan_detail_no_schedule"))
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     } else {
@@ -124,7 +124,7 @@ struct LoanDetailView: View {
                 // Counterparty Section
                 if let counterparty = loan.counterparty {
                     VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                        Text("Counterparty")
+                        Text(L10n.string("loan_detail_counterparty"))
                             .font(MonetiqTheme.Typography.headline)
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
@@ -160,7 +160,7 @@ struct LoanDetailView: View {
                 // Notes Section
                 if let notes = loan.notes, !notes.isEmpty {
                     VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                        Text("Notes")
+                        Text(L10n.string("loan_detail_notes"))
                             .font(MonetiqTheme.Typography.headline)
                             .foregroundColor(MonetiqTheme.Colors.onSurface)
                         
@@ -204,7 +204,7 @@ struct LoanDetailView: View {
                 deleteLoan()
             }
         } message: {
-            Text("Are you sure you want to delete '\(loan.title)'? This action cannot be undone.")
+            Text(L10n.string("loan_detail_delete_confirm", loan.title))
         }
     }
     
