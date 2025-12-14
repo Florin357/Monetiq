@@ -7,6 +7,35 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
+
+enum AppearanceMode: String, CaseIterable, Codable {
+    case system = "system"
+    case light = "light"
+    case dark = "dark"
+    
+    var displayName: String {
+        switch self {
+        case .system:
+            return NSLocalizedString("appearance_system", comment: "System Default")
+        case .light:
+            return NSLocalizedString("appearance_light", comment: "Light")
+        case .dark:
+            return NSLocalizedString("appearance_dark", comment: "Dark")
+        }
+    }
+    
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system:
+            return nil
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        }
+    }
+}
 
 @Model
 final class AppSettings {
@@ -17,6 +46,7 @@ final class AppSettings {
     var defaultCurrencyCode: String
     var biometricLockEnabled: Bool
     var languageOverride: String?
+    var appearanceMode: AppearanceMode
     var createdAt: Date
     var updatedAt: Date
     
@@ -26,7 +56,8 @@ final class AppSettings {
         weeklyReviewEnabled: Bool = false,
         defaultCurrencyCode: String = "RON",
         biometricLockEnabled: Bool = false,
-        languageOverride: String? = nil
+        languageOverride: String? = nil,
+        appearanceMode: AppearanceMode = .system
     ) {
         self.id = UUID()
         self.notificationsEnabled = notificationsEnabled
@@ -35,6 +66,7 @@ final class AppSettings {
         self.defaultCurrencyCode = defaultCurrencyCode
         self.biometricLockEnabled = biometricLockEnabled
         self.languageOverride = languageOverride
+        self.appearanceMode = appearanceMode
         self.createdAt = Date()
         self.updatedAt = Date()
     }

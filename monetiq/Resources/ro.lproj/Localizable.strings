@@ -119,8 +119,13 @@
 "settings_language_subtitle" = "Limba de afișare a aplicației";
 "settings_biometric" = "Autentificare Biometrică";
 "settings_biometric_subtitle" = "Folosește Face ID sau Touch ID pentru deblocare";
-"settings_dark_mode" = "Mod Întunecat";
-"settings_dark_mode_subtitle" = "Folosește tema întunecată";
+"settings_appearance_mode" = "Aspect";
+"settings_appearance_mode_subtitle" = "Alege aspectul aplicației";
+
+// Appearance Mode Options
+"appearance_system" = "Implicit Sistem";
+"appearance_light" = "Luminos";
+"appearance_dark" = "Întunecat";
 
 "settings_version" = "Versiunea";
 "settings_privacy" = "Politica de Confidențialitate";

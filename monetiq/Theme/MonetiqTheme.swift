@@ -13,15 +13,21 @@ struct MonetiqTheme {
     struct Colors {
         static let primary = Color(red: 0.1, green: 0.2, blue: 0.4)        // Dark blue
         static let accent = Color(red: 1.0, green: 0.8, blue: 0.0)         // Gold
-        static let background = Color(red: 0.05, green: 0.05, blue: 0.1)   // Very dark blue
-        static let surface = Color(red: 0.15, green: 0.15, blue: 0.2)      // Dark surface
+        
+        // Dynamic backgrounds that adapt to light/dark mode
+        static let background = Color(.systemBackground)
+        static let surface = Color(.secondarySystemBackground)
+        
+        // Dynamic text colors that adapt to light/dark mode
         static let onPrimary = Color.white
-        static let onBackground = Color.white
-        static let onSurface = Color.white
+        static let onBackground = Color(.label)
+        static let onSurface = Color(.label)
+        
+        // Status colors
         static let success = Color.green
         static let warning = Color.orange
         static let error = Color.red
-        static let textSecondary = Color.gray
+        static let textSecondary = Color(.secondaryLabel)
     }
     
     // MARK: - Typography

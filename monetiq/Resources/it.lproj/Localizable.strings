@@ -120,8 +120,13 @@
 "settings_language_subtitle" = "Lingua di visualizzazione dell'app";
 "settings_biometric" = "Autenticazione Biometrica";
 "settings_biometric_subtitle" = "Usa Face ID o Touch ID per sbloccare";
-"settings_dark_mode" = "Modalità Scura";
-"settings_dark_mode_subtitle" = "Usa il tema scuro";
+"settings_appearance_mode" = "Aspetto";
+"settings_appearance_mode_subtitle" = "Scegli l'aspetto dell'app";
+
+// Appearance Mode Options
+"appearance_system" = "Predefinito Sistema";
+"appearance_light" = "Chiaro";
+"appearance_dark" = "Scuro";
 
 "settings_version" = "Versione";
 "settings_privacy" = "Politica sulla Privacy";

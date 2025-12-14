@@ -13,7 +13,7 @@ struct SettingsView: View {
     @Query private var allSettings: [AppSettings]
     
     @State private var appSettings: AppSettings?
-    @State private var darkModeEnabled = true // Keep as local state for now
+    // Appearance mode is now handled through AppSettings
     @State private var showingPrivacyPolicy = false
     @State private var showingTermsOfService = false
     @State private var showingResetConfirmation = false
@@ -168,10 +168,20 @@ struct SettingsView: View {
                 
                 // Appearance Settings
                 SettingsSection(title: L10n.string("settings_appearance")) {
-                    SettingsToggleRow(
-                        title: L10n.string("settings_dark_mode"),
-                        subtitle: L10n.string("settings_dark_mode_subtitle"),
-                        isOn: $darkModeEnabled
+                    SettingsPickerRow(
+                        title: L10n.string("settings_appearance_mode"),
+                        subtitle: L10n.string("settings_appearance_mode_subtitle"),
+                        selection: Binding(
+                            get: { settings.appearanceMode.displayName },
+                            set: { newDisplayName in
+                                if let newMode = AppearanceMode.allCases.first(where: { $0.displayName == newDisplayName }) {
+                                    settings.appearanceMode = newMode
+                                    settings.updateTimestamp()
+                                    saveContext()
+                                }
+                            }
+                        ),
+                        options: AppearanceMode.allCases.map { $0.displayName }
                     )
                 }
                 

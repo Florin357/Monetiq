@@ -120,8 +120,13 @@
 "settings_language_subtitle" = "应用显示语言";
 "settings_biometric" = "生物识别认证";
 "settings_biometric_subtitle" = "使用Face ID或Touch ID解锁";
-"settings_dark_mode" = "深色模式";
-"settings_dark_mode_subtitle" = "使用深色主题";
+"settings_appearance_mode" = "外观";
+"settings_appearance_mode_subtitle" = "选择应用外观";
+
+// Appearance Mode Options
+"appearance_system" = "系统默认";
+"appearance_light" = "浅色";
+"appearance_dark" = "深色";
 
 "settings_version" = "版本";
 "settings_privacy" = "隐私政策";

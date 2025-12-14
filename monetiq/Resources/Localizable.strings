@@ -129,8 +129,13 @@
 "settings_language_subtitle" = "App display language";
 "settings_biometric" = "Biometric Authentication";
 "settings_biometric_subtitle" = "Use Face ID or Touch ID to unlock";
-"settings_dark_mode" = "Dark Mode";
-"settings_dark_mode_subtitle" = "Use dark theme";
+"settings_appearance_mode" = "Appearance";
+"settings_appearance_mode_subtitle" = "Choose app appearance";
+
+// Appearance Mode Options
+"appearance_system" = "System Default";
+"appearance_light" = "Light";
+"appearance_dark" = "Dark";
 
 "settings_version" = "Version";
 "settings_privacy" = "Privacy Policy";

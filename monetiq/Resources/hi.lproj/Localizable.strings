@@ -120,8 +120,13 @@
 "settings_language_subtitle" = "ऐप प्रदर्शन भाषा";
 "settings_biometric" = "बायोमेट्रिक प्रमाणीकरण";
 "settings_biometric_subtitle" = "अनलॉक करने के लिए Face ID या Touch ID का उपयोग करें";
-"settings_dark_mode" = "डार्क मोड";
-"settings_dark_mode_subtitle" = "डार्क थीम का उपयोग करें";
+"settings_appearance_mode" = "रूप";
+"settings_appearance_mode_subtitle" = "ऐप का रूप चुनें";
+
+// Appearance Mode Options
+"appearance_system" = "सिस्टम डिफ़ॉल्ट";
+"appearance_light" = "हल्का";
+"appearance_dark" = "गहरा";
 
 "settings_version" = "संस्करण";
 "settings_privacy" = "गोपनीयता नीति";

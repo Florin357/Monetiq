@@ -120,8 +120,13 @@
 "settings_language_subtitle" = "App-Anzeigesprache";
 "settings_biometric" = "Biometrische Authentifizierung";
 "settings_biometric_subtitle" = "Face ID oder Touch ID zum Entsperren verwenden";
-"settings_dark_mode" = "Dunkler Modus";
-"settings_dark_mode_subtitle" = "Dunkles Design verwenden";
+"settings_appearance_mode" = "Erscheinungsbild";
+"settings_appearance_mode_subtitle" = "App-Erscheinungsbild wählen";
+
+// Appearance Mode Options
+"appearance_system" = "System Standard";
+"appearance_light" = "Hell";
+"appearance_dark" = "Dunkel";
 
 "settings_version" = "Version";
 "settings_privacy" = "Datenschutzrichtlinie";

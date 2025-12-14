@@ -110,7 +110,8 @@ class AppResetService {
             weeklyReviewEnabled: false,
             defaultCurrencyCode: "RON",
             biometricLockEnabled: false,
-            languageOverride: nil // System default
+            languageOverride: nil, // System default
+            appearanceMode: .system // System default
         )
         
         modelContext.insert(defaultSettings)

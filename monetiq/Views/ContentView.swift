@@ -116,7 +116,7 @@ struct ContentView: View {
             }
         }
         .monetiqBackground()
-        .preferredColorScheme(.dark)
+        .preferredColorScheme(appSettings.appearanceMode.colorScheme)
         .environment(\.locale, effectiveLocale)
         .id(effectiveLanguageKey)
         .id(refreshTrigger)
