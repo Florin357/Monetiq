@@ -177,6 +177,44 @@
 "loan_detail_no_schedule" = "无可用还款计划";
 "loan_detail_notes" = "备注";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "添加贷款";
+"edit_loan_title" = "编辑贷款";
+"loan_details_section" = "贷款详情";
+"loan_title_placeholder" = "贷款标题";
+"role_label" = "角色";
+"counterparty_section" = "对方";
+"counterparty_name_placeholder" = "姓名";
+"counterparty_type_label" = "类型";
+"financial_details_section" = "财务详情";
+"amount_placeholder" = "金额";
+"currency_label" = "货币";
+"repayment_schedule_section" = "还款计划";
+"payment_frequency_label" = "付款频率";
+"number_of_payments_placeholder" = "付款次数";
+"interest_section" = "利息";
+"interest_mode_label" = "利息模式";
+"annual_interest_rate_placeholder" = "年利率 (%)";
+"fixed_total_repay_placeholder" = "固定还款总额";
+"dates_section" = "日期";
+"start_date_label" = "开始日期";
+"set_next_due_date" = "设置下次到期日";
+"next_due_date_label" = "下次到期日";
+"notes_section" = "备注";
+"optional_notes_placeholder" = "可选备注";
+"cancel_button" = "取消";
+"save_button" = "保存";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "贷款详情";
+"edit_loan_button" = "编辑贷款";
+"delete_loan_button" = "删除贷款";
+"mark_paid_button" = "标记为已付";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0.00";
+"dashboard_more_currencies" = "+%d 种";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "付款提醒";
 "notification_payment_reminder_body" = "'%@'的付款将在%d天后到期：%@";

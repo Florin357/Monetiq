@@ -177,17 +177,17 @@ struct LoanDetailView: View {
             .padding(.vertical, MonetiqTheme.Spacing.lg)
         }
         .monetiqBackground()
-        .navigationTitle("Loan Details")
+        .navigationTitle(L10n.string("loan_details_nav_title"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
                     Button(action: { showingEditLoan = true }) {
-                        Label("Edit Loan", systemImage: "pencil")
+                        Label(L10n.string("edit_loan_button"), systemImage: "pencil")
                     }
                     
                     Button(role: .destructive, action: { showingDeleteAlert = true }) {
-                        Label("Delete Loan", systemImage: "trash")
+                        Label(L10n.string("delete_loan_button"), systemImage: "trash")
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
@@ -284,7 +284,7 @@ struct PaymentRowView: View {
                     .fontWeight(.medium)
                 
                 if payment.status == .planned && !payment.isOverdue {
-                    Button("Mark Paid") {
+                    Button(L10n.string("mark_paid_button")) {
                         onMarkAsPaid()
                     }
                     .font(MonetiqTheme.Typography.caption)

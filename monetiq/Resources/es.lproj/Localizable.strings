@@ -177,6 +177,44 @@
 "loan_detail_no_schedule" = "No hay calendario de pagos disponible";
 "loan_detail_notes" = "Notas";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Agregar Préstamo";
+"edit_loan_title" = "Editar Préstamo";
+"loan_details_section" = "Detalles del Préstamo";
+"loan_title_placeholder" = "Título del Préstamo";
+"role_label" = "Rol";
+"counterparty_section" = "Contraparte";
+"counterparty_name_placeholder" = "Nombre";
+"counterparty_type_label" = "Tipo";
+"financial_details_section" = "Detalles Financieros";
+"amount_placeholder" = "Cantidad";
+"currency_label" = "Moneda";
+"repayment_schedule_section" = "Cronograma de Pago";
+"payment_frequency_label" = "Frecuencia de Pago";
+"number_of_payments_placeholder" = "Número de Pagos";
+"interest_section" = "Interés";
+"interest_mode_label" = "Modo de Interés";
+"annual_interest_rate_placeholder" = "Tasa de Interés Anual (%)";
+"fixed_total_repay_placeholder" = "Total Fijo a Pagar";
+"dates_section" = "Fechas";
+"start_date_label" = "Fecha de Inicio";
+"set_next_due_date" = "Establecer Próxima Fecha de Vencimiento";
+"next_due_date_label" = "Próxima Fecha de Vencimiento";
+"notes_section" = "Notas";
+"optional_notes_placeholder" = "Notas opcionales";
+"cancel_button" = "Cancelar";
+"save_button" = "Guardar";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Detalles del Préstamo";
+"edit_loan_button" = "Editar Préstamo";
+"delete_loan_button" = "Eliminar Préstamo";
+"mark_paid_button" = "Marcar como Pagado";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d más";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Recordatorio de Pago";
 "notification_payment_reminder_body" = "El pago de '%@' vence en %d día(s): %@";

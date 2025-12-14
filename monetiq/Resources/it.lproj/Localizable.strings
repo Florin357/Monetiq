@@ -177,6 +177,44 @@
 "loan_detail_no_schedule" = "Nessun piano di pagamento disponibile";
 "loan_detail_notes" = "Note";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Aggiungi Prestito";
+"edit_loan_title" = "Modifica Prestito";
+"loan_details_section" = "Dettagli Prestito";
+"loan_title_placeholder" = "Titolo Prestito";
+"role_label" = "Ruolo";
+"counterparty_section" = "Controparte";
+"counterparty_name_placeholder" = "Nome";
+"counterparty_type_label" = "Tipo";
+"financial_details_section" = "Dettagli Finanziari";
+"amount_placeholder" = "Importo";
+"currency_label" = "Valuta";
+"repayment_schedule_section" = "Piano di Rimborso";
+"payment_frequency_label" = "Frequenza Pagamento";
+"number_of_payments_placeholder" = "Numero di Pagamenti";
+"interest_section" = "Interesse";
+"interest_mode_label" = "Modalità Interesse";
+"annual_interest_rate_placeholder" = "Tasso di Interesse Annuale (%)";
+"fixed_total_repay_placeholder" = "Totale Fisso da Rimborsare";
+"dates_section" = "Date";
+"start_date_label" = "Data di Inizio";
+"set_next_due_date" = "Imposta Prossima Scadenza";
+"next_due_date_label" = "Prossima Data di Scadenza";
+"notes_section" = "Note";
+"optional_notes_placeholder" = "Note opzionali";
+"cancel_button" = "Annulla";
+"save_button" = "Salva";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Dettagli Prestito";
+"edit_loan_button" = "Modifica Prestito";
+"delete_loan_button" = "Elimina Prestito";
+"mark_paid_button" = "Segna come Pagato";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d altre";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Promemoria Pagamento";
 "notification_payment_reminder_body" = "Il pagamento per '%@' è dovuto tra %d giorno(i): %@";

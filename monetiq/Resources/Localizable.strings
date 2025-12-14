@@ -146,10 +146,45 @@
 "about_terms_last_updated" = "Last updated: December 14, 2025";
 "about_terms_disclaimer" = "These terms of service are provisional and may be updated. Please use the app responsibly and consult financial professionals for important decisions.";
 "about_close" = "Close";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Add Loan";
+"edit_loan_title" = "Edit Loan";
+"loan_details_section" = "Loan Details";
+"loan_title_placeholder" = "Loan Title";
+"counterparty_section" = "Counterparty";
+"counterparty_name_placeholder" = "Name";
+"financial_details_section" = "Financial Details";
+"amount_placeholder" = "Amount";
+"currency_label" = "Currency";
+"repayment_schedule_section" = "Repayment Schedule";
+"number_of_payments_placeholder" = "Number of Payments";
+"interest_section" = "Interest";
+"annual_interest_rate_placeholder" = "Annual Interest Rate (%)";
+"fixed_total_repay_placeholder" = "Fixed Total to Repay";
+"dates_section" = "Dates";
+"start_date_label" = "Start Date";
+"set_next_due_date" = "Set Next Due Date";
+"next_due_date_label" = "Next Due Date";
+"notes_section" = "Notes";
+"optional_notes_placeholder" = "Optional notes";
+"cancel_button" = "Cancel";
+"save_button" = "Save";
+
+// MARK: - Loan Detail
+"loan_details_nav_title" = "Loan Details";
+"edit_loan_button" = "Edit Loan";
+"delete_loan_button" = "Delete Loan";
+"mark_paid_button" = "Mark Paid";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0.00";
+"dashboard_more_currencies" = "+%d more";
 "settings_view_notifications" = "View Pending Notifications";
 "settings_view_notifications_subtitle" = "Check scheduled notifications";
 
 // MARK: - Loan Roles
+"role_label" = "Role";
 "role_lent" = "Lent";
 "role_borrowed" = "Borrowed";
 "role_bank_credit" = "Bank Credit";
@@ -160,17 +195,20 @@
 "status_overdue" = "Overdue";
 
 // MARK: - Payment Frequency
+"payment_frequency_label" = "Payment Frequency";
 "frequency_weekly" = "Weekly";
 "frequency_monthly" = "Monthly";
 "frequency_quarterly" = "Quarterly";
 "frequency_yearly" = "Yearly";
 
 // MARK: - Interest Mode
+"interest_mode_label" = "Interest Mode";
 "interest_none" = "No Interest";
 "interest_percentage" = "Annual Percentage";
 "interest_fixed" = "Fixed Total";
 
 // MARK: - Counterparty Type
+"counterparty_type_label" = "Type";
 "counterparty_person" = "Person";
 "counterparty_institution" = "Institution";
 

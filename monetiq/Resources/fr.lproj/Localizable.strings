@@ -177,6 +177,44 @@
 "loan_detail_no_schedule" = "Aucun calendrier de paiement disponible";
 "loan_detail_notes" = "Notes";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Ajouter un Prêt";
+"edit_loan_title" = "Modifier le Prêt";
+"loan_details_section" = "Détails du Prêt";
+"loan_title_placeholder" = "Titre du Prêt";
+"role_label" = "Rôle";
+"counterparty_section" = "Contrepartie";
+"counterparty_name_placeholder" = "Nom";
+"counterparty_type_label" = "Type";
+"financial_details_section" = "Détails Financiers";
+"amount_placeholder" = "Montant";
+"currency_label" = "Devise";
+"repayment_schedule_section" = "Calendrier de Remboursement";
+"payment_frequency_label" = "Fréquence de Paiement";
+"number_of_payments_placeholder" = "Nombre de Paiements";
+"interest_section" = "Intérêt";
+"interest_mode_label" = "Mode d'Intérêt";
+"annual_interest_rate_placeholder" = "Taux d'Intérêt Annuel (%)";
+"fixed_total_repay_placeholder" = "Total Fixe à Rembourser";
+"dates_section" = "Dates";
+"start_date_label" = "Date de Début";
+"set_next_due_date" = "Définir la Prochaine Échéance";
+"next_due_date_label" = "Prochaine Date d'Échéance";
+"notes_section" = "Notes";
+"optional_notes_placeholder" = "Notes optionnelles";
+"cancel_button" = "Annuler";
+"save_button" = "Enregistrer";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Détails du Prêt";
+"edit_loan_button" = "Modifier le Prêt";
+"delete_loan_button" = "Supprimer le Prêt";
+"mark_paid_button" = "Marquer comme Payé";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d de plus";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Rappel de paiement";
 "notification_payment_reminder_body" = "Le paiement pour '%@' est dû dans %d jour(s) : %@";

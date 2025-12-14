@@ -149,6 +149,44 @@
 "loan_detail_details" = "Details";
 "loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
 "loan_detail_notes" = "Notizen";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Darlehen hinzufügen";
+"edit_loan_title" = "Darlehen bearbeiten";
+"loan_details_section" = "Darlehen-Details";
+"loan_title_placeholder" = "Darlehen-Titel";
+"role_label" = "Rolle";
+"counterparty_section" = "Vertragspartner";
+"counterparty_name_placeholder" = "Name";
+"counterparty_type_label" = "Typ";
+"financial_details_section" = "Finanzielle Details";
+"amount_placeholder" = "Betrag";
+"currency_label" = "Währung";
+"repayment_schedule_section" = "Rückzahlungsplan";
+"payment_frequency_label" = "Zahlungsfrequenz";
+"number_of_payments_placeholder" = "Anzahl der Zahlungen";
+"interest_section" = "Zinsen";
+"interest_mode_label" = "Zinsmodus";
+"annual_interest_rate_placeholder" = "Jährlicher Zinssatz (%)";
+"fixed_total_repay_placeholder" = "Fester Rückzahlungsbetrag";
+"dates_section" = "Daten";
+"start_date_label" = "Startdatum";
+"set_next_due_date" = "Nächstes Fälligkeitsdatum festlegen";
+"next_due_date_label" = "Nächstes Fälligkeitsdatum";
+"notes_section" = "Notizen";
+"optional_notes_placeholder" = "Optionale Notizen";
+"cancel_button" = "Abbrechen";
+"save_button" = "Speichern";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Darlehen-Details";
+"edit_loan_button" = "Darlehen bearbeiten";
+"delete_loan_button" = "Darlehen löschen";
+"mark_paid_button" = "Als bezahlt markieren";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d weitere";
 "settings_view_notifications" = "Ausstehende Benachrichtigungen anzeigen";
 "settings_view_notifications_subtitle" = "Geplante Benachrichtigungen überprüfen";
 

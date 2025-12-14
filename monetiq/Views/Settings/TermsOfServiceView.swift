@@ -69,7 +69,7 @@ struct TermsOfServiceView: View {
                 .padding(MonetiqTheme.Spacing.md)
             }
             .monetiqBackground()
-            .navigationTitle("Terms of Service")
+            .navigationTitle(L10n.string("about_terms_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

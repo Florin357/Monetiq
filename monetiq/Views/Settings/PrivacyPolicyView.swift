@@ -64,7 +64,7 @@ struct PrivacyPolicyView: View {
                 .padding(MonetiqTheme.Spacing.md)
             }
             .monetiqBackground()
-            .navigationTitle("Privacy Policy")
+            .navigationTitle(L10n.string("about_privacy_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

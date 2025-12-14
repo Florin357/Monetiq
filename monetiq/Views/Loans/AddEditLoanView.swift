@@ -79,11 +79,11 @@ struct AddEditLoanView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Loan Details") {
-                    TextField("Loan Title", text: $title)
+                Section(L10n.string("loan_details_section")) {
+                    TextField(L10n.string("loan_title_placeholder"), text: $title)
                         .textFieldStyle(.roundedBorder)
                     
-                    Picker("Role", selection: $selectedRole) {
+                    Picker(L10n.string("role_label"), selection: $selectedRole) {
                         ForEach(LoanRole.allCases, id: \.self) { role in
                             Text(role.localizedLabel).tag(role)
                         }
@@ -91,11 +91,11 @@ struct AddEditLoanView: View {
                     .pickerStyle(.segmented)
                 }
                 
-                Section("Counterparty") {
-                    TextField("Name", text: $counterpartyName)
+                Section(L10n.string("counterparty_section")) {
+                    TextField(L10n.string("counterparty_name_placeholder"), text: $counterpartyName)
                         .textFieldStyle(.roundedBorder)
                     
-                    Picker("Type", selection: $counterpartyType) {
+                    Picker(L10n.string("counterparty_type_label"), selection: $counterpartyType) {
                         ForEach(CounterpartyType.allCases, id: \.self) { type in
                             Text(type.localizedLabel).tag(type)
                         }
@@ -103,13 +103,13 @@ struct AddEditLoanView: View {
                     .pickerStyle(.segmented)
                 }
                 
-                Section("Financial Details") {
+                Section(L10n.string("financial_details_section")) {
                     HStack {
-                        TextField("Amount", text: $principalAmount)
+                        TextField(L10n.string("amount_placeholder"), text: $principalAmount)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
                         
-                        Picker("Currency", selection: $selectedCurrency) {
+                        Picker(L10n.string("currency_label"), selection: $selectedCurrency) {
                             ForEach(currencies, id: \.self) { currency in
                                 Text(currency).tag(currency)
                             }
@@ -118,21 +118,21 @@ struct AddEditLoanView: View {
                     }
                 }
                 
-                Section("Repayment Schedule") {
-                    Picker("Payment Frequency", selection: $selectedFrequency) {
+                Section(L10n.string("repayment_schedule_section")) {
+                    Picker(L10n.string("payment_frequency_label"), selection: $selectedFrequency) {
                         ForEach(PaymentFrequency.allCases, id: \.self) { frequency in
                             Text(frequency.localizedLabel).tag(frequency)
                         }
                     }
                     .pickerStyle(.segmented)
                     
-                    TextField("Number of Payments", text: $numberOfPeriods)
+                    TextField(L10n.string("number_of_payments_placeholder"), text: $numberOfPeriods)
                         .keyboardType(.numberPad)
                         .textFieldStyle(.roundedBorder)
                 }
                 
-                Section("Interest") {
-                    Picker("Interest Mode", selection: $selectedInterestMode) {
+                Section(L10n.string("interest_section")) {
+                    Picker(L10n.string("interest_mode_label"), selection: $selectedInterestMode) {
                         ForEach(InterestMode.allCases, id: \.self) { mode in
                             Text(mode.localizedLabel).tag(mode)
                         }
@@ -140,45 +140,45 @@ struct AddEditLoanView: View {
                     .pickerStyle(.segmented)
                     
                     if selectedInterestMode == .percentageAnnual {
-                        TextField("Annual Interest Rate (%)", text: $annualInterestRate)
+                        TextField(L10n.string("annual_interest_rate_placeholder"), text: $annualInterestRate)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
                     }
                     
                     if selectedInterestMode == .fixedTotal {
-                        TextField("Fixed Total to Repay", text: $fixedTotalToRepay)
+                        TextField(L10n.string("fixed_total_repay_placeholder"), text: $fixedTotalToRepay)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
                     }
                 }
                 
-                Section("Dates") {
-                    DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                Section(L10n.string("dates_section")) {
+                    DatePicker(L10n.string("start_date_label"), selection: $startDate, displayedComponents: .date)
                     
-                    Toggle("Set Next Due Date", isOn: $hasNextDueDate)
+                    Toggle(L10n.string("set_next_due_date"), isOn: $hasNextDueDate)
                     
                     if hasNextDueDate {
-                        DatePicker("Next Due Date", selection: $nextDueDate, displayedComponents: .date)
+                        DatePicker(L10n.string("next_due_date_label"), selection: $nextDueDate, displayedComponents: .date)
                     }
                 }
                 
-                Section("Notes") {
-                    TextField("Optional notes", text: $notes, axis: .vertical)
+                Section(L10n.string("notes_section")) {
+                    TextField(L10n.string("optional_notes_placeholder"), text: $notes, axis: .vertical)
                         .lineLimit(3...6)
                         .textFieldStyle(.roundedBorder)
                 }
             }
-            .navigationTitle(editingLoan == nil ? "Add Loan" : "Edit Loan")
+            .navigationTitle(editingLoan == nil ? L10n.string("add_loan_title") : L10n.string("edit_loan_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button(L10n.string("cancel_button")) {
                         dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
+                    Button(L10n.string("save_button")) {
                         saveLoan()
                     }
                     .disabled(!isFormValid)

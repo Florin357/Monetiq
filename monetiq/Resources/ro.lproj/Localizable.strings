@@ -176,6 +176,44 @@
 "loan_detail_no_schedule" = "Nu există program de plăți disponibil";
 "loan_detail_notes" = "Notițe";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Adaugă Împrumut";
+"edit_loan_title" = "Editează Împrumut";
+"loan_details_section" = "Detalii Împrumut";
+"loan_title_placeholder" = "Titlu Împrumut";
+"role_label" = "Rol";
+"counterparty_section" = "Contraparte";
+"counterparty_name_placeholder" = "Nume";
+"counterparty_type_label" = "Tip";
+"financial_details_section" = "Detalii Financiare";
+"amount_placeholder" = "Sumă";
+"currency_label" = "Monedă";
+"repayment_schedule_section" = "Program de Rambursare";
+"payment_frequency_label" = "Frecvența Plăților";
+"number_of_payments_placeholder" = "Numărul de Plăți";
+"interest_section" = "Dobândă";
+"interest_mode_label" = "Modul Dobânzii";
+"annual_interest_rate_placeholder" = "Rata Dobânzii Anuale (%)";
+"fixed_total_repay_placeholder" = "Total Fix de Rambursat";
+"dates_section" = "Date";
+"start_date_label" = "Data de Început";
+"set_next_due_date" = "Setează Următoarea Dată Scadentă";
+"next_due_date_label" = "Următoarea Dată Scadentă";
+"notes_section" = "Notițe";
+"optional_notes_placeholder" = "Notițe opționale";
+"cancel_button" = "Anulează";
+"save_button" = "Salvează";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Detalii Împrumut";
+"edit_loan_button" = "Editează Împrumut";
+"delete_loan_button" = "Șterge Împrumut";
+"mark_paid_button" = "Marchează ca Plătit";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d mai multe";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Memento Plată";
 "notification_payment_reminder_body" = "Plata pentru '%@' scade în %d zi(le): %@";

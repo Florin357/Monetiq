@@ -189,7 +189,7 @@ struct MultiCurrencySummaryCard: View {
                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
             
             if totals.isEmpty {
-                Text("0.00")
+                Text(L10n.string("dashboard_zero_amount"))
                     .font(MonetiqTheme.Typography.title2)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     .fontWeight(.semibold)
@@ -203,7 +203,7 @@ struct MultiCurrencySummaryCard: View {
                     }
                     
                     if sortedTotals.count > 3 {
-                        Text("+\(sortedTotals.count - 3) more")
+                        Text(L10n.string("dashboard_more_currencies", sortedTotals.count - 3))
                             .font(MonetiqTheme.Typography.caption2)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     }

@@ -177,6 +177,44 @@
 "loan_detail_no_schedule" = "कोई भुगतान अनुसूची उपलब्ध नहीं";
 "loan_detail_notes" = "नोट्स";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "लोन जोड़ें";
+"edit_loan_title" = "लोन संपादित करें";
+"loan_details_section" = "लोन विवरण";
+"loan_title_placeholder" = "लोन शीर्षक";
+"role_label" = "भूमिका";
+"counterparty_section" = "प्रतिपक्ष";
+"counterparty_name_placeholder" = "नाम";
+"counterparty_type_label" = "प्रकार";
+"financial_details_section" = "वित्तीय विवरण";
+"amount_placeholder" = "राशि";
+"currency_label" = "मुद्रा";
+"repayment_schedule_section" = "चुकौती अनुसूची";
+"payment_frequency_label" = "भुगतान आवृत्ति";
+"number_of_payments_placeholder" = "भुगतानों की संख्या";
+"interest_section" = "ब्याज";
+"interest_mode_label" = "ब्याज मोड";
+"annual_interest_rate_placeholder" = "वार्षिक ब्याज दर (%)";
+"fixed_total_repay_placeholder" = "निश्चित कुल चुकौती";
+"dates_section" = "तारीखें";
+"start_date_label" = "प्रारंभ तिथि";
+"set_next_due_date" = "अगली देय तिथि सेट करें";
+"next_due_date_label" = "अगली देय तिथि";
+"notes_section" = "नोट्स";
+"optional_notes_placeholder" = "वैकल्पिक नोट्स";
+"cancel_button" = "रद्द करें";
+"save_button" = "सेव करें";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "लोन विवरण";
+"edit_loan_button" = "लोन संपादित करें";
+"delete_loan_button" = "लोन हटाएं";
+"mark_paid_button" = "भुगतान के रूप में चिह्नित करें";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0.00";
+"dashboard_more_currencies" = "+%d और";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "भुगतान रिमाइंडर";
 "notification_payment_reminder_body" = "'%@' के लिए भुगतान %d दिन(ों) में देय है: %@";

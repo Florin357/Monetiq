@@ -41,7 +41,11 @@ struct ContentView: View {
     }
     
     private var effectiveLanguageKey: String {
-        return appSettings.languageOverride ?? "system"
+        let key = "lang-\(appSettings.languageOverride ?? "system")"
+        #if DEBUG
+        print("🌐 ContentView: effectiveLanguageKey = \(key)")
+        #endif
+        return key
     }
     
     private func updateLocalizationManager() {

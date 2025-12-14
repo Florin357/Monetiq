@@ -177,6 +177,44 @@
 "loan_detail_no_schedule" = "График платежей недоступен";
 "loan_detail_notes" = "Заметки";
 
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Добавить Займ";
+"edit_loan_title" = "Редактировать Займ";
+"loan_details_section" = "Детали Займа";
+"loan_title_placeholder" = "Название Займа";
+"role_label" = "Роль";
+"counterparty_section" = "Контрагент";
+"counterparty_name_placeholder" = "Имя";
+"counterparty_type_label" = "Тип";
+"financial_details_section" = "Финансовые Детали";
+"amount_placeholder" = "Сумма";
+"currency_label" = "Валюта";
+"repayment_schedule_section" = "График Погашения";
+"payment_frequency_label" = "Частота Платежей";
+"number_of_payments_placeholder" = "Количество Платежей";
+"interest_section" = "Проценты";
+"interest_mode_label" = "Режим Процентов";
+"annual_interest_rate_placeholder" = "Годовая Процентная Ставка (%)";
+"fixed_total_repay_placeholder" = "Фиксированная Общая Сумма";
+"dates_section" = "Даты";
+"start_date_label" = "Дата Начала";
+"set_next_due_date" = "Установить Следующую Дату";
+"next_due_date_label" = "Следующая Дата Платежа";
+"notes_section" = "Заметки";
+"optional_notes_placeholder" = "Дополнительные заметки";
+"cancel_button" = "Отмена";
+"save_button" = "Сохранить";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Детали Займа";
+"edit_loan_button" = "Редактировать Займ";
+"delete_loan_button" = "Удалить Займ";
+"mark_paid_button" = "Отметить как Оплаченный";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d ещё";
+
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Напоминание о платеже";
 "notification_payment_reminder_body" = "Платеж по '%@' должен быть произведен через %d день(дней): %@";
