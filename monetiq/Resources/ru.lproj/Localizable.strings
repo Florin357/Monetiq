@@ -170,6 +170,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "Валюта";
+"calculator_generated" = "Создано";
+"calculator_share_title" = "Сводка Расчета Кредита";
+"calculator_share_footer" = "Создано с Monetiq";
 "dashboard_no_loans" = "Пока нет займов";
 "dashboard_recent_loans" = "Недавние займы";
 "loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";

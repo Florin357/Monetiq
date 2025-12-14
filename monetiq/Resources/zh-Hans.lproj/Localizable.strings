@@ -170,6 +170,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "货币";
+"calculator_generated" = "生成于";
+"calculator_share_title" = "贷款计算摘要";
+"calculator_share_footer" = "由 Monetiq 制作";
 "dashboard_no_loans" = "暂无贷款";
 "dashboard_recent_loans" = "最近贷款";
 "loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤销。";

@@ -170,6 +170,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "Devise";
+"calculator_generated" = "Généré";
+"calculator_share_title" = "Résumé du Calcul de Prêt";
+"calculator_share_footer" = "Créé avec Monetiq";
 "dashboard_no_loans" = "Aucun prêt pour le moment";
 "dashboard_recent_loans" = "Prêts récents";
 "loan_detail_delete_confirm" = "Êtes-vous sûr de vouloir supprimer '%@' ? Cette action ne peut pas être annulée.";

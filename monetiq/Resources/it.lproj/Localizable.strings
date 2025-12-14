@@ -170,6 +170,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "Valuta";
+"calculator_generated" = "Generato";
+"calculator_share_title" = "Riepilogo Calcolo Prestito";
+"calculator_share_footer" = "Creato con Monetiq";
 "dashboard_no_loans" = "Nessun prestito ancora";
 "dashboard_recent_loans" = "Prestiti recenti";
 "loan_detail_delete_confirm" = "Sei sicuro di voler eliminare '%@'? Questa azione non può essere annullata.";

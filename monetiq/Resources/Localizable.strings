@@ -104,6 +104,9 @@
 "calculator_enter_values" = "Enter values above to calculate loan payments";
 "calculator_validation_error" = "Please enter valid values for all fields";
 "calculator_currency" = "Currency";
+"calculator_generated" = "Generated";
+"calculator_share_title" = "Loan Calculation Summary";
+"calculator_share_footer" = "Made with Monetiq";
 
 // MARK: - Settings
 "settings_title" = "Settings";

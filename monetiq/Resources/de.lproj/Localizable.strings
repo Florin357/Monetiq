@@ -143,6 +143,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "Währung";
+"calculator_generated" = "Erstellt";
+"calculator_share_title" = "Darlehensberechnungs-Zusammenfassung";
+"calculator_share_footer" = "Erstellt mit Monetiq";
 "dashboard_no_loans" = "Noch keine Darlehen";
 "dashboard_recent_loans" = "Aktuelle Darlehen";
 "loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";

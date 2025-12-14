@@ -170,6 +170,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "मुद्रा";
+"calculator_generated" = "उत्पन्न";
+"calculator_share_title" = "ऋण गणना सारांश";
+"calculator_share_footer" = "Monetiq के साथ बनाया गया";
 "dashboard_no_loans" = "अभी तक कोई लोन नहीं";
 "dashboard_recent_loans" = "हाल के लोन";
 "loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।";

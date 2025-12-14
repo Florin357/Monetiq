@@ -16,6 +16,7 @@ struct CalculatorView: View {
     @State private var selectedCurrency: String = "RON"
     @State private var calculationResult: LoanCalculator.CalculatorResult?
     @State private var showValidationError = false
+    @State private var generatedAt: Date?
     
     // Unified focus state for all fields
     enum Field {
@@ -44,35 +45,15 @@ struct CalculatorView: View {
                 
                 // Input Form
                 VStack(spacing: MonetiqTheme.Spacing.md) {
-                    // Principal Amount with Currency Selector
-                    VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                        CalculatorInputField(
-                            title: L10n.string("calculator_principal"),
-                            placeholder: L10n.string("calculator_principal_placeholder"),
-                            text: $principalAmount,
-                            suffix: selectedCurrency,
-                            focusedField: $focusedField,
-                            fieldType: .principal
-                        )
-                        
-                        // Currency Picker
-                        HStack {
-                            Text(L10n.string("calculator_currency"))
-                                .font(MonetiqTheme.Typography.caption)
-                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                            
-                            Spacer()
-                            
-                            Picker("Currency", selection: $selectedCurrency) {
-                                ForEach(CurrencyCatalog.shared.supportedCurrencies, id: \.code) { currency in
-                                    Text(currency.code).tag(currency.code)
-                                }
-                            }
-                            .pickerStyle(MenuPickerStyle())
-                            .tint(MonetiqTheme.Colors.accent)
-                        }
-                        .padding(.horizontal, MonetiqTheme.Spacing.md)
-                    }
+                    // Principal Amount with Integrated Currency Selector
+                    AmountCurrencyField(
+                        title: L10n.string("calculator_principal"),
+                        placeholder: L10n.string("calculator_principal_placeholder"),
+                        text: $principalAmount,
+                        selectedCurrency: $selectedCurrency,
+                        focusedField: $focusedField,
+                        fieldType: .principal
+                    )
                     
                     CalculatorInputField(
                         title: L10n.string("calculator_interest_rate"),
@@ -130,9 +111,21 @@ struct CalculatorView: View {
                 
                 // Results Placeholder
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text(L10n.string("calculator_results"))
-                        .font(MonetiqTheme.Typography.headline)
-                        .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    HStack {
+                        Text(L10n.string("calculator_results"))
+                            .font(MonetiqTheme.Typography.headline)
+                            .foregroundColor(MonetiqTheme.Colors.onSurface)
+                        
+                        Spacer()
+                        
+                        if calculationResult != nil {
+                            ShareLink(item: shareText) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .font(.title3)
+                                    .foregroundColor(MonetiqTheme.Colors.accent)
+                            }
+                        }
+                    }
                     
                     VStack(spacing: MonetiqTheme.Spacing.sm) {
                         if let result = calculationResult {
@@ -149,6 +142,24 @@ struct CalculatorView: View {
                                 title: L10n.string("calculator_total_interest"),
                                 value: result.totalInterest.formattedWithSymbol(currency: selectedCurrency)
                             )
+                            
+                            // Generated timestamp
+                            if let generatedAt = generatedAt {
+                                Divider()
+                                    .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                
+                                HStack {
+                                    Text(L10n.string("calculator_generated"))
+                                        .font(MonetiqTheme.Typography.caption)
+                                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    
+                                    Spacer()
+                                    
+                                    Text(generatedAt.formatted(date: .abbreviated, time: .shortened))
+                                        .font(MonetiqTheme.Typography.caption)
+                                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                }
+                            }
                         } else {
                             Text(L10n.string("calculator_enter_values"))
                                 .font(MonetiqTheme.Typography.body)
@@ -195,6 +206,38 @@ struct CalculatorView: View {
         return true
     }
     
+    private var shareText: String {
+        guard let result = calculationResult,
+              let principal = Double(principalAmount),
+              let rate = Double(interestRate.isEmpty ? "0" : interestRate),
+              let term = Int(numberOfPayments),
+              let generatedAt = generatedAt else {
+            return ""
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
+        return """
+        \(L10n.string("calculator_share_title"))
+        
+        \(L10n.string("calculator_principal")): \(principal.formattedWithSymbol(currency: selectedCurrency))
+        \(L10n.string("calculator_interest_rate")): \(String(format: "%.2f", rate))%
+        \(L10n.string("calculator_number_of_payments")): \(term)
+        \(L10n.string("calculator_frequency")): \(selectedFrequency.localizedLabel)
+        
+        \(L10n.string("calculator_results")):
+        \(L10n.string("calculator_payment_per_period", selectedFrequency.localizedLabel)): \(result.periodicPaymentAmount.formattedWithSymbol(currency: selectedCurrency))
+        \(L10n.string("calculator_total_to_repay")): \(result.totalToRepay.formattedWithSymbol(currency: selectedCurrency))
+        \(L10n.string("calculator_total_interest")): \(result.totalInterest.formattedWithSymbol(currency: selectedCurrency))
+        
+        \(L10n.string("calculator_generated")): \(formatter.string(from: generatedAt))
+        
+        \(L10n.string("calculator_share_footer"))
+        """
+    }
+    
     private func calculatePayment() {
         guard let principal = Double(principalAmount),
               let term = Int(numberOfPayments),
@@ -216,6 +259,71 @@ struct CalculatorView: View {
             numberOfPeriods: term,
             frequency: selectedFrequency
         )
+        generatedAt = Date()
+    }
+}
+
+struct AmountCurrencyField: View {
+    let title: String
+    let placeholder: String
+    @Binding var text: String
+    @Binding var selectedCurrency: String
+    var focusedField: FocusState<CalculatorView.Field?>.Binding
+    let fieldType: CalculatorView.Field
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+            Text(title)
+                .font(MonetiqTheme.Typography.headline)
+                .foregroundColor(MonetiqTheme.Colors.onSurface)
+            
+            HStack(spacing: 0) {
+                TextField(placeholder, text: $text)
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    .keyboardType(.decimalPad)
+                    .focused(focusedField, equals: fieldType)
+                    .padding(.leading, MonetiqTheme.Spacing.md)
+                    .padding(.vertical, MonetiqTheme.Spacing.md)
+                    .accessibilityLabel(title)
+                
+                // Currency selector pill
+                Menu {
+                    ForEach(CurrencyCatalog.shared.supportedCurrencies, id: \.code) { currency in
+                        Button(action: {
+                            selectedCurrency = currency.code
+                        }) {
+                            HStack {
+                                Text(currency.displayName)
+                                if selectedCurrency == currency.code {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(MonetiqTheme.Colors.accent)
+                                }
+                            }
+                        }
+                    }
+                } label: {
+                    HStack(spacing: MonetiqTheme.Spacing.xs) {
+                        Text(selectedCurrency)
+                            .font(MonetiqTheme.Typography.body)
+                            .foregroundColor(MonetiqTheme.Colors.accent)
+                        Image(systemName: "chevron.down")
+                            .font(.caption)
+                            .foregroundColor(MonetiqTheme.Colors.accent)
+                    }
+                    .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                    .padding(.vertical, MonetiqTheme.Spacing.xs)
+                    .background(MonetiqTheme.Colors.accent.opacity(0.1))
+                    .cornerRadius(MonetiqTheme.CornerRadius.sm)
+                }
+                .accessibilityLabel(L10n.string("calculator_currency"))
+                .padding(.trailing, MonetiqTheme.Spacing.md)
+                .padding(.vertical, MonetiqTheme.Spacing.md)
+            }
+            .background(MonetiqTheme.Colors.background)
+            .cornerRadius(MonetiqTheme.CornerRadius.sm)
+        }
+        .monetiqCard()
     }
 }
 

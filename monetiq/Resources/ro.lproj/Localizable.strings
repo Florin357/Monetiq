@@ -169,6 +169,9 @@
 
 // MARK: - Additional UI
 "calculator_currency" = "Monedă";
+"calculator_generated" = "Generat";
+"calculator_share_title" = "Rezumat Calcul Împrumut";
+"calculator_share_footer" = "Creat cu Monetiq";
 "dashboard_no_loans" = "Încă nu aveți împrumuturi";
 "dashboard_recent_loans" = "Împrumuturi recente";
 "loan_detail_delete_confirm" = "Sunteți sigur că doriți să ștergeți '%@'? Această acțiune nu poate fi anulată.";
