@@ -30,12 +30,12 @@ struct CalculatorView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: MonetiqTheme.Spacing.lg) {
+            VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
                     Text(L10n.string("calculator_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
-                        .foregroundColor(MonetiqTheme.Colors.onBackground)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     
                     Text(L10n.string("calculator_subtitle"))
                         .font(MonetiqTheme.Typography.callout)
@@ -44,7 +44,7 @@ struct CalculatorView: View {
                 .monetiqHeader()
                 
                 // Input Form
-                VStack(spacing: MonetiqTheme.Spacing.md) {
+                VStack(spacing: MonetiqTheme.Spacing.lg) {
                     // Principal Amount with Integrated Currency Selector
                     AmountCurrencyField(
                         title: L10n.string("calculator_principal"),
@@ -95,10 +95,9 @@ struct CalculatorView: View {
                 VStack(spacing: MonetiqTheme.Spacing.sm) {
                     Button(action: calculatePayment) {
                         Text(L10n.string("calculator_calculate"))
-                            .monetiqButton()
+                            .monetiqButton(style: isInputValid ? .primary : .subtle)
                     }
                     .disabled(!isInputValid)
-                    .opacity(isInputValid ? 1.0 : 0.6)
                     
                     if showValidationError {
                         Text(L10n.string("calculator_validation_error"))
@@ -107,22 +106,32 @@ struct CalculatorView: View {
                             .multilineTextAlignment(.center)
                     }
                 }
-                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                .monetiqSection()
                 
-                // Results Placeholder
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                // Results Card
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
                     HStack {
                         Text(L10n.string("calculator_results"))
                             .font(MonetiqTheme.Typography.headline)
-                            .foregroundColor(MonetiqTheme.Colors.onSurface)
+                            .foregroundColor(MonetiqTheme.Colors.textPrimary)
                         
                         Spacer()
                         
                         if calculationResult != nil {
                             ShareLink(item: shareText) {
-                                Image(systemName: "square.and.arrow.up")
-                                    .font(.title3)
-                                    .foregroundColor(MonetiqTheme.Colors.accent)
+                                HStack(spacing: MonetiqTheme.Spacing.xs) {
+                                    Image(systemName: "square.and.arrow.up")
+                                        .font(.caption)
+                                    Text(L10n.string("calculator_share"))
+                                        .font(MonetiqTheme.Typography.caption)
+                                }
+                                .foregroundColor(MonetiqTheme.Colors.accent)
+                                .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                .background(
+                                    RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.sm)
+                                        .fill(MonetiqTheme.Colors.accent.opacity(0.1))
+                                )
                             }
                         }
                     }
@@ -169,12 +178,12 @@ struct CalculatorView: View {
                         }
                     }
                 }
-                .monetiqCard()
-                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                .monetiqCard(elevated: calculationResult != nil)
+                .monetiqSection()
                 
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
             }
-            .padding(.vertical, MonetiqTheme.Spacing.lg)
+            .padding(.vertical, MonetiqTheme.Spacing.sectionSpacing)
         }
         .monetiqBackground()
         .onTapGesture {
@@ -392,20 +401,31 @@ struct ResultRow: View {
     }
     
     var body: some View {
-        HStack {
-            Text(title)
-                .font(isHighlighted ? MonetiqTheme.Typography.headline : MonetiqTheme.Typography.body)
-                .foregroundColor(MonetiqTheme.Colors.onSurface)
-                .fontWeight(isHighlighted ? .semibold : .regular)
+        VStack(spacing: MonetiqTheme.Spacing.xs) {
+            HStack {
+                Text(title)
+                    .font(isHighlighted ? MonetiqTheme.Typography.subheadline : MonetiqTheme.Typography.callout)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                
+                Spacer()
+            }
             
-            Spacer()
-            
-            Text(value)
-                .font(isHighlighted ? MonetiqTheme.Typography.title2 : MonetiqTheme.Typography.callout)
-                .foregroundColor(MonetiqTheme.Colors.accent)
-                .fontWeight(.semibold)
+            HStack {
+                Spacer()
+                
+                Text(value)
+                    .currencyText(
+                        style: isHighlighted ? .large : .medium,
+                        color: isHighlighted ? MonetiqTheme.Colors.accent : MonetiqTheme.Colors.textPrimary
+                    )
+            }
         }
-        .padding(.vertical, isHighlighted ? MonetiqTheme.Spacing.sm : 0)
+        .padding(.vertical, isHighlighted ? MonetiqTheme.Spacing.md : MonetiqTheme.Spacing.sm)
+        .padding(.horizontal, MonetiqTheme.Spacing.md)
+        .background(
+            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.md)
+                .fill(isHighlighted ? MonetiqTheme.Colors.accent.opacity(0.05) : MonetiqTheme.Colors.surface)
+        )
         .background(isHighlighted ? MonetiqTheme.Colors.accent.opacity(0.1) : Color.clear)
         .cornerRadius(MonetiqTheme.CornerRadius.sm)
     }

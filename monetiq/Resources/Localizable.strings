@@ -107,6 +107,7 @@
 "calculator_generated" = "Generated";
 "calculator_share_title" = "Loan Calculation Summary";
 "calculator_share_footer" = "Made with Monetiq";
+"calculator_share" = "Share";
 
 // MARK: - Settings
 "settings_title" = "Settings";
@@ -245,6 +246,11 @@
 "notification_payment_reminder_body" = "Payment for '%@' is due in %d day(s): %@";
 "notification_payment_due_title" = "Payment Due Today";
 "notification_payment_due_body" = "Payment for '%@' is due today: %@";
+
+// Payment due date labels
+"payment_due_today" = "Due today";
+"payment_due_tomorrow" = "Due tomorrow";
+"payment_due_in_days" = "Due in %d days";
 "notification_weekly_review_title" = "Weekly Financial Review";
 "notification_weekly_review_body" = "Time to review your loans and upcoming payments in Monetiq";
 "notification_test_title" = "Test Notification";

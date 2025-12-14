@@ -46,12 +46,12 @@ struct SettingsView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: MonetiqTheme.Spacing.lg) {
+            VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
                 // Header
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
                     Text(L10n.string("settings_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
-                        .foregroundColor(MonetiqTheme.Colors.onBackground)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     
                     Text(L10n.string("settings_subtitle"))
                         .font(MonetiqTheme.Typography.callout)
@@ -218,7 +218,7 @@ struct SettingsView: View {
                 
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
             }
-            .padding(.vertical, MonetiqTheme.Spacing.lg)
+            .padding(.vertical, MonetiqTheme.Spacing.sectionSpacing)
         }
         .monetiqBackground()
         .onAppear {
@@ -453,15 +453,20 @@ struct SettingsSection<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
             Text(title)
-                .font(MonetiqTheme.Typography.headline)
-                .foregroundColor(MonetiqTheme.Colors.onBackground)
-                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                .font(MonetiqTheme.Typography.footnote)
+                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                .textCase(.uppercase)
+                .tracking(0.5)
+                .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
             
-            VStack(spacing: 1) {
+            VStack(spacing: 0) {
                 content
             }
-            .monetiqSurface()
-            .padding(.horizontal, MonetiqTheme.Spacing.md)
+            .background(
+                RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.card)
+                    .fill(MonetiqTheme.Colors.surface)
+            )
+            .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
         }
     }
 }
@@ -472,15 +477,16 @@ struct SettingsToggleRow: View {
     @Binding var isOn: Bool
     
     var body: some View {
-        HStack {
+        HStack(spacing: MonetiqTheme.Spacing.md) {
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(title)
-                    .font(MonetiqTheme.Typography.body)
-                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    .font(MonetiqTheme.Typography.bodyEmphasized)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
                 
                 Text(subtitle)
-                    .font(MonetiqTheme.Typography.caption)
+                    .font(MonetiqTheme.Typography.footnote)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             Spacer()
@@ -488,8 +494,8 @@ struct SettingsToggleRow: View {
             Toggle("", isOn: $isOn)
                 .tint(MonetiqTheme.Colors.accent)
         }
-        .padding(MonetiqTheme.Spacing.md)
-        .background(MonetiqTheme.Colors.surface)
+        .padding(MonetiqTheme.Spacing.cardPadding)
+        .background(Color.clear)
     }
 }
 
@@ -498,31 +504,41 @@ struct SettingsPickerRow: View {
     let subtitle: String
     @Binding var selection: String
     let options: [String]
+    let optionDisplayNames: [String]?
+    
+    init(title: String, subtitle: String, selection: Binding<String>, options: [String], optionDisplayNames: [String]? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self._selection = selection
+        self.options = options
+        self.optionDisplayNames = optionDisplayNames
+    }
     
     var body: some View {
-        HStack {
+        HStack(spacing: MonetiqTheme.Spacing.md) {
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(title)
-                    .font(MonetiqTheme.Typography.body)
-                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    .font(MonetiqTheme.Typography.bodyEmphasized)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
                 
                 Text(subtitle)
-                    .font(MonetiqTheme.Typography.caption)
+                    .font(MonetiqTheme.Typography.footnote)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
             Spacer()
             
             Picker(title, selection: $selection) {
-                ForEach(options, id: \.self) { option in
-                    Text(option).tag(option)
+                ForEach(Array(options.enumerated()), id: \.offset) { index, option in
+                    Text(optionDisplayNames?[index] ?? option).tag(option)
                 }
             }
             .pickerStyle(MenuPickerStyle())
             .tint(MonetiqTheme.Colors.accent)
         }
-        .padding(MonetiqTheme.Spacing.md)
-        .background(MonetiqTheme.Colors.surface)
+        .padding(MonetiqTheme.Spacing.cardPadding)
+        .background(Color.clear)
     }
 }
 
@@ -533,25 +549,26 @@ struct SettingsActionRow: View {
     
     var body: some View {
         Button(action: action) {
-            HStack {
+            HStack(spacing: MonetiqTheme.Spacing.md) {
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                     Text(title)
-                        .font(MonetiqTheme.Typography.body)
-                        .foregroundColor(MonetiqTheme.Colors.onSurface)
+                        .font(MonetiqTheme.Typography.bodyEmphasized)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     
                     Text(subtitle)
-                        .font(MonetiqTheme.Typography.caption)
+                        .font(MonetiqTheme.Typography.footnote)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .font(.footnote)
+                    .foregroundColor(MonetiqTheme.Colors.textTertiary)
             }
-            .padding(MonetiqTheme.Spacing.md)
-            .background(MonetiqTheme.Colors.surface)
+            .padding(MonetiqTheme.Spacing.cardPadding)
+            .background(Color.clear)
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -564,26 +581,29 @@ struct SettingsDestructiveActionRow: View {
     
     var body: some View {
         Button(action: action) {
-            HStack {
+            HStack(spacing: MonetiqTheme.Spacing.md) {
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                     Text(title)
-                        .font(MonetiqTheme.Typography.body)
+                        .font(MonetiqTheme.Typography.bodyEmphasized)
                         .foregroundColor(MonetiqTheme.Colors.error)
-                        .fontWeight(.medium)
                     
                     Text(subtitle)
-                        .font(MonetiqTheme.Typography.caption)
+                        .font(MonetiqTheme.Typography.footnote)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 
                 Spacer()
                 
-                Image(systemName: "exclamationmark.triangle")
-                    .font(.caption)
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .font(.title3)
                     .foregroundColor(MonetiqTheme.Colors.error)
             }
-            .padding(MonetiqTheme.Spacing.md)
-            .background(MonetiqTheme.Colors.surface)
+            .padding(MonetiqTheme.Spacing.cardPadding)
+            .background(
+                RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.md)
+                    .fill(MonetiqTheme.Colors.error.opacity(0.05))
+            )
         }
         .buttonStyle(PlainButtonStyle())
     }
