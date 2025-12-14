@@ -115,6 +115,8 @@
 "settings_weekly_review_subtitle" = "Weekly financial review reminder";
 "settings_default_currency" = "Default Currency";
 "settings_default_currency_subtitle" = "Currency for new loans";
+"settings_language" = "Language";
+"settings_language_subtitle" = "App display language";
 "settings_biometric" = "Biometric Authentication";
 "settings_biometric_subtitle" = "Use Face ID or Touch ID to unlock";
 "settings_dark_mode" = "Dark Mode";

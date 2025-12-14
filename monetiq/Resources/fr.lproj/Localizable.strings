@@ -116,6 +116,8 @@
 "settings_weekly_review_subtitle" = "Rappel de révision financière hebdomadaire";
 "settings_default_currency" = "Devise par défaut";
 "settings_default_currency_subtitle" = "Devise pour les nouveaux prêts";
+"settings_language" = "Langue";
+"settings_language_subtitle" = "Langue d'affichage de l'application";
 "settings_biometric" = "Authentification biométrique";
 "settings_biometric_subtitle" = "Utilisez Face ID ou Touch ID pour déverrouiller";
 "settings_dark_mode" = "Mode sombre";
@@ -166,3 +168,6 @@
 "notification_weekly_review_body" = "Il est temps de réviser vos prêts et paiements à venir dans Monetiq";
 "notification_test_title" = "Notification de test";
 "notification_test_body" = "Ceci est une notification de test de Monetiq";
+
+
+

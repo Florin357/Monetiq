@@ -16,6 +16,7 @@ final class AppSettings {
     var weeklyReviewEnabled: Bool
     var defaultCurrencyCode: String
     var biometricLockEnabled: Bool
+    var languageOverride: String?
     var createdAt: Date
     var updatedAt: Date
     
@@ -24,7 +25,8 @@ final class AppSettings {
         daysBeforeDueNotification: Int = 2,
         weeklyReviewEnabled: Bool = false,
         defaultCurrencyCode: String = "RON",
-        biometricLockEnabled: Bool = false
+        biometricLockEnabled: Bool = false,
+        languageOverride: String? = nil
     ) {
         self.id = UUID()
         self.notificationsEnabled = notificationsEnabled
@@ -32,6 +34,7 @@ final class AppSettings {
         self.weeklyReviewEnabled = weeklyReviewEnabled
         self.defaultCurrencyCode = defaultCurrencyCode
         self.biometricLockEnabled = biometricLockEnabled
+        self.languageOverride = languageOverride
         self.createdAt = Date()
         self.updatedAt = Date()
     }
@@ -66,3 +69,6 @@ final class AppSettings {
         return newSettings
     }
 }
+
+
+

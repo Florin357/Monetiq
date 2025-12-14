@@ -115,6 +115,8 @@
 "settings_weekly_review_subtitle" = "Memento săptămânal pentru revizuirea financiară";
 "settings_default_currency" = "Moneda Implicită";
 "settings_default_currency_subtitle" = "Moneda pentru împrumuturi noi";
+"settings_language" = "Limba";
+"settings_language_subtitle" = "Limba de afișare a aplicației";
 "settings_biometric" = "Autentificare Biometrică";
 "settings_biometric_subtitle" = "Folosește Face ID sau Touch ID pentru deblocare";
 "settings_dark_mode" = "Mod Întunecat";

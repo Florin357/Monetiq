@@ -14,12 +14,16 @@ struct SettingsView: View {
     
     @State private var appSettings: AppSettings?
     @State private var darkModeEnabled = true // Keep as local state for now
+    @State private var showingPrivacyPolicy = false
+    @State private var showingTermsOfService = false
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
     }
     
-    private let currencies = ["RON", "EUR", "USD", "GBP"]
+    private var currencies: [Currency] {
+        CurrencyCatalog.shared.supportedCurrencies
+    }
     private let daysBeforeOptions = [1, 2, 3, 5, 7]
     
     private var settings: AppSettings {
@@ -109,7 +113,7 @@ struct SettingsView: View {
                         )
                     )
                     
-                    SettingsPickerRow(
+                    CurrencyPickerRow(
                         title: L10n.string("settings_default_currency"),
                         subtitle: L10n.string("settings_default_currency_subtitle"),
                         selection: Binding(
@@ -120,7 +124,21 @@ struct SettingsView: View {
                                 saveContext()
                             }
                         ),
-                        options: currencies
+                        currencies: currencies
+                    )
+                    
+                    LanguagePickerRow(
+                        title: L10n.string("settings_language"),
+                        subtitle: L10n.string("settings_language_subtitle"),
+                        selection: Binding(
+                            get: { settings.languageOverride ?? "system" },
+                            set: { newValue in
+                                settings.languageOverride = newValue == "system" ? nil : newValue
+                                settings.updateTimestamp()
+                                saveContext()
+                            }
+                        ),
+                        languages: LanguageCatalog.shared.supportedLanguages
                     )
                 }
                 
@@ -198,6 +216,12 @@ struct SettingsView: View {
             appSettings = currentSettings
             notificationManager.setAppSettings(currentSettings)
         }
+        .sheet(isPresented: $showingPrivacyPolicy) {
+            PrivacyPolicyView()
+        }
+        .sheet(isPresented: $showingTermsOfService) {
+            TermsOfServiceView()
+        }
     }
     
     private func saveContext() {
@@ -269,11 +293,11 @@ struct SettingsView: View {
     }
     
     private func openPrivacyPolicy() {
-        // Placeholder for opening privacy policy
+        showingPrivacyPolicy = true
     }
     
     private func openTermsOfService() {
-        // Placeholder for opening terms of service
+        showingTermsOfService = true
     }
 }
 
@@ -390,6 +414,74 @@ struct SettingsActionRow: View {
             .background(MonetiqTheme.Colors.surface)
         }
         .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct CurrencyPickerRow: View {
+    let title: String
+    let subtitle: String
+    @Binding var selection: String
+    let currencies: [Currency]
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                Text(title)
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                
+                Text(subtitle)
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+            }
+            
+            Spacer()
+            
+            Picker(title, selection: $selection) {
+                ForEach(currencies, id: \.code) { currency in
+                    Text(currency.displayName).tag(currency.code)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+            .tint(MonetiqTheme.Colors.accent)
+        }
+        .padding(MonetiqTheme.Spacing.md)
+        .background(MonetiqTheme.Colors.surface)
+        .cornerRadius(MonetiqTheme.CornerRadius.md)
+    }
+}
+
+struct LanguagePickerRow: View {
+    let title: String
+    let subtitle: String
+    @Binding var selection: String
+    let languages: [Language]
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                Text(title)
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                
+                Text(subtitle)
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+            }
+            
+            Spacer()
+            
+            Picker(title, selection: $selection) {
+                ForEach(languages, id: \.code) { language in
+                    Text(language.displayName).tag(language.code)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+            .tint(MonetiqTheme.Colors.accent)
+        }
+        .padding(MonetiqTheme.Spacing.md)
+        .background(MonetiqTheme.Colors.surface)
+        .cornerRadius(MonetiqTheme.CornerRadius.md)
     }
 }
 

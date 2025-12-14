@@ -37,7 +37,9 @@ struct AddEditLoanView: View {
     @State private var annualInterestRate: String = ""
     @State private var fixedTotalToRepay: String = ""
     
-    private let currencies = ["RON", "EUR", "USD", "GBP"]
+    private var currencies: [String] {
+        CurrencyCatalog.shared.currencyCodes
+    }
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)

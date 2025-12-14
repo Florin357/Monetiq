@@ -13,6 +13,7 @@ struct CalculatorView: View {
     @State private var interestRate: String = ""
     @State private var numberOfPayments: String = ""
     @State private var selectedFrequency: PaymentFrequency = .monthly
+    @State private var selectedCurrency: String = "RON"
     @State private var calculationResult: LoanCalculator.CalculatorResult?
     @State private var showValidationError = false
     
@@ -43,14 +44,35 @@ struct CalculatorView: View {
                 
                 // Input Form
                 VStack(spacing: MonetiqTheme.Spacing.md) {
-                    CalculatorInputField(
-                        title: L10n.string("calculator_principal"),
-                        placeholder: L10n.string("calculator_principal_placeholder"),
-                        text: $principalAmount,
-                        suffix: appSettings.defaultCurrencyCode,
-                        focusedField: $focusedField,
-                        fieldType: .principal
-                    )
+                    // Principal Amount with Currency Selector
+                    VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                        CalculatorInputField(
+                            title: L10n.string("calculator_principal"),
+                            placeholder: L10n.string("calculator_principal_placeholder"),
+                            text: $principalAmount,
+                            suffix: selectedCurrency,
+                            focusedField: $focusedField,
+                            fieldType: .principal
+                        )
+                        
+                        // Currency Picker
+                        HStack {
+                            Text("Currency")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            
+                            Spacer()
+                            
+                            Picker("Currency", selection: $selectedCurrency) {
+                                ForEach(CurrencyCatalog.shared.supportedCurrencies, id: \.code) { currency in
+                                    Text(currency.code).tag(currency.code)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                            .tint(MonetiqTheme.Colors.accent)
+                        }
+                        .padding(.horizontal, MonetiqTheme.Spacing.md)
+                    }
                     
                     CalculatorInputField(
                         title: L10n.string("calculator_interest_rate"),
@@ -116,16 +138,16 @@ struct CalculatorView: View {
                         if let result = calculationResult {
                             ResultRow(
                                 title: L10n.string("calculator_payment_per_period", selectedFrequency.localizedLabel),
-                                value: result.periodicPaymentAmount.formattedWithSymbol(currency: appSettings.defaultCurrencyCode),
+                                value: result.periodicPaymentAmount.formattedWithSymbol(currency: selectedCurrency),
                                 isHighlighted: true
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_to_repay"),
-                                value: result.totalToRepay.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
+                                value: result.totalToRepay.formattedWithSymbol(currency: selectedCurrency)
                             )
                             ResultRow(
                                 title: L10n.string("calculator_total_interest"),
-                                value: result.totalInterest.formattedWithSymbol(currency: appSettings.defaultCurrencyCode)
+                                value: result.totalInterest.formattedWithSymbol(currency: selectedCurrency)
                             )
                         } else {
                             Text(L10n.string("calculator_enter_values"))
@@ -156,6 +178,10 @@ struct CalculatorView: View {
                 .font(.system(size: 16, weight: .semibold))
                 .foregroundColor(MonetiqTheme.Colors.accent)
             }
+        }
+        .onAppear {
+            // Set default currency from app settings
+            selectedCurrency = appSettings.defaultCurrencyCode
         }
     }
     

@@ -157,8 +157,26 @@ struct SummaryCard: View {
 struct DashboardPaymentRowView: View {
     let payment: Payment
     
+    private var roleColor: Color {
+        guard let role = payment.loan?.role else { return MonetiqTheme.Colors.accent }
+        
+        switch role {
+        case .lent:
+            return MonetiqTheme.Colors.success  // Green - money to receive
+        case .borrowed:
+            return MonetiqTheme.Colors.warning  // Orange - money to pay
+        case .bankCredit:
+            return MonetiqTheme.Colors.error    // Red - bank credit
+        }
+    }
+    
     var body: some View {
         HStack {
+            // Small leading indicator dot
+            Circle()
+                .fill(roleColor)
+                .frame(width: 8, height: 8)
+            
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(payment.loan?.title ?? "Unknown Loan")
                     .font(MonetiqTheme.Typography.body)
@@ -179,7 +197,7 @@ struct DashboardPaymentRowView: View {
             
             Text(CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: payment.loan?.currencyCode ?? "RON"))
                 .font(MonetiqTheme.Typography.callout)
-                .foregroundColor(MonetiqTheme.Colors.accent)
+                .foregroundColor(roleColor)  // Use role-based color
                 .fontWeight(.medium)
         }
         .monetiqCard()

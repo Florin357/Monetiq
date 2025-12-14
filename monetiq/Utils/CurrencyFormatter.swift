@@ -56,18 +56,7 @@ struct CurrencyFormatter {
     
     /// Get currency symbol for common currencies
     func symbol(for currencyCode: String) -> String {
-        switch currencyCode.uppercased() {
-        case "RON":
-            return "lei"
-        case "EUR":
-            return "€"
-        case "USD":
-            return "$"
-        case "GBP":
-            return "£"
-        default:
-            return currencyCode
-        }
+        return CurrencyCatalog.shared.symbol(for: currencyCode.uppercased())
     }
     
     /// Format with symbol instead of code
@@ -104,3 +93,6 @@ extension Double {
         return CurrencyFormatter.shared.formatWithSymbol(amount: self, currencyCode: currency)
     }
 }
+
+
+

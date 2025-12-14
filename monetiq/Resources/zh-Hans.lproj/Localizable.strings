@@ -116,6 +116,8 @@
 "settings_weekly_review_subtitle" = "每周财务回顾提醒";
 "settings_default_currency" = "默认货币";
 "settings_default_currency_subtitle" = "新贷款的货币";
+"settings_language" = "语言";
+"settings_language_subtitle" = "应用显示语言";
 "settings_biometric" = "生物识别认证";
 "settings_biometric_subtitle" = "使用Face ID或Touch ID解锁";
 "settings_dark_mode" = "深色模式";
@@ -166,3 +168,6 @@
 "notification_weekly_review_body" = "是时候在Monetiq中回顾您的贷款和即将到期的付款了";
 "notification_test_title" = "测试通知";
 "notification_test_body" = "这是来自Monetiq的测试通知";
+
+
+
