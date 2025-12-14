@@ -8,6 +8,7 @@
 import Foundation
 import UserNotifications
 import SwiftData
+import UIKit
 
 /*
  NOTIFICATION VALIDATION CHECKLIST (Manual Testing):
