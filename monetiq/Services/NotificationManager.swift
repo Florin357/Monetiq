@@ -79,8 +79,12 @@ class NotificationManager {
     }
     
     func clearBadgeCount() {
-        Task { @MainActor in
-            UIApplication.shared.applicationIconBadgeNumber = 0
+        Task {
+            do {
+                try await notificationCenter.setBadgeCount(0)
+            } catch {
+                print("Failed to clear badge count: \(error)")
+            }
         }
     }
     
