@@ -1,0 +1,170 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 14.12.2025.
+  German (Deutsch) Localization
+*/
+
+// MARK: - General
+"general_save" = "Speichern";
+"general_cancel" = "Abbrechen";
+"general_delete" = "Löschen";
+"general_edit" = "Bearbeiten";
+"general_add" = "Hinzufügen";
+"general_done" = "Fertig";
+"general_ok" = "OK";
+"general_yes" = "Ja";
+"general_no" = "Nein";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Übersicht";
+"tab_loans" = "Darlehen";
+"tab_calculator" = "Rechner";
+"tab_settings" = "Einstellungen";
+
+// MARK: - Dashboard
+"dashboard_title" = "Übersicht";
+"dashboard_subtitle" = "Ihre Finanzübersicht";
+"dashboard_to_receive" = "Zu erhalten";
+"dashboard_to_pay" = "Zu zahlen";
+"dashboard_upcoming_payments" = "Anstehende Zahlungen";
+"dashboard_no_payments" = "Keine anstehenden Zahlungen";
+"dashboard_no_payments_subtitle" = "Alle Ihre Zahlungen sind aktuell";
+
+// MARK: - Loans
+"loans_title" = "Darlehen";
+"loans_subtitle" = "Verwalten Sie Ihre Darlehen und Schulden";
+"loans_empty_title" = "Noch keine Darlehen";
+"loans_empty_subtitle" = "Fügen Sie Ihr erstes Darlehen hinzu, um zu beginnen";
+"loans_add_title" = "Darlehen hinzufügen";
+"loans_edit_title" = "Darlehen bearbeiten";
+"loans_delete_title" = "Darlehen löschen";
+"loans_delete_message" = "Sind Sie sicher, dass Sie dieses Darlehen löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
+"loans_next_due" = "Nächste: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Titel";
+"loan_form_title_placeholder" = "Darlehenstitel eingeben";
+"loan_form_role" = "Rolle";
+"loan_form_counterparty" = "Vertragspartner";
+"loan_form_counterparty_name" = "Name";
+"loan_form_counterparty_name_placeholder" = "Name eingeben";
+"loan_form_counterparty_type" = "Typ";
+"loan_form_amount" = "Darlehensbetrag";
+"loan_form_amount_placeholder" = "Betrag eingeben";
+"loan_form_currency" = "Währung";
+"loan_form_start_date" = "Startdatum";
+"loan_form_frequency" = "Zahlungshäufigkeit";
+"loan_form_periods" = "Anzahl der Perioden";
+"loan_form_periods_placeholder" = "Anzahl eingeben";
+"loan_form_interest_mode" = "Zinsmodus";
+"loan_form_interest_rate" = "Jahreszinssatz";
+"loan_form_interest_rate_placeholder" = "Zinssatz eingeben";
+"loan_form_fixed_total" = "Feste Rückzahlungssumme";
+"loan_form_fixed_total_placeholder" = "Gesamtsumme eingeben";
+"loan_form_next_due_date" = "Nächstes Fälligkeitsdatum";
+"loan_form_notes" = "Notizen";
+"loan_form_notes_placeholder" = "Optionale Notizen";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Übersicht";
+"loan_detail_principal" = "Darlehensbetrag";
+"loan_detail_total_to_repay" = "Gesamtrückzahlung";
+"loan_detail_total_paid" = "Bereits gezahlt";
+"loan_detail_remaining" = "Verbleibend";
+"loan_detail_start_date" = "Startdatum";
+"loan_detail_frequency" = "Häufigkeit";
+"loan_detail_counterparty" = "Vertragspartner";
+"loan_detail_payments" = "Zahlungsplan";
+"loan_detail_mark_paid" = "Als bezahlt markieren";
+"loan_detail_no_payments" = "Keine Zahlungen geplant";
+
+// MARK: - Calculator
+"calculator_title" = "Darlehensrechner";
+"calculator_subtitle" = "Berechnen Sie Darlehenszahlungen und Zinsen";
+"calculator_principal" = "Darlehensbetrag";
+"calculator_principal_placeholder" = "Betrag eingeben";
+"calculator_interest_rate" = "Jahreszinssatz";
+"calculator_interest_rate_placeholder" = "Zinssatz eingeben";
+"calculator_number_of_payments" = "Anzahl der Zahlungen";
+"calculator_number_of_payments_placeholder" = "Anzahl der Zahlungen eingeben";
+"calculator_number_of_payments_helper" = "Beispiel: 12 für 1 Jahr monatliche Zahlungen";
+"calculator_frequency" = "Zahlungshäufigkeit";
+"calculator_calculate" = "Zahlung berechnen";
+"calculator_results" = "Ergebnisse";
+"calculator_payment_per_period" = "Zahlung pro %@";
+"calculator_total_to_repay" = "Gesamtrückzahlung";
+"calculator_total_interest" = "Gesamtzinsen";
+"calculator_enter_values" = "Geben Sie oben Werte ein, um Darlehenszahlungen zu berechnen";
+"calculator_validation_error" = "Bitte geben Sie gültige Werte für alle Felder ein";
+
+// MARK: - Settings
+"settings_title" = "Einstellungen";
+"settings_subtitle" = "Passen Sie Ihre Monetiq-Erfahrung an";
+"settings_general" = "Allgemein";
+"settings_security" = "Sicherheit";
+"settings_appearance" = "Erscheinungsbild";
+"settings_about" = "Über";
+"settings_developer" = "Entwickler";
+
+"settings_notifications" = "Push-Benachrichtigungen";
+"settings_notifications_subtitle" = "Erhalten Sie Benachrichtigungen über anstehende Zahlungen";
+"settings_days_before" = "Tage vor Fälligkeit";
+"settings_days_before_subtitle" = "Benachrichtigungszeitpunkt";
+"settings_weekly_review" = "Wöchentliche Überprüfung";
+"settings_weekly_review_subtitle" = "Wöchentliche Finanzübersicht-Erinnerung";
+"settings_default_currency" = "Standardwährung";
+"settings_default_currency_subtitle" = "Währung für neue Darlehen";
+"settings_language" = "Sprache";
+"settings_language_subtitle" = "App-Anzeigesprache";
+"settings_biometric" = "Biometrische Authentifizierung";
+"settings_biometric_subtitle" = "Face ID oder Touch ID zum Entsperren verwenden";
+"settings_dark_mode" = "Dunkler Modus";
+"settings_dark_mode_subtitle" = "Dunkles Design verwenden";
+
+"settings_version" = "Version";
+"settings_privacy" = "Datenschutzrichtlinie";
+"settings_privacy_subtitle" = "Unsere Datenschutzrichtlinie anzeigen";
+"settings_terms" = "Nutzungsbedingungen";
+"settings_terms_subtitle" = "Geschäftsbedingungen anzeigen";
+
+"settings_test_notification" = "Test-Benachrichtigung";
+"settings_test_notification_subtitle" = "Test-Benachrichtigung in 5 Sekunden senden";
+"settings_view_notifications" = "Ausstehende Benachrichtigungen anzeigen";
+"settings_view_notifications_subtitle" = "Geplante Benachrichtigungen überprüfen";
+
+// MARK: - Loan Roles
+"role_lent" = "Verliehen";
+"role_borrowed" = "Geliehen";
+"role_bank_credit" = "Bankkredit";
+
+// MARK: - Payment Status
+"status_planned" = "Geplant";
+"status_paid" = "Bezahlt";
+"status_overdue" = "Überfällig";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Wöchentlich";
+"frequency_monthly" = "Monatlich";
+"frequency_quarterly" = "Vierteljährlich";
+"frequency_yearly" = "Jährlich";
+
+// MARK: - Interest Mode
+"interest_none" = "Keine Zinsen";
+"interest_percentage" = "Jährlicher Prozentsatz";
+"interest_fixed" = "Feste Gesamtsumme";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Person";
+"counterparty_institution" = "Institution";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Zahlungserinnerung";
+"notification_payment_reminder_body" = "Zahlung für '%@' ist in %d Tag(en) fällig: %@";
+"notification_payment_due_title" = "Zahlung heute fällig";
+"notification_payment_due_body" = "Zahlung für '%@' ist heute fällig: %@";
+"notification_weekly_review_title" = "Wöchentliche Finanzübersicht";
+"notification_weekly_review_body" = "Zeit, Ihre Darlehen und anstehenden Zahlungen in Monetiq zu überprüfen";
+"notification_test_title" = "Test-Benachrichtigung";
+"notification_test_body" = "Dies ist eine Test-Benachrichtigung von Monetiq";

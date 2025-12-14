@@ -116,6 +116,8 @@
 "settings_weekly_review_subtitle" = "Promemoria di revisione finanziaria settimanale";
 "settings_default_currency" = "Valuta Predefinita";
 "settings_default_currency_subtitle" = "Valuta per i nuovi prestiti";
+"settings_language" = "Lingua";
+"settings_language_subtitle" = "Lingua di visualizzazione dell'app";
 "settings_biometric" = "Autenticazione Biometrica";
 "settings_biometric_subtitle" = "Usa Face ID o Touch ID per sbloccare";
 "settings_dark_mode" = "Modalità Scura";

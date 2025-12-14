@@ -116,6 +116,8 @@
 "settings_weekly_review_subtitle" = "साप्ताहिक वित्तीय समीक्षा रिमाइंडर";
 "settings_default_currency" = "डिफ़ॉल्ट मुद्रा";
 "settings_default_currency_subtitle" = "नए लोन के लिए मुद्रा";
+"settings_language" = "भाषा";
+"settings_language_subtitle" = "ऐप प्रदर्शन भाषा";
 "settings_biometric" = "बायोमेट्रिक प्रमाणीकरण";
 "settings_biometric_subtitle" = "अनलॉक करने के लिए Face ID या Touch ID का उपयोग करें";
 "settings_dark_mode" = "डार्क मोड";

@@ -193,6 +193,7 @@
 				en,
 				Base,
 				ro,
+				de,
 				"zh-Hans",
 				hi,
 				it,

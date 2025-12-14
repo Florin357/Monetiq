@@ -116,6 +116,8 @@
 "settings_weekly_review_subtitle" = "Еженедельное напоминание о финансовом обзоре";
 "settings_default_currency" = "Валюта по умолчанию";
 "settings_default_currency_subtitle" = "Валюта для новых займов";
+"settings_language" = "Язык";
+"settings_language_subtitle" = "Язык отображения приложения";
 "settings_biometric" = "Биометрическая аутентификация";
 "settings_biometric_subtitle" = "Используйте Face ID или Touch ID для разблокировки";
 "settings_dark_mode" = "Темный режим";

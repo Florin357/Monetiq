@@ -25,6 +25,7 @@ struct LanguageCatalog {
         Language(code: "system", name: "System Default"),
         Language(code: "en", name: "English"),
         Language(code: "ro", name: "Română"),
+        Language(code: "de", name: "Deutsch"),
         Language(code: "zh-Hans", name: "中文 (简体)"),
         Language(code: "hi", name: "हिन्दी"),
         Language(code: "it", name: "Italiano"),
