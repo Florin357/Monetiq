@@ -262,7 +262,7 @@ struct LoanDetailView: View {
         }
     }
     
-    private func scrollToFocusedPayment(proxy: ScrollViewReader) {
+    private func scrollToFocusedPayment(proxy: ScrollViewReader.ScrollViewProxy) {
         // Determine which payment to focus on
         var targetPaymentId: UUID?
         
