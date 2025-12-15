@@ -97,6 +97,17 @@
 "settings_privacy_unavailable_message" = "隐私政策目前不可用。请稍后重试或联系支持。";
 "settings_terms_unavailable_title" = "服务条款不可用";
 "settings_terms_unavailable_message" = "服务条款目前不可用。请稍后重试或联系支持。";
+
+// Settings - Version Info Labels
+"settings_version_label" = "版本";
+"settings_build_label" = "构建";
+"settings_device_info" = "本地数据 • 无需账户";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "隐私政策\n\n生效日期：2025年12月15日\n\nMonetiq的设计以隐私为重点。您的所有财务数据都存储在您的设备本地，从不传输到我们的服务器或第三方。\n\n1. 我们收集的信息\n• 贷款信息\n• 付款计划和历史记录\n• 应用程序偏好设置\n\n2. 我们如何使用您的信息\n您的数据仅用于提供贷款跟踪和付款提醒功能。\n\n3. 存储和安全\n所有数据都使用iOS安全存储在您的设备本地存储。\n\n4. 数据共享\n我们不会与第三方共享、出售或传输您的个人信息。\n\n如对此隐私政策有疑问，请通过App Store联系我们。";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "服务条款\n\n生效日期：2025年12月15日\n\n1. 接受条款\n通过使用Monetiq，您同意这些服务条款。\n\n2. 服务描述\nMonetiq是一个用于跟踪贷款和管理付款计划的个人理财应用程序。\n\n3. 用户责任\n您对输入数据的准确性负责。\n\n4. 限制\nMonetiq仅供个人使用。该应用程序不提供财务、法律或税务建议。\n\n如对这些条款有疑问，请通过App Store联系我们。";
 "calculator_frequency" = "付款频率";
 "calculator_calculate" = "计算付款";
 "calculator_results" = "结果";

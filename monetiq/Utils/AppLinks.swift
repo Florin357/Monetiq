@@ -41,9 +41,18 @@ struct AppLinks {
         return "\(appVersion) (\(buildNumber))"
     }
     
-    /// App info subtitle for Settings
+    /// Professional app info for Settings About section
     static var appInfoSubtitle: String {
-        return "\(appName) • Version \(versionString) • Made for iPhone"
+        let versionLabel = L10n.string("settings_version_label")
+        let buildLabel = L10n.string("settings_build_label")
+        let deviceLabel = L10n.string("settings_device_info")
+        
+        return "\(appName)\n\(versionLabel) \(appVersion) (\(buildLabel) \(buildNumber))\n\(deviceLabel)"
+    }
+    
+    /// Simple version string for display
+    static var simpleVersionString: String {
+        return "Version \(appVersion) (Build \(buildNumber))"
     }
     
     // MARK: - URL Validation

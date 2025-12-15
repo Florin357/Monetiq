@@ -133,21 +133,9 @@ struct CalculatorView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header - Premium styling
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                    Text(L10n.string("calculator_title"))
-                        .font(MonetiqTheme.Typography.largeTitle)
-                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
-                    
-                    Text(L10n.string("calculator_subtitle"))
-                        .font(MonetiqTheme.Typography.subheadline)
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                        .opacity(0.8)
-                }
-                .monetiqHeader()
-                .padding(.bottom, MonetiqTheme.Spacing.sm)
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
                 
                 // Input Form
                 VStack(spacing: MonetiqTheme.Spacing.lg) {
@@ -290,8 +278,11 @@ struct CalculatorView: View {
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
             }
             .padding(.vertical, MonetiqTheme.Spacing.sectionSpacing)
+            }
+            .navigationTitle(L10n.string("calculator_title"))
+            .navigationBarTitleDisplayMode(.large)
+            .monetiqBackground()
         }
-        .monetiqBackground()
         .onTapGesture {
             focusedField = nil
         }

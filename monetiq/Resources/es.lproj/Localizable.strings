@@ -97,6 +97,17 @@
 "settings_privacy_unavailable_message" = "La política de privacidad no está disponible en este momento. Por favor, inténtelo de nuevo más tarde o contacte con soporte.";
 "settings_terms_unavailable_title" = "Términos de Servicio No Disponibles";
 "settings_terms_unavailable_message" = "Los términos de servicio no están disponibles en este momento. Por favor, inténtelo de nuevo más tarde o contacte con soporte.";
+
+// Settings - Version Info Labels
+"settings_version_label" = "Versión";
+"settings_build_label" = "Build";
+"settings_device_info" = "Datos locales • Sin cuenta requerida";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "Política de Privacidad\n\nFecha Efectiva: 15 de Diciembre de 2025\n\nMonetiq está diseñado con la privacidad en mente. Todos sus datos financieros se almacenan localmente en su dispositivo y nunca se transmiten a nuestros servidores o terceros.\n\n1. Información que Recopilamos\n• Información de préstamos\n• Horarios de pago e historial\n• Preferencias de la aplicación\n• Preferencias de notificaciones locales\n\n2. Cómo Usamos su Información\nSus datos se usan únicamente para proporcionar funcionalidad de seguimiento de préstamos y recordatorios de pago.\n\n3. Almacenamiento y Seguridad\nTodos los datos se almacenan localmente usando el almacenamiento seguro de iOS. No se transmiten datos por internet.\n\n4. Compartir Datos\nNo compartimos, vendemos o transmitimos su información personal a terceros.\n\n5. Sus Derechos\nPuede eliminar todos los datos de la aplicación en cualquier momento a través de Configuración → Restablecer Aplicación.\n\nPara preguntas sobre esta política de privacidad, contáctenos a través del App Store.";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "Términos de Servicio\n\nFecha Efectiva: 15 de Diciembre de 2025\n\n1. Aceptación de Términos\nAl usar Monetiq, acepta estos Términos de Servicio.\n\n2. Descripción del Servicio\nMonetiq es una aplicación de finanzas personales para rastrear préstamos y gestionar horarios de pago.\n\n3. Responsabilidades del Usuario\n• Es responsable de la precisión de los datos que ingresa\n• Debe cumplir con las leyes aplicables\n• Es responsable de respaldar su dispositivo\n\n4. Limitaciones\n• Monetiq es solo para uso personal\n• La aplicación no proporciona asesoramiento financiero, legal o fiscal\n• No somos responsables de decisiones financieras basadas en datos de la aplicación\n\n5. Datos y Privacidad\nTodos los datos se almacenan localmente en su dispositivo.\n\n6. Limitación de Responsabilidad\nNo seremos responsables de daños indirectos, incidentales o consecuentes.\n\nPara preguntas sobre estos términos, contáctenos a través del App Store.";
 "calculator_frequency" = "Frecuencia de Pago";
 "calculator_calculate" = "Calcular Pago";
 "calculator_results" = "Resultados";
