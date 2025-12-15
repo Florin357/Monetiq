@@ -264,7 +264,8 @@ class NotificationManager {
         let identifiers = loan.payments.flatMap { payment in
             [
                 "payment_before_\(payment.id.uuidString)",
-                "payment_due_\(payment.id.uuidString)"
+                "payment_due_\(payment.id.uuidString)",
+                "snooze_\(payment.id.uuidString)" // Also cancel snooze notifications
             ]
         }
         
