@@ -310,6 +310,27 @@ struct DashboardPaymentRowView: View {
     }
     
     var body: some View {
+        Group {
+            if let loan = payment.loan {
+                NavigationLink(destination: LoanDetailView(
+                    loan: loan,
+                    focusPaymentId: paymentItem.paymentReference
+                )) {
+                    paymentRowContent
+                }
+                .buttonStyle(PlainButtonStyle())
+            } else {
+                // Fallback for orphaned payment (should not happen in normal use)
+                paymentRowContent
+                    .onTapGesture {
+                        // Could show an alert here if needed
+                        print("⚠️ Dashboard: Loan not found for payment \(paymentItem.paymentReference)")
+                    }
+            }
+        }
+    }
+    
+    private var paymentRowContent: some View {
         HStack(spacing: MonetiqTheme.Spacing.md) {
             // Leading indicator
             RoundedRectangle(cornerRadius: 2)

@@ -13,8 +13,12 @@ struct LoanDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
     let loan: Loan
+    let focusPaymentId: UUID? // Optional payment to focus on
+    let focusDueDate: Date? // Alternative: focus by due date
+    
     @State private var showingEditLoan = false
     @State private var showingDeleteAlert = false
+    @State private var highlightedPaymentId: UUID? // For brief highlighting
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
@@ -24,8 +28,17 @@ struct LoanDetailView: View {
         loan.payments.sorted { $0.dueDate < $1.dueDate }
     }
     
+    // MARK: - Initializers
+    
+    init(loan: Loan, focusPaymentId: UUID? = nil, focusDueDate: Date? = nil) {
+        self.loan = loan
+        self.focusPaymentId = focusPaymentId
+        self.focusDueDate = focusDueDate
+    }
+    
     var body: some View {
-        ScrollView {
+        ScrollViewReader { proxy in
+            ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header Card
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
@@ -111,9 +124,13 @@ struct LoanDetailView: View {
                     } else {
                         LazyVStack(spacing: MonetiqTheme.Spacing.sm) {
                             ForEach(sortedPayments, id: \.id) { payment in
-                                PaymentRowView(payment: payment) {
+                                PaymentRowView(
+                                    payment: payment,
+                                    isHighlighted: highlightedPaymentId == payment.id
+                                ) {
                                     markPaymentAsPaid(payment)
                                 }
+                                .id("payment-\(payment.id)")
                             }
                         }
                     }
@@ -175,6 +192,10 @@ struct LoanDetailView: View {
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
             }
             .padding(.vertical, MonetiqTheme.Spacing.lg)
+            .onAppear {
+                scrollToFocusedPayment(proxy: proxy)
+            }
+        }
         }
         .monetiqBackground()
         .navigationTitle(L10n.string("loan_details_nav_title"))
@@ -240,6 +261,42 @@ struct LoanDetailView: View {
             await notificationManager.updateBadgeCount()
         }
     }
+    
+    private func scrollToFocusedPayment(proxy: ScrollViewReader) {
+        // Determine which payment to focus on
+        var targetPaymentId: UUID?
+        
+        if let focusPaymentId = focusPaymentId {
+            targetPaymentId = focusPaymentId
+        } else if let focusDueDate = focusDueDate {
+            // Find payment by due date if ID is not provided
+            targetPaymentId = sortedPayments.first(where: {
+                Calendar.current.isDate($0.dueDate, inSameDayAs: focusDueDate)
+            })?.id
+        }
+        
+        if let targetId = targetPaymentId {
+            if let payment = sortedPayments.first(where: { $0.id == targetId }) {
+                withAnimation {
+                    proxy.scrollTo("payment-\(payment.id)", anchor: .center)
+                    highlightedPaymentId = payment.id // Set for highlighting
+                }
+                // Remove highlight after a delay
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation {
+                        highlightedPaymentId = nil
+                    }
+                }
+            } else {
+                // Fallback if specific payment not found (e.g., edited loan)
+                if let nearestUpcoming = sortedPayments.first(where: { $0.status == .planned }) {
+                    withAnimation {
+                        proxy.scrollTo("payment-\(nearestUpcoming.id)", anchor: .center)
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct DetailRow: View {
@@ -263,7 +320,14 @@ struct DetailRow: View {
 
 struct PaymentRowView: View {
     let payment: Payment
+    let isHighlighted: Bool
     let onMarkAsPaid: () -> Void
+    
+    init(payment: Payment, isHighlighted: Bool = false, onMarkAsPaid: @escaping () -> Void) {
+        self.payment = payment
+        self.isHighlighted = isHighlighted
+        self.onMarkAsPaid = onMarkAsPaid
+    }
     
     var body: some View {
         HStack {
@@ -295,9 +359,23 @@ struct PaymentRowView: View {
             }
         }
         .padding(MonetiqTheme.Spacing.sm)
-        .background(payment.status == .paid ? MonetiqTheme.Colors.success.opacity(0.1) : 
-                   payment.isOverdue ? MonetiqTheme.Colors.error.opacity(0.1) : 
-                   MonetiqTheme.Colors.surface)
+        .background(
+            Group {
+                if isHighlighted {
+                    MonetiqTheme.Colors.accent.opacity(0.1)
+                } else if payment.status == .paid {
+                    MonetiqTheme.Colors.success.opacity(0.1)
+                } else if payment.isOverdue {
+                    MonetiqTheme.Colors.error.opacity(0.1)
+                } else {
+                    MonetiqTheme.Colors.surface
+                }
+            }
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.sm)
+                .stroke(isHighlighted ? MonetiqTheme.Colors.accent : Color.clear, lineWidth: 2)
+        )
         .cornerRadius(MonetiqTheme.CornerRadius.sm)
     }
     
