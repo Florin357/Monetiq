@@ -40,5 +40,15 @@ struct monetiqApp: App {
         let context = sharedModelContainer.mainContext
         let appSettings = AppSettings.getOrCreate(in: context)
         NotificationManager.shared.setAppSettings(appSettings)
+        
+        // CONSISTENCY FIX: Reconcile notifications on app launch
+        Task {
+            do {
+                let loans = try context.fetch(FetchDescriptor<Loan>())
+                await NotificationManager.shared.reconcileAllPaymentNotifications(with: loans)
+            } catch {
+                print("Failed to reconcile notifications on app launch: \(error)")
+            }
+        }
     }
 }

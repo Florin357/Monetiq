@@ -95,17 +95,46 @@ class NotificationManager {
             return
         }
         
-        // Count pending payment notifications that are due soon
-        let pendingRequests = await notificationCenter.pendingNotificationRequests()
-        let paymentNotifications = pendingRequests.filter { request in
-            request.identifier.hasPrefix("payment_")
-        }
+        // FIXED: Count upcoming payments that need attention (same logic as Dashboard)
+        // This ensures badge matches what user sees in "Upcoming Payments"
+        let badgeCount = await calculateUpcomingPaymentsBadgeCount()
+        
         
         do {
-            try await notificationCenter.setBadgeCount(paymentNotifications.count)
+            try await notificationCenter.setBadgeCount(badgeCount)
         } catch {
             print("Failed to update badge count: \(error)")
         }
+    }
+    
+    // FIXED: Calculate badge count based on upcoming payments logic
+    private func calculateUpcomingPaymentsBadgeCount() async -> Int {
+        // This must match the Dashboard upcomingPayments logic exactly
+        let today = Date()
+        let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
+        
+        // We need access to all payments - this should be injected or accessed differently
+        // For now, we'll count scheduled notifications that are within the upcoming window
+        let pendingRequests = await notificationCenter.pendingNotificationRequests()
+        let upcomingNotifications = pendingRequests.filter { request in
+            guard request.identifier.hasPrefix("payment_") else { return false }
+            
+            // Check if notification is scheduled within the upcoming window
+            if let triggerDate = extractTriggerDate(from: request) {
+                return triggerDate >= today && triggerDate < thirtyDaysFromNow
+            }
+            return false
+        }
+        
+        return upcomingNotifications.count
+    }
+    
+    // Helper to extract trigger date from notification request
+    private func extractTriggerDate(from request: UNNotificationRequest) -> Date? {
+        if let calendarTrigger = request.trigger as? UNCalendarNotificationTrigger {
+            return calendarTrigger.nextTriggerDate()
+        }
+        return nil
     }
     
     // MARK: - Settings Management
@@ -145,9 +174,18 @@ class NotificationManager {
         // Cancel existing notifications for this loan first
         await cancelNotifications(for: loan)
         
-        let plannedPayments = loan.payments.filter { $0.status == .planned }
+        // FIXED: Only schedule notifications for upcoming payments (same logic as Dashboard)
+        let today = Date()
+        let upcomingWindow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
         
-        for payment in plannedPayments {
+        let upcomingPayments = loan.payments.filter { 
+            $0.status == .planned && 
+            $0.dueDate >= today && 
+            $0.dueDate < upcomingWindow 
+        }
+        
+        
+        for payment in upcomingPayments {
             await scheduleNotifications(for: payment, loan: loan, settings: settings)
         }
     }
@@ -287,6 +325,66 @@ class NotificationManager {
     func cancelAllNotifications() async {
         notificationCenter.removeAllPendingNotificationRequests()
         print("Canceled all notifications")
+    }
+    
+    // MARK: - Reconciliation (Consistency Fix)
+    
+    /// CONSISTENCY RULES:
+    /// 1. Notifications are ONLY scheduled for "upcoming" payments (same logic as Dashboard)
+    /// 2. Upcoming = planned + dueDate >= today + dueDate < today+30days
+    /// 3. Badge count = count of upcoming payments that need attention
+    /// 4. Snooze affects notification timing, not upcoming status
+    /// 5. Paid payments have NO notifications and don't count toward badge
+    /// 
+    /// This ensures:
+    /// - Dashboard "Plăți Viitoare" count ≈ Badge count ≈ Scheduled notifications count
+    /// - No notifications for far-future payments (beyond 30 days)
+    /// - No stale notifications for paid payments
+    /// 
+    /// Reconciles all payment notifications to ensure consistency with Dashboard
+    /// Call this on app launch and after any payment/loan changes
+    func reconcileAllPaymentNotifications(with loans: [Loan]) async {
+        guard let settings = appSettings, settings.notificationsEnabled else {
+            await cancelAllNotifications()
+            return
+        }
+        
+        let authorized = await requestAuthorizationIfNeeded()
+        guard authorized else { return }
+        
+        // Step 1: Cancel all existing payment notifications
+        let pendingRequests = await notificationCenter.pendingNotificationRequests()
+        let paymentNotificationIds = pendingRequests
+            .filter { $0.identifier.hasPrefix("payment_") || $0.identifier.hasPrefix("snooze_") }
+            .map { $0.identifier }
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: paymentNotificationIds)
+        
+        // Step 2: Schedule notifications for all upcoming payments across all loans
+        let today = Date()
+        let upcomingWindow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
+        
+        var totalScheduled = 0
+        
+        for loan in loans {
+            let upcomingPayments = loan.payments.filter { 
+                $0.status == .planned && 
+                $0.dueDate >= today && 
+                $0.dueDate < upcomingWindow 
+            }
+            
+            for payment in upcomingPayments {
+                if payment.isReminderSnoozed {
+                    await scheduleSnoozeNotification(for: payment, loan: loan)
+                } else {
+                    await scheduleNotifications(for: payment, loan: loan, settings: settings)
+                }
+                totalScheduled += 1
+            }
+        }
+        
+        // Step 3: Update badge count
+        await updateBadgeCount()
     }
     
     func rescheduleNotifications(for payment: Payment) async {

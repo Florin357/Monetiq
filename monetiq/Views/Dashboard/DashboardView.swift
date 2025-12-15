@@ -201,16 +201,29 @@ struct DashboardView: View {
         .monetiqBackground()
     }
     
+    /// SOURCE OF TRUTH: Upcoming Payments Logic
+    /// This defines what payments are considered "upcoming" and should:
+    /// 1. Appear in the Dashboard "Plăți Viitoare" section
+    /// 2. Have scheduled notifications (if notifications enabled)
+    /// 3. Contribute to the app icon badge count
+    /// 
+    /// Rules:
+    /// - payment.status == .planned (not paid)
+    /// - payment.dueDate >= today (not overdue)
+    /// - payment.dueDate < today + 30 days (within upcoming window)
+    /// - snoozeUntil is handled separately for notification timing
     private var upcomingPayments: [UpcomingPaymentItem] {
         let today = Date()
         let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
         
-        return payments
-            .filter { 
-                $0.status == .planned && 
-                $0.dueDate >= today && 
-                $0.dueDate < thirtyDaysFromNow 
-            }
+        let allPlannedPayments = payments.filter { $0.status == .planned }
+        let upcomingFiltered = allPlannedPayments.filter { 
+            $0.dueDate >= today && 
+            $0.dueDate < thirtyDaysFromNow 
+        }
+        
+        
+        return upcomingFiltered
             .sorted { $0.dueDate < $1.dueDate }
             .map { UpcomingPaymentItem(payment: $0) }
     }
@@ -256,10 +269,9 @@ struct DashboardView: View {
         payment.markAsPaid()
         payment.loan?.updateTimestamp()
         
-        // Cancel notifications for this payment
+        // CONSISTENCY FIX: Trigger full reconciliation to ensure consistency
         Task {
-            await NotificationManager.shared.cancelNotifications(for: payment)
-            await NotificationManager.shared.updateBadgeCount()
+            await NotificationManager.shared.reconcileAllPaymentNotifications(with: loans)
         }
         
         // UI will update automatically due to @Query reactivity
@@ -273,10 +285,9 @@ struct DashboardView: View {
         payment.postponeReminder(by: 1)
         payment.loan?.updateTimestamp()
         
-        // Reschedule notifications for this payment
+        // CONSISTENCY FIX: Trigger full reconciliation to ensure consistency
         Task {
-            await NotificationManager.shared.rescheduleNotifications(for: payment)
-            await NotificationManager.shared.updateBadgeCount()
+            await NotificationManager.shared.reconcileAllPaymentNotifications(with: loans)
         }
         
         // UI will update automatically to show snooze status
