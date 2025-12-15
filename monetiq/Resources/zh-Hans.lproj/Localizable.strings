@@ -90,6 +90,7 @@
 "calculator_number_of_payments" = "付款次数";
 "calculator_number_of_payments_placeholder" = "输入付款次数";
 "calculator_number_of_payments_helper" = "例如：12表示1年的月付款";
+"calculator_payments_suffix" = "付款";
 "calculator_frequency" = "付款频率";
 "calculator_calculate" = "计算付款";
 "calculator_results" = "结果";

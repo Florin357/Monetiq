@@ -7,6 +7,110 @@
 
 import SwiftUI
 
+// MARK: - Locale-Aware Number Formatting Helper
+/// Handles locale-aware parsing and formatting for calculator numeric inputs
+/// Supports different locales (e.g., Italian uses comma, English uses dot as decimal separator)
+class CalculatorNumberFormatter {
+    static let shared = CalculatorNumberFormatter()
+    
+    private let decimalFormatter: NumberFormatter
+    private let integerFormatter: NumberFormatter
+    private let percentageFormatter: NumberFormatter
+    
+    private init() {
+        // Decimal formatter for Principal Amount (currency-like)
+        decimalFormatter = NumberFormatter()
+        decimalFormatter.numberStyle = .decimal
+        decimalFormatter.locale = Locale.current
+        decimalFormatter.maximumFractionDigits = 2
+        decimalFormatter.minimumFractionDigits = 0
+        decimalFormatter.usesGroupingSeparator = false // Keep simple while editing
+        
+        // Integer formatter for Number of Payments
+        integerFormatter = NumberFormatter()
+        integerFormatter.numberStyle = .none
+        integerFormatter.locale = Locale.current
+        integerFormatter.maximumFractionDigits = 0
+        integerFormatter.allowsFloats = false
+        
+        // Percentage formatter for Interest Rate
+        percentageFormatter = NumberFormatter()
+        percentageFormatter.numberStyle = .decimal
+        percentageFormatter.locale = Locale.current
+        percentageFormatter.maximumFractionDigits = 2
+        percentageFormatter.minimumFractionDigits = 0
+        percentageFormatter.usesGroupingSeparator = false
+    }
+    
+    // MARK: - Parsing (String -> Number)
+    
+    func parseDecimal(_ string: String) -> Double? {
+        let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        return decimalFormatter.number(from: trimmed)?.doubleValue
+    }
+    
+    func parseInteger(_ string: String) -> Int? {
+        let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        return integerFormatter.number(from: trimmed)?.intValue
+    }
+    
+    func parsePercentage(_ string: String) -> Double? {
+        let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        return percentageFormatter.number(from: trimmed)?.doubleValue
+    }
+    
+    // MARK: - Formatting (Number -> String)
+    
+    func formatDecimal(_ value: Double) -> String {
+        return decimalFormatter.string(from: NSNumber(value: value)) ?? ""
+    }
+    
+    func formatInteger(_ value: Int) -> String {
+        return integerFormatter.string(from: NSNumber(value: value)) ?? ""
+    }
+    
+    func formatPercentage(_ value: Double) -> String {
+        return percentageFormatter.string(from: NSNumber(value: value)) ?? ""
+    }
+    
+    // MARK: - Input Filtering
+    
+    /// Filters input for decimal fields (allows digits and one decimal separator)
+    func filterDecimalInput(_ input: String) -> String {
+        let decimalSeparator = decimalFormatter.decimalSeparator ?? "."
+        let allowedCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: decimalSeparator))
+        
+        var filtered = input.components(separatedBy: allowedCharacters.inverted).joined()
+        
+        // Allow only one decimal separator
+        let separatorCount = filtered.components(separatedBy: decimalSeparator).count - 1
+        if separatorCount > 1 {
+            // Keep only the first occurrence
+            if let firstSeparatorIndex = filtered.firstIndex(of: Character(decimalSeparator)) {
+                let beforeSeparator = String(filtered[..<firstSeparatorIndex])
+                let afterSeparator = String(filtered[filtered.index(after: firstSeparatorIndex)...])
+                    .replacingOccurrences(of: decimalSeparator, with: "")
+                filtered = beforeSeparator + decimalSeparator + afterSeparator
+            }
+        }
+        
+        return filtered
+    }
+    
+    /// Filters input for integer fields (allows digits only)
+    func filterIntegerInput(_ input: String) -> String {
+        return input.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+    }
+    
+    /// Gets the current locale's decimal separator for display purposes
+    var currentDecimalSeparator: String {
+        return decimalFormatter.decimalSeparator ?? "."
+    }
+}
+
 struct CalculatorView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var principalAmount: String = ""
@@ -70,7 +174,7 @@ struct CalculatorView: View {
                         title: L10n.string("calculator_number_of_payments"),
                         placeholder: L10n.string("calculator_number_of_payments_placeholder"),
                         text: $numberOfPayments,
-                        suffix: "payments",
+                        suffix: L10n.string("calculator_payments_suffix"),
                         helperText: L10n.string("calculator_number_of_payments_helper"),
                         focusedField: $focusedField,
                         fieldType: .term
@@ -207,10 +311,15 @@ struct CalculatorView: View {
         }
     }
     
+    /// LOCALE-AWARE INPUT VALIDATION
+    /// Uses NumberFormatter to parse inputs according to current locale
+    /// (e.g., "10,5" in Italian locale, "10.5" in English locale)
     private var isInputValid: Bool {
-        guard let principal = Double(principalAmount),
-              let rate = Double(interestRate.isEmpty ? "0" : interestRate),
-              let term = Int(numberOfPayments),
+        let formatter = CalculatorNumberFormatter.shared
+        
+        guard let principal = formatter.parseDecimal(principalAmount),
+              let rate = formatter.parsePercentage(interestRate.isEmpty ? "0" : interestRate),
+              let term = formatter.parseInteger(numberOfPayments),
               principal > 0, rate >= 0, term > 0 else {
             return false
         }
@@ -219,9 +328,9 @@ struct CalculatorView: View {
     
     private var shareText: String {
         guard let result = calculationResult,
-              let principal = Double(principalAmount),
-              let rate = Double(interestRate.isEmpty ? "0" : interestRate),
-              let term = Int(numberOfPayments),
+              let principal = CalculatorNumberFormatter.shared.parseDecimal(principalAmount),
+              let rate = CalculatorNumberFormatter.shared.parsePercentage(interestRate.isEmpty ? "0" : interestRate),
+              let term = CalculatorNumberFormatter.shared.parseInteger(numberOfPayments),
               let generatedAt = generatedAt else {
             return ""
         }
@@ -250,8 +359,10 @@ struct CalculatorView: View {
     }
     
     private func calculatePayment() {
-        guard let principal = Double(principalAmount),
-              let term = Int(numberOfPayments),
+        let formatter = CalculatorNumberFormatter.shared
+        
+        guard let principal = formatter.parseDecimal(principalAmount),
+              let term = formatter.parseInteger(numberOfPayments),
               principal > 0, term > 0 else {
             showValidationError = true
             calculationResult = nil
@@ -261,7 +372,7 @@ struct CalculatorView: View {
             return
         }
         
-        let rate = Double(interestRate.isEmpty ? "0" : interestRate) ?? 0.0
+        let rate = formatter.parsePercentage(interestRate.isEmpty ? "0" : interestRate) ?? 0.0
         showValidationError = false
         
         calculationResult = LoanCalculator.calculateForDisplay(
@@ -289,7 +400,13 @@ struct AmountCurrencyField: View {
                 .foregroundColor(MonetiqTheme.Colors.onSurface)
             
             HStack(spacing: 0) {
-                TextField(placeholder, text: $text)
+                TextField(placeholder, text: Binding(
+                    get: { text },
+                    set: { newValue in
+                        // LOCALE-AWARE INPUT FILTERING: Allow digits and locale-specific decimal separator
+                        text = CalculatorNumberFormatter.shared.filterDecimalInput(newValue)
+                    }
+                ))
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                     .keyboardType(.decimalPad)
@@ -357,6 +474,16 @@ struct CalculatorInputField: View {
         self.fieldType = fieldType
     }
     
+    /// Returns appropriate keyboard type based on field type
+    private var keyboardTypeForField: UIKeyboardType {
+        switch fieldType {
+        case .term:
+            return .numberPad  // Integer only - no decimal point
+        case .interest, .principal:
+            return .decimalPad // Allow decimals
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
             Text(title)
@@ -364,10 +491,25 @@ struct CalculatorInputField: View {
                 .foregroundColor(MonetiqTheme.Colors.onSurface)
             
             HStack {
-                TextField(placeholder, text: $text)
+                TextField(placeholder, text: Binding(
+                    get: { text },
+                    set: { newValue in
+                        // FIELD-SPECIFIC INPUT FILTERING
+                        switch fieldType {
+                        case .interest:
+                            // Interest Rate: Allow decimals with locale-aware separator
+                            text = CalculatorNumberFormatter.shared.filterDecimalInput(newValue)
+                        case .term:
+                            // Number of Payments: Integers only
+                            text = CalculatorNumberFormatter.shared.filterIntegerInput(newValue)
+                        default:
+                            text = newValue
+                        }
+                    }
+                ))
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
-                    .keyboardType(.decimalPad)
+                    .keyboardType(keyboardTypeForField)
                     .focused(focusedField, equals: fieldType)
                 
                 if let suffix = suffix {

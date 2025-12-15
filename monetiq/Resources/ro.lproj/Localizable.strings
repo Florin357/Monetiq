@@ -89,6 +89,7 @@
 "calculator_number_of_payments" = "Numărul de Plăți";
 "calculator_number_of_payments_placeholder" = "Introdu numărul de plăți";
 "calculator_number_of_payments_helper" = "Exemplu: 12 pentru 1 an de plăți lunare";
+"calculator_payments_suffix" = "plăți";
 "calculator_frequency" = "Frecvența Plăților";
 "calculator_calculate" = "Calculează Plata";
 "calculator_results" = "Rezultate";

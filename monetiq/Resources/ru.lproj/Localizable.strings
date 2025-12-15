@@ -90,6 +90,7 @@
 "calculator_number_of_payments" = "Количество платежей";
 "calculator_number_of_payments_placeholder" = "Введите количество платежей";
 "calculator_number_of_payments_helper" = "Пример: 12 для 1 года ежемесячных платежей";
+"calculator_payments_suffix" = "платежи";
 "calculator_frequency" = "Частота платежей";
 "calculator_calculate" = "Рассчитать платеж";
 "calculator_results" = "Результаты";

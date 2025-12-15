@@ -90,6 +90,7 @@
 "calculator_number_of_payments" = "Anzahl der Zahlungen";
 "calculator_number_of_payments_placeholder" = "Anzahl der Zahlungen eingeben";
 "calculator_number_of_payments_helper" = "Beispiel: 12 für 1 Jahr monatliche Zahlungen";
+"calculator_payments_suffix" = "Zahlungen";
 "calculator_frequency" = "Zahlungshäufigkeit";
 "calculator_calculate" = "Zahlung berechnen";
 "calculator_results" = "Ergebnisse";

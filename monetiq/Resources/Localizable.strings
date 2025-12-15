@@ -95,6 +95,7 @@
 "calculator_number_of_payments" = "Number of Payments";
 "calculator_number_of_payments_placeholder" = "Enter number of payments";
 "calculator_number_of_payments_helper" = "Example: 12 for 1 year of monthly payments";
+"calculator_payments_suffix" = "payments";
 "calculator_frequency" = "Payment Frequency";
 "calculator_calculate" = "Calculate Payment";
 "calculator_results" = "Results";

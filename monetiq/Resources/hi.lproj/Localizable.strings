@@ -90,6 +90,7 @@
 "calculator_number_of_payments" = "भुगतानों की संख्या";
 "calculator_number_of_payments_placeholder" = "भुगतानों की संख्या दर्ज करें";
 "calculator_number_of_payments_helper" = "उदाहरण: मासिक भुगतान के 1 साल के लिए 12";
+"calculator_payments_suffix" = "भुगतान";
 "calculator_frequency" = "भुगतान आवृत्ति";
 "calculator_calculate" = "भुगतान की गणना करें";
 "calculator_results" = "परिणाम";
