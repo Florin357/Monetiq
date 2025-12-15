@@ -105,6 +105,12 @@ struct DashboardView: View {
                         LazyVStack(spacing: MonetiqTheme.Spacing.xs) {
                             ForEach(upcomingPayments.prefix(5), id: \.stableKey) { item in
                                 DashboardPaymentRowView(paymentItem: item)
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                        Button(L10n.string("dashboard_mark_paid")) {
+                                            markPaymentAsPaid(item)
+                                        }
+                                        .tint(MonetiqTheme.Colors.success)
+                                    }
                             }
                         }
                         .monetiqSection()
@@ -186,6 +192,25 @@ struct DashboardView: View {
         }
         
         return totals
+    }
+    
+    // MARK: - Payment Actions
+    
+    private func markPaymentAsPaid(_ item: UpcomingPaymentItem) {
+        let payment = item.payment
+        
+        // Use the same domain action as in Loan Details (single source of truth)
+        payment.markAsPaid()
+        payment.loan?.updateTimestamp()
+        
+        // Cancel notifications for this payment
+        Task {
+            await NotificationManager.shared.cancelNotifications(for: payment)
+            await NotificationManager.shared.updateBadgeCount()
+        }
+        
+        // UI will update automatically due to @Query reactivity
+        // Row will disappear if payment no longer qualifies as upcoming
     }
 }
 

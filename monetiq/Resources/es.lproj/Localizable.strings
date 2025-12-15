@@ -292,3 +292,6 @@
 "biometric_error_system_cancel" = "Autenticación cancelada por el sistema";
 "biometric_error_passcode_not_set" = "El código del dispositivo no está configurado";
 "biometric_error_biometry_lockout" = "La autenticación biométrica está bloqueada";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Marcar Como Pagado";

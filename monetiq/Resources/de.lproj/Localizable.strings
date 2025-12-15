@@ -295,3 +295,6 @@
 "biometric_error_system_cancel" = "Authentifizierung wurde vom System abgebrochen";
 "biometric_error_passcode_not_set" = "Gerätecode ist nicht gesetzt";
 "biometric_error_biometry_lockout" = "Biometrische Authentifizierung ist gesperrt";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Als Bezahlt Markieren";

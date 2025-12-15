@@ -293,3 +293,6 @@
 "biometric_error_system_cancel" = "Authentication was cancelled by the system";
 "biometric_error_passcode_not_set" = "Device passcode is not set";
 "biometric_error_biometry_lockout" = "Biometric authentication is locked out";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Mark Paid";

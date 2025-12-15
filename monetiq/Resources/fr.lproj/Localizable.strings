@@ -292,3 +292,6 @@
 "biometric_error_system_cancel" = "Authentification annulée par le système";
 "biometric_error_passcode_not_set" = "Le code de l'appareil n'est pas défini";
 "biometric_error_biometry_lockout" = "L'authentification biométrique est verrouillée";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Marquer Comme Payé";

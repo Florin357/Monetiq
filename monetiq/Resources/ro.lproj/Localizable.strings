@@ -293,3 +293,6 @@
 "biometric_error_system_cancel" = "Autentificarea a fost anulată de sistem";
 "biometric_error_passcode_not_set" = "Codul de acces al dispozitivului nu este setat";
 "biometric_error_biometry_lockout" = "Autentificarea biometrică este blocată";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Marchează Plătit";
