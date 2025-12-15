@@ -104,19 +104,11 @@ struct DashboardView: View {
                     } else {
                         LazyVStack(spacing: MonetiqTheme.Spacing.xs) {
                             ForEach(upcomingPayments.prefix(5), id: \.stableKey) { item in
-                                DashboardPaymentRowView(paymentItem: item)
-                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                        Button(L10n.string("dashboard_mark_paid")) {
-                                            markPaymentAsPaid(item)
-                                        }
-                                        .tint(MonetiqTheme.Colors.success)
-                                    }
-                                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                                        Button(L10n.string("dashboard_postpone")) {
-                                            postponePayment(item)
-                                        }
-                                        .tint(MonetiqTheme.Colors.warning)
-                                    }
+                                DashboardPaymentRowView(
+                                    paymentItem: item,
+                                    onMarkPaid: { markPaymentAsPaid(item) },
+                                    onPostpone: { postponePayment(item) }
+                                )
                             }
                         }
                         .monetiqSection()
@@ -323,6 +315,8 @@ struct MultiCurrencySummaryCard: View {
 
 struct DashboardPaymentRowView: View {
     let paymentItem: UpcomingPaymentItem
+    let onMarkPaid: () -> Void
+    let onPostpone: () -> Void
     
     // Convenience accessor for the underlying payment
     private var payment: Payment { paymentItem.payment }
@@ -389,6 +383,18 @@ struct DashboardPaymentRowView: View {
                         print("⚠️ Dashboard: Loan not found for payment \(paymentItem.paymentReference)")
                     }
             }
+        }
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button(L10n.string("dashboard_mark_paid")) {
+                onMarkPaid()
+            }
+            .tint(MonetiqTheme.Colors.success)
+        }
+        .swipeActions(edge: .leading, allowsFullSwipe: false) {
+            Button(L10n.string("dashboard_postpone")) {
+                onPostpone()
+            }
+            .tint(MonetiqTheme.Colors.warning)
         }
     }
     
