@@ -8,6 +8,34 @@
 import SwiftUI
 import SwiftData
 
+// MARK: - Dashboard-specific types for upcoming payments interactions
+
+struct UpcomingPaymentItem: Identifiable {
+    let id: String // stable key for SwiftUI
+    let loanID: UUID
+    let loanTitle: String
+    let counterparty: String?
+    let dueDate: Date
+    let amount: Double
+    let currency: String
+    let paymentReference: UUID // payment.id for stable reference
+    let payment: Payment // reference to actual payment for actions
+    
+    var stableKey: String { id }
+    
+    init(payment: Payment) {
+        self.payment = payment
+        self.paymentReference = payment.id
+        self.id = payment.id.uuidString // use payment UUID as stable key
+        self.loanID = payment.loan?.id ?? UUID()
+        self.loanTitle = payment.loan?.title ?? "Unknown Loan"
+        self.counterparty = payment.loan?.counterparty?.name
+        self.dueDate = payment.dueDate
+        self.amount = payment.amount
+        self.currency = payment.loan?.currencyCode ?? "RON"
+    }
+}
+
 struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
@@ -75,8 +103,8 @@ struct DashboardView: View {
                         .monetiqEmptyState()
                     } else {
                         LazyVStack(spacing: MonetiqTheme.Spacing.xs) {
-                            ForEach(upcomingPayments.prefix(5), id: \.id) { payment in
-                                DashboardPaymentRowView(payment: payment)
+                            ForEach(upcomingPayments.prefix(5), id: \.stableKey) { item in
+                                DashboardPaymentRowView(paymentItem: item)
                             }
                         }
                         .monetiqSection()
@@ -114,7 +142,7 @@ struct DashboardView: View {
         .monetiqBackground()
     }
     
-    private var upcomingPayments: [Payment] {
+    private var upcomingPayments: [UpcomingPaymentItem] {
         let today = Date()
         let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
         
@@ -125,6 +153,7 @@ struct DashboardView: View {
                 $0.dueDate < thirtyDaysFromNow 
             }
             .sorted { $0.dueDate < $1.dueDate }
+            .map { UpcomingPaymentItem(payment: $0) }
     }
     
     private var recentLoans: [Loan] {
@@ -246,7 +275,10 @@ struct MultiCurrencySummaryCard: View {
 }
 
 struct DashboardPaymentRowView: View {
-    let payment: Payment
+    let paymentItem: UpcomingPaymentItem
+    
+    // Convenience accessor for the underlying payment
+    private var payment: Payment { paymentItem.payment }
     
     private var roleColor: Color {
         guard let role = payment.loan?.role else { return MonetiqTheme.Colors.neutral }
@@ -262,7 +294,7 @@ struct DashboardPaymentRowView: View {
     }
     
     private var daysUntilDue: Int {
-        Calendar.current.dateComponents([.day], from: Date(), to: payment.dueDate).day ?? 0
+        Calendar.current.dateComponents([.day], from: Date(), to: paymentItem.dueDate).day ?? 0
     }
     
     private var dueDateText: String {
@@ -273,7 +305,7 @@ struct DashboardPaymentRowView: View {
         } else if daysUntilDue > 1 {
             return L10n.string("payment_due_in_days", daysUntilDue)
         } else {
-            return payment.dueDate.formatted(date: .abbreviated, time: .omitted)
+            return paymentItem.dueDate.formatted(date: .abbreviated, time: .omitted)
         }
     }
     
@@ -285,14 +317,14 @@ struct DashboardPaymentRowView: View {
                 .frame(width: 4, height: 32)
             
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                Text(payment.loan?.title ?? "Unknown Loan")
+                Text(paymentItem.loanTitle)
                     .font(MonetiqTheme.Typography.bodyEmphasized)
                     .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     .lineLimit(1)
                 
                 HStack(spacing: MonetiqTheme.Spacing.sm) {
-                    if let counterparty = payment.loan?.counterparty {
-                        Text(counterparty.name)
+                    if let counterparty = paymentItem.counterparty {
+                        Text(counterparty)
                             .font(MonetiqTheme.Typography.caption)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                             .lineLimit(1)
@@ -310,7 +342,7 @@ struct DashboardPaymentRowView: View {
             
             Spacer()
             
-            Text(CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: payment.loan?.currencyCode ?? "RON"))
+            Text(CurrencyFormatter.shared.format(amount: paymentItem.amount, currencyCode: paymentItem.currency))
                 .currencyText(style: .small, color: roleColor)
         }
         .padding(MonetiqTheme.Spacing.md)
