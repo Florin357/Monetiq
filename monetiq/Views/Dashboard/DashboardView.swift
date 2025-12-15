@@ -102,16 +102,37 @@ struct DashboardView: View {
                         }
                         .monetiqEmptyState()
                     } else {
-                        LazyVStack(spacing: MonetiqTheme.Spacing.xs) {
-                            ForEach(upcomingPayments.prefix(5), id: \.stableKey) { item in
-                                DashboardPaymentRowView(
-                                    paymentItem: item,
-                                    onMarkPaid: { markPaymentAsPaid(item) },
-                                    onPostpone: { postponePayment(item) }
-                                )
+                        List(upcomingPayments.prefix(5), id: \.stableKey) { item in
+                            if let loan = item.payment.loan {
+                                NavigationLink(destination: LoanDetailView(
+                                    loan: loan,
+                                    focusPaymentId: item.paymentReference
+                                )) {
+                                    DashboardPaymentRowContent(paymentItem: item)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(L10n.string("dashboard_mark_paid")) {
+                                        markPaymentAsPaid(item)
+                                    }
+                                    .tint(MonetiqTheme.Colors.success)
+                                }
+                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                    Button(L10n.string("dashboard_postpone")) {
+                                        postponePayment(item)
+                                    }
+                                    .tint(MonetiqTheme.Colors.warning)
+                                }
                             }
                         }
-                        .monetiqSection()
+                        .listStyle(PlainListStyle())
+                        .scrollDisabled(true)
+                        .frame(height: CGFloat(upcomingPayments.prefix(5).count) * 90) // Increased height for better spacing
+                        .background(Color.clear)
+                        .environment(\.defaultMinListRowHeight, 0)
                     }
                 }
                 
@@ -226,6 +247,11 @@ struct DashboardView: View {
         
         // UI will update automatically to show snooze status
     }
+    
+    private func navigateToPayment(_ item: UpcomingPaymentItem) {
+        // This will be handled by the NavigationLink in the row
+        // For now, we'll keep the NavigationLink approach but make it work with swipes
+    }
 }
 
 struct SummaryCard: View {
@@ -313,10 +339,8 @@ struct MultiCurrencySummaryCard: View {
     }
 }
 
-struct DashboardPaymentRowView: View {
+struct DashboardPaymentRowContent: View {
     let paymentItem: UpcomingPaymentItem
-    let onMarkPaid: () -> Void
-    let onPostpone: () -> Void
     
     // Convenience accessor for the underlying payment
     private var payment: Payment { paymentItem.payment }
@@ -366,39 +390,6 @@ struct DashboardPaymentRowView: View {
     }
     
     var body: some View {
-        Group {
-            if let loan = payment.loan {
-                NavigationLink(destination: LoanDetailView(
-                    loan: loan,
-                    focusPaymentId: paymentItem.paymentReference
-                )) {
-                    paymentRowContent
-                }
-                .buttonStyle(PlainButtonStyle())
-            } else {
-                // Fallback for orphaned payment (should not happen in normal use)
-                paymentRowContent
-                    .onTapGesture {
-                        // Could show an alert here if needed
-                        print("⚠️ Dashboard: Loan not found for payment \(paymentItem.paymentReference)")
-                    }
-            }
-        }
-        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            Button(L10n.string("dashboard_mark_paid")) {
-                onMarkPaid()
-            }
-            .tint(MonetiqTheme.Colors.success)
-        }
-        .swipeActions(edge: .leading, allowsFullSwipe: false) {
-            Button(L10n.string("dashboard_postpone")) {
-                onPostpone()
-            }
-            .tint(MonetiqTheme.Colors.warning)
-        }
-    }
-    
-    private var paymentRowContent: some View {
         HStack(spacing: MonetiqTheme.Spacing.md) {
             // Leading indicator
             RoundedRectangle(cornerRadius: 2)
