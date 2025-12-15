@@ -108,6 +108,14 @@
 
 // Legal Documents - Terms of Service
 "terms_of_service_content" = "Nutzungsbedingungen\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Annahme der Bedingungen\n\nDurch die Nutzung von Monetiq stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie nicht zustimmen, verwenden Sie die App bitte nicht.\n\n2. Beschreibung des Dienstes\n\nMonetiq ist eine persönliche Finanz-App zur Verfolgung von Darlehen und Verwaltung von Zahlungsplänen. Die App:\n• Hilft Ihnen, persönliche Darlehen zu verfolgen (gegeben und erhalten)\n• Berechnet Zahlungspläne und Zinsen\n• Bietet lokale Zahlungserinnerungen\n• Speichert alle Daten lokal auf Ihrem Gerät\n\n3. Benutzerverantwortlichkeiten\n\n• Sie sind für die Genauigkeit der eingegebenen Daten verantwortlich\n• Sie müssen bei der Nutzung der App geltende Gesetze einhalten\n• Sie sind für die Sicherung Ihres Geräts verantwortlich, wenn Sie Daten bewahren möchten\n• Sie dürfen die App nicht für illegale Finanzaktivitäten verwenden\n\n4. Einschränkungen und Haftungsausschlüsse\n\n• Monetiq ist nur für den persönlichen Gebrauch und die Aufzeichnung bestimmt\n• Die App bietet keine Finanz-, Rechts- oder Steuerberatung\n• Zinsberechnungen sind Schätzungen; konsultieren Sie Fachleute für offizielle Berechnungen\n• Wir sind nicht verantwortlich für finanzielle Entscheidungen basierend auf App-Daten\n• Die App erleichtert keine tatsächlichen Geldtransfers oder Zahlungen\n\n5. Daten und Datenschutz\n\n• Alle Daten werden lokal auf Ihrem Gerät gespeichert\n• Wir sammeln, speichern oder übertragen Ihre persönlichen Informationen nicht\n• Sie sind für die Sicherheit Ihres Geräts verantwortlich\n• Daten können nicht wiederhergestellt werden, wenn sie verloren oder gelöscht werden\n\n6. Geistiges Eigentum\n\nDie Monetiq-App, einschließlich ihres Designs, Codes und Inhalts, ist durch Urheberrecht und andere Gesetze zum geistigen Eigentum geschützt.\n\n7. Haftungsbeschränkung\n\nIm maximal gesetzlich zulässigen Umfang haften wir nicht für indirekte, zufällige, besondere oder Folgeschäden aus Ihrer Nutzung der App.\n\n8. Kündigung\n\nSie können die Nutzung der App jederzeit beenden, indem Sie sie von Ihrem Gerät löschen. Diese Bedingungen bleiben bis zur Kündigung in Kraft.\n\n9. Änderungen der Bedingungen\n\nWir können diese Bedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung der App nach Änderungen stellt die Annahme der neuen Bedingungen dar.\n\n10. Geltendes Recht\n\nDiese Bedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der die App entwickelt und vertrieben wird.\n\n11. Kontaktinformationen\n\nBei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte über den App Store.";
+
+// MARK: - Notifications
+"notification_permission_not_requested" = "Benachrichtigungsberechtigung wurde noch nicht angefordert";
+"notification_unknown_error" = "Unbekannter Benachrichtigungsfehler aufgetreten";
+
+// MARK: - Settings - Notifications Denied
+"settings_notifications_denied_title" = "Benachrichtigungen sind deaktiviert";
+"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie Benachrichtigungen in Einstellungen > Monetiq > Benachrichtigungen";
 "calculator_frequency" = "Zahlungshäufigkeit";
 "calculator_calculate" = "Zahlung berechnen";
 "calculator_results" = "Ergebnisse";
@@ -160,8 +168,6 @@
 "settings_reset_app_confirm_message" = "Dies wird alle Kredite, Zahlungen und Einstellungen von diesem Gerät dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.";
 "settings_reset_app_confirm_action" = "Alle Daten Löschen";
 
-"settings_test_notification" = "Test-Benachrichtigung";
-"settings_test_notification_subtitle" = "Test-Benachrichtigung in 5 Sekunden senden";
 
 // MARK: - About
 "about_privacy_title" = "Datenschutzrichtlinie";
@@ -177,6 +183,7 @@
 "calculator_generated" = "Erstellt";
 "calculator_share_title" = "Darlehensberechnungs-Zusammenfassung";
 "calculator_share_footer" = "Erstellt mit Monetiq";
+"calculator_share" = "Teilen";
 "dashboard_no_loans" = "Noch keine Darlehen";
 "dashboard_recent_loans" = "Aktuelle Darlehen";
 "loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";

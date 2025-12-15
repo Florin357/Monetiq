@@ -108,6 +108,13 @@
 
 // Legal Documents - Terms of Service
 "terms_of_service_content" = "Términos de Servicio\n\nFecha Efectiva: 15 de Diciembre de 2025\n\n1. Aceptación de Términos\nAl usar Monetiq, acepta estos Términos de Servicio.\n\n2. Descripción del Servicio\nMonetiq es una aplicación de finanzas personales para rastrear préstamos y gestionar horarios de pago.\n\n3. Responsabilidades del Usuario\n• Es responsable de la precisión de los datos que ingresa\n• Debe cumplir con las leyes aplicables\n• Es responsable de respaldar su dispositivo\n\n4. Limitaciones\n• Monetiq es solo para uso personal\n• La aplicación no proporciona asesoramiento financiero, legal o fiscal\n• No somos responsables de decisiones financieras basadas en datos de la aplicación\n\n5. Datos y Privacidad\nTodos los datos se almacenan localmente en su dispositivo.\n\n6. Limitación de Responsabilidad\nNo seremos responsables de daños indirectos, incidentales o consecuentes.\n\nPara preguntas sobre estos términos, contáctenos a través del App Store.";
+
+// MARK: - Missing Keys
+"calculator_share" = "Compartir";
+"notification_permission_not_requested" = "El permiso de notificación aún no ha sido solicitado";
+"notification_unknown_error" = "Ocurrió un error de notificación desconocido";
+"settings_notifications_denied_title" = "Notificaciones deshabilitadas";
+"settings_notifications_denied_message" = "Para recibir recordatorios de pago, habilite las notificaciones en Configuración > Monetiq > Notificaciones";
 "calculator_frequency" = "Frecuencia de Pago";
 "calculator_calculate" = "Calcular Pago";
 "calculator_results" = "Resultados";
@@ -152,8 +159,6 @@
 "settings_terms" = "Términos de Servicio";
 "settings_terms_subtitle" = "Ver términos y condiciones";
 
-"settings_test_notification" = "Notificación de Prueba";
-"settings_test_notification_subtitle" = "Enviar una notificación de prueba en 5 segundos";
 "settings_view_notifications" = "Ver Notificaciones Pendientes";
 "settings_view_notifications_subtitle" = "Revisar notificaciones programadas";
 

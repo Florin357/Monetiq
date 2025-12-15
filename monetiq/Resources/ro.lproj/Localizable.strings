@@ -107,6 +107,14 @@
 
 // Legal Documents - Terms of Service
 "terms_of_service_content" = "Termenii de Serviciu\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Acceptarea Termenilor\n\nPrin folosirea Monetiq, accepți acești Termeni de Serviciu. Dacă nu accepți, te rugăm să nu folosești aplicația.\n\n2. Descrierea Serviciului\n\nMonetiq este o aplicație de finanțe personale pentru urmărirea împrumuturilor și gestionarea programelor de plăți. Aplicația:\n• Te ajută să urmărești împrumuturile personale (date și primite)\n• Calculează programe de plăți și dobânzi\n• Furnizează reamintiri locale de plăți\n• Stochează toate datele local pe dispozitivul tău\n\n3. Responsabilitățile Utilizatorului\n\n• Ești responsabil pentru acuratețea datelor pe care le introduci\n• Trebuie să respecți legile aplicabile când folosești aplicația\n• Ești responsabil pentru backup-ul dispozitivului tău dacă vrei să păstrezi datele\n• Nu trebuie să folosești aplicația pentru activități financiare ilegale\n\n4. Limitări și Declinări de Responsabilitate\n\n• Monetiq este doar pentru uz personal și ținerea evidenței\n• Aplicația nu oferă sfaturi financiare, legale sau fiscale\n• Calculele dobânzilor sunt estimări; consultă profesioniști pentru calcule oficiale\n• Nu suntem responsabili pentru deciziile financiare luate pe baza datelor din aplicație\n• Aplicația nu facilitează transferuri reale de bani sau plăți\n\n5. Date și Confidențialitate\n\n• Toate datele sunt stocate local pe dispozitivul tău\n• Nu colectăm, stocăm sau transmitem informațiile tale personale\n• Ești responsabil pentru securitatea dispozitivului tău\n• Datele nu pot fi recuperate dacă sunt pierdute sau șterse\n\n6. Proprietatea Intelectuală\n\nAplicația Monetiq, inclusiv designul, codul și conținutul său, este protejată de drepturi de autor și alte legi ale proprietății intelectuale.\n\n7. Limitarea Responsabilității\n\nÎn măsura maximă permisă de lege, nu vom fi responsabili pentru daune indirecte, incidentale, speciale sau consecutive care rezultă din folosirea aplicației.\n\n8. Încetarea\n\nPoți înceta să folosești aplicația oricând prin ștergerea ei de pe dispozitivul tău. Acești termeni rămân în vigoare până la încetare.\n\n9. Modificări ale Termenilor\n\nAm putea actualiza acești termeni din când în când. Folosirea continuă a aplicației după modificări constituie acceptarea noilor termeni.\n\n10. Legea Aplicabilă\n\nAcești termeni sunt guvernați de legile jurisdicției unde aplicația este dezvoltată și distribuită.\n\n11. Informații de Contact\n\nPentru întrebări despre acești termeni, te rugăm să ne contactezi prin App Store.";
+
+// MARK: - Notifications
+"notification_permission_not_requested" = "Permisiunea pentru notificări nu a fost încă solicitată";
+"notification_unknown_error" = "A apărut o eroare necunoscută la notificări";
+
+// MARK: - Settings - Notifications Denied
+"settings_notifications_denied_title" = "Notificările sunt dezactivate";
+"settings_notifications_denied_message" = "Pentru a primi reamintiri de plăți, activează notificările în Setări > Monetiq > Notificări";
 "calculator_frequency" = "Frecvența Plăților";
 "calculator_calculate" = "Calculează Plata";
 "calculator_results" = "Rezultate";
@@ -171,8 +179,6 @@
 "biometric_unavailable_message" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
 "general_ok" = "OK";
 
-"settings_test_notification" = "Testează Notificarea";
-"settings_test_notification_subtitle" = "Trimite o notificare de test în 5 secunde";
 "settings_view_notifications" = "Vezi Notificările Programate";
 "settings_view_notifications_subtitle" = "Verifică notificările programate";
 
@@ -215,6 +221,7 @@
 "calculator_generated" = "Generat";
 "calculator_share_title" = "Rezumat Calcul Împrumut";
 "calculator_share_footer" = "Creat cu Monetiq";
+"calculator_share" = "Partajează";
 "dashboard_no_loans" = "Încă nu aveți împrumuturi";
 "dashboard_recent_loans" = "Împrumuturi recente";
 "loan_detail_delete_confirm" = "Sunteți sigur că doriți să ștergeți '%@'? Această acțiune nu poate fi anulată.";

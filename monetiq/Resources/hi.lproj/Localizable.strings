@@ -152,8 +152,6 @@
 "settings_terms" = "सेवा की शर्तें";
 "settings_terms_subtitle" = "नियम और शर्तें देखें";
 
-"settings_test_notification" = "टेस्ट नोटिफिकेशन";
-"settings_test_notification_subtitle" = "5 सेकंड में टेस्ट नोटिफिकेशन भेजें";
 "settings_view_notifications" = "पेंडिंग नोटिफिकेशन देखें";
 "settings_view_notifications_subtitle" = "निर्धारित नोटिफिकेशन जांचें";
 
@@ -319,3 +317,13 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "भुगतान अनुस्मारक (स्थगित)";
 "notification_payment_snoozed_body" = "%@ के लिए अनुस्मारक - %@";
+
+// Missing Keys
+"calculator_share" = "साझा करें";
+"notification_permission_not_requested" = "अधिसूचना अनुमति अभी तक अनुरोधित नहीं है";
+"notification_unknown_error" = "अज्ञात अधिसूचना त्रुटि हुई";
+"settings_notifications_denied_title" = "अधिसूचनाएं अक्षम";
+"settings_notifications_denied_message" = "भुगतान अनुस्मारक प्राप्त करने के लिए, सेटिंग्स > Monetiq > अधिसूचनाएं में अधिसूचनाएं सक्षम करें";
+
+// Legal Content
+"terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैक करने और भुगतान कार्यक्रम प्रबंधित करने के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता है।\n\nइन शर्तों के बारे में प्रश्नों के लिए, App Store के माध्यम से हमसे संपर्क करें।";

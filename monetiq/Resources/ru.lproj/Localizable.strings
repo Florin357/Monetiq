@@ -108,6 +108,13 @@
 
 // Legal Documents - Terms of Service
 "terms_of_service_content" = "Условия Обслуживания\n\nДата Вступления в Силу: 15 Декабря 2025\n\n1. Принятие Условий\nИспользуя Monetiq, вы соглашаетесь с этими Условиями Обслуживания.\n\n2. Описание Сервиса\nMonetiq - это приложение для личных финансов для отслеживания займов и управления графиками платежей.\n\n3. Обязанности Пользователя\nВы несете ответственность за точность вводимых данных.\n\n4. Ограничения\nMonetiq предназначен только для личного использования. Приложение не предоставляет финансовых, юридических или налоговых консультаций.\n\nПо вопросам об этих условиях обращайтесь к нам через App Store.";
+
+// MARK: - Missing Keys
+"calculator_share" = "Поделиться";
+"notification_permission_not_requested" = "Разрешение на уведомления еще не запрашивалось";
+"notification_unknown_error" = "Произошла неизвестная ошибка уведомлений";
+"settings_notifications_denied_title" = "Уведомления отключены";
+"settings_notifications_denied_message" = "Чтобы получать напоминания о платежах, включите уведомления в Настройки > Monetiq > Уведомления";
 "calculator_frequency" = "Частота платежей";
 "calculator_calculate" = "Рассчитать платеж";
 "calculator_results" = "Результаты";
@@ -152,8 +159,6 @@
 "settings_terms" = "Условия обслуживания";
 "settings_terms_subtitle" = "Просмотреть условия и положения";
 
-"settings_test_notification" = "Тестовое уведомление";
-"settings_test_notification_subtitle" = "Отправить тестовое уведомление через 5 секунд";
 "settings_view_notifications" = "Просмотреть ожидающие уведомления";
 "settings_view_notifications_subtitle" = "Проверить запланированные уведомления";
 

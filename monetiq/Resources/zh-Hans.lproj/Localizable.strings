@@ -108,6 +108,13 @@
 
 // Legal Documents - Terms of Service
 "terms_of_service_content" = "服务条款\n\n生效日期：2025年12月15日\n\n1. 接受条款\n通过使用Monetiq，您同意这些服务条款。\n\n2. 服务描述\nMonetiq是一个用于跟踪贷款和管理付款计划的个人理财应用程序。\n\n3. 用户责任\n您对输入数据的准确性负责。\n\n4. 限制\nMonetiq仅供个人使用。该应用程序不提供财务、法律或税务建议。\n\n如对这些条款有疑问，请通过App Store联系我们。";
+
+// MARK: - Missing Keys
+"calculator_share" = "分享";
+"notification_permission_not_requested" = "尚未请求通知权限";
+"notification_unknown_error" = "发生未知通知错误";
+"settings_notifications_denied_title" = "通知已禁用";
+"settings_notifications_denied_message" = "要接收付款提醒，请在设置 > Monetiq > 通知中启用通知";
 "calculator_frequency" = "付款频率";
 "calculator_calculate" = "计算付款";
 "calculator_results" = "结果";
@@ -152,8 +159,6 @@
 "settings_terms" = "服务条款";
 "settings_terms_subtitle" = "查看条款和条件";
 
-"settings_test_notification" = "测试通知";
-"settings_test_notification_subtitle" = "5秒后发送测试通知";
 "settings_view_notifications" = "查看待处理通知";
 "settings_view_notifications_subtitle" = "检查计划的通知";
 

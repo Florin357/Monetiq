@@ -108,6 +108,13 @@
 
 // Legal Documents - Terms of Service
 "terms_of_service_content" = "Conditions d'Utilisation\n\nDate d'Entrée en Vigueur : 15 Décembre 2025\n\n1. Acceptation des Conditions\nEn utilisant Monetiq, vous acceptez ces Conditions d'Utilisation.\n\n2. Description du Service\nMonetiq est une application de finances personnelles pour suivre les prêts et gérer les calendriers de paiement.\n\n3. Responsabilités de l'Utilisateur\nVous êtes responsable de l'exactitude des données que vous saisissez.\n\n4. Limitations\nMonetiq est uniquement pour un usage personnel. L'application ne fournit pas de conseils financiers, juridiques ou fiscaux.\n\nPour des questions sur ces conditions, contactez-nous via l'App Store.";
+
+// MARK: - Missing Keys
+"calculator_share" = "Partager";
+"notification_permission_not_requested" = "L'autorisation de notification n'a pas encore été demandée";
+"notification_unknown_error" = "Une erreur de notification inconnue s'est produite";
+"settings_notifications_denied_title" = "Notifications désactivées";
+"settings_notifications_denied_message" = "Pour recevoir des rappels de paiement, activez les notifications dans Réglages > Monetiq > Notifications";
 "calculator_frequency" = "Fréquence de paiement";
 "calculator_calculate" = "Calculer le paiement";
 "calculator_results" = "Résultats";
@@ -152,8 +159,6 @@
 "settings_terms" = "Conditions de service";
 "settings_terms_subtitle" = "Voir les termes et conditions";
 
-"settings_test_notification" = "Notification de test";
-"settings_test_notification_subtitle" = "Envoyer une notification de test dans 5 secondes";
 "settings_view_notifications" = "Voir les notifications en attente";
 "settings_view_notifications_subtitle" = "Vérifier les notifications programmées";
 
