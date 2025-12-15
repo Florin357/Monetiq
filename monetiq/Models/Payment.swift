@@ -16,6 +16,9 @@ final class Payment {
     var status: PaymentStatus
     var paidDate: Date?
     
+    // Snooze metadata (Option 1: snooze reminder only, not actual due date)
+    var snoozeUntil: Date?
+    
     // Relationship back to loan
     var loan: Loan?
     
@@ -24,6 +27,7 @@ final class Payment {
         amount: Double,
         status: PaymentStatus = .planned,
         paidDate: Date? = nil,
+        snoozeUntil: Date? = nil,
         loan: Loan? = nil
     ) {
         self.id = UUID()
@@ -31,6 +35,7 @@ final class Payment {
         self.amount = amount
         self.status = status
         self.paidDate = paidDate
+        self.snoozeUntil = snoozeUntil
         self.loan = loan
     }
     
@@ -41,6 +46,25 @@ final class Payment {
     func markAsPaid() {
         status = .paid
         paidDate = Date()
+        snoozeUntil = nil // Clear any snooze when marking as paid
+    }
+    
+    func postponeReminder(by days: Int = 1) {
+        let calendar = Calendar.current
+        let now = Date()
+        snoozeUntil = calendar.date(byAdding: .day, value: days, to: now)
+    }
+    
+    var isReminderSnoozed: Bool {
+        guard let snoozeUntil = snoozeUntil else { return false }
+        return snoozeUntil > Date()
+    }
+    
+    var effectiveReminderDate: Date {
+        if isReminderSnoozed, let snoozeUntil = snoozeUntil {
+            return snoozeUntil
+        }
+        return dueDate
     }
 }
 

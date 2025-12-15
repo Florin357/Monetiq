@@ -295,3 +295,9 @@
 
 // Dashboard Payment Actions
 "dashboard_mark_paid" = "Marquer Comme Payé";
+"dashboard_postpone" = "Reporter 1 Jour";
+"dashboard_payment_snoozed_until" = "Reporté jusqu'à %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Rappel de Paiement (Reporté)";
+"notification_payment_snoozed_body" = "Rappel pour %@ - %@";

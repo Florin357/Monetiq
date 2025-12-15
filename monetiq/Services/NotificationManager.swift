@@ -275,7 +275,8 @@ class NotificationManager {
     func cancelNotifications(for payment: Payment) async {
         let identifiers = [
             "payment_before_\(payment.id.uuidString)",
-            "payment_due_\(payment.id.uuidString)"
+            "payment_due_\(payment.id.uuidString)",
+            "snooze_\(payment.id.uuidString)" // Also cancel snooze notifications
         ]
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: identifiers)
@@ -285,6 +286,74 @@ class NotificationManager {
     func cancelAllNotifications() async {
         notificationCenter.removeAllPendingNotificationRequests()
         print("Canceled all notifications")
+    }
+    
+    func rescheduleNotifications(for payment: Payment) async {
+        guard let loan = payment.loan,
+              let settings = appSettings,
+              settings.notificationsEnabled else { return }
+        
+        let authorized = await requestAuthorizationIfNeeded()
+        guard authorized else { return }
+        
+        // Cancel existing notifications for this payment (including snooze)
+        let identifiers = [
+            "payment_before_\(payment.id.uuidString)",
+            "payment_due_\(payment.id.uuidString)",
+            "snooze_\(payment.id.uuidString)"
+        ]
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: identifiers)
+        
+        // If payment is snoozed, schedule snooze notification instead of regular ones
+        if payment.isReminderSnoozed {
+            await scheduleSnoozeNotification(for: payment, loan: loan)
+        } else {
+            // Schedule regular notifications
+            await scheduleNotifications(for: payment, loan: loan, settings: settings)
+        }
+    }
+    
+    private func scheduleSnoozeNotification(for payment: Payment, loan: Loan) async {
+        guard let snoozeUntil = payment.snoozeUntil,
+              snoozeUntil > Date() else { return }
+        
+        let snoozeIdentifier = "snooze_\(payment.id.uuidString)"
+        let content = UNMutableNotificationContent()
+        let formattedAmount = CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: loan.currencyCode)
+        
+        content.title = L10n.string("notification_payment_snoozed_title")
+        content.body = L10n.string("notification_payment_snoozed_body", loan.title, formattedAmount)
+        content.sound = .default
+        
+        // Add user info for handling notification taps
+        content.userInfo = [
+            "type": "payment",
+            "loanId": loan.id.uuidString,
+            "paymentId": payment.id.uuidString
+        ]
+        
+        // Schedule at 9:00 AM on the snooze date for consistency
+        var snoozeComponents = Calendar.current.dateComponents([.year, .month, .day], from: snoozeUntil)
+        snoozeComponents.hour = 9
+        snoozeComponents.minute = 0
+        
+        let snoozeTrigger = UNCalendarNotificationTrigger(
+            dateMatching: snoozeComponents,
+            repeats: false
+        )
+        
+        let snoozeRequest = UNNotificationRequest(
+            identifier: snoozeIdentifier,
+            content: content,
+            trigger: snoozeTrigger
+        )
+        
+        do {
+            try await notificationCenter.add(snoozeRequest)
+            print("Scheduled snooze notification for payment \(payment.id) at \(snoozeUntil)")
+        } catch {
+            print("Failed to schedule snooze notification: \(error)")
+        }
     }
     
     // MARK: - Weekly Review

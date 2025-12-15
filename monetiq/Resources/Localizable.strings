@@ -296,3 +296,9 @@
 
 // Dashboard Payment Actions
 "dashboard_mark_paid" = "Mark Paid";
+"dashboard_postpone" = "Postpone 1 day";
+"dashboard_payment_snoozed_until" = "Snoozed until %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Payment Reminder (Snoozed)";
+"notification_payment_snoozed_body" = "Reminder for %@ - %@";

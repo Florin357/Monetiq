@@ -111,6 +111,12 @@ struct DashboardView: View {
                                         }
                                         .tint(MonetiqTheme.Colors.success)
                                     }
+                                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                        Button(L10n.string("dashboard_postpone")) {
+                                            postponePayment(item)
+                                        }
+                                        .tint(MonetiqTheme.Colors.warning)
+                                    }
                             }
                         }
                         .monetiqSection()
@@ -211,6 +217,22 @@ struct DashboardView: View {
         
         // UI will update automatically due to @Query reactivity
         // Row will disappear if payment no longer qualifies as upcoming
+    }
+    
+    private func postponePayment(_ item: UpcomingPaymentItem) {
+        let payment = item.payment
+        
+        // Postpone reminder by 1 day (Option 1: snooze reminder only, not actual due date)
+        payment.postponeReminder(by: 1)
+        payment.loan?.updateTimestamp()
+        
+        // Reschedule notifications for this payment
+        Task {
+            await NotificationManager.shared.rescheduleNotifications(for: payment)
+            await NotificationManager.shared.updateBadgeCount()
+        }
+        
+        // UI will update automatically to show snooze status
     }
 }
 
@@ -323,6 +345,11 @@ struct DashboardPaymentRowView: View {
     }
     
     private var dueDateText: String {
+        // Show snooze status if payment is snoozed
+        if payment.isReminderSnoozed, let snoozeUntil = payment.snoozeUntil {
+            return L10n.string("dashboard_payment_snoozed_until", snoozeUntil.formatted(date: .abbreviated, time: .omitted))
+        }
+        
         if daysUntilDue == 0 {
             return L10n.string("payment_due_today")
         } else if daysUntilDue == 1 {
@@ -331,6 +358,16 @@ struct DashboardPaymentRowView: View {
             return L10n.string("payment_due_in_days", daysUntilDue)
         } else {
             return paymentItem.dueDate.formatted(date: .abbreviated, time: .omitted)
+        }
+    }
+    
+    private var dueDateColor: Color {
+        if payment.isReminderSnoozed {
+            return MonetiqTheme.Colors.warning // Orange for snoozed
+        } else if daysUntilDue <= 1 {
+            return MonetiqTheme.Colors.error // Red for urgent
+        } else {
+            return MonetiqTheme.Colors.textSecondary // Normal
         }
     }
     
@@ -382,7 +419,7 @@ struct DashboardPaymentRowView: View {
                     
                     Text(dueDateText)
                         .font(MonetiqTheme.Typography.caption)
-                        .foregroundColor(daysUntilDue <= 1 ? MonetiqTheme.Colors.error : MonetiqTheme.Colors.textSecondary)
+                        .foregroundColor(dueDateColor)
                 }
             }
             

@@ -39,7 +39,46 @@ struct LoanDetailView: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-            VStack(spacing: MonetiqTheme.Spacing.lg) {
+                mainContent
+                    .onAppear {
+                        scrollToFocusedPayment(proxy: proxy)
+                    }
+            }
+        }
+        .monetiqBackground()
+        .navigationTitle(L10n.string("loan_details_nav_title"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button(action: { showingEditLoan = true }) {
+                        Label(L10n.string("edit_loan_button"), systemImage: "pencil")
+                    }
+                    
+                    Button(role: .destructive, action: { showingDeleteAlert = true }) {
+                        Label(L10n.string("delete_loan_button"), systemImage: "trash")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .foregroundColor(MonetiqTheme.Colors.accent)
+                }
+            }
+        }
+        .sheet(isPresented: $showingEditLoan) {
+            AddEditLoanView(loan: loan)
+        }
+        .alert("Delete Loan", isPresented: $showingDeleteAlert) {
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
+                deleteLoan()
+            }
+        } message: {
+            Text(L10n.string("loan_detail_delete_confirm", loan.title))
+        }
+    }
+    
+    private var mainContent: some View {
+        VStack(spacing: MonetiqTheme.Spacing.lg) {
                 // Header Card
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
                     HStack {
@@ -190,43 +229,8 @@ struct LoanDetailView: View {
                 }
                 
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
-            }
-            .padding(.vertical, MonetiqTheme.Spacing.lg)
-            .onAppear {
-                scrollToFocusedPayment(proxy: proxy)
-            }
         }
-        }
-        .monetiqBackground()
-        .navigationTitle(L10n.string("loan_details_nav_title"))
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Menu {
-                    Button(action: { showingEditLoan = true }) {
-                        Label(L10n.string("edit_loan_button"), systemImage: "pencil")
-                    }
-                    
-                    Button(role: .destructive, action: { showingDeleteAlert = true }) {
-                        Label(L10n.string("delete_loan_button"), systemImage: "trash")
-                    }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .foregroundColor(MonetiqTheme.Colors.accent)
-                }
-            }
-        }
-        .sheet(isPresented: $showingEditLoan) {
-            AddEditLoanView(loan: loan)
-        }
-        .alert("Delete Loan", isPresented: $showingDeleteAlert) {
-            Button("Cancel", role: .cancel) { }
-            Button("Delete", role: .destructive) {
-                deleteLoan()
-            }
-        } message: {
-            Text(L10n.string("loan_detail_delete_confirm", loan.title))
-        }
+        .padding(.vertical, MonetiqTheme.Spacing.lg)
     }
     
     private func roleColor(for role: LoanRole) -> Color {
@@ -262,7 +266,7 @@ struct LoanDetailView: View {
         }
     }
     
-    private func scrollToFocusedPayment(proxy: ScrollViewReader.ScrollViewProxy) {
+    private func scrollToFocusedPayment(proxy: ScrollViewProxy) {
         // Determine which payment to focus on
         var targetPaymentId: UUID?
         
@@ -278,7 +282,7 @@ struct LoanDetailView: View {
         if let targetId = targetPaymentId {
             if let payment = sortedPayments.first(where: { $0.id == targetId }) {
                 withAnimation {
-                    proxy.scrollTo("payment-\(payment.id)", anchor: .center)
+                    proxy.scrollTo("payment-\(payment.id)", anchor: UnitPoint.center)
                     highlightedPaymentId = payment.id // Set for highlighting
                 }
                 // Remove highlight after a delay
@@ -291,7 +295,7 @@ struct LoanDetailView: View {
                 // Fallback if specific payment not found (e.g., edited loan)
                 if let nearestUpcoming = sortedPayments.first(where: { $0.status == .planned }) {
                     withAnimation {
-                        proxy.scrollTo("payment-\(nearestUpcoming.id)", anchor: .center)
+                        proxy.scrollTo("payment-\(nearestUpcoming.id)", anchor: UnitPoint.center)
                     }
                 }
             }

@@ -295,3 +295,9 @@
 
 // Dashboard Payment Actions
 "dashboard_mark_paid" = "Отметить Как Оплачено";
+"dashboard_postpone" = "Отложить на 1 День";
+"dashboard_payment_snoozed_until" = "Отложено до %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Напоминание о Платеже (Отложено)";
+"notification_payment_snoozed_body" = "Напоминание для %@ - %@";

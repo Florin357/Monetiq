@@ -295,3 +295,9 @@
 
 // Dashboard Payment Actions
 "dashboard_mark_paid" = "Marcar Como Pagado";
+"dashboard_postpone" = "Posponer 1 Día";
+"dashboard_payment_snoozed_until" = "Pospuesto hasta %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Recordatorio de Pago (Pospuesto)";
+"notification_payment_snoozed_body" = "Recordatorio para %@ - %@";

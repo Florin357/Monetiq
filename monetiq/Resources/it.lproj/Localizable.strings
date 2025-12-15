@@ -292,3 +292,9 @@
 
 // Dashboard Payment Actions
 "dashboard_mark_paid" = "Segna Come Pagato";
+"dashboard_postpone" = "Rimanda 1 Giorno";
+"dashboard_payment_snoozed_until" = "Rimandato fino a %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Promemoria Pagamento (Rimandato)";
+"notification_payment_snoozed_body" = "Promemoria per %@ - %@";

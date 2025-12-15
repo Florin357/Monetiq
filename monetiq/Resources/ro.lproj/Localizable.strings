@@ -296,3 +296,9 @@
 
 // Dashboard Payment Actions
 "dashboard_mark_paid" = "Marchează Plătit";
+"dashboard_postpone" = "Amână 1 zi";
+"dashboard_payment_snoozed_until" = "Amânat până la %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Memento Plată (Amânat)";
+"notification_payment_snoozed_body" = "Memento pentru %@ - %@";
