@@ -28,17 +28,19 @@ struct LoansListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Header
-            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+            // Header - Premium styling
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(L10n.string("loans_title"))
                     .font(MonetiqTheme.Typography.largeTitle)
-                    .foregroundColor(MonetiqTheme.Colors.onBackground)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
                 
                 Text(L10n.string("loans_subtitle"))
-                    .font(MonetiqTheme.Typography.callout)
+                    .font(MonetiqTheme.Typography.subheadline)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .opacity(0.8)
             }
             .monetiqHeader()
+            .padding(.bottom, MonetiqTheme.Spacing.sm)
             
             if loans.isEmpty {
                 Spacer()
@@ -108,51 +110,64 @@ struct LoanRowView: View {
     let loan: Loan
     
     var body: some View {
-        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-            HStack {
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
+            HStack(alignment: .top, spacing: MonetiqTheme.Spacing.lg) {
+                // Leading accent indicator
+                RoundedRectangle(cornerRadius: 3)
+                    .fill(roleColor(for: loan.role))
+                    .frame(width: 5, height: 50)
+                
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                    // Primary title - Enhanced hierarchy
                     Text(loan.title)
-                        .font(MonetiqTheme.Typography.headline)
-                        .foregroundColor(MonetiqTheme.Colors.onSurface)
+                        .monetiqCardTitle()
+                        .lineLimit(2)
                     
+                    // Role badge - Premium styling
                     Text(loan.role.localizedLabel)
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(roleColor(for: loan.role))
-                        .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                        .fontWeight(.medium)
+                        .padding(.horizontal, MonetiqTheme.Spacing.md)
                         .padding(.vertical, MonetiqTheme.Spacing.xs)
-                        .background(roleColor(for: loan.role).opacity(0.2))
-                        .cornerRadius(MonetiqTheme.CornerRadius.sm)
+                        .background(
+                            Capsule()
+                                .fill(roleColor(for: loan.role).opacity(0.15))
+                        )
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
+                    // Amount - Premium currency display
                     Text(CurrencyFormatter.shared.format(amount: loan.principalAmount, currencyCode: loan.currencyCode))
-                        .font(MonetiqTheme.Typography.callout)
-                        .foregroundColor(MonetiqTheme.Colors.accent)
-                        .fontWeight(.semibold)
+                        .font(MonetiqTheme.Typography.currencySmall)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                        .fontWeight(.bold)
                     
                     if let nextDueDate = loan.nextDueDate {
                         Text(L10n.string("loans_next_due", nextDueDate.formatted(date: .abbreviated, time: .omitted)))
                             .font(MonetiqTheme.Typography.caption2)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            .opacity(0.8)
                     }
                 }
             }
             
             if let counterparty = loan.counterparty {
-                HStack {
+                HStack(spacing: MonetiqTheme.Spacing.sm) {
                     Image(systemName: counterparty.type == .person ? "person.fill" : "building.fill")
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
                         .font(.caption)
                     
                     Text(counterparty.name)
-                        .font(MonetiqTheme.Typography.caption)
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .monetiqCardSubtitle()
+                        .opacity(0.9)
                 }
+                .padding(.leading, MonetiqTheme.Spacing.lg + MonetiqTheme.Spacing.sm) // Align with content
             }
         }
-        .monetiqCard()
+        .monetiqPremiumCard()
     }
     
     private func roleColor(for role: LoanRole) -> Color {

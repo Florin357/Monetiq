@@ -48,17 +48,19 @@ struct SettingsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                // Header - Premium styling
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                     Text(L10n.string("settings_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     
                     Text(L10n.string("settings_subtitle"))
-                        .font(MonetiqTheme.Typography.callout)
+                        .font(MonetiqTheme.Typography.subheadline)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .opacity(0.8)
                 }
                 .monetiqHeader()
+                .padding(.bottom, MonetiqTheme.Spacing.sm)
                 
                 // General Settings
                 SettingsSection(title: L10n.string("settings_general")) {

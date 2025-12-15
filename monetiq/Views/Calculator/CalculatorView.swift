@@ -31,17 +31,19 @@ struct CalculatorView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                // Header - Premium styling
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                     Text(L10n.string("calculator_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     
                     Text(L10n.string("calculator_subtitle"))
-                        .font(MonetiqTheme.Typography.callout)
+                        .font(MonetiqTheme.Typography.subheadline)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .opacity(0.8)
                 }
                 .monetiqHeader()
+                .padding(.bottom, MonetiqTheme.Spacing.sm)
                 
                 // Input Form
                 VStack(spacing: MonetiqTheme.Spacing.lg) {

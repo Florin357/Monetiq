@@ -11,9 +11,14 @@ struct MonetiqTheme {
     
     // MARK: - Colors
     struct Colors {
-        // Brand colors
-        static let primary = Color(red: 0.1, green: 0.2, blue: 0.4)        // Dark blue
+        // Brand colors - Revolut-inspired premium palette
+        static let primary = Color(red: 0.012, green: 0.031, blue: 0.361)   // #03085C - Deep premium blue
+        static let primaryDark = Color(red: 0.098, green: 0.110, blue: 0.122) // #191C1F - Dark mode primary
         static let accent = Color(red: 0.0, green: 0.48, blue: 1.0)        // Modern blue accent
+        
+        // Premium dark variants
+        static let darkBlue = Color(red: 0.0, green: 0.0, blue: 0.098)     // #000019 - Deep dark
+        static let darkPurple = Color(red: 0.098, green: 0.098, blue: 0.188) // #191930 - Dark purple
         
         // Dynamic backgrounds that adapt to light/dark mode
         static let background = Color(.systemBackground)
@@ -45,25 +50,30 @@ struct MonetiqTheme {
     
     // MARK: - Typography
     struct Typography {
-        // Semantic text styles for better hierarchy
+        // Premium fintech hierarchy - Revolut-inspired
         static let largeTitle = Font.largeTitle.weight(.bold)
         static let title = Font.title.weight(.semibold)
-        static let title2 = Font.title2.weight(.medium)
+        static let title2 = Font.title2.weight(.semibold)     // Stronger hierarchy
         static let title3 = Font.title3.weight(.medium)
-        static let headline = Font.headline.weight(.medium)
+        static let headline = Font.headline.weight(.semibold) // More emphasis
         static let subheadline = Font.subheadline.weight(.medium)
-        static let body = Font.body
-        static let bodyEmphasized = Font.body.weight(.medium)
-        static let callout = Font.callout
-        static let footnote = Font.footnote
-        static let caption = Font.caption
-        static let caption2 = Font.caption2
+        static let body = Font.body.weight(.regular)
+        static let bodyEmphasized = Font.body.weight(.semibold) // Stronger emphasis
+        static let callout = Font.callout.weight(.medium)
+        static let footnote = Font.footnote.weight(.regular)
+        static let caption = Font.caption.weight(.medium)     // Slightly stronger
+        static let caption2 = Font.caption2.weight(.regular)
         
-        // Specialized typography for finance app
-        static let currencyLarge = Font.title.weight(.semibold).monospacedDigit()
-        static let currencyMedium = Font.title2.weight(.medium).monospacedDigit()
-        static let currencySmall = Font.callout.weight(.medium).monospacedDigit()
-        static let currencyCaption = Font.caption.weight(.medium).monospacedDigit()
+        // Premium finance typography - enhanced hierarchy
+        static let currencyLarge = Font.system(size: 32, weight: .bold, design: .rounded).monospacedDigit()
+        static let currencyMedium = Font.system(size: 24, weight: .semibold, design: .rounded).monospacedDigit()
+        static let currencySmall = Font.system(size: 18, weight: .semibold, design: .rounded).monospacedDigit()
+        static let currencyCaption = Font.system(size: 14, weight: .medium, design: .rounded).monospacedDigit()
+        
+        // Section headers - premium style
+        static let sectionHeader = Font.system(size: 20, weight: .semibold, design: .default)
+        static let cardTitle = Font.system(size: 16, weight: .semibold, design: .default)
+        static let cardSubtitle = Font.system(size: 14, weight: .medium, design: .default)
     }
     
     // MARK: - Spacing
@@ -96,9 +106,15 @@ struct MonetiqTheme {
     
     // MARK: - Shadows and Effects
     struct Shadow {
-        static let card = Color.black.opacity(0.05)
-        static let cardElevated = Color.black.opacity(0.1)
+        // Revolut-style subtle depth
+        static let card = Color.black.opacity(0.04)
+        static let cardElevated = Color.black.opacity(0.08)
+        static let cardPremium = Color.black.opacity(0.12)
         static let subtle = Color.black.opacity(0.02)
+        
+        // Interactive shadows
+        static let pressed = Color.black.opacity(0.15)
+        static let hover = Color.black.opacity(0.06)
     }
 }
 
@@ -114,17 +130,18 @@ extension View {
             .cornerRadius(MonetiqTheme.CornerRadius.card)
     }
     
-    func monetiqCard(elevated: Bool = false) -> some View {
+    func monetiqCard(elevated: Bool = false, premium: Bool = false) -> some View {
         self
             .padding(MonetiqTheme.Spacing.cardPadding)
             .background(
                 RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.card)
                     .fill(MonetiqTheme.Colors.cardBackground)
                     .shadow(
-                        color: elevated ? MonetiqTheme.Shadow.cardElevated : MonetiqTheme.Shadow.card,
-                        radius: elevated ? 8 : 4,
+                        color: premium ? MonetiqTheme.Shadow.cardPremium : 
+                               elevated ? MonetiqTheme.Shadow.cardElevated : MonetiqTheme.Shadow.card,
+                        radius: premium ? 12 : elevated ? 8 : 6,
                         x: 0,
-                        y: elevated ? 4 : 2
+                        y: premium ? 6 : elevated ? 4 : 3
                     )
             )
     }
@@ -169,6 +186,31 @@ extension View {
     func monetiqSection() -> some View {
         self
             .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+    }
+    
+    // MARK: - Premium UI Modifiers
+    
+    func monetiqCardTitle() -> some View {
+        self
+            .font(MonetiqTheme.Typography.cardTitle)
+            .foregroundColor(MonetiqTheme.Colors.textPrimary)
+    }
+    
+    func monetiqCardSubtitle() -> some View {
+        self
+            .font(MonetiqTheme.Typography.cardSubtitle)
+            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+    }
+    
+    func monetiqPremiumCard() -> some View {
+        self
+            .monetiqCard(elevated: true, premium: true)
+    }
+    
+    func monetiqInteractiveCard() -> some View {
+        self
+            .scaleEffect(1.0)
+            .animation(.easeInOut(duration: 0.1), value: false)
     }
 }
 
@@ -237,10 +279,8 @@ extension View {
     
     func monetiqSectionHeader() -> some View {
         self
-            .font(MonetiqTheme.Typography.headline)
+            .font(MonetiqTheme.Typography.sectionHeader)
             .foregroundColor(MonetiqTheme.Colors.textPrimary)
-            .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
-            .padding(.top, MonetiqTheme.Spacing.sectionSpacing)
-            .padding(.bottom, MonetiqTheme.Spacing.sm)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

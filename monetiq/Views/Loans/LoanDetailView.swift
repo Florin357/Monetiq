@@ -150,11 +150,26 @@ struct LoanDetailView: View {
                 .monetiqCard()
                 .padding(.horizontal, MonetiqTheme.Spacing.md)
                 
-                // Payment Schedule Section
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text(L10n.string("loan_detail_payments"))
-                        .font(MonetiqTheme.Typography.headline)
-                        .foregroundColor(MonetiqTheme.Colors.onSurface)
+                // Payment Schedule Section - Premium styling
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
+                    HStack {
+                        Text(L10n.string("loan_detail_payments"))
+                            .monetiqSectionHeader()
+                        
+                        Spacer()
+                        
+                        if !loan.payments.isEmpty {
+                            Text("\(loan.payments.count)")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                                .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                .background(
+                                    Capsule()
+                                        .fill(MonetiqTheme.Colors.surface)
+                                )
+                        }
+                    }
                     
                     if loan.payments.isEmpty {
                         Text(L10n.string("loan_detail_no_schedule"))
@@ -334,24 +349,38 @@ struct PaymentRowView: View {
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+        HStack(spacing: MonetiqTheme.Spacing.lg) {
+            // Status indicator
+            RoundedRectangle(cornerRadius: 3)
+                .fill(statusColor)
+                .frame(width: 5, height: 45)
+            
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                // Date - Enhanced hierarchy
                 Text(payment.dueDate.formatted(date: .abbreviated, time: .omitted))
-                    .font(MonetiqTheme.Typography.body)
-                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    .monetiqCardTitle()
                 
+                // Status - Premium badge styling
                 Text(statusText)
                     .font(MonetiqTheme.Typography.caption)
                     .foregroundColor(statusColor)
+                    .fontWeight(.medium)
+                    .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                    .padding(.vertical, 2)
+                    .background(
+                        Capsule()
+                            .fill(statusColor.opacity(0.15))
+                    )
             }
             
             Spacer()
             
             VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
+                // Amount - Premium currency display
                 Text(String(format: "%.2f %@", payment.amount, payment.loan?.currencyCode ?? "RON"))
-                    .font(MonetiqTheme.Typography.callout)
-                    .foregroundColor(MonetiqTheme.Colors.accent)
-                    .fontWeight(.medium)
+                    .font(MonetiqTheme.Typography.currencySmall)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                    .fontWeight(.semibold)
                 
                 if payment.status == .planned && !payment.isOverdue {
                     Button(L10n.string("mark_paid_button")) {
@@ -359,28 +388,35 @@ struct PaymentRowView: View {
                     }
                     .font(MonetiqTheme.Typography.caption)
                     .foregroundColor(MonetiqTheme.Colors.success)
+                    .fontWeight(.medium)
+                    .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                    .padding(.vertical, MonetiqTheme.Spacing.xs)
+                    .background(
+                        Capsule()
+                            .fill(MonetiqTheme.Colors.success.opacity(0.1))
+                    )
                 }
             }
         }
-        .padding(MonetiqTheme.Spacing.sm)
+        .padding(.horizontal, MonetiqTheme.Spacing.lg)
+        .padding(.vertical, MonetiqTheme.Spacing.md)
         .background(
-            Group {
-                if isHighlighted {
-                    MonetiqTheme.Colors.accent.opacity(0.1)
-                } else if payment.status == .paid {
-                    MonetiqTheme.Colors.success.opacity(0.1)
-                } else if payment.isOverdue {
-                    MonetiqTheme.Colors.error.opacity(0.1)
-                } else {
-                    MonetiqTheme.Colors.surface
-                }
-            }
+            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.card)
+                .fill(backgroundColorForPayment)
+                .shadow(
+                    color: isHighlighted ? MonetiqTheme.Shadow.cardElevated : MonetiqTheme.Shadow.card,
+                    radius: isHighlighted ? 6 : 3,
+                    x: 0,
+                    y: isHighlighted ? 3 : 1
+                )
         )
         .overlay(
-            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.sm)
-                .stroke(isHighlighted ? MonetiqTheme.Colors.accent : Color.clear, lineWidth: 2)
+            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.card)
+                .stroke(
+                    isHighlighted ? MonetiqTheme.Colors.accent.opacity(0.3) : Color.clear,
+                    lineWidth: isHighlighted ? 2 : 0
+                )
         )
-        .cornerRadius(MonetiqTheme.CornerRadius.sm)
     }
     
     private var statusText: String {
@@ -405,6 +441,18 @@ struct PaymentRowView: View {
             return payment.isOverdue ? MonetiqTheme.Colors.error : MonetiqTheme.Colors.textSecondary
         case .overdue:
             return MonetiqTheme.Colors.error
+        }
+    }
+    
+    private var backgroundColorForPayment: Color {
+        if isHighlighted {
+            return MonetiqTheme.Colors.accent.opacity(0.08)
+        } else if payment.status == .paid {
+            return MonetiqTheme.Colors.success.opacity(0.05)
+        } else if payment.isOverdue {
+            return MonetiqTheme.Colors.error.opacity(0.05)
+        } else {
+            return MonetiqTheme.Colors.surface
         }
     }
 }

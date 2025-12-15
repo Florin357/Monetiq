@@ -48,17 +48,19 @@ struct DashboardView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                // Header - Premium styling
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                     Text(L10n.string("dashboard_title"))
                         .font(MonetiqTheme.Typography.largeTitle)
                         .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     
                     Text(L10n.string("dashboard_subtitle"))
-                        .font(MonetiqTheme.Typography.callout)
+                        .font(MonetiqTheme.Typography.subheadline)
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .opacity(0.8)
                 }
                 .monetiqHeader()
+                .padding(.bottom, MonetiqTheme.Spacing.sm)
                 
                 // Summary Cards
                 LazyVGrid(columns: [
@@ -79,10 +81,26 @@ struct DashboardView: View {
                 }
                 .monetiqSection()
                 
-                // Upcoming Payments
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text(L10n.string("dashboard_upcoming_payments"))
-                        .monetiqSectionHeader()
+                // Upcoming Payments - Premium section
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
+                    HStack {
+                        Text(L10n.string("dashboard_upcoming_payments"))
+                            .monetiqSectionHeader()
+                        
+                        Spacer()
+                        
+                        if !upcomingPayments.isEmpty {
+                            Text("\(upcomingPayments.count)")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                                .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                .background(
+                                    Capsule()
+                                        .fill(MonetiqTheme.Colors.surface)
+                                )
+                        }
+                    }
                     
                     if upcomingPayments.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.sm) {
@@ -136,10 +154,26 @@ struct DashboardView: View {
                     }
                 }
                 
-                // Recent Loans
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                    Text(L10n.string("dashboard_recent_loans"))
-                        .monetiqSectionHeader()
+                // Recent Loans - Premium section
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
+                    HStack {
+                        Text(L10n.string("dashboard_recent_loans"))
+                            .monetiqSectionHeader()
+                        
+                        Spacer()
+                        
+                        if !recentLoans.isEmpty {
+                            Text("\(recentLoans.count)")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                                .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                .background(
+                                    Capsule()
+                                        .fill(MonetiqTheme.Colors.surface)
+                                )
+                        }
+                    }
                     
                     if recentLoans.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.sm) {
@@ -290,13 +324,14 @@ struct MultiCurrencySummaryCard: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-            // Card title
+        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
+            // Card title - Premium styling
             Text(title)
-                .font(MonetiqTheme.Typography.footnote)
+                .font(MonetiqTheme.Typography.caption)
                 .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 .textCase(.uppercase)
-                .tracking(0.5)
+                .tracking(0.8)
+                .fontWeight(.medium)
             
             if totals.isEmpty {
                 // Empty state
@@ -309,25 +344,30 @@ struct MultiCurrencySummaryCard: View {
                         .foregroundColor(MonetiqTheme.Colors.textTertiary)
                 }
             } else {
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                    // Primary amount (largest)
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                    // Primary amount (largest) - Premium styling
                     if let primary = primaryTotal {
                         Text(CurrencyFormatter.shared.format(amount: primary.1, currencyCode: primary.0))
-                            .currencyText(style: sortedTotals.count == 1 ? .large : .medium, color: color)
+                            .font(sortedTotals.count == 1 ? MonetiqTheme.Typography.currencyLarge : MonetiqTheme.Typography.currencyMedium)
+                            .foregroundColor(color)
+                            .fontWeight(.bold)
                     }
                     
-                    // Additional currencies (if any)
+                    // Additional currencies (if any) - Subtle secondary display
                     if sortedTotals.count > 1 {
-                        VStack(alignment: .leading, spacing: 2) {
+                        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                             ForEach(Array(sortedTotals.dropFirst().prefix(2)), id: \.0) { currency, amount in
                                 Text(CurrencyFormatter.shared.format(amount: amount, currencyCode: currency))
-                                    .currencyText(style: .small, color: MonetiqTheme.Colors.textSecondary)
+                                    .font(MonetiqTheme.Typography.currencyCaption)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .opacity(0.8)
                             }
                             
                             if sortedTotals.count > 3 {
                                 Text(L10n.string("dashboard_more_currencies", sortedTotals.count - 3))
                                     .font(MonetiqTheme.Typography.caption2)
                                     .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                                    .opacity(0.7)
                             }
                         }
                     }
@@ -335,7 +375,7 @@ struct MultiCurrencySummaryCard: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .monetiqCard()
+        .monetiqPremiumCard()
     }
 }
 
@@ -390,45 +430,59 @@ struct DashboardPaymentRowContent: View {
     }
     
     var body: some View {
-        HStack(spacing: MonetiqTheme.Spacing.md) {
-            // Leading indicator
-            RoundedRectangle(cornerRadius: 2)
+        HStack(spacing: MonetiqTheme.Spacing.lg) {
+            // Leading indicator - Premium style
+            RoundedRectangle(cornerRadius: 3)
                 .fill(roleColor)
-                .frame(width: 4, height: 32)
+                .frame(width: 5, height: 40)
             
-            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                // Primary title - Enhanced hierarchy
                 Text(paymentItem.loanTitle)
-                    .font(MonetiqTheme.Typography.bodyEmphasized)
-                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                    .monetiqCardTitle()
                     .lineLimit(1)
                 
+                // Secondary info - Better visual separation
                 HStack(spacing: MonetiqTheme.Spacing.sm) {
                     if let counterparty = paymentItem.counterparty {
                         Text(counterparty)
-                            .font(MonetiqTheme.Typography.caption)
-                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            .monetiqCardSubtitle()
                             .lineLimit(1)
                     }
                     
                     Text("•")
-                        .font(MonetiqTheme.Typography.caption)
+                        .font(MonetiqTheme.Typography.caption2)
                         .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        .opacity(0.6)
                     
                     Text(dueDateText)
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(dueDateColor)
+                        .fontWeight(.medium)
                 }
             }
             
             Spacer()
             
-            Text(CurrencyFormatter.shared.format(amount: paymentItem.amount, currencyCode: paymentItem.currency))
-                .currencyText(style: .small, color: roleColor)
+            // Amount - Premium currency display
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(CurrencyFormatter.shared.format(amount: paymentItem.amount, currencyCode: paymentItem.currency))
+                    .font(MonetiqTheme.Typography.currencySmall)
+                    .foregroundColor(roleColor)
+                    .fontWeight(.semibold)
+            }
         }
-        .padding(MonetiqTheme.Spacing.md)
+        .padding(.horizontal, MonetiqTheme.Spacing.lg)
+        .padding(.vertical, MonetiqTheme.Spacing.md)
         .background(
-            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.md)
+            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.card)
                 .fill(MonetiqTheme.Colors.surface)
+                .shadow(
+                    color: MonetiqTheme.Shadow.card,
+                    radius: 4,
+                    x: 0,
+                    y: 2
+                )
         )
     }
 }
@@ -448,31 +502,39 @@ struct DashboardLoanRowView: View {
     }
     
     var body: some View {
-        HStack(spacing: MonetiqTheme.Spacing.md) {
-            // Leading indicator
-            RoundedRectangle(cornerRadius: 2)
+        HStack(spacing: MonetiqTheme.Spacing.lg) {
+            // Leading indicator - Premium style
+            RoundedRectangle(cornerRadius: 3)
                 .fill(roleColor)
-                .frame(width: 4, height: 32)
+                .frame(width: 5, height: 40)
             
-            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                // Primary title - Enhanced hierarchy
                 Text(loan.title)
-                    .font(MonetiqTheme.Typography.bodyEmphasized)
-                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                    .monetiqCardTitle()
                     .lineLimit(1)
                 
+                // Secondary info - Better visual separation
                 HStack(spacing: MonetiqTheme.Spacing.sm) {
                     Text(loan.role.localizedLabel)
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(roleColor)
+                        .fontWeight(.medium)
+                        .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                        .padding(.vertical, 2)
+                        .background(
+                            Capsule()
+                                .fill(roleColor.opacity(0.15))
+                        )
                     
                     if let counterparty = loan.counterparty {
                         Text("•")
-                            .font(MonetiqTheme.Typography.caption)
+                            .font(MonetiqTheme.Typography.caption2)
                             .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                            .opacity(0.6)
                         
                         Text(counterparty.name)
-                            .font(MonetiqTheme.Typography.caption)
-                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            .monetiqCardSubtitle()
                             .lineLimit(1)
                     }
                 }
@@ -480,13 +542,25 @@ struct DashboardLoanRowView: View {
             
             Spacer()
             
-            Text(CurrencyFormatter.shared.format(amount: loan.principalAmount, currencyCode: loan.currencyCode))
-                .currencyText(style: .small, color: MonetiqTheme.Colors.textPrimary)
+            // Amount - Premium currency display
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(CurrencyFormatter.shared.format(amount: loan.principalAmount, currencyCode: loan.currencyCode))
+                    .font(MonetiqTheme.Typography.currencySmall)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                    .fontWeight(.semibold)
+            }
         }
-        .padding(MonetiqTheme.Spacing.md)
+        .padding(.horizontal, MonetiqTheme.Spacing.lg)
+        .padding(.vertical, MonetiqTheme.Spacing.md)
         .background(
-            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.md)
+            RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.card)
                 .fill(MonetiqTheme.Colors.surface)
+                .shadow(
+                    color: MonetiqTheme.Shadow.card,
+                    radius: 4,
+                    x: 0,
+                    y: 2
+                )
         )
     }
 }
