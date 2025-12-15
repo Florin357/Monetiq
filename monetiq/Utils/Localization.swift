@@ -184,7 +184,6 @@ struct LanguageAuditResult {
     var extraKeys: [String] = []
 }
 #endif
-}
 
 // MARK: - Enum Localization Extensions
 extension LoanRole {
