@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import SafariServices
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
@@ -22,6 +23,8 @@ struct SettingsView: View {
     @State private var biometricAlertTitle = ""
     @State private var isEnablingBiometrics = false
     @State private var showingNotificationDeniedAlert = false
+    @State private var showingSafariView = false
+    @State private var safariURL: URL?
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
@@ -46,21 +49,9 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header - Premium styling
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                    Text(L10n.string("settings_title"))
-                        .font(MonetiqTheme.Typography.largeTitle)
-                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
-                    
-                    Text(L10n.string("settings_subtitle"))
-                        .font(MonetiqTheme.Typography.subheadline)
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                        .opacity(0.8)
-                }
-                .monetiqHeader()
-                .padding(.bottom, MonetiqTheme.Spacing.sm)
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
                 
                 // General Settings
                 SettingsSection(title: L10n.string("settings_general")) {
@@ -200,9 +191,10 @@ struct SettingsView: View {
                 
                 // About Section
                 SettingsSection(title: L10n.string("settings_about")) {
+                    // App Version & Info - Using Bundle information
                     SettingsActionRow(
                         title: L10n.string("settings_version"),
-                        subtitle: "1.0.0",
+                        subtitle: AppLinks.appInfoSubtitle,
                         action: {}
                     )
                     
@@ -230,8 +222,11 @@ struct SettingsView: View {
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
             }
             .padding(.vertical, MonetiqTheme.Spacing.sectionSpacing)
+            }
+            .navigationTitle(L10n.string("settings_title"))
+            .navigationBarTitleDisplayMode(.large)
+            .monetiqBackground()
         }
-        .monetiqBackground()
         .onAppear {
             // Initialize settings and notification manager
             let currentSettings = AppSettings.getOrCreate(in: modelContext)
@@ -240,11 +235,10 @@ struct SettingsView: View {
             
             // No need to initialize toggle value - it reads directly from settings
         }
-        .sheet(isPresented: $showingPrivacyPolicy) {
-            PrivacyPolicyView()
-        }
-        .sheet(isPresented: $showingTermsOfService) {
-            TermsOfServiceView()
+        .sheet(isPresented: $showingSafariView) {
+            if let url = safariURL {
+                SafariView(url: url)
+            }
         }
         .alert(L10n.string("settings_reset_app_confirm_title"), isPresented: $showingResetConfirmation) {
             Button(L10n.string("general_cancel"), role: .cancel) { }
@@ -334,12 +328,32 @@ struct SettingsView: View {
     }
     
     
+    /// Opens Privacy Policy in SFSafariViewController or shows alert if URL unavailable
     private func openPrivacyPolicy() {
-        showingPrivacyPolicy = true
+        guard let url = AppLinks.validatedURL(AppLinks.privacyURL) else {
+            // Show alert for missing/invalid URL
+            biometricAlertTitle = L10n.string("settings_privacy_unavailable_title")
+            biometricAlertMessage = L10n.string("settings_privacy_unavailable_message")
+            showingBiometricAlert = true
+            return
+        }
+        
+        safariURL = url
+        showingSafariView = true
     }
     
+    /// Opens Terms of Service in SFSafariViewController or shows alert if URL unavailable
     private func openTermsOfService() {
-        showingTermsOfService = true
+        guard let url = AppLinks.validatedURL(AppLinks.termsURL) else {
+            // Show alert for missing/invalid URL
+            biometricAlertTitle = L10n.string("settings_terms_unavailable_title")
+            biometricAlertMessage = L10n.string("settings_terms_unavailable_message")
+            showingBiometricAlert = true
+            return
+        }
+        
+        safariURL = url
+        showingSafariView = true
     }
     
     private func openAppSettings() {
@@ -720,6 +734,21 @@ struct LanguagePickerRow: View {
         .padding(MonetiqTheme.Spacing.md)
         .background(MonetiqTheme.Colors.surface)
         .cornerRadius(MonetiqTheme.CornerRadius.md)
+    }
+}
+
+// MARK: - Safari View Wrapper
+struct SafariView: UIViewControllerRepresentable {
+    let url: URL
+    
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.preferredControlTintColor = UIColor(MonetiqTheme.Colors.accent)
+        return safariViewController
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
+        // No updates needed
     }
 }
 

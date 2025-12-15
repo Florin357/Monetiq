@@ -90,6 +90,12 @@
 "calculator_number_of_payments_placeholder" = "Introdu numărul de plăți";
 "calculator_number_of_payments_helper" = "Exemplu: 12 pentru 1 an de plăți lunare";
 "calculator_payments_suffix" = "plăți";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Politica de Confidențialitate Indisponibilă";
+"settings_privacy_unavailable_message" = "Politica de confidențialitate nu este disponibilă în acest moment. Vă rugăm să încercați din nou mai târziu sau contactați suportul.";
+"settings_terms_unavailable_title" = "Termenii de Serviciu Indisponibili";
+"settings_terms_unavailable_message" = "Termenii de serviciu nu sunt disponibili în acest moment. Vă rugăm să încercați din nou mai târziu sau contactați suportul.";
 "calculator_frequency" = "Frecvența Plăților";
 "calculator_calculate" = "Calculează Plata";
 "calculator_results" = "Rezultate";

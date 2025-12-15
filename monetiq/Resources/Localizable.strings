@@ -96,6 +96,12 @@
 "calculator_number_of_payments_placeholder" = "Enter number of payments";
 "calculator_number_of_payments_helper" = "Example: 12 for 1 year of monthly payments";
 "calculator_payments_suffix" = "payments";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Privacy Policy Unavailable";
+"settings_privacy_unavailable_message" = "The privacy policy is not available at this time. Please try again later or contact support.";
+"settings_terms_unavailable_title" = "Terms of Service Unavailable";
+"settings_terms_unavailable_message" = "The terms of service are not available at this time. Please try again later or contact support.";
 "calculator_frequency" = "Payment Frequency";
 "calculator_calculate" = "Calculate Payment";
 "calculator_results" = "Results";

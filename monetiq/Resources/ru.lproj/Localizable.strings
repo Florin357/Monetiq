@@ -91,6 +91,12 @@
 "calculator_number_of_payments_placeholder" = "Введите количество платежей";
 "calculator_number_of_payments_helper" = "Пример: 12 для 1 года ежемесячных платежей";
 "calculator_payments_suffix" = "платежи";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Политика Конфиденциальности Недоступна";
+"settings_privacy_unavailable_message" = "Политика конфиденциальности в настоящее время недоступна. Пожалуйста, попробуйте позже или обратитесь в службу поддержки.";
+"settings_terms_unavailable_title" = "Условия Обслуживания Недоступны";
+"settings_terms_unavailable_message" = "Условия обслуживания в настоящее время недоступны. Пожалуйста, попробуйте позже или обратитесь в службу поддержки.";
 "calculator_frequency" = "Частота платежей";
 "calculator_calculate" = "Рассчитать платеж";
 "calculator_results" = "Результаты";

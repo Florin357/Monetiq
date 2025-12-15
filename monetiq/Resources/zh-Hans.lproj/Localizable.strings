@@ -91,6 +91,12 @@
 "calculator_number_of_payments_placeholder" = "输入付款次数";
 "calculator_number_of_payments_helper" = "例如：12表示1年的月付款";
 "calculator_payments_suffix" = "付款";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "隐私政策不可用";
+"settings_privacy_unavailable_message" = "隐私政策目前不可用。请稍后重试或联系支持。";
+"settings_terms_unavailable_title" = "服务条款不可用";
+"settings_terms_unavailable_message" = "服务条款目前不可用。请稍后重试或联系支持。";
 "calculator_frequency" = "付款频率";
 "calculator_calculate" = "计算付款";
 "calculator_results" = "结果";

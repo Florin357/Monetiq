@@ -91,6 +91,12 @@
 "calculator_number_of_payments_placeholder" = "भुगतानों की संख्या दर्ज करें";
 "calculator_number_of_payments_helper" = "उदाहरण: मासिक भुगतान के 1 साल के लिए 12";
 "calculator_payments_suffix" = "भुगतान";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "गोपनीयता नीति उपलब्ध नहीं";
+"settings_privacy_unavailable_message" = "गोपनीयता नीति इस समय उपलब्ध नहीं है। कृपया बाद में पुनः प्रयास करें या समर्थन से संपर्क करें।";
+"settings_terms_unavailable_title" = "सेवा की शर्तें उपलब्ध नहीं";
+"settings_terms_unavailable_message" = "सेवा की शर्तें इस समय उपलब्ध नहीं हैं। कृपया बाद में पुनः प्रयास करें या समर्थन से संपर्क करें।";
 "calculator_frequency" = "भुगतान आवृत्ति";
 "calculator_calculate" = "भुगतान की गणना करें";
 "calculator_results" = "परिणाम";

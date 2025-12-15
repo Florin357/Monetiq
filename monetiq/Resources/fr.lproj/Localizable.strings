@@ -91,6 +91,12 @@
 "calculator_number_of_payments_placeholder" = "Entrez le nombre de paiements";
 "calculator_number_of_payments_helper" = "Exemple : 12 pour 1 an de paiements mensuels";
 "calculator_payments_suffix" = "paiements";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Politique de Confidentialité Indisponible";
+"settings_privacy_unavailable_message" = "La politique de confidentialité n'est pas disponible pour le moment. Veuillez réessayer plus tard ou contacter le support.";
+"settings_terms_unavailable_title" = "Conditions d'Utilisation Indisponibles";
+"settings_terms_unavailable_message" = "Les conditions d'utilisation ne sont pas disponibles pour le moment. Veuillez réessayer plus tard ou contacter le support.";
 "calculator_frequency" = "Fréquence de paiement";
 "calculator_calculate" = "Calculer le paiement";
 "calculator_results" = "Résultats";
