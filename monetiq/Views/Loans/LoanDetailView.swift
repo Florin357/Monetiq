@@ -68,30 +68,30 @@ struct LoanDetailView: View {
                         .foregroundColor(MonetiqTheme.Colors.onSurface)
                     
                     VStack(spacing: MonetiqTheme.Spacing.md) {
-                        DetailRow(title: "Start Date", value: loan.startDate.formatted(date: .abbreviated, time: .omitted))
-                        DetailRow(title: "Payment Frequency", value: loan.frequency.localizedLabel)
-                        DetailRow(title: "Number of Payments", value: String(loan.numberOfPeriods))
-                        DetailRow(title: "Interest Mode", value: loan.interestMode.localizedLabel)
+                        DetailRow(title: L10n.string("loan_detail_start_date"), value: loan.startDate.formatted(date: .abbreviated, time: .omitted))
+                        DetailRow(title: L10n.string("loan_detail_payment_frequency"), value: loan.frequency.localizedLabel)
+                        DetailRow(title: L10n.string("loan_detail_number_of_payments"), value: String(loan.numberOfPeriods))
+                        DetailRow(title: L10n.string("loan_detail_interest_mode"), value: loan.interestMode.localizedLabel)
                         
                         if let rate = loan.annualInterestRate {
-                            DetailRow(title: "Annual Interest Rate", value: String(format: "%.2f%%", rate))
+                            DetailRow(title: L10n.string("loan_detail_annual_interest_rate"), value: String(format: "%.2f%%", rate))
                         }
                         
                         if let totalToRepay = loan.totalToRepay {
-                            DetailRow(title: "Total to Repay", value: String(format: "%.2f %@", totalToRepay, loan.currencyCode))
+                            DetailRow(title: L10n.string("loan_detail_total_to_repay"), value: CurrencyFormatter.shared.format(amount: totalToRepay, currencyCode: loan.currencyCode))
                         }
                         
-                        DetailRow(title: "Total Paid", value: String(format: "%.2f %@", loan.totalPaid, loan.currencyCode))
-                        DetailRow(title: "Remaining", value: String(format: "%.2f %@", loan.remainingToPay, loan.currencyCode))
+                        DetailRow(title: L10n.string("loan_detail_total_paid"), value: CurrencyFormatter.shared.format(amount: loan.totalPaid, currencyCode: loan.currencyCode))
+                        DetailRow(title: L10n.string("loan_detail_remaining"), value: CurrencyFormatter.shared.format(amount: loan.remainingToPay, currencyCode: loan.currencyCode))
                         
                         if let nextDueDate = loan.nextDueDate {
-                            DetailRow(title: "Next Due Date", value: nextDueDate.formatted(date: .abbreviated, time: .omitted))
+                            DetailRow(title: L10n.string("loan_detail_next_due_date"), value: nextDueDate.formatted(date: .abbreviated, time: .omitted))
                         }
                         
-                        DetailRow(title: "Created", value: loan.createdAt.formatted(date: .abbreviated, time: .shortened))
+                        DetailRow(title: L10n.string("loan_detail_created"), value: loan.createdAt.formatted(date: .abbreviated, time: .shortened))
                         
                         if loan.updatedAt != loan.createdAt {
-                            DetailRow(title: "Last Updated", value: loan.updatedAt.formatted(date: .abbreviated, time: .shortened))
+                            DetailRow(title: L10n.string("loan_detail_last_updated"), value: loan.updatedAt.formatted(date: .abbreviated, time: .shortened))
                         }
                     }
                 }
@@ -305,13 +305,13 @@ struct PaymentRowView: View {
         switch payment.status {
         case .paid:
             if let paidDate = payment.paidDate {
-                return "Paid on \(paidDate.formatted(date: .abbreviated, time: .omitted))"
+                return L10n.string("status_paid_on", paidDate.formatted(date: .abbreviated, time: .omitted))
             }
-            return "Paid"
+            return L10n.string("status_paid")
         case .planned:
-            return payment.isOverdue ? "Overdue" : "Planned"
+            return payment.isOverdue ? L10n.string("status_overdue") : L10n.string("status_planned")
         case .overdue:
-            return "Overdue"
+            return L10n.string("status_overdue")
         }
     }
     

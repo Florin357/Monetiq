@@ -253,5 +253,39 @@
 "notification_test_title" = "Notifica di Test";
 "notification_test_body" = "Questa è una notifica di test da Monetiq";
 
+// Payment due date labels
+"payment_due_today" = "In scadenza oggi";
+"payment_due_tomorrow" = "In scadenza domani";
+"payment_due_in_days" = "In scadenza tra %d giorni";
 
+// Payment status
+"status_paid_on" = "Pagato il %@";
 
+// Loan detail labels
+"loan_detail_start_date" = "Data di Inizio";
+"loan_detail_payment_frequency" = "Frequenza di Pagamento";
+"loan_detail_number_of_payments" = "Numero di Pagamenti";
+"loan_detail_interest_mode" = "Modalità di Interesse";
+"loan_detail_annual_interest_rate" = "Tasso di Interesse Annuale";
+"loan_detail_total_to_repay" = "Totale da Rimborsare";
+"loan_detail_total_paid" = "Totale Pagato";
+"loan_detail_remaining" = "Rimanente";
+"loan_detail_next_due_date" = "Prossima Scadenza";
+"loan_detail_created" = "Creato";
+"loan_detail_last_updated" = "Ultimo Aggiornamento";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometria";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "L'autenticazione biometrica non è disponibile su questo dispositivo";
+"biometric_error_not_enrolled" = "Nessun dato biometrico registrato su questo dispositivo";
+"biometric_error_authentication_failed" = "Autenticazione fallita";
+"biometric_error_user_cancel" = "Autenticazione annullata";
+"biometric_error_user_fallback" = "L'utente ha scelto di usare il codice";
+"biometric_error_system_cancel" = "Autenticazione annullata dal sistema";
+"biometric_error_passcode_not_set" = "Il codice del dispositivo non è impostato";
+"biometric_error_biometry_lockout" = "L'autenticazione biometrica è bloccata";

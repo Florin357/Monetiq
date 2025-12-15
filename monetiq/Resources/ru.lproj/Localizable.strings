@@ -255,3 +255,40 @@
 "biometric_unavailable_title" = "Биометрия Недоступна";
 "biometric_unavailable_message" = "Биометрическая аутентификация недоступна на этом устройстве";
 "general_ok" = "OK";
+
+// Payment due date labels
+"payment_due_today" = "Срок сегодня";
+"payment_due_tomorrow" = "Срок завтра";
+"payment_due_in_days" = "Срок через %d дней";
+
+// Payment status
+"status_paid_on" = "Оплачено %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Дата Начала";
+"loan_detail_payment_frequency" = "Частота Платежей";
+"loan_detail_number_of_payments" = "Количество Платежей";
+"loan_detail_interest_mode" = "Режим Процентов";
+"loan_detail_annual_interest_rate" = "Годовая Процентная Ставка";
+"loan_detail_total_to_repay" = "Общая Сумма к Возврату";
+"loan_detail_total_paid" = "Общая Сумма Выплачена";
+"loan_detail_remaining" = "Остаток";
+"loan_detail_next_due_date" = "Следующий Срок Платежа";
+"loan_detail_created" = "Создано";
+"loan_detail_last_updated" = "Последнее Обновление";
+
+// Biometric types
+"biometric_type_biometrics" = "Биометрия";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Биометрическая аутентификация недоступна на этом устройстве";
+"biometric_error_not_enrolled" = "На этом устройстве не зарегистрированы биометрические данные";
+"biometric_error_authentication_failed" = "Ошибка аутентификации";
+"biometric_error_user_cancel" = "Аутентификация отменена";
+"biometric_error_user_fallback" = "Пользователь выбрал использование пароля";
+"biometric_error_system_cancel" = "Аутентификация отменена системой";
+"biometric_error_passcode_not_set" = "Пароль устройства не установлен";
+"biometric_error_biometry_lockout" = "Биометрическая аутентификация заблокирована";

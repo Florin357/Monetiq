@@ -256,3 +256,40 @@
 "settings_notifications_denied_title" = "Notificări Dezactivate";
 "settings_notifications_denied_message" = "Pentru a primi mementouri de plată, vă rugăm să activați notificările în Setări";
 "settings_open_settings" = "Deschide Setările";
+
+// Payment due date labels
+"payment_due_today" = "Scadent azi";
+"payment_due_tomorrow" = "Scadent mâine";
+"payment_due_in_days" = "Scadent în %d zile";
+
+// Payment status
+"status_paid_on" = "Plătit pe %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Data de Început";
+"loan_detail_payment_frequency" = "Frecvența Plăților";
+"loan_detail_number_of_payments" = "Numărul de Plăți";
+"loan_detail_interest_mode" = "Modul de Dobândă";
+"loan_detail_annual_interest_rate" = "Rata Anuală de Dobândă";
+"loan_detail_total_to_repay" = "Total de Rambursat";
+"loan_detail_total_paid" = "Total Plătit";
+"loan_detail_remaining" = "Rămas";
+"loan_detail_next_due_date" = "Următoarea Scadență";
+"loan_detail_created" = "Creat";
+"loan_detail_last_updated" = "Ultima Actualizare";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometrie";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
+"biometric_error_not_enrolled" = "Nu sunt înregistrate date biometrice pe acest dispozitiv";
+"biometric_error_authentication_failed" = "Autentificarea a eșuat";
+"biometric_error_user_cancel" = "Autentificarea a fost anulată";
+"biometric_error_user_fallback" = "Utilizatorul a ales să folosească codul de acces";
+"biometric_error_system_cancel" = "Autentificarea a fost anulată de sistem";
+"biometric_error_passcode_not_set" = "Codul de acces al dispozitivului nu este setat";
+"biometric_error_biometry_lockout" = "Autentificarea biometrică este blocată";

@@ -17,13 +17,13 @@ enum BiometricType {
     var displayName: String {
         switch self {
         case .none:
-            return "Biometrics"
+            return L10n.string("biometric_type_biometrics")
         case .touchID:
-            return "Touch ID"
+            return L10n.string("biometric_type_touch_id")
         case .faceID:
-            return "Face ID"
+            return L10n.string("biometric_type_face_id")
         case .opticID:
-            return "Optic ID"
+            return L10n.string("biometric_type_optic_id")
         }
     }
 }
@@ -42,21 +42,21 @@ enum BiometricAuthError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notAvailable:
-            return "Biometric authentication is not available on this device"
+            return L10n.string("biometric_error_not_available")
         case .notEnrolled:
-            return "No biometric data is enrolled on this device"
+            return L10n.string("biometric_error_not_enrolled")
         case .authenticationFailed:
-            return "Authentication failed"
+            return L10n.string("biometric_error_authentication_failed")
         case .userCancel:
-            return "Authentication was cancelled"
+            return L10n.string("biometric_error_user_cancel")
         case .userFallback:
-            return "User chose to use passcode"
+            return L10n.string("biometric_error_user_fallback")
         case .systemCancel:
-            return "Authentication was cancelled by the system"
+            return L10n.string("biometric_error_system_cancel")
         case .passcodeNotSet:
-            return "Device passcode is not set"
+            return L10n.string("biometric_error_passcode_not_set")
         case .biometryLockout:
-            return "Biometric authentication is locked out"
+            return L10n.string("biometric_error_biometry_lockout")
         case .unknown(let error):
             return error.localizedDescription
         }

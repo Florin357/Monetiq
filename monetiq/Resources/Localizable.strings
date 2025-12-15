@@ -261,3 +261,35 @@
 "payment_due_today" = "Due today";
 "payment_due_tomorrow" = "Due tomorrow";
 "payment_due_in_days" = "Due in %d days";
+
+// Payment status
+"status_paid_on" = "Paid on %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Start Date";
+"loan_detail_payment_frequency" = "Payment Frequency";
+"loan_detail_number_of_payments" = "Number of Payments";
+"loan_detail_interest_mode" = "Interest Mode";
+"loan_detail_annual_interest_rate" = "Annual Interest Rate";
+"loan_detail_total_to_repay" = "Total to Repay";
+"loan_detail_total_paid" = "Total Paid";
+"loan_detail_remaining" = "Remaining";
+"loan_detail_next_due_date" = "Next Due Date";
+"loan_detail_created" = "Created";
+"loan_detail_last_updated" = "Last Updated";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometrics";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Biometric authentication is not available on this device";
+"biometric_error_not_enrolled" = "No biometric data is enrolled on this device";
+"biometric_error_authentication_failed" = "Authentication failed";
+"biometric_error_user_cancel" = "Authentication was cancelled";
+"biometric_error_user_fallback" = "User chose to use passcode";
+"biometric_error_system_cancel" = "Authentication was cancelled by the system";
+"biometric_error_passcode_not_set" = "Device passcode is not set";
+"biometric_error_biometry_lockout" = "Biometric authentication is locked out";

@@ -258,3 +258,40 @@
 "biometric_unavailable_title" = "Biometrie nicht verfügbar";
 "biometric_unavailable_message" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
 "general_ok" = "OK";
+
+// Payment due date labels
+"payment_due_today" = "Heute fällig";
+"payment_due_tomorrow" = "Morgen fällig";
+"payment_due_in_days" = "Fällig in %d Tagen";
+
+// Payment status
+"status_paid_on" = "Bezahlt am %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Startdatum";
+"loan_detail_payment_frequency" = "Zahlungsfrequenz";
+"loan_detail_number_of_payments" = "Anzahl der Zahlungen";
+"loan_detail_interest_mode" = "Zinsmodus";
+"loan_detail_annual_interest_rate" = "Jährlicher Zinssatz";
+"loan_detail_total_to_repay" = "Gesamtrückzahlung";
+"loan_detail_total_paid" = "Gesamt bezahlt";
+"loan_detail_remaining" = "Verbleibend";
+"loan_detail_next_due_date" = "Nächstes Fälligkeitsdatum";
+"loan_detail_created" = "Erstellt";
+"loan_detail_last_updated" = "Zuletzt aktualisiert";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometrie";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
+"biometric_error_not_enrolled" = "Keine biometrischen Daten auf diesem Gerät registriert";
+"biometric_error_authentication_failed" = "Authentifizierung fehlgeschlagen";
+"biometric_error_user_cancel" = "Authentifizierung wurde abgebrochen";
+"biometric_error_user_fallback" = "Benutzer wählte Passcode-Verwendung";
+"biometric_error_system_cancel" = "Authentifizierung wurde vom System abgebrochen";
+"biometric_error_passcode_not_set" = "Gerätecode ist nicht gesetzt";
+"biometric_error_biometry_lockout" = "Biometrische Authentifizierung ist gesperrt";

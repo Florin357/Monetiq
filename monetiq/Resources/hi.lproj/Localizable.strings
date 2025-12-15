@@ -255,3 +255,40 @@
 "biometric_unavailable_title" = "बायोमेट्रिक्स उपलब्ध नहीं";
 "biometric_unavailable_message" = "इस डिवाइस पर बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है";
 "general_ok" = "ठीक है";
+
+// Payment due date labels
+"payment_due_today" = "आज देय";
+"payment_due_tomorrow" = "कल देय";
+"payment_due_in_days" = "%d दिनों में देय";
+
+// Payment status
+"status_paid_on" = "%@ को भुगतान किया गया";
+
+// Loan detail labels
+"loan_detail_start_date" = "प्रारंभ तिथि";
+"loan_detail_payment_frequency" = "भुगतान आवृत्ति";
+"loan_detail_number_of_payments" = "भुगतानों की संख्या";
+"loan_detail_interest_mode" = "ब्याज मोड";
+"loan_detail_annual_interest_rate" = "वार्षिक ब्याज दर";
+"loan_detail_total_to_repay" = "कुल चुकाना";
+"loan_detail_total_paid" = "कुल भुगतान";
+"loan_detail_remaining" = "शेष";
+"loan_detail_next_due_date" = "अगली देय तिथि";
+"loan_detail_created" = "बनाया गया";
+"loan_detail_last_updated" = "अंतिम अपडेट";
+
+// Biometric types
+"biometric_type_biometrics" = "बायोमेट्रिक्स";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "इस डिवाइस पर बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है";
+"biometric_error_not_enrolled" = "इस डिवाइस पर कोई बायोमेट्रिक डेटा पंजीकृत नहीं है";
+"biometric_error_authentication_failed" = "प्रमाणीकरण विफल";
+"biometric_error_user_cancel" = "प्रमाणीकरण रद्द किया गया";
+"biometric_error_user_fallback" = "उपयोगकर्ता ने पासकोड का उपयोग करना चुना";
+"biometric_error_system_cancel" = "सिस्टम द्वारा प्रमाणीकरण रद्द किया गया";
+"biometric_error_passcode_not_set" = "डिवाइस पासकोड सेट नहीं है";
+"biometric_error_biometry_lockout" = "बायोमेट्रिक प्रमाणीकरण लॉक आउट है";

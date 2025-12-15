@@ -255,3 +255,40 @@
 "biometric_unavailable_title" = "Biometría No Disponible";
 "biometric_unavailable_message" = "La autenticación biométrica no está disponible en este dispositivo";
 "general_ok" = "OK";
+
+// Payment due date labels
+"payment_due_today" = "Vence hoy";
+"payment_due_tomorrow" = "Vence mañana";
+"payment_due_in_days" = "Vence en %d días";
+
+// Payment status
+"status_paid_on" = "Pagado el %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Fecha de Inicio";
+"loan_detail_payment_frequency" = "Frecuencia de Pago";
+"loan_detail_number_of_payments" = "Número de Pagos";
+"loan_detail_interest_mode" = "Modo de Interés";
+"loan_detail_annual_interest_rate" = "Tasa de Interés Anual";
+"loan_detail_total_to_repay" = "Total a Pagar";
+"loan_detail_total_paid" = "Total Pagado";
+"loan_detail_remaining" = "Restante";
+"loan_detail_next_due_date" = "Próximo Vencimiento";
+"loan_detail_created" = "Creado";
+"loan_detail_last_updated" = "Última Actualización";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometría";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "La autenticación biométrica no está disponible en este dispositivo";
+"biometric_error_not_enrolled" = "No hay datos biométricos registrados en este dispositivo";
+"biometric_error_authentication_failed" = "Autenticación fallida";
+"biometric_error_user_cancel" = "Autenticación cancelada";
+"biometric_error_user_fallback" = "El usuario eligió usar el código de acceso";
+"biometric_error_system_cancel" = "Autenticación cancelada por el sistema";
+"biometric_error_passcode_not_set" = "El código del dispositivo no está configurado";
+"biometric_error_biometry_lockout" = "La autenticación biométrica está bloqueada";
