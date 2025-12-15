@@ -23,7 +23,7 @@ struct LockScreenView: View {
                 // Lock Icon
                 VStack(spacing: MonetiqTheme.Spacing.lg) {
                     Image(systemName: biometricIconName)
-                        .font(.system(size: 80))
+                        .font(.system(size: 80, weight: .ultraLight))
                         .foregroundColor(MonetiqTheme.Colors.accent)
                     
                     VStack(spacing: MonetiqTheme.Spacing.md) {
@@ -46,7 +46,7 @@ struct LockScreenView: View {
                 if let errorMessage = lockState.errorMessage {
                     VStack(spacing: MonetiqTheme.Spacing.sm) {
                         Image(systemName: "exclamationmark.triangle")
-                            .font(.title2)
+                            .font(MonetiqTheme.Typography.title2)
                             .foregroundColor(MonetiqTheme.Colors.error)
                         
                         Text(errorMessage)
@@ -70,7 +70,7 @@ struct LockScreenView: View {
                                 .scaleEffect(0.8)
                         } else {
                             Image(systemName: biometricIconName)
-                                .font(.title3)
+                                .font(MonetiqTheme.Typography.title3)
                         }
                         
                         Text(L10n.string("lock_screen_unlock_button", lockState.biometricType.displayName))

@@ -202,7 +202,7 @@ struct LoanDetailView: View {
                         HStack {
                             Image(systemName: counterparty.type == .person ? "person.fill" : "building.fill")
                                 .foregroundColor(MonetiqTheme.Colors.accent)
-                                .font(.title2)
+                                .font(MonetiqTheme.Typography.title2)
                             
                             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                                 Text(counterparty.name)

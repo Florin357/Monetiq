@@ -610,7 +610,7 @@ struct SettingsActionRow: View {
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.footnote)
+                    .font(MonetiqTheme.Typography.footnote)
                     .foregroundColor(MonetiqTheme.Colors.textTertiary)
             }
             .padding(MonetiqTheme.Spacing.cardPadding)
@@ -642,7 +642,7 @@ struct SettingsDestructiveActionRow: View {
                 Spacer()
                 
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.title3)
+                    .font(MonetiqTheme.Typography.title3)
                     .foregroundColor(MonetiqTheme.Colors.error)
             }
             .padding(MonetiqTheme.Spacing.cardPadding)

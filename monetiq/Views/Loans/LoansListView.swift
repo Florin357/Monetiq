@@ -46,7 +46,7 @@ struct LoansListView: View {
                 Spacer()
                 VStack(spacing: MonetiqTheme.Spacing.md) {
                     Image(systemName: "banknote")
-                        .font(.system(size: 60))
+                        .font(.system(size: 60, weight: .light))
                         .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     
                     Text(L10n.string("loans_empty_title"))
@@ -158,7 +158,7 @@ struct LoanRowView: View {
                 HStack(spacing: MonetiqTheme.Spacing.sm) {
                     Image(systemName: counterparty.type == .person ? "person.fill" : "building.fill")
                         .foregroundColor(MonetiqTheme.Colors.textTertiary)
-                        .font(.caption)
+                        .font(MonetiqTheme.Typography.caption)
                     
                     Text(counterparty.name)
                         .monetiqCardSubtitle()

@@ -123,7 +123,7 @@ struct CalculatorView: View {
                             ShareLink(item: shareText) {
                                 HStack(spacing: MonetiqTheme.Spacing.xs) {
                                     Image(systemName: "square.and.arrow.up")
-                                        .font(.caption)
+                                        .font(MonetiqTheme.Typography.caption)
                                     Text(L10n.string("calculator_share"))
                                         .font(MonetiqTheme.Typography.caption)
                                 }
@@ -197,7 +197,7 @@ struct CalculatorView: View {
                 Button(L10n.string("general_done")) {
                     focusedField = nil
                 }
-                .font(.system(size: 16, weight: .semibold))
+                .font(MonetiqTheme.Typography.callout)
                 .foregroundColor(MonetiqTheme.Colors.accent)
             }
         }
@@ -319,7 +319,7 @@ struct AmountCurrencyField: View {
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.accent)
                         Image(systemName: "chevron.down")
-                            .font(.caption)
+                            .font(MonetiqTheme.Typography.caption)
                             .foregroundColor(MonetiqTheme.Colors.accent)
                     }
                     .padding(.horizontal, MonetiqTheme.Spacing.sm)

@@ -20,6 +20,9 @@ struct MonetiqTheme {
         static let darkBlue = Color(red: 0.0, green: 0.0, blue: 0.098)     // #000019 - Deep dark
         static let darkPurple = Color(red: 0.098, green: 0.098, blue: 0.188) // #191930 - Dark purple
         
+        // Theme-adaptive premium colors
+        static let premiumAccent = Color.accentColor // Uses system accent color for better adaptation
+        
         // Dynamic backgrounds that adapt to light/dark mode
         static let background = Color(.systemBackground)
         static let surface = Color(.secondarySystemBackground)
@@ -106,15 +109,15 @@ struct MonetiqTheme {
     
     // MARK: - Shadows and Effects
     struct Shadow {
-        // Revolut-style subtle depth
-        static let card = Color.black.opacity(0.04)
-        static let cardElevated = Color.black.opacity(0.08)
-        static let cardPremium = Color.black.opacity(0.12)
-        static let subtle = Color.black.opacity(0.02)
+        // Adaptive shadows for light/dark mode
+        static let card = Color.primary.opacity(0.06)
+        static let cardElevated = Color.primary.opacity(0.10)
+        static let cardPremium = Color.primary.opacity(0.15)
+        static let subtle = Color.primary.opacity(0.03)
         
         // Interactive shadows
-        static let pressed = Color.black.opacity(0.15)
-        static let hover = Color.black.opacity(0.06)
+        static let pressed = Color.primary.opacity(0.20)
+        static let hover = Color.primary.opacity(0.08)
     }
 }
 

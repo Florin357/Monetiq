@@ -105,7 +105,7 @@ struct DashboardView: View {
                     if upcomingPayments.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.sm) {
                             Image(systemName: "calendar.badge.clock")
-                                .font(.system(size: 32))
+                                .font(.system(size: 32, weight: .light))
                                 .foregroundColor(MonetiqTheme.Colors.textTertiary)
                             
                             VStack(spacing: MonetiqTheme.Spacing.xs) {
@@ -178,7 +178,7 @@ struct DashboardView: View {
                     if recentLoans.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.sm) {
                             Image(systemName: "banknote")
-                                .font(.system(size: 32))
+                                .font(.system(size: 32, weight: .light))
                                 .foregroundColor(MonetiqTheme.Colors.textTertiary)
                             
                             Text(L10n.string("dashboard_no_loans"))
