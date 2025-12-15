@@ -82,12 +82,6 @@ class LocalizationManager {
         var result = LocalizationAuditResult()
         
         // Get all keys from base English
-        guard let basePath = Bundle.main.path(forResource: "en", ofType: "lproj") ?? Bundle.main.path(forResource: "Base", ofType: "lproj"),
-              let baseBundle = Bundle(path: basePath) else {
-            result.errors.append("Could not find base localization bundle")
-            return result
-        }
-        
         guard let baseStringsPath = Bundle.main.path(forResource: "Localizable", ofType: "strings"),
               let baseStrings = NSDictionary(contentsOfFile: baseStringsPath) as? [String: String] else {
             result.errors.append("Could not load base Localizable.strings")
