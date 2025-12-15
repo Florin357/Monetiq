@@ -31,8 +31,27 @@ struct PaymentScheduleItem {
 class LoanCalculator {
     
     static func generateSchedule(input: LoanCalculationInput) -> LoanCalculationOutput {
+        // Validate input to prevent division by zero and invalid calculations
+        guard input.numberOfPeriods > 0 else {
+            return LoanCalculationOutput(
+                totalToRepay: input.principal,
+                periodicPaymentAmount: input.principal,
+                schedule: []
+            )
+        }
+        
         let totalToRepay = calculateTotalToRepay(input: input)
         let periodicPaymentAmount = totalToRepay / Double(input.numberOfPeriods)
+        
+        // Validate calculated values to prevent NaN or infinite values
+        guard totalToRepay.isFinite && periodicPaymentAmount.isFinite else {
+            return LoanCalculationOutput(
+                totalToRepay: input.principal,
+                periodicPaymentAmount: input.principal,
+                schedule: []
+            )
+        }
+        
         let schedule = generatePaymentSchedule(
             startDate: input.startDate,
             frequency: input.frequency,
@@ -109,6 +128,11 @@ class LoanCalculator {
                 amount = totalToRepay - totalScheduled
             } else {
                 amount = periodicAmount
+            }
+            
+            // Validate amount is finite before adding to schedule
+            guard amount.isFinite && amount >= 0 else {
+                continue // Skip invalid payments
             }
             
             schedule.append(PaymentScheduleItem(dueDate: dueDate, amount: amount))

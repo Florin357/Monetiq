@@ -23,10 +23,11 @@ struct L10n {
             return String(format: format, arguments: args)
         }
         
-        // Try to get the specific language bundle
+        // Try to get the specific language bundle with proper validation
         guard let path = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+              !path.isEmpty,
               let bundle = Bundle(path: path) else {
-            // Fallback to default
+            // Fallback to default localization
             let format = NSLocalizedString(key, comment: "")
             return String(format: format, arguments: args)
         }
@@ -58,6 +59,7 @@ class LocalizationManager {
         }
         
         guard let path = Bundle.main.path(forResource: languageCode, ofType: "lproj"),
+              !path.isEmpty,
               let bundle = Bundle(path: path) else {
             let format = NSLocalizedString(key, comment: "")
             return String(format: format, arguments: args)
@@ -100,6 +102,7 @@ class LocalizationManager {
             languageResult.languageName = language.name
             
             guard let langPath = Bundle.main.path(forResource: language.code, ofType: "lproj"),
+                  !langPath.isEmpty,
                   let langBundle = Bundle(path: langPath),
                   let stringsPath = langBundle.path(forResource: "Localizable", ofType: "strings"),
                   let langStrings = NSDictionary(contentsOfFile: stringsPath) as? [String: String] else {

@@ -109,15 +109,15 @@ struct MonetiqTheme {
     
     // MARK: - Shadows and Effects
     struct Shadow {
-        // Adaptive shadows for light/dark mode
-        static let card = Color.primary.opacity(0.06)
-        static let cardElevated = Color.primary.opacity(0.10)
-        static let cardPremium = Color.primary.opacity(0.15)
-        static let subtle = Color.primary.opacity(0.03)
+        // Adaptive shadows for light/dark mode - using system colors for better compatibility
+        static let card = Color(.systemGray4).opacity(0.6)
+        static let cardElevated = Color(.systemGray3).opacity(0.7)
+        static let cardPremium = Color(.systemGray2).opacity(0.8)
+        static let subtle = Color(.systemGray5).opacity(0.5)
         
-        // Interactive shadows
-        static let pressed = Color.primary.opacity(0.20)
-        static let hover = Color.primary.opacity(0.08)
+        // Interactive shadows - using consistent system colors
+        static let pressed = Color(.systemGray2).opacity(0.9)
+        static let hover = Color(.systemGray4).opacity(0.7)
     }
 }
 
