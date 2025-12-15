@@ -317,6 +317,9 @@ struct AddEditLoanView: View {
             
             // Schedule notifications for this loan
             await notificationManager.schedulePaymentNotifications(for: loan)
+            
+            // Update badge count after scheduling
+            await notificationManager.updateBadgeCount()
         }
         
         dismiss()

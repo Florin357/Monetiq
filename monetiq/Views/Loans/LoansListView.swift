@@ -95,6 +95,7 @@ struct LoansListView: View {
                 // Cancel notifications for this loan before deletion
                 Task {
                     await notificationManager.cancelNotifications(for: loan)
+                    await notificationManager.updateBadgeCount()
                 }
                 
                 modelContext.delete(loan)

@@ -88,10 +88,50 @@ class NotificationManager {
         }
     }
     
+    /// Update badge count based on pending payment notifications
+    func updateBadgeCount() async {
+        guard let settings = appSettings, settings.notificationsEnabled else {
+            clearBadgeCount()
+            return
+        }
+        
+        // Count pending payment notifications that are due soon
+        let pendingRequests = await notificationCenter.pendingNotificationRequests()
+        let paymentNotifications = pendingRequests.filter { request in
+            request.identifier.hasPrefix("payment_")
+        }
+        
+        do {
+            try await notificationCenter.setBadgeCount(paymentNotifications.count)
+        } catch {
+            print("Failed to update badge count: \(error)")
+        }
+    }
+    
     // MARK: - Settings Management
     
     func setAppSettings(_ settings: AppSettings) {
         self.appSettings = settings
+    }
+    
+    // MARK: - Error Handling
+    
+    /// Check if notifications are available and properly configured
+    func validateNotificationSetup() async -> (available: Bool, error: String?) {
+        let status = await getAuthorizationStatus()
+        
+        switch status {
+        case .authorized, .provisional:
+            return (true, nil)
+        case .denied:
+            return (false, L10n.string("settings_notifications_denied_message"))
+        case .notDetermined:
+            return (false, L10n.string("notification_permission_not_requested"))
+        case .ephemeral:
+            return (true, nil)
+        @unknown default:
+            return (false, L10n.string("notification_unknown_error"))
+        }
     }
     
     // MARK: - Payment Notifications
@@ -129,8 +169,13 @@ class NotificationManager {
                 daysUntilDue: settings.daysBeforeDueNotification
             )
             
+            // Schedule at 9:00 AM on the notification date for consistency
+            var beforeDueDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: beforeDueDate)
+            beforeDueDateComponents.hour = 9
+            beforeDueDateComponents.minute = 0
+            
             let beforeDueTrigger = UNCalendarNotificationTrigger(
-                dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: beforeDueDate),
+                dateMatching: beforeDueDateComponents,
                 repeats: false
             )
             
@@ -158,8 +203,13 @@ class NotificationManager {
                 daysUntilDue: 0
             )
             
+            // Schedule at 9:00 AM on the due date for consistency
+            var dueDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: dueDate)
+            dueDateComponents.hour = 9
+            dueDateComponents.minute = 0
+            
             let dueDateTrigger = UNCalendarNotificationTrigger(
-                dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: dueDate),
+                dateMatching: dueDateComponents,
                 repeats: false
             )
             
@@ -196,7 +246,7 @@ class NotificationManager {
         }
         
         content.sound = .default
-        content.badge = 1
+        // Don't set badge count here - let the system manage it to avoid accumulation
         
         // Add user info for handling notification taps
         content.userInfo = [
@@ -251,7 +301,7 @@ class NotificationManager {
         content.title = L10n.string("notification_weekly_review_title")
         content.body = L10n.string("notification_weekly_review_body")
         content.sound = .default
-        content.badge = 1
+        // Don't set badge count here - let the system manage it to avoid accumulation
         content.userInfo = ["type": "weekly_review"]
         
         // Schedule for every Monday at 9:00 AM
@@ -295,6 +345,9 @@ class NotificationManager {
         if settings.weeklyReviewEnabled {
             await scheduleWeeklyReviewNotification()
         }
+        
+        // Update badge count after rescheduling
+        await updateBadgeCount()
     }
     
     // MARK: - Debug/Testing

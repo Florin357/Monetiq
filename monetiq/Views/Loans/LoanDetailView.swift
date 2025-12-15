@@ -223,6 +223,7 @@ struct LoanDetailView: View {
         // Cancel notifications for this loan before deletion
         Task {
             await notificationManager.cancelNotifications(for: loan)
+            await notificationManager.updateBadgeCount()
         }
         
         modelContext.delete(loan)
@@ -233,9 +234,10 @@ struct LoanDetailView: View {
         payment.markAsPaid()
         loan.updateTimestamp()
         
-        // Cancel notifications for this specific payment
+        // Cancel notifications for this specific payment and update badge count
         Task {
             await notificationManager.cancelNotifications(for: payment)
+            await notificationManager.updateBadgeCount()
         }
     }
 }

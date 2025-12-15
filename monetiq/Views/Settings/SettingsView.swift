@@ -289,7 +289,7 @@ struct SettingsView: View {
             } else {
                 // Cancel all notifications and clear badge
                 await notificationManager.cancelAllNotifications()
-                notificationManager.clearBadgeCount()
+                await notificationManager.updateBadgeCount()
             }
         }
     }

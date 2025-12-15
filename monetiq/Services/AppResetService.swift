@@ -52,6 +52,14 @@ class AppResetService {
         // Remove all delivered notifications
         center.removeAllDeliveredNotifications()
         
+        // Clear badge count
+        do {
+            try await center.setBadgeCount(0)
+            print("✅ Badge count cleared")
+        } catch {
+            print("❌ Failed to clear badge count: \(error)")
+        }
+        
         print("✅ All notifications cancelled")
     }
     
