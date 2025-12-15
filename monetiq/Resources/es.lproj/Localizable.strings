@@ -1,0 +1,326 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Spanish Localization
+*/
+
+// MARK: - General
+"general_save" = "Guardar";
+"general_cancel" = "Cancelar";
+"general_delete" = "Eliminar";
+"general_edit" = "Editar";
+"general_add" = "Añadir";
+"general_done" = "Hecho";
+"general_ok" = "OK";
+"general_yes" = "Sí";
+"general_no" = "No";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Panel";
+"tab_loans" = "Préstamos";
+"tab_calculator" = "Calculadora";
+"tab_settings" = "Ajustes";
+
+// MARK: - Dashboard
+"dashboard_title" = "Panel";
+"dashboard_subtitle" = "Tu resumen financiero";
+"dashboard_to_receive" = "Por Recibir";
+"dashboard_to_pay" = "Por Pagar";
+"dashboard_upcoming_payments" = "Próximos Pagos";
+"dashboard_no_payments" = "No hay próximos pagos";
+"dashboard_no_payments_subtitle" = "Todos tus pagos están al día";
+
+// MARK: - Loans
+"loans_title" = "Préstamos";
+"loans_subtitle" = "Gestiona tus préstamos y deudas";
+"loans_empty_title" = "Aún no hay préstamos";
+"loans_empty_subtitle" = "Añade tu primer préstamo para comenzar";
+"loans_add_title" = "Añadir Préstamo";
+"loans_edit_title" = "Editar Préstamo";
+"loans_delete_title" = "Eliminar Préstamo";
+"loans_delete_message" = "¿Estás seguro de que quieres eliminar este préstamo? Esta acción no se puede deshacer.";
+"loans_next_due" = "Próximo: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Título";
+"loan_form_title_placeholder" = "Ingresa el título del préstamo";
+"loan_form_role" = "Rol";
+"loan_form_counterparty" = "Contraparte";
+"loan_form_counterparty_name" = "Nombre";
+"loan_form_counterparty_name_placeholder" = "Ingresa el nombre";
+"loan_form_counterparty_type" = "Tipo";
+"loan_form_amount" = "Monto Principal";
+"loan_form_amount_placeholder" = "Ingresa el monto";
+"loan_form_currency" = "Moneda";
+"loan_form_start_date" = "Fecha de Inicio";
+"loan_form_frequency" = "Frecuencia de Pago";
+"loan_form_periods" = "Número de Períodos";
+"loan_form_periods_placeholder" = "Ingresa el número";
+"loan_form_interest_mode" = "Modo de Interés";
+"loan_form_interest_rate" = "Tasa de Interés Anual";
+"loan_form_interest_rate_placeholder" = "Ingresa la tasa";
+"loan_form_fixed_total" = "Total Fijo a Reembolsar";
+"loan_form_fixed_total_placeholder" = "Ingresa el total";
+"loan_form_next_due_date" = "Próxima Fecha de Vencimiento";
+"loan_form_notes" = "Notas";
+"loan_form_notes_placeholder" = "Notas opcionales";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Resumen";
+"loan_detail_principal" = "Monto Principal";
+"loan_detail_total_to_repay" = "Total a Reembolsar";
+"loan_detail_total_paid" = "Total Pagado";
+"loan_detail_remaining" = "Restante";
+"loan_detail_start_date" = "Fecha de Inicio";
+"loan_detail_frequency" = "Frecuencia";
+"loan_detail_counterparty" = "Contraparte";
+"loan_detail_payments" = "Cronograma de Pagos";
+"loan_detail_mark_paid" = "Marcar como Pagado";
+"loan_detail_no_payments" = "No hay pagos programados";
+
+// MARK: - Calculator
+"calculator_title" = "Calculadora de Préstamos";
+"calculator_subtitle" = "Calcula los pagos e intereses del préstamo";
+"calculator_principal" = "Monto Principal";
+"calculator_principal_placeholder" = "Ingresa el monto";
+"calculator_interest_rate" = "Tasa de Interés Anual";
+"calculator_interest_rate_placeholder" = "Ingresa la tasa";
+"calculator_number_of_payments" = "Número de Pagos";
+"calculator_number_of_payments_placeholder" = "Ingresa el número de pagos";
+"calculator_number_of_payments_helper" = "Ejemplo: 12 para 1 año de pagos mensuales";
+"calculator_payments_suffix" = "pagos";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Política de Privacidad No Disponible";
+"settings_privacy_unavailable_message" = "La política de privacidad no está disponible en este momento. Por favor, inténtelo de nuevo más tarde o contacte con soporte.";
+"settings_terms_unavailable_title" = "Términos de Servicio No Disponibles";
+"settings_terms_unavailable_message" = "Los términos de servicio no están disponibles en este momento. Por favor, inténtelo de nuevo más tarde o contacte con soporte.";
+
+// Settings - Version Info Labels
+"settings_version_label" = "Versión";
+"settings_build_label" = "Build";
+"settings_device_info" = "Datos locales • Sin cuenta requerida";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "Política de Privacidad\n\nFecha Efectiva: 15 de Diciembre de 2025\n\nMonetiq está diseñado con la privacidad en mente. Todos sus datos financieros se almacenan localmente en su dispositivo y nunca se transmiten a nuestros servidores o terceros.\n\n1. Información que Recopilamos\n• Información de préstamos\n• Horarios de pago e historial\n• Preferencias de la aplicación\n• Preferencias de notificaciones locales\n\n2. Cómo Usamos su Información\nSus datos se usan únicamente para proporcionar funcionalidad de seguimiento de préstamos y recordatorios de pago.\n\n3. Almacenamiento y Seguridad\nTodos los datos se almacenan localmente usando el almacenamiento seguro de iOS. No se transmiten datos por internet.\n\n4. Compartir Datos\nNo compartimos, vendemos o transmitimos su información personal a terceros.\n\n5. Sus Derechos\nPuede eliminar todos los datos de la aplicación en cualquier momento a través de Configuración → Restablecer Aplicación.\n\nPara preguntas sobre esta política de privacidad, contáctenos a través del App Store.";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "Términos de Servicio\n\nFecha Efectiva: 15 de Diciembre de 2025\n\n1. Aceptación de Términos\nAl usar Monetiq, acepta estos Términos de Servicio.\n\n2. Descripción del Servicio\nMonetiq es una aplicación de finanzas personales para rastrear préstamos y gestionar horarios de pago.\n\n3. Responsabilidades del Usuario\n• Es responsable de la precisión de los datos que ingresa\n• Debe cumplir con las leyes aplicables\n• Es responsable de respaldar su dispositivo\n\n4. Limitaciones\n• Monetiq es solo para uso personal\n• La aplicación no proporciona asesoramiento financiero, legal o fiscal\n• No somos responsables de decisiones financieras basadas en datos de la aplicación\n\n5. Datos y Privacidad\nTodos los datos se almacenan localmente en su dispositivo.\n\n6. Limitación de Responsabilidad\nNo seremos responsables de daños indirectos, incidentales o consecuentes.\n\nPara preguntas sobre estos términos, contáctenos a través del App Store.";
+
+// MARK: - Missing Keys
+"calculator_share" = "Compartir";
+"notification_permission_not_requested" = "El permiso de notificación aún no ha sido solicitado";
+"notification_unknown_error" = "Ocurrió un error de notificación desconocido";
+"settings_notifications_denied_title" = "Notificaciones deshabilitadas";
+"settings_notifications_denied_message" = "Para recibir recordatorios de pago, habilite las notificaciones en Configuración > Monetiq > Notificaciones";
+"calculator_frequency" = "Frecuencia de Pago";
+"calculator_calculate" = "Calcular Pago";
+"calculator_results" = "Resultados";
+"calculator_payment_per_period" = "Pago por %@";
+"calculator_total_to_repay" = "Total a Reembolsar";
+"calculator_total_interest" = "Interés Total";
+"calculator_enter_values" = "Ingresa los valores arriba para calcular los pagos del préstamo";
+"calculator_validation_error" = "Por favor ingresa valores válidos para todos los campos";
+
+// MARK: - Settings
+"settings_title" = "Ajustes";
+"settings_subtitle" = "Personaliza tu experiencia Monetiq";
+"settings_general" = "General";
+"settings_security" = "Seguridad";
+"settings_appearance" = "Apariencia";
+"settings_about" = "Acerca de";
+"settings_developer" = "Desarrollador";
+
+"settings_notifications" = "Notificaciones Push";
+"settings_notifications_subtitle" = "Recibe notificaciones sobre próximos pagos";
+"settings_days_before" = "Días Antes del Vencimiento";
+"settings_days_before_subtitle" = "Tiempo de notificación";
+"settings_weekly_review" = "Revisión Semanal";
+"settings_weekly_review_subtitle" = "Recordatorio de revisión financiera semanal";
+"settings_default_currency" = "Moneda Predeterminada";
+"settings_default_currency_subtitle" = "Moneda para nuevos préstamos";
+"settings_language" = "Idioma";
+"settings_language_subtitle" = "Idioma de visualización de la aplicación";
+"settings_biometric" = "Autenticación Biométrica";
+"settings_biometric_subtitle" = "Usa Face ID o Touch ID para desbloquear";
+"settings_appearance_mode" = "Apariencia";
+"settings_appearance_mode_subtitle" = "Elegir apariencia de la app";
+
+// Appearance Mode Options
+"appearance_system" = "Predeterminado del Sistema";
+"appearance_light" = "Claro";
+"appearance_dark" = "Oscuro";
+
+"settings_version" = "Versión";
+"settings_privacy" = "Política de Privacidad";
+"settings_privacy_subtitle" = "Ver nuestra política de privacidad";
+"settings_terms" = "Términos de Servicio";
+"settings_terms_subtitle" = "Ver términos y condiciones";
+
+"settings_view_notifications" = "Ver Notificaciones Pendientes";
+"settings_view_notifications_subtitle" = "Revisar notificaciones programadas";
+
+// MARK: - Loan Roles
+"role_lent" = "Prestado";
+"role_borrowed" = "Prestado";
+"role_bank_credit" = "Crédito Bancario";
+
+// MARK: - Payment Status
+"status_planned" = "Planificado";
+"status_paid" = "Pagado";
+"status_overdue" = "Vencido";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Semanal";
+"frequency_monthly" = "Mensual";
+"frequency_quarterly" = "Trimestral";
+"frequency_yearly" = "Anual";
+
+// MARK: - Interest Mode
+"interest_none" = "Sin Interés";
+"interest_percentage" = "Porcentaje Anual";
+"interest_fixed" = "Total Fijo";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Persona";
+"counterparty_institution" = "Institución";
+
+// MARK: - About
+"about_privacy_title" = "Política de privacidad";
+"about_privacy_last_updated" = "Última actualización: 14 de diciembre de 2025";
+"about_privacy_disclaimer" = "Esta política de privacidad es provisional y puede actualizarse. La aplicación está diseñada para respetar tu privacidad y mantener tus datos financieros seguros y privados.";
+"about_terms_title" = "Términos de servicio";
+"about_terms_last_updated" = "Última actualización: 14 de diciembre de 2025";
+"about_terms_disclaimer" = "Estos términos de servicio son provisionales y pueden actualizarse. Por favor, usa la aplicación responsablemente y consulta a profesionales financieros para decisiones importantes.";
+"about_close" = "Cerrar";
+
+// MARK: - Additional UI
+"calculator_currency" = "Moneda";
+"calculator_generated" = "Generado";
+"calculator_share_title" = "Resumen de Cálculo de Préstamo";
+"calculator_share_footer" = "Hecho con Monetiq";
+"dashboard_no_loans" = "Aún no hay préstamos";
+"dashboard_recent_loans" = "Préstamos recientes";
+"loan_detail_delete_confirm" = "¿Estás seguro de que quieres eliminar '%@'? Esta acción no se puede deshacer.";
+"loan_detail_details" = "Detalles";
+"loan_detail_no_schedule" = "No hay calendario de pagos disponible";
+"loan_detail_notes" = "Notas";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Agregar Préstamo";
+"edit_loan_title" = "Editar Préstamo";
+"loan_details_section" = "Detalles del Préstamo";
+"loan_title_placeholder" = "Título del Préstamo";
+"role_label" = "Rol";
+"counterparty_section" = "Contraparte";
+"counterparty_name_placeholder" = "Nombre";
+"counterparty_type_label" = "Tipo";
+"financial_details_section" = "Detalles Financieros";
+"amount_placeholder" = "Cantidad";
+"currency_label" = "Moneda";
+"repayment_schedule_section" = "Cronograma de Pago";
+"payment_frequency_label" = "Frecuencia de Pago";
+"number_of_payments_placeholder" = "Número de Pagos";
+"interest_section" = "Interés";
+"interest_mode_label" = "Modo de Interés";
+"annual_interest_rate_placeholder" = "Tasa de Interés Anual (%)";
+"fixed_total_repay_placeholder" = "Total Fijo a Pagar";
+"dates_section" = "Fechas";
+"start_date_label" = "Fecha de Inicio";
+"set_next_due_date" = "Establecer Próxima Fecha de Vencimiento";
+"next_due_date_label" = "Próxima Fecha de Vencimiento";
+"notes_section" = "Notas";
+"optional_notes_placeholder" = "Notas opcionales";
+"cancel_button" = "Cancelar";
+"save_button" = "Guardar";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Detalles del Préstamo";
+"edit_loan_button" = "Editar Préstamo";
+"delete_loan_button" = "Eliminar Préstamo";
+"mark_paid_button" = "Marcar como Pagado";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d más";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Recordatorio de Pago";
+"notification_payment_reminder_body" = "El pago de '%@' vence en %d día(s): %@";
+"notification_payment_due_title" = "Pago Vence Hoy";
+"notification_payment_due_body" = "El pago de '%@' vence hoy: %@";
+"notification_weekly_review_title" = "Revisión Financiera Semanal";
+"notification_weekly_review_body" = "Es hora de revisar tus préstamos y próximos pagos en Monetiq";
+"notification_test_title" = "Notificación de Prueba";
+"notification_test_body" = "Esta es una notificación de prueba de Monetiq";
+
+
+
+
+// MARK: - Settings Data
+"settings_data" = "Datos";
+"settings_reset_app" = "Restablecer App";
+"settings_reset_app_subtitle" = "Eliminar todos los datos y restablecer a valores predeterminados";
+"settings_reset_app_confirm_title" = "¿Restablecer App?";
+"settings_reset_app_confirm_message" = "Esto eliminará permanentemente todos los préstamos, pagos y configuraciones de este dispositivo. Esta acción no se puede deshacer.";
+"settings_reset_app_confirm_action" = "Eliminar Todos los Datos";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Desbloquea Monetiq para acceder a tus datos financieros";
+"biometric_enable_reason" = "Autentícate para habilitar la seguridad biométrica";
+"lock_screen_title" = "Bloqueado";
+"lock_screen_subtitle" = "Desbloquear con %@";
+"lock_screen_unlock_button" = "Desbloquear con %@";
+"biometric_error_title" = "Autenticación Fallida";
+"biometric_error_unknown" = "Ocurrió un error desconocido";
+"biometric_unavailable_title" = "Biometría No Disponible";
+"biometric_unavailable_message" = "La autenticación biométrica no está disponible en este dispositivo";
+"general_ok" = "OK";
+
+// Payment due date labels
+"payment_due_today" = "Vence hoy";
+"payment_due_tomorrow" = "Vence mañana";
+"payment_due_in_days" = "Vence en %d días";
+
+// Payment status
+"status_paid_on" = "Pagado el %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Fecha de Inicio";
+"loan_detail_payment_frequency" = "Frecuencia de Pago";
+"loan_detail_number_of_payments" = "Número de Pagos";
+"loan_detail_interest_mode" = "Modo de Interés";
+"loan_detail_annual_interest_rate" = "Tasa de Interés Anual";
+"loan_detail_total_to_repay" = "Total a Pagar";
+"loan_detail_total_paid" = "Total Pagado";
+"loan_detail_remaining" = "Restante";
+"loan_detail_next_due_date" = "Próximo Vencimiento";
+"loan_detail_created" = "Creado";
+"loan_detail_last_updated" = "Última Actualización";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometría";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "La autenticación biométrica no está disponible en este dispositivo";
+"biometric_error_not_enrolled" = "No hay datos biométricos registrados en este dispositivo";
+"biometric_error_authentication_failed" = "Autenticación fallida";
+"biometric_error_user_cancel" = "Autenticación cancelada";
+"biometric_error_user_fallback" = "El usuario eligió usar el código de acceso";
+"biometric_error_system_cancel" = "Autenticación cancelada por el sistema";
+"biometric_error_passcode_not_set" = "El código del dispositivo no está configurado";
+"biometric_error_biometry_lockout" = "La autenticación biométrica está bloqueada";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Marcar Como Pagado";
+"dashboard_postpone" = "Posponer 1 Día";
+"dashboard_payment_snoozed_until" = "Pospuesto hasta %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Recordatorio de Pago (Pospuesto)";
+"notification_payment_snoozed_body" = "Recordatorio para %@ - %@";

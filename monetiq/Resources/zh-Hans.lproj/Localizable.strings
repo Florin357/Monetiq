@@ -1,0 +1,326 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Chinese (Simplified) Localization
+*/
+
+// MARK: - General
+"general_save" = "保存";
+"general_cancel" = "取消";
+"general_delete" = "删除";
+"general_edit" = "编辑";
+"general_add" = "添加";
+"general_done" = "完成";
+"general_ok" = "确定";
+"general_yes" = "是";
+"general_no" = "否";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "仪表板";
+"tab_loans" = "贷款";
+"tab_calculator" = "计算器";
+"tab_settings" = "设置";
+
+// MARK: - Dashboard
+"dashboard_title" = "仪表板";
+"dashboard_subtitle" = "您的财务概览";
+"dashboard_to_receive" = "应收";
+"dashboard_to_pay" = "应付";
+"dashboard_upcoming_payments" = "即将到期的付款";
+"dashboard_no_payments" = "没有即将到期的付款";
+"dashboard_no_payments_subtitle" = "您的所有付款都是最新的";
+
+// MARK: - Loans
+"loans_title" = "贷款";
+"loans_subtitle" = "管理您的贷款和债务";
+"loans_empty_title" = "暂无贷款";
+"loans_empty_subtitle" = "添加您的第一笔贷款开始使用";
+"loans_add_title" = "添加贷款";
+"loans_edit_title" = "编辑贷款";
+"loans_delete_title" = "删除贷款";
+"loans_delete_message" = "您确定要删除这笔贷款吗？此操作无法撤销。";
+"loans_next_due" = "下次：%@";
+
+// MARK: - Loan Form
+"loan_form_title" = "标题";
+"loan_form_title_placeholder" = "输入贷款标题";
+"loan_form_role" = "角色";
+"loan_form_counterparty" = "对方";
+"loan_form_counterparty_name" = "姓名";
+"loan_form_counterparty_name_placeholder" = "输入姓名";
+"loan_form_counterparty_type" = "类型";
+"loan_form_amount" = "本金金额";
+"loan_form_amount_placeholder" = "输入金额";
+"loan_form_currency" = "货币";
+"loan_form_start_date" = "开始日期";
+"loan_form_frequency" = "付款频率";
+"loan_form_periods" = "期数";
+"loan_form_periods_placeholder" = "输入期数";
+"loan_form_interest_mode" = "利息模式";
+"loan_form_interest_rate" = "年利率";
+"loan_form_interest_rate_placeholder" = "输入利率";
+"loan_form_fixed_total" = "固定还款总额";
+"loan_form_fixed_total_placeholder" = "输入总额";
+"loan_form_next_due_date" = "下次到期日";
+"loan_form_notes" = "备注";
+"loan_form_notes_placeholder" = "可选备注";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "概览";
+"loan_detail_principal" = "本金金额";
+"loan_detail_total_to_repay" = "还款总额";
+"loan_detail_total_paid" = "已付总额";
+"loan_detail_remaining" = "剩余";
+"loan_detail_start_date" = "开始日期";
+"loan_detail_frequency" = "频率";
+"loan_detail_counterparty" = "对方";
+"loan_detail_payments" = "付款计划";
+"loan_detail_mark_paid" = "标记为已付";
+"loan_detail_no_payments" = "没有计划的付款";
+
+// MARK: - Calculator
+"calculator_title" = "贷款计算器";
+"calculator_subtitle" = "计算贷款付款和利息";
+"calculator_principal" = "本金金额";
+"calculator_principal_placeholder" = "输入金额";
+"calculator_interest_rate" = "年利率";
+"calculator_interest_rate_placeholder" = "输入利率";
+"calculator_number_of_payments" = "付款次数";
+"calculator_number_of_payments_placeholder" = "输入付款次数";
+"calculator_number_of_payments_helper" = "例如：12表示1年的月付款";
+"calculator_payments_suffix" = "付款";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "隐私政策不可用";
+"settings_privacy_unavailable_message" = "隐私政策目前不可用。请稍后重试或联系支持。";
+"settings_terms_unavailable_title" = "服务条款不可用";
+"settings_terms_unavailable_message" = "服务条款目前不可用。请稍后重试或联系支持。";
+
+// Settings - Version Info Labels
+"settings_version_label" = "版本";
+"settings_build_label" = "构建";
+"settings_device_info" = "本地数据 • 无需账户";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "隐私政策\n\n生效日期：2025年12月15日\n\nMonetiq的设计以隐私为重点。您的所有财务数据都存储在您的设备本地，从不传输到我们的服务器或第三方。\n\n1. 我们收集的信息\n• 贷款信息\n• 付款计划和历史记录\n• 应用程序偏好设置\n\n2. 我们如何使用您的信息\n您的数据仅用于提供贷款跟踪和付款提醒功能。\n\n3. 存储和安全\n所有数据都使用iOS安全存储在您的设备本地存储。\n\n4. 数据共享\n我们不会与第三方共享、出售或传输您的个人信息。\n\n如对此隐私政策有疑问，请通过App Store联系我们。";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "服务条款\n\n生效日期：2025年12月15日\n\n1. 接受条款\n通过使用Monetiq，您同意这些服务条款。\n\n2. 服务描述\nMonetiq是一个用于跟踪贷款和管理付款计划的个人理财应用程序。\n\n3. 用户责任\n您对输入数据的准确性负责。\n\n4. 限制\nMonetiq仅供个人使用。该应用程序不提供财务、法律或税务建议。\n\n如对这些条款有疑问，请通过App Store联系我们。";
+
+// MARK: - Missing Keys
+"calculator_share" = "分享";
+"notification_permission_not_requested" = "尚未请求通知权限";
+"notification_unknown_error" = "发生未知通知错误";
+"settings_notifications_denied_title" = "通知已禁用";
+"settings_notifications_denied_message" = "要接收付款提醒，请在设置 > Monetiq > 通知中启用通知";
+"calculator_frequency" = "付款频率";
+"calculator_calculate" = "计算付款";
+"calculator_results" = "结果";
+"calculator_payment_per_period" = "每%@付款";
+"calculator_total_to_repay" = "还款总额";
+"calculator_total_interest" = "利息总额";
+"calculator_enter_values" = "在上方输入值以计算贷款付款";
+"calculator_validation_error" = "请为所有字段输入有效值";
+
+// MARK: - Settings
+"settings_title" = "设置";
+"settings_subtitle" = "自定义您的Monetiq体验";
+"settings_general" = "常规";
+"settings_security" = "安全";
+"settings_appearance" = "外观";
+"settings_about" = "关于";
+"settings_developer" = "开发者";
+
+"settings_notifications" = "推送通知";
+"settings_notifications_subtitle" = "获取即将到期付款的通知";
+"settings_days_before" = "到期前天数";
+"settings_days_before_subtitle" = "通知时间";
+"settings_weekly_review" = "每周回顾";
+"settings_weekly_review_subtitle" = "每周财务回顾提醒";
+"settings_default_currency" = "默认货币";
+"settings_default_currency_subtitle" = "新贷款的货币";
+"settings_language" = "语言";
+"settings_language_subtitle" = "应用显示语言";
+"settings_biometric" = "生物识别认证";
+"settings_biometric_subtitle" = "使用Face ID或Touch ID解锁";
+"settings_appearance_mode" = "外观";
+"settings_appearance_mode_subtitle" = "选择应用外观";
+
+// Appearance Mode Options
+"appearance_system" = "系统默认";
+"appearance_light" = "浅色";
+"appearance_dark" = "深色";
+
+"settings_version" = "版本";
+"settings_privacy" = "隐私政策";
+"settings_privacy_subtitle" = "查看我们的隐私政策";
+"settings_terms" = "服务条款";
+"settings_terms_subtitle" = "查看条款和条件";
+
+"settings_view_notifications" = "查看待处理通知";
+"settings_view_notifications_subtitle" = "检查计划的通知";
+
+// MARK: - Loan Roles
+"role_lent" = "借出";
+"role_borrowed" = "借入";
+"role_bank_credit" = "银行信贷";
+
+// MARK: - Payment Status
+"status_planned" = "计划中";
+"status_paid" = "已付";
+"status_overdue" = "逾期";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "每周";
+"frequency_monthly" = "每月";
+"frequency_quarterly" = "每季度";
+"frequency_yearly" = "每年";
+
+// MARK: - Interest Mode
+"interest_none" = "无利息";
+"interest_percentage" = "年百分比";
+"interest_fixed" = "固定总额";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "个人";
+"counterparty_institution" = "机构";
+
+// MARK: - About
+"about_privacy_title" = "隐私政策";
+"about_privacy_last_updated" = "最后更新：2025年12月14日";
+"about_privacy_disclaimer" = "此隐私政策为临时版本，可能会更新。该应用旨在尊重您的隐私，保护您的财务数据安全和私密。";
+"about_terms_title" = "服务条款";
+"about_terms_last_updated" = "最后更新：2025年12月14日";
+"about_terms_disclaimer" = "这些服务条款为临时版本，可能会更新。请负责任地使用该应用，并就重要决定咨询金融专业人士。";
+"about_close" = "关闭";
+
+// MARK: - Additional UI
+"calculator_currency" = "货币";
+"calculator_generated" = "生成于";
+"calculator_share_title" = "贷款计算摘要";
+"calculator_share_footer" = "由 Monetiq 制作";
+"dashboard_no_loans" = "暂无贷款";
+"dashboard_recent_loans" = "最近贷款";
+"loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤销。";
+"loan_detail_details" = "详情";
+"loan_detail_no_schedule" = "无可用还款计划";
+"loan_detail_notes" = "备注";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "添加贷款";
+"edit_loan_title" = "编辑贷款";
+"loan_details_section" = "贷款详情";
+"loan_title_placeholder" = "贷款标题";
+"role_label" = "角色";
+"counterparty_section" = "对方";
+"counterparty_name_placeholder" = "姓名";
+"counterparty_type_label" = "类型";
+"financial_details_section" = "财务详情";
+"amount_placeholder" = "金额";
+"currency_label" = "货币";
+"repayment_schedule_section" = "还款计划";
+"payment_frequency_label" = "付款频率";
+"number_of_payments_placeholder" = "付款次数";
+"interest_section" = "利息";
+"interest_mode_label" = "利息模式";
+"annual_interest_rate_placeholder" = "年利率 (%)";
+"fixed_total_repay_placeholder" = "固定还款总额";
+"dates_section" = "日期";
+"start_date_label" = "开始日期";
+"set_next_due_date" = "设置下次到期日";
+"next_due_date_label" = "下次到期日";
+"notes_section" = "备注";
+"optional_notes_placeholder" = "可选备注";
+"cancel_button" = "取消";
+"save_button" = "保存";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "贷款详情";
+"edit_loan_button" = "编辑贷款";
+"delete_loan_button" = "删除贷款";
+"mark_paid_button" = "标记为已付";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0.00";
+"dashboard_more_currencies" = "+%d 种";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "付款提醒";
+"notification_payment_reminder_body" = "'%@'的付款将在%d天后到期：%@";
+"notification_payment_due_title" = "今日付款到期";
+"notification_payment_due_body" = "'%@'的付款今日到期：%@";
+"notification_weekly_review_title" = "每周财务回顾";
+"notification_weekly_review_body" = "是时候在Monetiq中回顾您的贷款和即将到期的付款了";
+"notification_test_title" = "测试通知";
+"notification_test_body" = "这是来自Monetiq的测试通知";
+
+
+
+
+// MARK: - Settings Data
+"settings_data" = "数据";
+"settings_reset_app" = "重置应用";
+"settings_reset_app_subtitle" = "删除所有数据并重置为默认设置";
+"settings_reset_app_confirm_title" = "重置应用？";
+"settings_reset_app_confirm_message" = "这将永久删除此设备上的所有贷款、付款和设置。此操作无法撤消。";
+"settings_reset_app_confirm_action" = "删除所有数据";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "解锁 Monetiq 以访问您的财务数据";
+"biometric_enable_reason" = "进行身份验证以启用生物识别安全";
+"lock_screen_title" = "已锁定";
+"lock_screen_subtitle" = "使用 %@ 解锁";
+"lock_screen_unlock_button" = "使用 %@ 解锁";
+"biometric_error_title" = "身份验证失败";
+"biometric_error_unknown" = "发生未知错误";
+"biometric_unavailable_title" = "生物识别不可用";
+"biometric_unavailable_message" = "此设备上不支持生物识别认证";
+"general_ok" = "确定";
+
+// Payment due date labels
+"payment_due_today" = "今天到期";
+"payment_due_tomorrow" = "明天到期";
+"payment_due_in_days" = "%d天后到期";
+
+// Payment status
+"status_paid_on" = "已于%@支付";
+
+// Loan detail labels
+"loan_detail_start_date" = "开始日期";
+"loan_detail_payment_frequency" = "付款频率";
+"loan_detail_number_of_payments" = "付款次数";
+"loan_detail_interest_mode" = "利息模式";
+"loan_detail_annual_interest_rate" = "年利率";
+"loan_detail_total_to_repay" = "总还款额";
+"loan_detail_total_paid" = "已付总额";
+"loan_detail_remaining" = "剩余";
+"loan_detail_next_due_date" = "下次到期日";
+"loan_detail_created" = "创建时间";
+"loan_detail_last_updated" = "最后更新";
+
+// Biometric types
+"biometric_type_biometrics" = "生物识别";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "此设备上不支持生物识别认证";
+"biometric_error_not_enrolled" = "此设备上未注册生物识别数据";
+"biometric_error_authentication_failed" = "身份验证失败";
+"biometric_error_user_cancel" = "身份验证已取消";
+"biometric_error_user_fallback" = "用户选择使用密码";
+"biometric_error_system_cancel" = "系统取消了身份验证";
+"biometric_error_passcode_not_set" = "设备密码未设置";
+"biometric_error_biometry_lockout" = "生物识别认证已锁定";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "标记为已付";
+"dashboard_postpone" = "推迟1天";
+"dashboard_payment_snoozed_until" = "推迟至 %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "付款提醒（已推迟）";
+"notification_payment_snoozed_body" = "%@ 的提醒 - %@";

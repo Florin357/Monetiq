@@ -1,0 +1,326 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Russian Localization
+*/
+
+// MARK: - General
+"general_save" = "Сохранить";
+"general_cancel" = "Отмена";
+"general_delete" = "Удалить";
+"general_edit" = "Редактировать";
+"general_add" = "Добавить";
+"general_done" = "Готово";
+"general_ok" = "ОК";
+"general_yes" = "Да";
+"general_no" = "Нет";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Панель";
+"tab_loans" = "Займы";
+"tab_calculator" = "Калькулятор";
+"tab_settings" = "Настройки";
+
+// MARK: - Dashboard
+"dashboard_title" = "Панель";
+"dashboard_subtitle" = "Ваш финансовый обзор";
+"dashboard_to_receive" = "К получению";
+"dashboard_to_pay" = "К оплате";
+"dashboard_upcoming_payments" = "Предстоящие платежи";
+"dashboard_no_payments" = "Нет предстоящих платежей";
+"dashboard_no_payments_subtitle" = "Все ваши платежи актуальны";
+
+// MARK: - Loans
+"loans_title" = "Займы";
+"loans_subtitle" = "Управляйте своими займами и долгами";
+"loans_empty_title" = "Пока нет займов";
+"loans_empty_subtitle" = "Добавьте свой первый займ для начала";
+"loans_add_title" = "Добавить займ";
+"loans_edit_title" = "Редактировать займ";
+"loans_delete_title" = "Удалить займ";
+"loans_delete_message" = "Вы уверены, что хотите удалить этот займ? Это действие нельзя отменить.";
+"loans_next_due" = "Следующий: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Название";
+"loan_form_title_placeholder" = "Введите название займа";
+"loan_form_role" = "Роль";
+"loan_form_counterparty" = "Контрагент";
+"loan_form_counterparty_name" = "Имя";
+"loan_form_counterparty_name_placeholder" = "Введите имя";
+"loan_form_counterparty_type" = "Тип";
+"loan_form_amount" = "Основная сумма";
+"loan_form_amount_placeholder" = "Введите сумму";
+"loan_form_currency" = "Валюта";
+"loan_form_start_date" = "Дата начала";
+"loan_form_frequency" = "Частота платежей";
+"loan_form_periods" = "Количество периодов";
+"loan_form_periods_placeholder" = "Введите количество";
+"loan_form_interest_mode" = "Режим процентов";
+"loan_form_interest_rate" = "Годовая процентная ставка";
+"loan_form_interest_rate_placeholder" = "Введите ставку";
+"loan_form_fixed_total" = "Фиксированная общая сумма к возврату";
+"loan_form_fixed_total_placeholder" = "Введите общую сумму";
+"loan_form_next_due_date" = "Следующая дата платежа";
+"loan_form_notes" = "Заметки";
+"loan_form_notes_placeholder" = "Дополнительные заметки";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Обзор";
+"loan_detail_principal" = "Основная сумма";
+"loan_detail_total_to_repay" = "Общая сумма к возврату";
+"loan_detail_total_paid" = "Общая сумма выплачена";
+"loan_detail_remaining" = "Остаток";
+"loan_detail_start_date" = "Дата начала";
+"loan_detail_frequency" = "Частота";
+"loan_detail_counterparty" = "Контрагент";
+"loan_detail_payments" = "График платежей";
+"loan_detail_mark_paid" = "Отметить как оплаченный";
+"loan_detail_no_payments" = "Нет запланированных платежей";
+
+// MARK: - Calculator
+"calculator_title" = "Калькулятор займов";
+"calculator_subtitle" = "Рассчитайте платежи и проценты по займу";
+"calculator_principal" = "Основная сумма";
+"calculator_principal_placeholder" = "Введите сумму";
+"calculator_interest_rate" = "Годовая процентная ставка";
+"calculator_interest_rate_placeholder" = "Введите ставку";
+"calculator_number_of_payments" = "Количество платежей";
+"calculator_number_of_payments_placeholder" = "Введите количество платежей";
+"calculator_number_of_payments_helper" = "Пример: 12 для 1 года ежемесячных платежей";
+"calculator_payments_suffix" = "платежи";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Политика Конфиденциальности Недоступна";
+"settings_privacy_unavailable_message" = "Политика конфиденциальности в настоящее время недоступна. Пожалуйста, попробуйте позже или обратитесь в службу поддержки.";
+"settings_terms_unavailable_title" = "Условия Обслуживания Недоступны";
+"settings_terms_unavailable_message" = "Условия обслуживания в настоящее время недоступны. Пожалуйста, попробуйте позже или обратитесь в службу поддержки.";
+
+// Settings - Version Info Labels
+"settings_version_label" = "Версия";
+"settings_build_label" = "Сборка";
+"settings_device_info" = "Локальные данные • Аккаунт не требуется";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "Политика Конфиденциальности\n\nДата Вступления в Силу: 15 Декабря 2025\n\nMonetiq разработан с учетом конфиденциальности. Все ваши финансовые данные хранятся локально на вашем устройстве и никогда не передаются на наши серверы или третьим лицам.\n\n1. Информация, Которую Мы Собираем\n• Информация о займах\n• Графики платежей и история\n• Настройки приложения\n\n2. Как Мы Используем Вашу Информацию\nВаши данные используются исключительно для предоставления функций отслеживания займов и напоминаний о платежах.\n\n3. Хранение и Безопасность\nВсе данные хранятся локально с использованием безопасного хранилища iOS.\n\n4. Обмен Данными\nМы не делимся, не продаем и не передаем вашу личную информацию третьим лицам.\n\nПо вопросам об этой политике конфиденциальности обращайтесь к нам через App Store.";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "Условия Обслуживания\n\nДата Вступления в Силу: 15 Декабря 2025\n\n1. Принятие Условий\nИспользуя Monetiq, вы соглашаетесь с этими Условиями Обслуживания.\n\n2. Описание Сервиса\nMonetiq - это приложение для личных финансов для отслеживания займов и управления графиками платежей.\n\n3. Обязанности Пользователя\nВы несете ответственность за точность вводимых данных.\n\n4. Ограничения\nMonetiq предназначен только для личного использования. Приложение не предоставляет финансовых, юридических или налоговых консультаций.\n\nПо вопросам об этих условиях обращайтесь к нам через App Store.";
+
+// MARK: - Missing Keys
+"calculator_share" = "Поделиться";
+"notification_permission_not_requested" = "Разрешение на уведомления еще не запрашивалось";
+"notification_unknown_error" = "Произошла неизвестная ошибка уведомлений";
+"settings_notifications_denied_title" = "Уведомления отключены";
+"settings_notifications_denied_message" = "Чтобы получать напоминания о платежах, включите уведомления в Настройки > Monetiq > Уведомления";
+"calculator_frequency" = "Частота платежей";
+"calculator_calculate" = "Рассчитать платеж";
+"calculator_results" = "Результаты";
+"calculator_payment_per_period" = "Платеж за %@";
+"calculator_total_to_repay" = "Общая сумма к возврату";
+"calculator_total_interest" = "Общие проценты";
+"calculator_enter_values" = "Введите значения выше для расчета платежей по займу";
+"calculator_validation_error" = "Пожалуйста, введите действительные значения для всех полей";
+
+// MARK: - Settings
+"settings_title" = "Настройки";
+"settings_subtitle" = "Настройте свой опыт работы с Monetiq";
+"settings_general" = "Общие";
+"settings_security" = "Безопасность";
+"settings_appearance" = "Внешний вид";
+"settings_about" = "О приложении";
+"settings_developer" = "Разработчик";
+
+"settings_notifications" = "Push-уведомления";
+"settings_notifications_subtitle" = "Получайте уведомления о предстоящих платежах";
+"settings_days_before" = "Дней до срока";
+"settings_days_before_subtitle" = "Время уведомления";
+"settings_weekly_review" = "Еженедельный обзор";
+"settings_weekly_review_subtitle" = "Еженедельное напоминание о финансовом обзоре";
+"settings_default_currency" = "Валюта по умолчанию";
+"settings_default_currency_subtitle" = "Валюта для новых займов";
+"settings_language" = "Язык";
+"settings_language_subtitle" = "Язык отображения приложения";
+"settings_biometric" = "Биометрическая аутентификация";
+"settings_biometric_subtitle" = "Используйте Face ID или Touch ID для разблокировки";
+"settings_appearance_mode" = "Внешний вид";
+"settings_appearance_mode_subtitle" = "Выбрать внешний вид приложения";
+
+// Appearance Mode Options
+"appearance_system" = "По Умолчанию Системы";
+"appearance_light" = "Светлая";
+"appearance_dark" = "Тёмная";
+
+"settings_version" = "Версия";
+"settings_privacy" = "Политика конфиденциальности";
+"settings_privacy_subtitle" = "Просмотреть нашу политику конфиденциальности";
+"settings_terms" = "Условия обслуживания";
+"settings_terms_subtitle" = "Просмотреть условия и положения";
+
+"settings_view_notifications" = "Просмотреть ожидающие уведомления";
+"settings_view_notifications_subtitle" = "Проверить запланированные уведомления";
+
+// MARK: - Loan Roles
+"role_lent" = "Дал в долг";
+"role_borrowed" = "Взял в долг";
+"role_bank_credit" = "Банковский кредит";
+
+// MARK: - Payment Status
+"status_planned" = "Запланирован";
+"status_paid" = "Оплачен";
+"status_overdue" = "Просрочен";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Еженедельно";
+"frequency_monthly" = "Ежемесячно";
+"frequency_quarterly" = "Ежеквартально";
+"frequency_yearly" = "Ежегодно";
+
+// MARK: - Interest Mode
+"interest_none" = "Без процентов";
+"interest_percentage" = "Годовой процент";
+"interest_fixed" = "Фиксированная общая сумма";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Физическое лицо";
+"counterparty_institution" = "Учреждение";
+
+// MARK: - About
+"about_privacy_title" = "Политика конфиденциальности";
+"about_privacy_last_updated" = "Последнее обновление: 14 декабря 2025 г.";
+"about_privacy_disclaimer" = "Эта политика конфиденциальности является временной и может быть обновлена. Приложение разработано с уважением к вашей конфиденциальности и для обеспечения безопасности ваших финансовых данных.";
+"about_terms_title" = "Условия использования";
+"about_terms_last_updated" = "Последнее обновление: 14 декабря 2025 г.";
+"about_terms_disclaimer" = "Эти условия использования являются временными и могут быть обновлены. Пожалуйста, используйте приложение ответственно и консультируйтесь с финансовыми специалистами по важным решениям.";
+"about_close" = "Закрыть";
+
+// MARK: - Additional UI
+"calculator_currency" = "Валюта";
+"calculator_generated" = "Создано";
+"calculator_share_title" = "Сводка Расчета Кредита";
+"calculator_share_footer" = "Создано с Monetiq";
+"dashboard_no_loans" = "Пока нет займов";
+"dashboard_recent_loans" = "Недавние займы";
+"loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";
+"loan_detail_details" = "Подробности";
+"loan_detail_no_schedule" = "График платежей недоступен";
+"loan_detail_notes" = "Заметки";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Добавить Займ";
+"edit_loan_title" = "Редактировать Займ";
+"loan_details_section" = "Детали Займа";
+"loan_title_placeholder" = "Название Займа";
+"role_label" = "Роль";
+"counterparty_section" = "Контрагент";
+"counterparty_name_placeholder" = "Имя";
+"counterparty_type_label" = "Тип";
+"financial_details_section" = "Финансовые Детали";
+"amount_placeholder" = "Сумма";
+"currency_label" = "Валюта";
+"repayment_schedule_section" = "График Погашения";
+"payment_frequency_label" = "Частота Платежей";
+"number_of_payments_placeholder" = "Количество Платежей";
+"interest_section" = "Проценты";
+"interest_mode_label" = "Режим Процентов";
+"annual_interest_rate_placeholder" = "Годовая Процентная Ставка (%)";
+"fixed_total_repay_placeholder" = "Фиксированная Общая Сумма";
+"dates_section" = "Даты";
+"start_date_label" = "Дата Начала";
+"set_next_due_date" = "Установить Следующую Дату";
+"next_due_date_label" = "Следующая Дата Платежа";
+"notes_section" = "Заметки";
+"optional_notes_placeholder" = "Дополнительные заметки";
+"cancel_button" = "Отмена";
+"save_button" = "Сохранить";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Детали Займа";
+"edit_loan_button" = "Редактировать Займ";
+"delete_loan_button" = "Удалить Займ";
+"mark_paid_button" = "Отметить как Оплаченный";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d ещё";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Напоминание о платеже";
+"notification_payment_reminder_body" = "Платеж по '%@' должен быть произведен через %d день(дней): %@";
+"notification_payment_due_title" = "Платеж сегодня";
+"notification_payment_due_body" = "Платеж по '%@' должен быть произведен сегодня: %@";
+"notification_weekly_review_title" = "Еженедельный финансовый обзор";
+"notification_weekly_review_body" = "Время просмотреть ваши займы и предстоящие платежи в Monetiq";
+"notification_test_title" = "Тестовое уведомление";
+"notification_test_body" = "Это тестовое уведомление от Monetiq";
+
+
+
+
+// MARK: - Settings Data
+"settings_data" = "Данные";
+"settings_reset_app" = "Сбросить Приложение";
+"settings_reset_app_subtitle" = "Удалить все данные и сбросить к настройкам по умолчанию";
+"settings_reset_app_confirm_title" = "Сбросить Приложение?";
+"settings_reset_app_confirm_message" = "Это навсегда удалит все кредиты, платежи и настройки с этого устройства. Это действие нельзя отменить.";
+"settings_reset_app_confirm_action" = "Удалить Все Данные";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Разблокируйте Monetiq для доступа к вашим финансовым данным";
+"biometric_enable_reason" = "Аутентифицируйтесь для включения биометрической безопасности";
+"lock_screen_title" = "Заблокировано";
+"lock_screen_subtitle" = "Разблокировать с %@";
+"lock_screen_unlock_button" = "Разблокировать с %@";
+"biometric_error_title" = "Ошибка Аутентификации";
+"biometric_error_unknown" = "Произошла неизвестная ошибка";
+"biometric_unavailable_title" = "Биометрия Недоступна";
+"biometric_unavailable_message" = "Биометрическая аутентификация недоступна на этом устройстве";
+"general_ok" = "OK";
+
+// Payment due date labels
+"payment_due_today" = "Срок сегодня";
+"payment_due_tomorrow" = "Срок завтра";
+"payment_due_in_days" = "Срок через %d дней";
+
+// Payment status
+"status_paid_on" = "Оплачено %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Дата Начала";
+"loan_detail_payment_frequency" = "Частота Платежей";
+"loan_detail_number_of_payments" = "Количество Платежей";
+"loan_detail_interest_mode" = "Режим Процентов";
+"loan_detail_annual_interest_rate" = "Годовая Процентная Ставка";
+"loan_detail_total_to_repay" = "Общая Сумма к Возврату";
+"loan_detail_total_paid" = "Общая Сумма Выплачена";
+"loan_detail_remaining" = "Остаток";
+"loan_detail_next_due_date" = "Следующий Срок Платежа";
+"loan_detail_created" = "Создано";
+"loan_detail_last_updated" = "Последнее Обновление";
+
+// Biometric types
+"biometric_type_biometrics" = "Биометрия";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Биометрическая аутентификация недоступна на этом устройстве";
+"biometric_error_not_enrolled" = "На этом устройстве не зарегистрированы биометрические данные";
+"biometric_error_authentication_failed" = "Ошибка аутентификации";
+"biometric_error_user_cancel" = "Аутентификация отменена";
+"biometric_error_user_fallback" = "Пользователь выбрал использование пароля";
+"biometric_error_system_cancel" = "Аутентификация отменена системой";
+"biometric_error_passcode_not_set" = "Пароль устройства не установлен";
+"biometric_error_biometry_lockout" = "Биометрическая аутентификация заблокирована";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Отметить Как Оплачено";
+"dashboard_postpone" = "Отложить на 1 День";
+"dashboard_payment_snoozed_until" = "Отложено до %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Напоминание о Платеже (Отложено)";
+"notification_payment_snoozed_body" = "Напоминание для %@ - %@";

@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+  Hindi Localization
+*/
+
+// MARK: - General
+"general_save" = "सेव करें";
+"general_cancel" = "रद्द करें";
+"general_delete" = "डिलीट करें";
+"general_edit" = "एडिट करें";
+"general_add" = "जोड़ें";
+"general_done" = "हो गया";
+"general_ok" = "ठीक है";
+"general_yes" = "हाँ";
+"general_no" = "नहीं";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "डैशबोर्ड";
+"tab_loans" = "लोन";
+"tab_calculator" = "कैलकुलेटर";
+"tab_settings" = "सेटिंग्स";
+
+// MARK: - Dashboard
+"dashboard_title" = "डैशबोर्ड";
+"dashboard_subtitle" = "आपका वित्तीय अवलोकन";
+"dashboard_to_receive" = "प्राप्त करना है";
+"dashboard_to_pay" = "भुगतान करना है";
+"dashboard_upcoming_payments" = "आगामी भुगतान";
+"dashboard_no_payments" = "कोई आगामी भुगतान नहीं";
+"dashboard_no_payments_subtitle" = "आपके सभी भुगतान अप टू डेट हैं";
+
+// MARK: - Loans
+"loans_title" = "लोन";
+"loans_subtitle" = "अपने लोन और कर्ज़ का प्रबंधन करें";
+"loans_empty_title" = "अभी तक कोई लोन नहीं";
+"loans_empty_subtitle" = "शुरुआत करने के लिए अपना पहला लोन जोड़ें";
+"loans_add_title" = "लोन जोड़ें";
+"loans_edit_title" = "लोन एडिट करें";
+"loans_delete_title" = "लोन डिलीट करें";
+"loans_delete_message" = "क्या आप वाकई इस लोन को डिलीट करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।";
+"loans_next_due" = "अगला: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "शीर्षक";
+"loan_form_title_placeholder" = "लोन का शीर्षक दर्ज करें";
+"loan_form_role" = "भूमिका";
+"loan_form_counterparty" = "काउंटरपार्टी";
+"loan_form_counterparty_name" = "नाम";
+"loan_form_counterparty_name_placeholder" = "नाम दर्ज करें";
+"loan_form_counterparty_type" = "प्रकार";
+"loan_form_amount" = "मूल राशि";
+"loan_form_amount_placeholder" = "राशि दर्ज करें";
+"loan_form_currency" = "मुद्रा";
+"loan_form_start_date" = "शुरुआती तारीख";
+"loan_form_frequency" = "भुगतान आवृत्ति";
+"loan_form_periods" = "अवधि की संख्या";
+"loan_form_periods_placeholder" = "संख्या दर्ज करें";
+"loan_form_interest_mode" = "ब्याज मोड";
+"loan_form_interest_rate" = "वार्षिक ब्याज दर";
+"loan_form_interest_rate_placeholder" = "दर दर्ज करें";
+"loan_form_fixed_total" = "निश्चित कुल चुकौती";
+"loan_form_fixed_total_placeholder" = "कुल दर्ज करें";
+"loan_form_next_due_date" = "अगली देय तारीख";
+"loan_form_notes" = "नोट्स";
+"loan_form_notes_placeholder" = "वैकल्पिक नोट्स";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "अवलोकन";
+"loan_detail_principal" = "मूल राशि";
+"loan_detail_total_to_repay" = "कुल चुकौती";
+"loan_detail_total_paid" = "कुल भुगतान";
+"loan_detail_remaining" = "शेष";
+"loan_detail_start_date" = "शुरुआती तारीख";
+"loan_detail_frequency" = "आवृत्ति";
+"loan_detail_counterparty" = "काउंटरपार्टी";
+"loan_detail_payments" = "भुगतान अनुसूची";
+"loan_detail_mark_paid" = "भुगतान के रूप में चिह्नित करें";
+"loan_detail_no_payments" = "कोई भुगतान निर्धारित नहीं";
+
+// MARK: - Calculator
+"calculator_title" = "लोन कैलकुलेटर";
+"calculator_subtitle" = "लोन भुगतान और ब्याज की गणना करें";
+"calculator_principal" = "मूल राशि";
+"calculator_principal_placeholder" = "राशि दर्ज करें";
+"calculator_interest_rate" = "वार्षिक ब्याज दर";
+"calculator_interest_rate_placeholder" = "दर दर्ज करें";
+"calculator_number_of_payments" = "भुगतानों की संख्या";
+"calculator_number_of_payments_placeholder" = "भुगतानों की संख्या दर्ज करें";
+"calculator_number_of_payments_helper" = "उदाहरण: मासिक भुगतान के 1 साल के लिए 12";
+"calculator_payments_suffix" = "भुगतान";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "गोपनीयता नीति उपलब्ध नहीं";
+"settings_privacy_unavailable_message" = "गोपनीयता नीति इस समय उपलब्ध नहीं है। कृपया बाद में पुनः प्रयास करें या समर्थन से संपर्क करें।";
+"settings_terms_unavailable_title" = "सेवा की शर्तें उपलब्ध नहीं";
+"settings_terms_unavailable_message" = "सेवा की शर्तें इस समय उपलब्ध नहीं हैं। कृपया बाद में पुनः प्रयास करें या समर्थन से संपर्क करें।";
+
+// Settings - Version Info Labels
+"settings_version_label" = "संस्करण";
+"settings_build_label" = "बिल्ड";
+"settings_device_info" = "स्थानीय डेटा • खाता आवश्यक नहीं";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "गोपनीयता नीति\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\nMonetiq को गोपनीयता को ध्यान में रखकर डिज़ाइन किया गया है। आपका सभी वित्तीय डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत है और कभी भी हमारे सर्वर या तृतीय पक्षों को प्रेषित नहीं किया जाता।\n\n1. हम जो जानकारी एकत्र करते हैं\n• ऋण जानकारी\n• भुगतान कार्यक्रम और इतिहास\n• ऐप प्राथमिकताएं\n\n2. हम आपकी जानकारी का उपयोग कैसे करते हैं\nआपका डेटा केवल ऋण ट्रैकिंग और भुगतान अनुस्मारक कार्यक्षमता प्रदान करने के लिए उपयोग किया जाता है।\n\n3. भंडारण और सुरक्षा\nसभी डेटा iOS सुरक्षित भंडारण का उपयोग करके आपके डिवाइस पर स्थानीय रूप से संग्रहीत है।\n\n4. डेटा साझाकरण\nहम आपकी व्यक्तिगत जानकारी को तृतीय पक्षों के साथ साझा, बेच या प्रेषित नहीं करते।\n\nइस गोपनीयता नीति के बारे में प्रश्नों के लिए, कृपया App Store के माध्यम से हमसे संपर्क करें।";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत होते हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैकिंग और भुगतान कार्यक्रम प्रबंधन के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता।\n\nइन शर्तों के बारे में प्रश्नों के लिए, कृपया App Store के माध्यम से हमसे संपर्क करें।";
+"calculator_frequency" = "भुगतान आवृत्ति";
+"calculator_calculate" = "भुगतान की गणना करें";
+"calculator_results" = "परिणाम";
+"calculator_payment_per_period" = "प्रति %@ भुगतान";
+"calculator_total_to_repay" = "कुल चुकौती";
+"calculator_total_interest" = "कुल ब्याज";
+"calculator_enter_values" = "लोन भुगतान की गणना के लिए ऊपर मान दर्ज करें";
+"calculator_validation_error" = "कृपया सभी फ़ील्ड के लिए वैध मान दर्ज करें";
+
+// MARK: - Settings
+"settings_title" = "सेटिंग्स";
+"settings_subtitle" = "अपने Monetiq अनुभव को कस्टमाइज़ करें";
+"settings_general" = "सामान्य";
+"settings_security" = "सुरक्षा";
+"settings_appearance" = "दिखावट";
+"settings_about" = "के बारे में";
+"settings_developer" = "डेवलपर";
+
+"settings_notifications" = "पुश नोटिफिकेशन";
+"settings_notifications_subtitle" = "आगामी भुगतानों के बारे में सूचना प्राप्त करें";
+"settings_days_before" = "देय से पहले दिन";
+"settings_days_before_subtitle" = "नोटिफिकेशन टाइमिंग";
+"settings_weekly_review" = "साप्ताहिक समीक्षा";
+"settings_weekly_review_subtitle" = "साप्ताहिक वित्तीय समीक्षा रिमाइंडर";
+"settings_default_currency" = "डिफ़ॉल्ट मुद्रा";
+"settings_default_currency_subtitle" = "नए लोन के लिए मुद्रा";
+"settings_language" = "भाषा";
+"settings_language_subtitle" = "ऐप प्रदर्शन भाषा";
+"settings_biometric" = "बायोमेट्रिक प्रमाणीकरण";
+"settings_biometric_subtitle" = "अनलॉक करने के लिए Face ID या Touch ID का उपयोग करें";
+"settings_appearance_mode" = "रूप";
+"settings_appearance_mode_subtitle" = "ऐप का रूप चुनें";
+
+// Appearance Mode Options
+"appearance_system" = "सिस्टम डिफ़ॉल्ट";
+"appearance_light" = "हल्का";
+"appearance_dark" = "गहरा";
+
+"settings_version" = "संस्करण";
+"settings_privacy" = "गोपनीयता नीति";
+"settings_privacy_subtitle" = "हमारी गोपनीयता नीति देखें";
+"settings_terms" = "सेवा की शर्तें";
+"settings_terms_subtitle" = "नियम और शर्तें देखें";
+
+"settings_view_notifications" = "पेंडिंग नोटिफिकेशन देखें";
+"settings_view_notifications_subtitle" = "निर्धारित नोटिफिकेशन जांचें";
+
+// MARK: - Loan Roles
+"role_lent" = "उधार दिया";
+"role_borrowed" = "उधार लिया";
+"role_bank_credit" = "बैंक क्रेडिट";
+
+// MARK: - Payment Status
+"status_planned" = "नियोजित";
+"status_paid" = "भुगतान किया गया";
+"status_overdue" = "अतिदेय";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "साप्ताहिक";
+"frequency_monthly" = "मासिक";
+"frequency_quarterly" = "त्रैमासिक";
+"frequency_yearly" = "वार्षिक";
+
+// MARK: - Interest Mode
+"interest_none" = "कोई ब्याज नहीं";
+"interest_percentage" = "वार्षिक प्रतिशत";
+"interest_fixed" = "निश्चित कुल";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "व्यक्ति";
+"counterparty_institution" = "संस्थान";
+
+// MARK: - About
+"about_privacy_title" = "गोपनीयता नीति";
+"about_privacy_last_updated" = "अंतिम अपडेट: 14 दिसंबर 2025";
+"about_privacy_disclaimer" = "यह गोपनीयता नीति अस्थायी है और अपडेट की जा सकती है। ऐप आपकी गोपनीयता का सम्मान करने और आपके वित्तीय डेटा को सुरक्षित और निजी रखने के लिए डिज़ाइन किया गया है।";
+"about_terms_title" = "सेवा की शर्तें";
+"about_terms_last_updated" = "अंतिम अपडेट: 14 दिसंबर 2025";
+"about_terms_disclaimer" = "ये सेवा की शर्तें अस्थायी हैं और अपडेट की जा सकती हैं। कृपया ऐप का जिम्मेदारी से उपयोग करें और महत्वपूर्ण निर्णयों के लिए वित्तीय पेशेवरों से सलाह लें।";
+"about_close" = "बंद करें";
+
+// MARK: - Additional UI
+"calculator_currency" = "मुद्रा";
+"calculator_generated" = "उत्पन्न";
+"calculator_share_title" = "ऋण गणना सारांश";
+"calculator_share_footer" = "Monetiq के साथ बनाया गया";
+"dashboard_no_loans" = "अभी तक कोई लोन नहीं";
+"dashboard_recent_loans" = "हाल के लोन";
+"loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।";
+"loan_detail_details" = "विवरण";
+"loan_detail_no_schedule" = "कोई भुगतान अनुसूची उपलब्ध नहीं";
+"loan_detail_notes" = "नोट्स";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "लोन जोड़ें";
+"edit_loan_title" = "लोन संपादित करें";
+"loan_details_section" = "लोन विवरण";
+"loan_title_placeholder" = "लोन शीर्षक";
+"role_label" = "भूमिका";
+"counterparty_section" = "प्रतिपक्ष";
+"counterparty_name_placeholder" = "नाम";
+"counterparty_type_label" = "प्रकार";
+"financial_details_section" = "वित्तीय विवरण";
+"amount_placeholder" = "राशि";
+"currency_label" = "मुद्रा";
+"repayment_schedule_section" = "चुकौती अनुसूची";
+"payment_frequency_label" = "भुगतान आवृत्ति";
+"number_of_payments_placeholder" = "भुगतानों की संख्या";
+"interest_section" = "ब्याज";
+"interest_mode_label" = "ब्याज मोड";
+"annual_interest_rate_placeholder" = "वार्षिक ब्याज दर (%)";
+"fixed_total_repay_placeholder" = "निश्चित कुल चुकौती";
+"dates_section" = "तारीखें";
+"start_date_label" = "प्रारंभ तिथि";
+"set_next_due_date" = "अगली देय तिथि सेट करें";
+"next_due_date_label" = "अगली देय तिथि";
+"notes_section" = "नोट्स";
+"optional_notes_placeholder" = "वैकल्पिक नोट्स";
+"cancel_button" = "रद्द करें";
+"save_button" = "सेव करें";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "लोन विवरण";
+"edit_loan_button" = "लोन संपादित करें";
+"delete_loan_button" = "लोन हटाएं";
+"mark_paid_button" = "भुगतान के रूप में चिह्नित करें";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0.00";
+"dashboard_more_currencies" = "+%d और";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "भुगतान रिमाइंडर";
+"notification_payment_reminder_body" = "'%@' के लिए भुगतान %d दिन(ों) में देय है: %@";
+"notification_payment_due_title" = "आज भुगतान देय है";
+"notification_payment_due_body" = "'%@' के लिए भुगतान आज देय है: %@";
+"notification_weekly_review_title" = "साप्ताहिक वित्तीय समीक्षा";
+"notification_weekly_review_body" = "Monetiq में अपने लोन और आगामी भुगतानों की समीक्षा करने का समय है";
+"notification_test_title" = "टेस्ट नोटिफिकेशन";
+"notification_test_body" = "यह Monetiq से एक टेस्ट नोटिफिकेशन है";
+
+
+
+
+// MARK: - Settings Data
+"settings_data" = "डेटा";
+"settings_reset_app" = "ऐप रीसेट करें";
+"settings_reset_app_subtitle" = "सभी डेटा हटाएं और डिफ़ॉल्ट सेटिंग्स पर रीसेट करें";
+"settings_reset_app_confirm_title" = "ऐप रीसेट करें?";
+"settings_reset_app_confirm_message" = "यह इस डिवाइस से सभी ऋण, भुगतान और सेटिंग्स को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।";
+"settings_reset_app_confirm_action" = "सभी डेटा हटाएं";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "अपने वित्तीय डेटा तक पहुंचने के लिए Monetiq को अनलॉक करें";
+"biometric_enable_reason" = "बायोमेट्रिक सुरक्षा सक्षम करने के लिए प्रमाणीकरण करें";
+"lock_screen_title" = "लॉक्ड";
+"lock_screen_subtitle" = "%@ के साथ अनलॉक करें";
+"lock_screen_unlock_button" = "%@ के साथ अनलॉक करें";
+"biometric_error_title" = "प्रमाणीकरण विफल";
+"biometric_error_unknown" = "एक अज्ञात त्रुटि हुई";
+"biometric_unavailable_title" = "बायोमेट्रिक्स उपलब्ध नहीं";
+"biometric_unavailable_message" = "इस डिवाइस पर बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है";
+"general_ok" = "ठीक है";
+
+// Payment due date labels
+"payment_due_today" = "आज देय";
+"payment_due_tomorrow" = "कल देय";
+"payment_due_in_days" = "%d दिनों में देय";
+
+// Payment status
+"status_paid_on" = "%@ को भुगतान किया गया";
+
+// Loan detail labels
+"loan_detail_start_date" = "प्रारंभ तिथि";
+"loan_detail_payment_frequency" = "भुगतान आवृत्ति";
+"loan_detail_number_of_payments" = "भुगतानों की संख्या";
+"loan_detail_interest_mode" = "ब्याज मोड";
+"loan_detail_annual_interest_rate" = "वार्षिक ब्याज दर";
+"loan_detail_total_to_repay" = "कुल चुकाना";
+"loan_detail_total_paid" = "कुल भुगतान";
+"loan_detail_remaining" = "शेष";
+"loan_detail_next_due_date" = "अगली देय तिथि";
+"loan_detail_created" = "बनाया गया";
+"loan_detail_last_updated" = "अंतिम अपडेट";
+
+// Biometric types
+"biometric_type_biometrics" = "बायोमेट्रिक्स";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "इस डिवाइस पर बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है";
+"biometric_error_not_enrolled" = "इस डिवाइस पर कोई बायोमेट्रिक डेटा पंजीकृत नहीं है";
+"biometric_error_authentication_failed" = "प्रमाणीकरण विफल";
+"biometric_error_user_cancel" = "प्रमाणीकरण रद्द किया गया";
+"biometric_error_user_fallback" = "उपयोगकर्ता ने पासकोड का उपयोग करना चुना";
+"biometric_error_system_cancel" = "सिस्टम द्वारा प्रमाणीकरण रद्द किया गया";
+"biometric_error_passcode_not_set" = "डिवाइस पासकोड सेट नहीं है";
+"biometric_error_biometry_lockout" = "बायोमेट्रिक प्रमाणीकरण लॉक आउट है";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "भुगतान के रूप में चिह्नित करें";
+"dashboard_postpone" = "1 दिन स्थगित करें";
+"dashboard_payment_snoozed_until" = "%@ तक स्थगित";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "भुगतान अनुस्मारक (स्थगित)";
+"notification_payment_snoozed_body" = "%@ के लिए अनुस्मारक - %@";
+
+// Missing Keys
+"calculator_share" = "साझा करें";
+"notification_permission_not_requested" = "अधिसूचना अनुमति अभी तक अनुरोधित नहीं है";
+"notification_unknown_error" = "अज्ञात अधिसूचना त्रुटि हुई";
+"settings_notifications_denied_title" = "अधिसूचनाएं अक्षम";
+"settings_notifications_denied_message" = "भुगतान अनुस्मारक प्राप्त करने के लिए, सेटिंग्स > Monetiq > अधिसूचनाएं में अधिसूचनाएं सक्षम करें";
+
+// Legal Content
+"terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैक करने और भुगतान कार्यक्रम प्रबंधित करने के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता है।\n\nइन शर्तों के बारे में प्रश्नों के लिए, App Store के माध्यम से हमसे संपर्क करें।";

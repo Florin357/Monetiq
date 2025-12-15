@@ -1,0 +1,329 @@
+/* 
+  Localizable.strings (Romanian)
+  monetiq
+  
+  Created by Florin Mihai on 07.12.2025.
+*/
+
+// MARK: - General
+"general_save" = "Salvează";
+"general_cancel" = "Anulează";
+"general_delete" = "Șterge";
+"general_edit" = "Editează";
+"general_add" = "Adaugă";
+"general_done" = "Gata";
+"general_ok" = "OK";
+"general_yes" = "Da";
+"general_no" = "Nu";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Panou";
+"tab_loans" = "Împrumuturi";
+"tab_calculator" = "Calculator";
+"tab_settings" = "Setări";
+
+// MARK: - Dashboard
+"dashboard_title" = "Panou de Control";
+"dashboard_subtitle" = "Prezentarea generală financiară";
+"dashboard_to_receive" = "De Primit";
+"dashboard_to_pay" = "De Plătit";
+"dashboard_upcoming_payments" = "Plăți Viitoare";
+"dashboard_no_payments" = "Nicio plată viitoare";
+"dashboard_no_payments_subtitle" = "Toate plățile sunt la zi";
+
+// MARK: - Loans
+"loans_title" = "Împrumuturi";
+"loans_subtitle" = "Gestionează împrumuturile și datoriile";
+"loans_empty_title" = "Încă nu ai împrumuturi";
+"loans_empty_subtitle" = "Adaugă primul tău împrumut pentru a începe";
+"loans_add_title" = "Adaugă Împrumut";
+"loans_edit_title" = "Editează Împrumut";
+"loans_delete_title" = "Șterge Împrumut";
+"loans_delete_message" = "Ești sigur că vrei să ștergi acest împrumut? Această acțiune nu poate fi anulată.";
+"loans_next_due" = "Următoarea: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Titlu";
+"loan_form_title_placeholder" = "Introdu titlul împrumutului";
+"loan_form_role" = "Rol";
+"loan_form_counterparty" = "Contrapartida";
+"loan_form_counterparty_name" = "Nume";
+"loan_form_counterparty_name_placeholder" = "Introdu numele";
+"loan_form_counterparty_type" = "Tip";
+"loan_form_amount" = "Suma Principală";
+"loan_form_amount_placeholder" = "Introdu suma";
+"loan_form_currency" = "Moneda";
+"loan_form_start_date" = "Data de Început";
+"loan_form_frequency" = "Frecvența Plăților";
+"loan_form_periods" = "Numărul de Perioade";
+"loan_form_periods_placeholder" = "Introdu numărul";
+"loan_form_interest_mode" = "Modul de Dobândă";
+"loan_form_interest_rate" = "Rata Anuală a Dobânzii";
+"loan_form_interest_rate_placeholder" = "Introdu rata";
+"loan_form_fixed_total" = "Total Fix de Rambursat";
+"loan_form_fixed_total_placeholder" = "Introdu totalul";
+"loan_form_next_due_date" = "Următoarea Dată Scadentă";
+"loan_form_notes" = "Notițe";
+"loan_form_notes_placeholder" = "Notițe opționale";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Prezentare Generală";
+"loan_detail_principal" = "Suma Principală";
+"loan_detail_total_to_repay" = "Total de Rambursat";
+"loan_detail_total_paid" = "Total Plătit";
+"loan_detail_remaining" = "Rămas";
+"loan_detail_start_date" = "Data de Început";
+"loan_detail_frequency" = "Frecvența";
+"loan_detail_counterparty" = "Contrapartida";
+"loan_detail_payments" = "Programul de Plăți";
+"loan_detail_mark_paid" = "Marchează ca Plătit";
+"loan_detail_no_payments" = "Nicio plată programată";
+
+// MARK: - Calculator
+"calculator_title" = "Calculator Împrumuturi";
+"calculator_subtitle" = "Calculează plățile și dobânda împrumutului";
+"calculator_principal" = "Suma Principală";
+"calculator_principal_placeholder" = "Introdu suma";
+"calculator_interest_rate" = "Rata Anuală a Dobânzii";
+"calculator_interest_rate_placeholder" = "Introdu rata";
+"calculator_number_of_payments" = "Numărul de Plăți";
+"calculator_number_of_payments_placeholder" = "Introdu numărul de plăți";
+"calculator_number_of_payments_helper" = "Exemplu: 12 pentru 1 an de plăți lunare";
+"calculator_payments_suffix" = "plăți";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Politica de Confidențialitate Indisponibilă";
+"settings_privacy_unavailable_message" = "Politica de confidențialitate nu este disponibilă în acest moment. Vă rugăm să încercați din nou mai târziu sau contactați suportul.";
+"settings_terms_unavailable_title" = "Termenii de Serviciu Indisponibili";
+"settings_terms_unavailable_message" = "Termenii de serviciu nu sunt disponibili în acest moment. Vă rugăm să încercați din nou mai târziu sau contactați suportul.";
+
+// Settings - Version Info Labels
+"settings_version_label" = "Versiunea";
+"settings_build_label" = "Build";
+"settings_device_info" = "Date locale • Fără cont necesar";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "Politica de Confidențialitate\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Informațiile pe Care le Colectăm\n\nMonetiq este proiectat cu confidențialitatea în minte. Toate datele tale financiare sunt stocate local pe dispozitivul tău și nu sunt niciodată transmise către serverele noastre sau către terțe părți.\n\n• Informații despre împrumuturi (sume, date, contrapartide)\n• Programe de plăți și istoric\n• Preferințe și setări ale aplicației\n• Preferințe pentru notificări locale\n\n2. Cum Folosim Informațiile Tale\n\nDatele tale sunt folosite exclusiv pentru:\n• Furnizarea funcționalității de urmărire a împrumuturilor și reamintiri de plăți\n• Calcularea programelor de plăți și dobânzilor\n• Trimiterea notificărilor locale pentru plățile viitoare\n• Menținerea preferințelor tale din aplicație\n\n3. Stocarea și Securitatea Datelor\n\n• Toate datele sunt stocate local pe dispozitivul tău folosind stocarea securizată iOS\n• Nicio dată nu este transmisă prin internet\n• Fără conturi de utilizator sau sincronizare cloud\n• Datele sunt protejate de funcțiile de securitate ale dispozitivului tău (Face ID, Touch ID, cod)\n\n4. Partajarea Datelor\n\nNu partajăm, vindem sau transmitem informațiile tale personale către terțe părți. Datele tale financiare rămân private și sub controlul tău.\n\n5. Drepturile Tale\n\n• Poți șterge toate datele aplicației oricând prin Setări → Resetează Aplicația\n• Controlezi toate preferințele de notificare\n• Nicio recuperare de date nu este posibilă odată șterse (deoarece nu stocăm backup-uri)\n\n6. Modificări ale Acestei Politici\n\nAm putea actualiza această politică de confidențialitate din când în când. Orice modificări vor fi reflectate în aplicație cu o dată de intrare în vigoare actualizată.\n\n7. Contactează-ne\n\nDacă ai întrebări despre această politică de confidențialitate, te rugăm să ne contactezi prin App Store.";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "Termenii de Serviciu\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Acceptarea Termenilor\n\nPrin folosirea Monetiq, accepți acești Termeni de Serviciu. Dacă nu accepți, te rugăm să nu folosești aplicația.\n\n2. Descrierea Serviciului\n\nMonetiq este o aplicație de finanțe personale pentru urmărirea împrumuturilor și gestionarea programelor de plăți. Aplicația:\n• Te ajută să urmărești împrumuturile personale (date și primite)\n• Calculează programe de plăți și dobânzi\n• Furnizează reamintiri locale de plăți\n• Stochează toate datele local pe dispozitivul tău\n\n3. Responsabilitățile Utilizatorului\n\n• Ești responsabil pentru acuratețea datelor pe care le introduci\n• Trebuie să respecți legile aplicabile când folosești aplicația\n• Ești responsabil pentru backup-ul dispozitivului tău dacă vrei să păstrezi datele\n• Nu trebuie să folosești aplicația pentru activități financiare ilegale\n\n4. Limitări și Declinări de Responsabilitate\n\n• Monetiq este doar pentru uz personal și ținerea evidenței\n• Aplicația nu oferă sfaturi financiare, legale sau fiscale\n• Calculele dobânzilor sunt estimări; consultă profesioniști pentru calcule oficiale\n• Nu suntem responsabili pentru deciziile financiare luate pe baza datelor din aplicație\n• Aplicația nu facilitează transferuri reale de bani sau plăți\n\n5. Date și Confidențialitate\n\n• Toate datele sunt stocate local pe dispozitivul tău\n• Nu colectăm, stocăm sau transmitem informațiile tale personale\n• Ești responsabil pentru securitatea dispozitivului tău\n• Datele nu pot fi recuperate dacă sunt pierdute sau șterse\n\n6. Proprietatea Intelectuală\n\nAplicația Monetiq, inclusiv designul, codul și conținutul său, este protejată de drepturi de autor și alte legi ale proprietății intelectuale.\n\n7. Limitarea Responsabilității\n\nÎn măsura maximă permisă de lege, nu vom fi responsabili pentru daune indirecte, incidentale, speciale sau consecutive care rezultă din folosirea aplicației.\n\n8. Încetarea\n\nPoți înceta să folosești aplicația oricând prin ștergerea ei de pe dispozitivul tău. Acești termeni rămân în vigoare până la încetare.\n\n9. Modificări ale Termenilor\n\nAm putea actualiza acești termeni din când în când. Folosirea continuă a aplicației după modificări constituie acceptarea noilor termeni.\n\n10. Legea Aplicabilă\n\nAcești termeni sunt guvernați de legile jurisdicției unde aplicația este dezvoltată și distribuită.\n\n11. Informații de Contact\n\nPentru întrebări despre acești termeni, te rugăm să ne contactezi prin App Store.";
+
+// MARK: - Notifications
+"notification_permission_not_requested" = "Permisiunea pentru notificări nu a fost încă solicitată";
+"notification_unknown_error" = "A apărut o eroare necunoscută la notificări";
+
+// MARK: - Settings - Notifications Denied
+"settings_notifications_denied_title" = "Notificările sunt dezactivate";
+"settings_notifications_denied_message" = "Pentru a primi reamintiri de plăți, activează notificările în Setări > Monetiq > Notificări";
+"calculator_frequency" = "Frecvența Plăților";
+"calculator_calculate" = "Calculează Plata";
+"calculator_results" = "Rezultate";
+"calculator_payment_per_period" = "Plata per %@";
+"calculator_total_to_repay" = "Total de Rambursat";
+"calculator_total_interest" = "Dobânda Totală";
+"calculator_enter_values" = "Introdu valorile de mai sus pentru a calcula plățile împrumutului";
+"calculator_validation_error" = "Te rog introdu valori valide pentru toate câmpurile";
+
+// MARK: - Settings
+"settings_title" = "Setări";
+"settings_subtitle" = "Personalizează experiența Monetiq";
+"settings_general" = "General";
+"settings_security" = "Securitate";
+"settings_appearance" = "Aspect";
+"settings_about" = "Despre";
+"settings_developer" = "Dezvoltator";
+
+"settings_notifications" = "Notificări Push";
+"settings_notifications_subtitle" = "Primește notificări despre plățile viitoare";
+"settings_days_before" = "Zile Înainte de Scadență";
+"settings_days_before_subtitle" = "Momentul notificării";
+"settings_weekly_review" = "Revizuire Săptămânală";
+"settings_weekly_review_subtitle" = "Memento săptămânal pentru revizuirea financiară";
+"settings_default_currency" = "Moneda Implicită";
+"settings_default_currency_subtitle" = "Moneda pentru împrumuturi noi";
+"settings_language" = "Limba";
+"settings_language_subtitle" = "Limba de afișare a aplicației";
+"settings_biometric" = "Autentificare Biometrică";
+"settings_biometric_subtitle" = "Folosește Face ID sau Touch ID pentru deblocare";
+"settings_appearance_mode" = "Aspect";
+"settings_appearance_mode_subtitle" = "Alege aspectul aplicației";
+
+// Appearance Mode Options
+"appearance_system" = "Implicit Sistem";
+"appearance_light" = "Luminos";
+"appearance_dark" = "Întunecat";
+
+"settings_version" = "Versiunea";
+"settings_privacy" = "Politica de Confidențialitate";
+"settings_privacy_subtitle" = "Vezi politica noastră de confidențialitate";
+"settings_terms" = "Termenii de Utilizare";
+"settings_terms_subtitle" = "Vezi termenii și condițiile";
+
+// MARK: - Settings Data
+"settings_data" = "Date";
+"settings_reset_app" = "Resetează Aplicația";
+"settings_reset_app_subtitle" = "Șterge toate datele și resetează la setările implicite";
+"settings_reset_app_confirm_title" = "Resetezi Aplicația?";
+"settings_reset_app_confirm_message" = "Aceasta va șterge permanent toate împrumuturile, plățile și setările de pe acest dispozitiv. Această acțiune nu poate fi anulată.";
+"settings_reset_app_confirm_action" = "Șterge Toate Datele";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Deblochează Monetiq pentru a accesa datele tale financiare";
+"biometric_enable_reason" = "Autentifică-te pentru a activa securitatea biometrică";
+"lock_screen_title" = "Blocat";
+"lock_screen_subtitle" = "Deblochează cu %@";
+"lock_screen_unlock_button" = "Deblochează cu %@";
+"biometric_error_title" = "Autentificare Eșuată";
+"biometric_error_unknown" = "A apărut o eroare necunoscută";
+"biometric_unavailable_title" = "Biometria Indisponibilă";
+"biometric_unavailable_message" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
+"general_ok" = "OK";
+
+"settings_view_notifications" = "Vezi Notificările Programate";
+"settings_view_notifications_subtitle" = "Verifică notificările programate";
+
+// MARK: - Loan Roles
+"role_lent" = "Am Dat";
+"role_borrowed" = "Am Împrumutat";
+"role_bank_credit" = "Credit Bancar";
+
+// MARK: - Payment Status
+"status_planned" = "Planificat";
+"status_paid" = "Plătit";
+"status_overdue" = "Întârziat";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Săptămânal";
+"frequency_monthly" = "Lunar";
+"frequency_quarterly" = "Trimestrial";
+"frequency_yearly" = "Anual";
+
+// MARK: - Interest Mode
+"interest_none" = "Fără Dobândă";
+"interest_percentage" = "Procent Anual";
+"interest_fixed" = "Total Fix";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Persoană";
+"counterparty_institution" = "Instituție";
+
+// MARK: - About
+"about_privacy_title" = "Politica de confidențialitate";
+"about_privacy_last_updated" = "Ultima actualizare: 14 decembrie 2025";
+"about_privacy_disclaimer" = "Această politică de confidențialitate este provizorie și poate fi actualizată. Aplicația este concepută să respecte confidențialitatea dvs. și să păstreze datele financiare sigure și private.";
+"about_terms_title" = "Termeni și condiții";
+"about_terms_last_updated" = "Ultima actualizare: 14 decembrie 2025";
+"about_terms_disclaimer" = "Acești termeni și condiții sunt provizori și pot fi actualizați. Vă rugăm să folosiți aplicația responsabil și să consultați profesioniști financiari pentru decizii importante.";
+"about_close" = "Închide";
+
+// MARK: - Additional UI
+"calculator_currency" = "Monedă";
+"calculator_generated" = "Generat";
+"calculator_share_title" = "Rezumat Calcul Împrumut";
+"calculator_share_footer" = "Creat cu Monetiq";
+"calculator_share" = "Partajează";
+"dashboard_no_loans" = "Încă nu aveți împrumuturi";
+"dashboard_recent_loans" = "Împrumuturi recente";
+"loan_detail_delete_confirm" = "Sunteți sigur că doriți să ștergeți '%@'? Această acțiune nu poate fi anulată.";
+"loan_detail_details" = "Detalii";
+"loan_detail_no_schedule" = "Nu există program de plăți disponibil";
+"loan_detail_notes" = "Notițe";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Adaugă Împrumut";
+"edit_loan_title" = "Editează Împrumut";
+"loan_details_section" = "Detalii Împrumut";
+"loan_title_placeholder" = "Titlu Împrumut";
+"role_label" = "Rol";
+"counterparty_section" = "Contraparte";
+"counterparty_name_placeholder" = "Nume";
+"counterparty_type_label" = "Tip";
+"financial_details_section" = "Detalii Financiare";
+"amount_placeholder" = "Sumă";
+"currency_label" = "Monedă";
+"repayment_schedule_section" = "Program de Rambursare";
+"payment_frequency_label" = "Frecvența Plăților";
+"number_of_payments_placeholder" = "Numărul de Plăți";
+"interest_section" = "Dobândă";
+"interest_mode_label" = "Modul Dobânzii";
+"annual_interest_rate_placeholder" = "Rata Dobânzii Anuale (%)";
+"fixed_total_repay_placeholder" = "Total Fix de Rambursat";
+"dates_section" = "Date";
+"start_date_label" = "Data de Început";
+"set_next_due_date" = "Setează Următoarea Dată Scadentă";
+"next_due_date_label" = "Următoarea Dată Scadentă";
+"notes_section" = "Notițe";
+"optional_notes_placeholder" = "Notițe opționale";
+"cancel_button" = "Anulează";
+"save_button" = "Salvează";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Detalii Împrumut";
+"edit_loan_button" = "Editează Împrumut";
+"delete_loan_button" = "Șterge Împrumut";
+"mark_paid_button" = "Marchează ca Plătit";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d mai multe";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Memento Plată";
+"notification_payment_reminder_body" = "Plata pentru '%@' scade în %d zi(le): %@";
+"notification_payment_due_title" = "Plată Scadentă Astăzi";
+"notification_payment_due_body" = "Plata pentru '%@' scade astăzi: %@";
+"notification_weekly_review_title" = "Revizuire Financiară Săptămânală";
+"notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Monetiq";
+"notification_test_title" = "Notificare de Test";
+"notification_test_body" = "Aceasta este o notificare de test de la Monetiq";
+
+// MARK: - Settings - Notifications
+"settings_notifications_denied_title" = "Notificări Dezactivate";
+"settings_notifications_denied_message" = "Pentru a primi mementouri de plată, vă rugăm să activați notificările în Setări";
+"settings_open_settings" = "Deschide Setările";
+
+// Payment due date labels
+"payment_due_today" = "Scadent azi";
+"payment_due_tomorrow" = "Scadent mâine";
+"payment_due_in_days" = "Scadent în %d zile";
+
+// Payment status
+"status_paid_on" = "Plătit pe %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Data de Început";
+"loan_detail_payment_frequency" = "Frecvența Plăților";
+"loan_detail_number_of_payments" = "Numărul de Plăți";
+"loan_detail_interest_mode" = "Modul de Dobândă";
+"loan_detail_annual_interest_rate" = "Rata Anuală de Dobândă";
+"loan_detail_total_to_repay" = "Total de Rambursat";
+"loan_detail_total_paid" = "Total Plătit";
+"loan_detail_remaining" = "Rămas";
+"loan_detail_next_due_date" = "Următoarea Scadență";
+"loan_detail_created" = "Creat";
+"loan_detail_last_updated" = "Ultima Actualizare";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometrie";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
+"biometric_error_not_enrolled" = "Nu sunt înregistrate date biometrice pe acest dispozitiv";
+"biometric_error_authentication_failed" = "Autentificarea a eșuat";
+"biometric_error_user_cancel" = "Autentificarea a fost anulată";
+"biometric_error_user_fallback" = "Utilizatorul a ales să folosească codul de acces";
+"biometric_error_system_cancel" = "Autentificarea a fost anulată de sistem";
+"biometric_error_passcode_not_set" = "Codul de acces al dispozitivului nu este setat";
+"biometric_error_biometry_lockout" = "Autentificarea biometrică este blocată";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Marchează Plătit";
+"dashboard_postpone" = "Amână 1 zi";
+"dashboard_payment_snoozed_until" = "Amânat până la %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Memento Plată (Amânat)";
+"notification_payment_snoozed_body" = "Memento pentru %@ - %@";

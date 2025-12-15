@@ -10,52 +10,142 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @Query private var allSettings: [AppSettings]
+    @State private var localizationManager = LocalizationManager.shared
+    @State private var refreshTrigger = UUID()
+    @State private var appState = AppState.shared
+    @State private var lockState = AppLockState.shared
+    
+    private var appSettings: AppSettings {
+        AppSettings.getOrCreate(in: modelContext)
+    }
+    
+    private var effectiveLocale: Locale {
+        let languageCode = appSettings.languageOverride
+        
+        #if DEBUG
+        print("🌐 Language Override: \(languageCode ?? "nil (system)")")
+        #endif
+        
+        if let languageCode = languageCode, languageCode != "system" {
+            let locale = Locale(identifier: languageCode)
+            #if DEBUG
+            print("🌐 Applying locale: \(locale.identifier)")
+            print("🌐 Test localization: \(L10n.string("tab_dashboard"))")
+            #endif
+            return locale
+        } else {
+            #if DEBUG
+            print("🌐 Using system locale: \(Locale.current.identifier)")
+            print("🌐 Test localization: \(L10n.string("tab_dashboard"))")
+            #endif
+            return Locale.current
+        }
+    }
+    
+    private var effectiveLanguageKey: String {
+        let key = "lang-\(appSettings.languageOverride ?? "system")"
+        #if DEBUG
+        print("🌐 ContentView: effectiveLanguageKey = \(key)")
+        #endif
+        return key
+    }
+    
+    private func updateLocalizationManager() {
+        localizationManager.currentLanguageCode = appSettings.languageOverride
+        refreshTrigger = UUID() // Force UI refresh
+        #if DEBUG
+        print("🌐 ContentView: LocalizationManager updated, new refresh trigger: \(refreshTrigger)")
+        #endif
+    }
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
+        ZStack {
+            if lockState.isLocked && appSettings.biometricLockEnabled {
+                LockScreenView()
+            } else {
+                mainTabView
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+        }
+        .onAppear {
+            initializeApp()
+        }
+        .onChange(of: appSettings.languageOverride) { _, _ in
+            updateLocalizationManager()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+            handleAppWillEnterForeground()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+            handleAppDidEnterBackground()
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
+    
+    private var mainTabView: some View {
+        TabView {
+            NavigationStack {
+                DashboardView()
+            }
+            .tabItem {
+                Image(systemName: "chart.pie.fill")
+                Text(L10n.string("tab_dashboard"))
+            }
+            
+            NavigationStack {
+                LoansListView()
+            }
+            .tabItem {
+                Image(systemName: "banknote.fill")
+                Text(L10n.string("tab_loans"))
+            }
+            
+            NavigationStack {
+                CalculatorView()
+            }
+            .tabItem {
+                Image(systemName: "function")
+                Text(L10n.string("tab_calculator"))
+            }
+            
+            NavigationStack {
+                SettingsView()
+            }
+            .tabItem {
+                Image(systemName: "gearshape.fill")
+                Text(L10n.string("tab_settings"))
+            }
+        }
+        .monetiqBackground()
+        .preferredColorScheme(appSettings.appearanceMode.colorScheme)
+        .environment(\.locale, effectiveLocale)
+        .id(effectiveLanguageKey)
+        .id(refreshTrigger)
+        .id(appState.resetToken)
+    }
+    
+    private func initializeApp() {
+        updateLocalizationManager()
+        
+        // Initialize lock state based on biometric settings
+        lockState.initializeLockState(biometricEnabled: appSettings.biometricLockEnabled)
+    }
+    
+    private func handleAppWillEnterForeground() {
+        // Re-initialize lock state when app comes to foreground
+        if appSettings.biometricLockEnabled {
+            lockState.initializeLockState(biometricEnabled: true)
         }
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+    
+    private func handleAppDidEnterBackground() {
+        // Lock the app when it goes to background (if biometrics enabled)
+        if appSettings.biometricLockEnabled {
+            lockState.lockApp()
         }
     }
 }
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: [Counterparty.self, Loan.self, Payment.self, AppSettings.self], inMemory: true)
 }

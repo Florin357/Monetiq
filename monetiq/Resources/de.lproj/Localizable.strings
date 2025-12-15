@@ -1,0 +1,331 @@
+/* 
+  Localizable.strings
+  monetiq
+  
+  Created by Florin Mihai on 14.12.2025.
+  German (Deutsch) Localization
+*/
+
+// MARK: - General
+"general_save" = "Speichern";
+"general_cancel" = "Abbrechen";
+"general_delete" = "Löschen";
+"general_edit" = "Bearbeiten";
+"general_add" = "Hinzufügen";
+"general_done" = "Fertig";
+"general_ok" = "OK";
+"general_yes" = "Ja";
+"general_no" = "Nein";
+
+// MARK: - Tab Bar
+"tab_dashboard" = "Übersicht";
+"tab_loans" = "Darlehen";
+"tab_calculator" = "Rechner";
+"tab_settings" = "Einstellungen";
+
+// MARK: - Dashboard
+"dashboard_title" = "Übersicht";
+"dashboard_subtitle" = "Ihre Finanzübersicht";
+"dashboard_to_receive" = "Zu erhalten";
+"dashboard_to_pay" = "Zu zahlen";
+"dashboard_upcoming_payments" = "Anstehende Zahlungen";
+"dashboard_no_payments" = "Keine anstehenden Zahlungen";
+"dashboard_no_payments_subtitle" = "Alle Ihre Zahlungen sind aktuell";
+
+// MARK: - Loans
+"loans_title" = "Darlehen";
+"loans_subtitle" = "Verwalten Sie Ihre Darlehen und Schulden";
+"loans_empty_title" = "Noch keine Darlehen";
+"loans_empty_subtitle" = "Fügen Sie Ihr erstes Darlehen hinzu, um zu beginnen";
+"loans_add_title" = "Darlehen hinzufügen";
+"loans_edit_title" = "Darlehen bearbeiten";
+"loans_delete_title" = "Darlehen löschen";
+"loans_delete_message" = "Sind Sie sicher, dass Sie dieses Darlehen löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
+"loans_next_due" = "Nächste: %@";
+
+// MARK: - Loan Form
+"loan_form_title" = "Titel";
+"loan_form_title_placeholder" = "Darlehenstitel eingeben";
+"loan_form_role" = "Rolle";
+"loan_form_counterparty" = "Vertragspartner";
+"loan_form_counterparty_name" = "Name";
+"loan_form_counterparty_name_placeholder" = "Name eingeben";
+"loan_form_counterparty_type" = "Typ";
+"loan_form_amount" = "Darlehensbetrag";
+"loan_form_amount_placeholder" = "Betrag eingeben";
+"loan_form_currency" = "Währung";
+"loan_form_start_date" = "Startdatum";
+"loan_form_frequency" = "Zahlungshäufigkeit";
+"loan_form_periods" = "Anzahl der Perioden";
+"loan_form_periods_placeholder" = "Anzahl eingeben";
+"loan_form_interest_mode" = "Zinsmodus";
+"loan_form_interest_rate" = "Jahreszinssatz";
+"loan_form_interest_rate_placeholder" = "Zinssatz eingeben";
+"loan_form_fixed_total" = "Feste Rückzahlungssumme";
+"loan_form_fixed_total_placeholder" = "Gesamtsumme eingeben";
+"loan_form_next_due_date" = "Nächstes Fälligkeitsdatum";
+"loan_form_notes" = "Notizen";
+"loan_form_notes_placeholder" = "Optionale Notizen";
+
+// MARK: - Loan Detail
+"loan_detail_overview" = "Übersicht";
+"loan_detail_principal" = "Darlehensbetrag";
+"loan_detail_total_to_repay" = "Gesamtrückzahlung";
+"loan_detail_total_paid" = "Bereits gezahlt";
+"loan_detail_remaining" = "Verbleibend";
+"loan_detail_start_date" = "Startdatum";
+"loan_detail_frequency" = "Häufigkeit";
+"loan_detail_counterparty" = "Vertragspartner";
+"loan_detail_payments" = "Zahlungsplan";
+"loan_detail_mark_paid" = "Als bezahlt markieren";
+"loan_detail_no_payments" = "Keine Zahlungen geplant";
+
+// MARK: - Calculator
+"calculator_title" = "Darlehensrechner";
+"calculator_subtitle" = "Berechnen Sie Darlehenszahlungen und Zinsen";
+"calculator_principal" = "Darlehensbetrag";
+"calculator_principal_placeholder" = "Betrag eingeben";
+"calculator_interest_rate" = "Jahreszinssatz";
+"calculator_interest_rate_placeholder" = "Zinssatz eingeben";
+"calculator_number_of_payments" = "Anzahl der Zahlungen";
+"calculator_number_of_payments_placeholder" = "Anzahl der Zahlungen eingeben";
+"calculator_number_of_payments_helper" = "Beispiel: 12 für 1 Jahr monatliche Zahlungen";
+"calculator_payments_suffix" = "Zahlungen";
+
+// Settings - Legal Link Error Messages
+"settings_privacy_unavailable_title" = "Datenschutzrichtlinie Nicht Verfügbar";
+"settings_privacy_unavailable_message" = "Die Datenschutzrichtlinie ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut oder wenden Sie sich an den Support.";
+"settings_terms_unavailable_title" = "Nutzungsbedingungen Nicht Verfügbar";
+"settings_terms_unavailable_message" = "Die Nutzungsbedingungen sind derzeit nicht verfügbar. Bitte versuchen Sie es später erneut oder wenden Sie sich an den Support.";
+
+// Settings - Version Info Labels
+"settings_version_label" = "Version";
+"settings_build_label" = "Build";
+"settings_device_info" = "Lokale Daten • Kein Konto erforderlich";
+
+// Legal Documents - Privacy Policy
+"privacy_policy_content" = "Datenschutzrichtlinie\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Informationen, die wir sammeln\n\nMonetiq wurde mit Fokus auf Datenschutz entwickelt. Alle Ihre Finanzdaten werden lokal auf Ihrem Gerät gespeichert und niemals an unsere Server oder Dritte übertragen.\n\n• Darlehensinformationen (Beträge, Daten, Vertragspartner)\n• Zahlungspläne und Verlauf\n• App-Einstellungen und Präferenzen\n• Lokale Benachrichtigungseinstellungen\n\n2. Wie wir Ihre Informationen verwenden\n\nIhre Daten werden ausschließlich verwendet für:\n• Bereitstellung der Darlehens-Tracking- und Zahlungserinnerungsfunktionen\n• Berechnung von Zahlungsplänen und Zinsen\n• Senden lokaler Benachrichtigungen für anstehende Zahlungen\n• Aufrechterhaltung Ihrer App-Einstellungen\n\n3. Datenspeicherung und Sicherheit\n\n• Alle Daten werden lokal auf Ihrem Gerät mit iOS-sicherem Speicher gespeichert\n• Keine Daten werden über das Internet übertragen\n• Keine Benutzerkonten oder Cloud-Synchronisation\n• Daten sind durch die Sicherheitsfunktionen Ihres Geräts geschützt (Face ID, Touch ID, Passcode)\n\n4. Datenweitergabe\n\nWir teilen, verkaufen oder übertragen Ihre persönlichen Informationen nicht an Dritte. Ihre Finanzdaten bleiben privat und unter Ihrer Kontrolle.\n\n5. Ihre Rechte\n\n• Sie können alle App-Daten jederzeit über Einstellungen → App zurücksetzen löschen\n• Sie kontrollieren alle Benachrichtigungseinstellungen\n• Keine Datenwiederherstellung ist nach dem Löschen möglich (da wir keine Backups speichern)\n\n6. Änderungen an dieser Richtlinie\n\nWir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Alle Änderungen werden in der App mit einem aktualisierten Wirksamkeitsdatum angezeigt.\n\n7. Kontaktieren Sie uns\n\nBei Fragen zu dieser Datenschutzrichtlinie kontaktieren Sie uns bitte über den App Store.";
+
+// Legal Documents - Terms of Service
+"terms_of_service_content" = "Nutzungsbedingungen\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Annahme der Bedingungen\n\nDurch die Nutzung von Monetiq stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie nicht zustimmen, verwenden Sie die App bitte nicht.\n\n2. Beschreibung des Dienstes\n\nMonetiq ist eine persönliche Finanz-App zur Verfolgung von Darlehen und Verwaltung von Zahlungsplänen. Die App:\n• Hilft Ihnen, persönliche Darlehen zu verfolgen (gegeben und erhalten)\n• Berechnet Zahlungspläne und Zinsen\n• Bietet lokale Zahlungserinnerungen\n• Speichert alle Daten lokal auf Ihrem Gerät\n\n3. Benutzerverantwortlichkeiten\n\n• Sie sind für die Genauigkeit der eingegebenen Daten verantwortlich\n• Sie müssen bei der Nutzung der App geltende Gesetze einhalten\n• Sie sind für die Sicherung Ihres Geräts verantwortlich, wenn Sie Daten bewahren möchten\n• Sie dürfen die App nicht für illegale Finanzaktivitäten verwenden\n\n4. Einschränkungen und Haftungsausschlüsse\n\n• Monetiq ist nur für den persönlichen Gebrauch und die Aufzeichnung bestimmt\n• Die App bietet keine Finanz-, Rechts- oder Steuerberatung\n• Zinsberechnungen sind Schätzungen; konsultieren Sie Fachleute für offizielle Berechnungen\n• Wir sind nicht verantwortlich für finanzielle Entscheidungen basierend auf App-Daten\n• Die App erleichtert keine tatsächlichen Geldtransfers oder Zahlungen\n\n5. Daten und Datenschutz\n\n• Alle Daten werden lokal auf Ihrem Gerät gespeichert\n• Wir sammeln, speichern oder übertragen Ihre persönlichen Informationen nicht\n• Sie sind für die Sicherheit Ihres Geräts verantwortlich\n• Daten können nicht wiederhergestellt werden, wenn sie verloren oder gelöscht werden\n\n6. Geistiges Eigentum\n\nDie Monetiq-App, einschließlich ihres Designs, Codes und Inhalts, ist durch Urheberrecht und andere Gesetze zum geistigen Eigentum geschützt.\n\n7. Haftungsbeschränkung\n\nIm maximal gesetzlich zulässigen Umfang haften wir nicht für indirekte, zufällige, besondere oder Folgeschäden aus Ihrer Nutzung der App.\n\n8. Kündigung\n\nSie können die Nutzung der App jederzeit beenden, indem Sie sie von Ihrem Gerät löschen. Diese Bedingungen bleiben bis zur Kündigung in Kraft.\n\n9. Änderungen der Bedingungen\n\nWir können diese Bedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung der App nach Änderungen stellt die Annahme der neuen Bedingungen dar.\n\n10. Geltendes Recht\n\nDiese Bedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der die App entwickelt und vertrieben wird.\n\n11. Kontaktinformationen\n\nBei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte über den App Store.";
+
+// MARK: - Notifications
+"notification_permission_not_requested" = "Benachrichtigungsberechtigung wurde noch nicht angefordert";
+"notification_unknown_error" = "Unbekannter Benachrichtigungsfehler aufgetreten";
+
+// MARK: - Settings - Notifications Denied
+"settings_notifications_denied_title" = "Benachrichtigungen sind deaktiviert";
+"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie Benachrichtigungen in Einstellungen > Monetiq > Benachrichtigungen";
+"calculator_frequency" = "Zahlungshäufigkeit";
+"calculator_calculate" = "Zahlung berechnen";
+"calculator_results" = "Ergebnisse";
+"calculator_payment_per_period" = "Zahlung pro %@";
+"calculator_total_to_repay" = "Gesamtrückzahlung";
+"calculator_total_interest" = "Gesamtzinsen";
+"calculator_enter_values" = "Geben Sie oben Werte ein, um Darlehenszahlungen zu berechnen";
+"calculator_validation_error" = "Bitte geben Sie gültige Werte für alle Felder ein";
+
+// MARK: - Settings
+"settings_title" = "Einstellungen";
+"settings_subtitle" = "Passen Sie Ihre Monetiq-Erfahrung an";
+"settings_general" = "Allgemein";
+"settings_security" = "Sicherheit";
+"settings_appearance" = "Erscheinungsbild";
+"settings_about" = "Über";
+"settings_developer" = "Entwickler";
+
+"settings_notifications" = "Push-Benachrichtigungen";
+"settings_notifications_subtitle" = "Erhalten Sie Benachrichtigungen über anstehende Zahlungen";
+"settings_days_before" = "Tage vor Fälligkeit";
+"settings_days_before_subtitle" = "Benachrichtigungszeitpunkt";
+"settings_weekly_review" = "Wöchentliche Überprüfung";
+"settings_weekly_review_subtitle" = "Wöchentliche Finanzübersicht-Erinnerung";
+"settings_default_currency" = "Standardwährung";
+"settings_default_currency_subtitle" = "Währung für neue Darlehen";
+"settings_language" = "Sprache";
+"settings_language_subtitle" = "App-Anzeigesprache";
+"settings_biometric" = "Biometrische Authentifizierung";
+"settings_biometric_subtitle" = "Face ID oder Touch ID zum Entsperren verwenden";
+"settings_appearance_mode" = "Erscheinungsbild";
+"settings_appearance_mode_subtitle" = "App-Erscheinungsbild wählen";
+
+// Appearance Mode Options
+"appearance_system" = "System Standard";
+"appearance_light" = "Hell";
+"appearance_dark" = "Dunkel";
+
+"settings_version" = "Version";
+"settings_privacy" = "Datenschutzrichtlinie";
+"settings_privacy_subtitle" = "Unsere Datenschutzrichtlinie anzeigen";
+"settings_terms" = "Nutzungsbedingungen";
+"settings_terms_subtitle" = "Geschäftsbedingungen anzeigen";
+
+// MARK: - Settings Data
+"settings_data" = "Daten";
+"settings_reset_app" = "App Zurücksetzen";
+"settings_reset_app_subtitle" = "Alle Daten löschen und auf Standardeinstellungen zurücksetzen";
+"settings_reset_app_confirm_title" = "App Zurücksetzen?";
+"settings_reset_app_confirm_message" = "Dies wird alle Kredite, Zahlungen und Einstellungen von diesem Gerät dauerhaft löschen. Diese Aktion kann nicht rückgängig gemacht werden.";
+"settings_reset_app_confirm_action" = "Alle Daten Löschen";
+
+
+// MARK: - About
+"about_privacy_title" = "Datenschutzrichtlinie";
+"about_privacy_last_updated" = "Zuletzt aktualisiert: 14. Dezember 2025";
+"about_privacy_disclaimer" = "Diese Datenschutzrichtlinie ist vorläufig und kann aktualisiert werden. Die App wurde entwickelt, um Ihre Privatsphäre zu respektieren und Ihre Finanzdaten sicher und privat zu halten.";
+"about_terms_title" = "Nutzungsbedingungen";
+"about_terms_last_updated" = "Zuletzt aktualisiert: 14. Dezember 2025";
+"about_terms_disclaimer" = "Diese Nutzungsbedingungen sind vorläufig und können aktualisiert werden. Bitte verwenden Sie die App verantwortungsbewusst und konsultieren Sie Finanzexperten für wichtige Entscheidungen.";
+"about_close" = "Schließen";
+
+// MARK: - Additional UI
+"calculator_currency" = "Währung";
+"calculator_generated" = "Erstellt";
+"calculator_share_title" = "Darlehensberechnungs-Zusammenfassung";
+"calculator_share_footer" = "Erstellt mit Monetiq";
+"calculator_share" = "Teilen";
+"dashboard_no_loans" = "Noch keine Darlehen";
+"dashboard_recent_loans" = "Aktuelle Darlehen";
+"loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
+"loan_detail_details" = "Details";
+"loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
+"loan_detail_notes" = "Notizen";
+
+// MARK: - Add/Edit Loan
+"add_loan_title" = "Darlehen hinzufügen";
+"edit_loan_title" = "Darlehen bearbeiten";
+"loan_details_section" = "Darlehen-Details";
+"loan_title_placeholder" = "Darlehen-Titel";
+"role_label" = "Rolle";
+"counterparty_section" = "Vertragspartner";
+"counterparty_name_placeholder" = "Name";
+"counterparty_type_label" = "Typ";
+"financial_details_section" = "Finanzielle Details";
+"amount_placeholder" = "Betrag";
+"currency_label" = "Währung";
+"repayment_schedule_section" = "Rückzahlungsplan";
+"payment_frequency_label" = "Zahlungsfrequenz";
+"number_of_payments_placeholder" = "Anzahl der Zahlungen";
+"interest_section" = "Zinsen";
+"interest_mode_label" = "Zinsmodus";
+"annual_interest_rate_placeholder" = "Jährlicher Zinssatz (%)";
+"fixed_total_repay_placeholder" = "Fester Rückzahlungsbetrag";
+"dates_section" = "Daten";
+"start_date_label" = "Startdatum";
+"set_next_due_date" = "Nächstes Fälligkeitsdatum festlegen";
+"next_due_date_label" = "Nächstes Fälligkeitsdatum";
+"notes_section" = "Notizen";
+"optional_notes_placeholder" = "Optionale Notizen";
+"cancel_button" = "Abbrechen";
+"save_button" = "Speichern";
+
+// MARK: - Loan Detail Actions
+"loan_details_nav_title" = "Darlehen-Details";
+"edit_loan_button" = "Darlehen bearbeiten";
+"delete_loan_button" = "Darlehen löschen";
+"mark_paid_button" = "Als bezahlt markieren";
+
+// MARK: - Dashboard
+"dashboard_zero_amount" = "0,00";
+"dashboard_more_currencies" = "+%d weitere";
+"settings_view_notifications" = "Ausstehende Benachrichtigungen anzeigen";
+"settings_view_notifications_subtitle" = "Geplante Benachrichtigungen überprüfen";
+
+// MARK: - Loan Roles
+"role_lent" = "Verliehen";
+"role_borrowed" = "Geliehen";
+"role_bank_credit" = "Bankkredit";
+
+// MARK: - Payment Status
+"status_planned" = "Geplant";
+"status_paid" = "Bezahlt";
+"status_overdue" = "Überfällig";
+
+// MARK: - Payment Frequency
+"frequency_weekly" = "Wöchentlich";
+"frequency_monthly" = "Monatlich";
+"frequency_quarterly" = "Vierteljährlich";
+"frequency_yearly" = "Jährlich";
+
+// MARK: - Interest Mode
+"interest_none" = "Keine Zinsen";
+"interest_percentage" = "Jährlicher Prozentsatz";
+"interest_fixed" = "Feste Gesamtsumme";
+
+// MARK: - Counterparty Type
+"counterparty_person" = "Person";
+"counterparty_institution" = "Institution";
+
+// MARK: - Notifications
+"notification_payment_reminder_title" = "Zahlungserinnerung";
+"notification_payment_reminder_body" = "Zahlung für '%@' ist in %d Tag(en) fällig: %@";
+"notification_payment_due_title" = "Zahlung heute fällig";
+"notification_payment_due_body" = "Zahlung für '%@' ist heute fällig: %@";
+"notification_weekly_review_title" = "Wöchentliche Finanzübersicht";
+"notification_weekly_review_body" = "Zeit, Ihre Darlehen und anstehenden Zahlungen in Monetiq zu überprüfen";
+"notification_test_title" = "Test-Benachrichtigung";
+"notification_test_body" = "Dies ist eine Test-Benachrichtigung von Monetiq";
+
+// MARK: - Biometric Authentication
+"biometric_unlock_reason" = "Entsperre Monetiq, um auf deine Finanzdaten zuzugreifen";
+"biometric_enable_reason" = "Authentifiziere dich, um biometrische Sicherheit zu aktivieren";
+"lock_screen_title" = "Gesperrt";
+"lock_screen_subtitle" = "Mit %@ entsperren";
+"lock_screen_unlock_button" = "Mit %@ entsperren";
+
+
+// MARK: - Settings - Notifications
+"settings_notifications_denied_title" = "Benachrichtigungen deaktiviert";
+"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie bitte Benachrichtigungen in den Einstellungen";
+"settings_open_settings" = "Einstellungen öffnen";
+"biometric_error_title" = "Authentifizierung fehlgeschlagen";
+"biometric_error_unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"biometric_unavailable_title" = "Biometrie nicht verfügbar";
+"biometric_unavailable_message" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
+"general_ok" = "OK";
+
+// Payment due date labels
+"payment_due_today" = "Heute fällig";
+"payment_due_tomorrow" = "Morgen fällig";
+"payment_due_in_days" = "Fällig in %d Tagen";
+
+// Payment status
+"status_paid_on" = "Bezahlt am %@";
+
+// Loan detail labels
+"loan_detail_start_date" = "Startdatum";
+"loan_detail_payment_frequency" = "Zahlungsfrequenz";
+"loan_detail_number_of_payments" = "Anzahl der Zahlungen";
+"loan_detail_interest_mode" = "Zinsmodus";
+"loan_detail_annual_interest_rate" = "Jährlicher Zinssatz";
+"loan_detail_total_to_repay" = "Gesamtrückzahlung";
+"loan_detail_total_paid" = "Gesamt bezahlt";
+"loan_detail_remaining" = "Verbleibend";
+"loan_detail_next_due_date" = "Nächstes Fälligkeitsdatum";
+"loan_detail_created" = "Erstellt";
+"loan_detail_last_updated" = "Zuletzt aktualisiert";
+
+// Biometric types
+"biometric_type_biometrics" = "Biometrie";
+"biometric_type_touch_id" = "Touch ID";
+"biometric_type_face_id" = "Face ID";
+"biometric_type_optic_id" = "Optic ID";
+
+// Biometric errors
+"biometric_error_not_available" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
+"biometric_error_not_enrolled" = "Keine biometrischen Daten auf diesem Gerät registriert";
+"biometric_error_authentication_failed" = "Authentifizierung fehlgeschlagen";
+"biometric_error_user_cancel" = "Authentifizierung wurde abgebrochen";
+"biometric_error_user_fallback" = "Benutzer wählte Passcode-Verwendung";
+"biometric_error_system_cancel" = "Authentifizierung wurde vom System abgebrochen";
+"biometric_error_passcode_not_set" = "Gerätecode ist nicht gesetzt";
+"biometric_error_biometry_lockout" = "Biometrische Authentifizierung ist gesperrt";
+
+// Dashboard Payment Actions
+"dashboard_mark_paid" = "Als Bezahlt Markieren";
+"dashboard_postpone" = "1 Tag Verschieben";
+"dashboard_payment_snoozed_until" = "Verschoben bis %@";
+
+// Snooze Notifications
+"notification_payment_snoozed_title" = "Zahlungserinnerung (Verschoben)";
+"notification_payment_snoozed_body" = "Erinnerung für %@ - %@";
