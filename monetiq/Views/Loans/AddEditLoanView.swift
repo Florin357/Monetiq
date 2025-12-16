@@ -53,8 +53,8 @@ struct AddEditLoanView: View {
         let basicFieldsValid = !title.trimmingCharacters(in: .whitespaces).isEmpty &&
         !counterpartyName.trimmingCharacters(in: .whitespaces).isEmpty &&
         !principalAmount.trimmingCharacters(in: .whitespaces).isEmpty &&
-        Double(principalAmount) != nil &&
-        Double(principalAmount) ?? 0 > 0 &&
+        parseNumericInput(principalAmount) != nil &&
+        parseNumericInput(principalAmount) ?? 0 > 0 &&
         !numberOfPeriods.trimmingCharacters(in: .whitespaces).isEmpty &&
         Int(numberOfPeriods) != nil &&
         Int(numberOfPeriods) ?? 0 > 0
@@ -65,12 +65,12 @@ struct AddEditLoanView: View {
             interestFieldsValid = true
         case .percentageAnnual:
             interestFieldsValid = !annualInterestRate.trimmingCharacters(in: .whitespaces).isEmpty &&
-                                Double(annualInterestRate) != nil &&
-                                Double(annualInterestRate) ?? 0 >= 0
+                                parseNumericInput(annualInterestRate) != nil &&
+                                parseNumericInput(annualInterestRate) ?? 0 >= 0
         case .fixedTotal:
             interestFieldsValid = !fixedTotalToRepay.trimmingCharacters(in: .whitespaces).isEmpty &&
-                                Double(fixedTotalToRepay) != nil &&
-                                Double(fixedTotalToRepay) ?? 0 > 0
+                                parseNumericInput(fixedTotalToRepay) != nil &&
+                                parseNumericInput(fixedTotalToRepay) ?? 0 > 0
         }
         
         return basicFieldsValid && interestFieldsValid
@@ -89,6 +89,12 @@ struct AddEditLoanView: View {
                         }
                     }
                     .pickerStyle(.segmented)
+                    .onChange(of: selectedRole) { oldValue, newValue in
+                        // Auto-select Institution when Bank Credit is selected
+                        if newValue == .bankCredit {
+                            counterpartyType = .institution
+                        }
+                    }
                 }
                 
                 Section(L10n.string("counterparty_section")) {
@@ -108,6 +114,9 @@ struct AddEditLoanView: View {
                         TextField(L10n.string("amount_placeholder"), text: $principalAmount)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
+                            .onChange(of: principalAmount) { oldValue, newValue in
+                                principalAmount = formatNumericInput(newValue, allowDecimals: true)
+                            }
                         
                         Picker(L10n.string("currency_label"), selection: $selectedCurrency) {
                             ForEach(currencies, id: \.self) { currency in
@@ -143,12 +152,18 @@ struct AddEditLoanView: View {
                         TextField(L10n.string("annual_interest_rate_placeholder"), text: $annualInterestRate)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
+                            .onChange(of: annualInterestRate) { oldValue, newValue in
+                                annualInterestRate = formatNumericInput(newValue, allowDecimals: true)
+                            }
                     }
                     
                     if selectedInterestMode == .fixedTotal {
                         TextField(L10n.string("fixed_total_repay_placeholder"), text: $fixedTotalToRepay)
                             .keyboardType(.decimalPad)
                             .textFieldStyle(.roundedBorder)
+                            .onChange(of: fixedTotalToRepay) { oldValue, newValue in
+                                fixedTotalToRepay = formatNumericInput(newValue, allowDecimals: true)
+                            }
                     }
                 }
                 
@@ -229,12 +244,12 @@ struct AddEditLoanView: View {
         
         // Prepare calculation input
         let calculationInput = LoanCalculationInput(
-            principal: Double(principalAmount) ?? 0,
-            annualInterestRate: selectedInterestMode == .percentageAnnual ? Double(annualInterestRate) : nil,
+            principal: parseNumericInput(principalAmount) ?? 0,
+            annualInterestRate: selectedInterestMode == .percentageAnnual ? parseNumericInput(annualInterestRate) : nil,
             numberOfPeriods: Int(numberOfPeriods) ?? 12,
             frequency: selectedFrequency,
             interestMode: selectedInterestMode,
-            fixedTotalToRepay: selectedInterestMode == .fixedTotal ? Double(fixedTotalToRepay) : nil,
+            fixedTotalToRepay: selectedInterestMode == .fixedTotal ? parseNumericInput(fixedTotalToRepay) : nil,
             startDate: startDate
         )
         
@@ -345,6 +360,71 @@ struct AddEditLoanView: View {
         
         modelContext.insert(newCounterparty)
         return newCounterparty
+    }
+    
+    // MARK: - Numeric Input Formatting Helpers
+    
+    /// Formats numeric input to allow both dot and comma as decimal separators
+    /// and optional thousand separators (dot, comma, space)
+    /// Example: "150000" -> "150000", "150,000.50" -> "150000.50", "11,46" -> "11.46"
+    private func formatNumericInput(_ input: String, allowDecimals: Bool) -> String {
+        // Allow digits, dots, commas, and spaces
+        let allowedCharacters = CharacterSet(charactersIn: "0123456789., ")
+        let filtered = input.components(separatedBy: allowedCharacters.inverted).joined()
+        
+        if !allowDecimals {
+            // For integers, remove all separators
+            return filtered.components(separatedBy: CharacterSet(charactersIn: "., ")).joined()
+        }
+        
+        // For decimals, normalize to use dot as decimal separator
+        // Remove spaces first
+        var normalized = filtered.replacingOccurrences(of: " ", with: "")
+        
+        // Count separators to determine intent
+        let commaCount = normalized.filter { $0 == "," }.count
+        let dotCount = normalized.filter { $0 == "." }.count
+        
+        // If both exist, assume the last one is decimal separator
+        if commaCount > 0 && dotCount > 0 {
+            // Find last separator
+            if let lastCommaIndex = normalized.lastIndex(of: ","),
+               let lastDotIndex = normalized.lastIndex(of: ".") {
+                if lastCommaIndex > lastDotIndex {
+                    // Comma is decimal separator, remove dots
+                    normalized = normalized.replacingOccurrences(of: ".", with: "")
+                    normalized = normalized.replacingOccurrences(of: ",", with: ".")
+                } else {
+                    // Dot is decimal separator, remove commas
+                    normalized = normalized.replacingOccurrences(of: ",", with: "")
+                }
+            }
+        } else if commaCount > 0 {
+            // Only commas: if single comma, treat as decimal; if multiple, remove all
+            if commaCount == 1 {
+                normalized = normalized.replacingOccurrences(of: ",", with: ".")
+            } else {
+                normalized = normalized.replacingOccurrences(of: ",", with: "")
+            }
+        }
+        // If only dots, keep as is (could be thousand separator or decimal)
+        
+        // Ensure only one decimal separator
+        if let firstDotIndex = normalized.firstIndex(of: ".") {
+            let beforeDot = String(normalized[..<firstDotIndex])
+            let afterDot = String(normalized[normalized.index(after: firstDotIndex)...])
+                .replacingOccurrences(of: ".", with: "")
+            normalized = beforeDot + "." + afterDot
+        }
+        
+        return normalized
+    }
+    
+    /// Parses numeric input that may contain various separators
+    /// Returns Double value or nil if invalid
+    private func parseNumericInput(_ input: String) -> Double? {
+        let cleaned = formatNumericInput(input, allowDecimals: true)
+        return Double(cleaned)
     }
 }
 
