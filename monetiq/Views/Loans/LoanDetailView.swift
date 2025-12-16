@@ -373,7 +373,7 @@ struct PaymentRowView: View {
                     )
             }
             
-            Spacer()
+            Spacer(minLength: 12)
             
             VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
                 // Amount - Premium currency display
@@ -381,6 +381,10 @@ struct PaymentRowView: View {
                     .font(MonetiqTheme.Typography.currencySmall)
                     .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     .fontWeight(.semibold)
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .minimumScaleFactor(0.85)
+                    .layoutPriority(1)
                 
                 if payment.status == .planned && !payment.isOverdue {
                     Button(L10n.string("mark_paid_button")) {
