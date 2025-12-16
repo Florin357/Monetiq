@@ -21,7 +21,7 @@ class CalculatorNumberFormatter {
         // Decimal formatter for Principal Amount (currency-like)
         decimalFormatter = NumberFormatter()
         decimalFormatter.numberStyle = .decimal
-        decimalFormatter.locale = Locale.current
+        decimalFormatter.locale = Locale(identifier: "en_US") // Force dot as decimal separator
         decimalFormatter.maximumFractionDigits = 2
         decimalFormatter.minimumFractionDigits = 0
         decimalFormatter.usesGroupingSeparator = false // Keep simple while editing
@@ -29,14 +29,14 @@ class CalculatorNumberFormatter {
         // Integer formatter for Number of Payments
         integerFormatter = NumberFormatter()
         integerFormatter.numberStyle = .none
-        integerFormatter.locale = Locale.current
+        integerFormatter.locale = Locale(identifier: "en_US")
         integerFormatter.maximumFractionDigits = 0
         integerFormatter.allowsFloats = false
         
         // Percentage formatter for Interest Rate
         percentageFormatter = NumberFormatter()
         percentageFormatter.numberStyle = .decimal
-        percentageFormatter.locale = Locale.current
+        percentageFormatter.locale = Locale(identifier: "en_US") // Force dot as decimal separator
         percentageFormatter.maximumFractionDigits = 2
         percentageFormatter.minimumFractionDigits = 0
         percentageFormatter.usesGroupingSeparator = false
