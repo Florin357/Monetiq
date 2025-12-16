@@ -48,20 +48,6 @@ struct DashboardView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header - Premium styling
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                    Text(L10n.string("dashboard_title"))
-                        .font(MonetiqTheme.Typography.largeTitle)
-                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
-                    
-                    Text(L10n.string("dashboard_subtitle"))
-                        .font(MonetiqTheme.Typography.subheadline)
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                        .opacity(0.8)
-                }
-                .monetiqHeader()
-                .padding(.bottom, MonetiqTheme.Spacing.sm)
-                
                 // Summary Cards
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
@@ -200,6 +186,8 @@ struct DashboardView: View {
             }
             .padding(.vertical, MonetiqTheme.Spacing.sectionSpacing)
         }
+        .navigationTitle(L10n.string("dashboard_title"))
+        .navigationBarTitleDisplayMode(.large)
         .monetiqBackground()
     }
     
