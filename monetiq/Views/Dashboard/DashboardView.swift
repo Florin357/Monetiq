@@ -352,6 +352,9 @@ struct MultiCurrencySummaryCard: View {
                             .font(sortedTotals.count == 1 ? MonetiqTheme.Typography.currencyLarge : MonetiqTheme.Typography.currencyMedium)
                             .foregroundColor(color)
                             .fontWeight(.bold)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .minimumScaleFactor(0.7)
                     }
                     
                     // Additional currencies (if any) - Subtle secondary display
@@ -362,6 +365,9 @@ struct MultiCurrencySummaryCard: View {
                                     .font(MonetiqTheme.Typography.currencyCaption)
                                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                                     .opacity(0.8)
+                                    .lineLimit(1)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .minimumScaleFactor(0.75)
                             }
                             
                             if sortedTotals.count > 3 {
