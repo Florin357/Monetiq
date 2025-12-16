@@ -208,14 +208,6 @@ struct SettingsView: View {
                             subtitle: L10n.string("settings_terms_subtitle")
                         )
                     }
-                    
-                    #if DEBUG
-                    SettingsActionRow(
-                        title: "🌐 Audit Localizations",
-                        subtitle: "Check translation completeness (DEBUG)",
-                        action: auditLocalizations
-                    )
-                    #endif
                 }
                 
                 Spacer(minLength: MonetiqTheme.Spacing.xl)
@@ -351,13 +343,6 @@ struct SettingsView: View {
             }
         }
     }
-    
-    #if DEBUG
-    private func auditLocalizations() {
-        let result = LocalizationManager.shared.auditLocalizations()
-        print(result.summary)
-    }
-    #endif
     
     private func handleBiometricToggle(enabled: Bool) {
         #if DEBUG
