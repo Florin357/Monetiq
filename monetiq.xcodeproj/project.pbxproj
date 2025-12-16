@@ -408,6 +408,7 @@
 				DEVELOPMENT_TEAM = 8N74NY869P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Monetiq;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Monetiq uses Face ID to securely lock and unlock your financial data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -443,6 +444,7 @@
 				DEVELOPMENT_TEAM = 8N74NY869P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Monetiq;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Monetiq uses Face ID to securely lock and unlock your financial data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
