@@ -101,6 +101,7 @@ struct DashboardView: View {
                                 )
                         }
                     }
+                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
                     
                     if upcomingPayments.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.sm) {
@@ -174,6 +175,7 @@ struct DashboardView: View {
                                 )
                         }
                     }
+                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
                     
                     if recentLoans.isEmpty {
                         VStack(spacing: MonetiqTheme.Spacing.sm) {
@@ -513,24 +515,27 @@ struct DashboardLoanRowView: View {
     }
     
     var body: some View {
-        HStack(spacing: MonetiqTheme.Spacing.lg) {
+        HStack(alignment: .top, spacing: MonetiqTheme.Spacing.lg) {
             // Leading indicator - Premium style
             RoundedRectangle(cornerRadius: 3)
                 .fill(roleColor)
                 .frame(width: 5, height: 40)
             
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                // Primary title - Enhanced hierarchy
+                // Primary title - Enhanced hierarchy with truncation
                 Text(loan.title)
                     .monetiqCardTitle()
                     .lineLimit(1)
+                    .truncationMode(.tail)
                 
-                // Secondary info - Better visual separation
-                HStack(spacing: MonetiqTheme.Spacing.sm) {
+                // Status badge - Fixed size, no wrapping
+                HStack {
                     Text(loan.role.localizedLabel)
                         .font(MonetiqTheme.Typography.caption)
                         .foregroundColor(roleColor)
                         .fontWeight(.medium)
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
                         .padding(.horizontal, MonetiqTheme.Spacing.sm)
                         .padding(.vertical, 2)
                         .background(
@@ -538,28 +543,25 @@ struct DashboardLoanRowView: View {
                                 .fill(roleColor.opacity(0.15))
                         )
                     
-                    if let counterparty = loan.counterparty {
-                        Text("•")
-                            .font(MonetiqTheme.Typography.caption2)
-                            .foregroundColor(MonetiqTheme.Colors.textTertiary)
-                            .opacity(0.6)
-                        
-                        Text(counterparty.name)
-                            .monetiqCardSubtitle()
-                            .lineLimit(1)
-                    }
+                    Spacer()
+                }
+                
+                // Counterparty - Separate row with truncation
+                if let counterparty = loan.counterparty {
+                    Text(counterparty.name)
+                        .monetiqCardSubtitle()
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 }
             }
             
-            Spacer()
+            Spacer(minLength: 12)
             
-            // Amount - Premium currency display
-            VStack(alignment: .trailing, spacing: 2) {
-                Text(CurrencyFormatter.shared.format(amount: loan.principalAmount, currencyCode: loan.currencyCode))
-                    .font(MonetiqTheme.Typography.currencySmall)
-                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
-                    .fontWeight(.semibold)
-            }
+            // Compact Amount Display - Resists wrapping
+            CompactAmountView(
+                amount: loan.principalAmount,
+                currencyCode: loan.currencyCode
+            )
         }
         .padding(.horizontal, MonetiqTheme.Spacing.lg)
         .padding(.vertical, MonetiqTheme.Spacing.md)
@@ -573,6 +575,23 @@ struct DashboardLoanRowView: View {
                     y: 2
                 )
         )
+    }
+}
+
+struct CompactAmountView: View {
+    let amount: Double
+    let currencyCode: String
+    
+    var body: some View {
+        Text(CurrencyFormatter.shared.format(amount: amount, currencyCode: currencyCode))
+            .font(MonetiqTheme.Typography.currencySmall)
+            .foregroundColor(MonetiqTheme.Colors.textPrimary)
+            .fontWeight(.semibold)
+            .lineLimit(1)
+            .fixedSize(horizontal: true, vertical: false)
+            .minimumScaleFactor(0.85)
+            .layoutPriority(1)
+            .multilineTextAlignment(.trailing)
     }
 }
 
