@@ -133,7 +133,14 @@ struct LoanDetailView: View {
                             DetailRow(title: L10n.string("loan_detail_total_to_repay"), value: CurrencyFormatter.shared.format(amount: totalToRepay, currencyCode: loan.currencyCode))
                         }
                         
-                        DetailRow(title: L10n.string("loan_detail_total_paid"), value: CurrencyFormatter.shared.format(amount: loan.totalPaid, currencyCode: loan.currencyCode))
+                        // Payment Progress Indicator
+                        PaymentProgressRow(
+                            totalPaid: loan.totalPaid,
+                            remaining: loan.remainingToPay,
+                            currencyCode: loan.currencyCode
+                        )
+                        
+                        DetailRow(title: L10n.string("loan_detail_total_paid"), value: CurrencyFormatter.shared.format(amount: loan.totalPaid, currencyCode: loan.currencyCode), valueColor: loan.totalPaid > 0 ? MonetiqTheme.Colors.success : MonetiqTheme.Colors.error)
                         DetailRow(title: L10n.string("loan_detail_remaining"), value: CurrencyFormatter.shared.format(amount: loan.remainingToPay, currencyCode: loan.currencyCode))
                         
                         if let nextDueDate = loan.nextDueDate {
@@ -321,6 +328,7 @@ struct LoanDetailView: View {
 struct DetailRow: View {
     let title: String
     let value: String
+    var valueColor: Color? = nil
     
     var body: some View {
         HStack {
@@ -332,8 +340,74 @@ struct DetailRow: View {
             
             Text(value)
                 .font(MonetiqTheme.Typography.body)
-                .foregroundColor(MonetiqTheme.Colors.onSurface)
+                .foregroundColor(valueColor ?? MonetiqTheme.Colors.onSurface)
+                .fontWeight(valueColor != nil ? .semibold : .regular)
         }
+    }
+}
+
+struct PaymentProgressRow: View {
+    let totalPaid: Double
+    let remaining: Double
+    let currencyCode: String
+    
+    private var totalAmount: Double {
+        totalPaid + remaining
+    }
+    
+    private var progressPercentage: Double {
+        guard totalAmount > 0 else { return 0 }
+        return (totalPaid / totalAmount) * 100
+    }
+    
+    private var statusColor: Color {
+        if totalPaid > 0 {
+            return MonetiqTheme.Colors.success
+        } else {
+            return MonetiqTheme.Colors.error
+        }
+    }
+    
+    private var statusText: String {
+        if totalPaid > 0 {
+            return String(format: "%.1f%% paid", progressPercentage)
+        } else {
+            return "No payments yet"
+        }
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+            HStack {
+                Text("Payment Progress")
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                
+                Spacer()
+                
+                Text(statusText)
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(statusColor)
+                    .fontWeight(.semibold)
+            }
+            
+            // Progress bar
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    // Background
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(MonetiqTheme.Colors.surface.opacity(0.3))
+                        .frame(height: 8)
+                    
+                    // Progress
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(statusColor)
+                        .frame(width: geometry.size.width * CGFloat(progressPercentage / 100), height: 8)
+                }
+            }
+            .frame(height: 8)
+        }
+        .padding(.vertical, MonetiqTheme.Spacing.xs)
     }
 }
 
