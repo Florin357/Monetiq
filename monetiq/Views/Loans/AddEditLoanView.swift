@@ -37,6 +37,18 @@ struct AddEditLoanView: View {
     @State private var annualInterestRate: String = ""
     @State private var fixedTotalToRepay: String = ""
     
+    // Existing loan enrollment fields
+    @State private var isExistingLoan: Bool = false
+    @State private var existingLoanMethod: ExistingLoanMethod = .nextDueDate
+    @State private var existingLoanNextDueDate: Date = Date()
+    @State private var existingLoanPaidMonths: String = ""
+    @State private var originalStartDate: Date = Date()
+    
+    enum ExistingLoanMethod {
+        case nextDueDate
+        case paidMonths
+    }
+    
     private var currencies: [String] {
         CurrencyCatalog.shared.currencyCodes
     }
@@ -73,12 +85,45 @@ struct AddEditLoanView: View {
                                 parseNumericInput(fixedTotalToRepay) ?? 0 > 0
         }
         
-        return basicFieldsValid && interestFieldsValid
+        // Existing loan validation
+        let existingLoanValid: Bool
+        if isExistingLoan {
+            switch existingLoanMethod {
+            case .nextDueDate:
+                existingLoanValid = true // Date is always valid
+            case .paidMonths:
+                let paidMonths = Int(existingLoanPaidMonths) ?? 0
+                let totalPeriods = Int(numberOfPeriods) ?? 0
+                existingLoanValid = !existingLoanPaidMonths.trimmingCharacters(in: .whitespaces).isEmpty &&
+                                  paidMonths >= 0 &&
+                                  paidMonths < totalPeriods
+            }
+        } else {
+            existingLoanValid = true
+        }
+        
+        return basicFieldsValid && interestFieldsValid && existingLoanValid
     }
     
     var body: some View {
         NavigationStack {
             Form {
+                // Loan Type Selection (only for new loans)
+                if editingLoan == nil {
+                    Section {
+                        Picker(L10n.string("loan_type_label"), selection: $isExistingLoan) {
+                            Text(L10n.string("loan_type_new")).tag(false)
+                            Text(L10n.string("loan_type_existing")).tag(true)
+                        }
+                        .pickerStyle(.segmented)
+                    } header: {
+                        Text(L10n.string("loan_type_section"))
+                    } footer: {
+                        Text(isExistingLoan ? L10n.string("loan_type_existing_footer") : L10n.string("loan_type_new_footer"))
+                            .font(.caption)
+                    }
+                }
+                
                 Section(L10n.string("loan_details_section")) {
                     TextField(L10n.string("loan_title_placeholder"), text: $title)
                         .textFieldStyle(.roundedBorder)
@@ -168,12 +213,42 @@ struct AddEditLoanView: View {
                 }
                 
                 Section(L10n.string("dates_section")) {
-                    DatePicker(L10n.string("start_date_label"), selection: $startDate, displayedComponents: .date)
-                    
-                    Toggle(L10n.string("set_next_due_date"), isOn: $hasNextDueDate)
-                    
-                    if hasNextDueDate {
-                        DatePicker(L10n.string("next_due_date_label"), selection: $nextDueDate, displayedComponents: .date)
+                    if isExistingLoan {
+                        DatePicker(L10n.string("original_start_date_label"), selection: $originalStartDate, displayedComponents: .date)
+                    } else {
+                        DatePicker(L10n.string("start_date_label"), selection: $startDate, displayedComponents: .date)
+                        
+                        Toggle(L10n.string("set_next_due_date"), isOn: $hasNextDueDate)
+                        
+                        if hasNextDueDate {
+                            DatePicker(L10n.string("next_due_date_label"), selection: $nextDueDate, displayedComponents: .date)
+                        }
+                    }
+                }
+                
+                // Current Status Section (only for existing loans)
+                if isExistingLoan {
+                    Section {
+                        Picker(L10n.string("existing_loan_method_label"), selection: $existingLoanMethod) {
+                            Text(L10n.string("existing_loan_method_next_due_date")).tag(ExistingLoanMethod.nextDueDate)
+                            Text(L10n.string("existing_loan_method_paid_months")).tag(ExistingLoanMethod.paidMonths)
+                        }
+                        .pickerStyle(.segmented)
+                        
+                        if existingLoanMethod == .nextDueDate {
+                            DatePicker(L10n.string("existing_loan_next_due_date_label"), selection: $existingLoanNextDueDate, displayedComponents: .date)
+                        } else {
+                            TextField(L10n.string("existing_loan_paid_months_placeholder"), text: $existingLoanPaidMonths)
+                                .keyboardType(.numberPad)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                    } header: {
+                        Text(L10n.string("existing_loan_status_section"))
+                    } footer: {
+                        Text(existingLoanMethod == .nextDueDate ? 
+                             L10n.string("existing_loan_next_due_date_footer") : 
+                             L10n.string("existing_loan_paid_months_footer"))
+                            .font(.caption)
                     }
                 }
                 
@@ -243,6 +318,9 @@ struct AddEditLoanView: View {
         let counterparty = findOrCreateCounterparty()
         
         // Prepare calculation input
+        // For existing loans, use original start date for calculation
+        let effectiveStartDate = isExistingLoan ? originalStartDate : startDate
+        
         let calculationInput = LoanCalculationInput(
             principal: parseNumericInput(principalAmount) ?? 0,
             annualInterestRate: selectedInterestMode == .percentageAnnual ? parseNumericInput(annualInterestRate) : nil,
@@ -250,7 +328,7 @@ struct AddEditLoanView: View {
             frequency: selectedFrequency,
             interestMode: selectedInterestMode,
             fixedTotalToRepay: selectedInterestMode == .fixedTotal ? parseNumericInput(fixedTotalToRepay) : nil,
-            startDate: startDate
+            startDate: effectiveStartDate
         )
         
         // Calculate schedule
@@ -306,14 +384,47 @@ struct AddEditLoanView: View {
         }
         
         // Create new payments from schedule
-        for scheduleItem in calculationOutput.schedule {
+        // For existing loans, determine which payments should be marked as paid
+        var paymentsToMarkAsPaid = Set<Int>() // indices of payments to mark as paid
+        
+        if isExistingLoan {
+            if existingLoanMethod == .nextDueDate {
+                // Mark all payments before the next due date as paid
+                for (index, scheduleItem) in calculationOutput.schedule.enumerated() {
+                    if scheduleItem.dueDate < existingLoanNextDueDate {
+                        paymentsToMarkAsPaid.insert(index)
+                    }
+                }
+            } else {
+                // Mark first X payments as paid
+                let paidMonths = Int(existingLoanPaidMonths) ?? 0
+                for index in 0..<min(paidMonths, calculationOutput.schedule.count) {
+                    paymentsToMarkAsPaid.insert(index)
+                }
+            }
+        }
+        
+        for (index, scheduleItem) in calculationOutput.schedule.enumerated() {
+            let shouldMarkAsPaid = paymentsToMarkAsPaid.contains(index)
             let payment = Payment(
                 dueDate: scheduleItem.dueDate,
                 amount: scheduleItem.amount,
-                status: .planned,
+                status: shouldMarkAsPaid ? .paid : .planned,
+                paidDate: shouldMarkAsPaid ? scheduleItem.dueDate : nil,
                 loan: loan
             )
+            
             modelContext.insert(payment)
+        }
+        
+        // Update loan's next due date to first unpaid payment
+        if isExistingLoan {
+            let firstUnpaidPayment = calculationOutput.schedule.enumerated().first { index, _ in
+                !paymentsToMarkAsPaid.contains(index)
+            }
+            if let firstUnpaid = firstUnpaidPayment {
+                loan.nextDueDate = firstUnpaid.element.dueDate
+            }
         }
         
         // Save context first

@@ -327,3 +327,26 @@
 
 // Legal Content
 "terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैक करने और भुगतान कार्यक्रम प्रबंधित करने के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता है।\n\nइन शर्तों के बारे में प्रश्नों के लिए, App Store के माध्यम से हमसे संपर्क करें।";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Loan Type";
+"loan_type_label" = "What kind of loan is this?";
+"loan_type_new" = "New Loan";
+"loan_type_existing" = "Existing Loan";
+"loan_type_new_footer" = "Starting from today";
+"loan_type_existing_footer" = "Already in progress";
+
+"existing_loan_status_section" = "Current Status";
+"existing_loan_method_label" = "How do you want to track progress?";
+"existing_loan_method_next_due_date" = "Next Due Date";
+"existing_loan_method_paid_months" = "Paid Months";
+
+"existing_loan_next_due_date_label" = "Next Due Date";
+"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+
+"existing_loan_paid_months_placeholder" = "Number of months already paid";
+"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+
+"original_start_date_label" = "Original Start Date";
+
+"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";

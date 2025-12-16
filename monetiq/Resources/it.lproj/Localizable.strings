@@ -321,3 +321,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Promemoria Pagamento (Rimandato)";
 "notification_payment_snoozed_body" = "Promemoria per %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Loan Type";
+"loan_type_label" = "What kind of loan is this?";
+"loan_type_new" = "New Loan";
+"loan_type_existing" = "Existing Loan";
+"loan_type_new_footer" = "Starting from today";
+"loan_type_existing_footer" = "Already in progress";
+
+"existing_loan_status_section" = "Current Status";
+"existing_loan_method_label" = "How do you want to track progress?";
+"existing_loan_method_next_due_date" = "Next Due Date";
+"existing_loan_method_paid_months" = "Paid Months";
+
+"existing_loan_next_due_date_label" = "Next Due Date";
+"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+
+"existing_loan_paid_months_placeholder" = "Number of months already paid";
+"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+
+"original_start_date_label" = "Original Start Date";
+
+"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";

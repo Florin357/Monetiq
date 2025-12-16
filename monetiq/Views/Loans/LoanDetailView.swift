@@ -28,6 +28,19 @@ struct LoanDetailView: View {
         loan.payments.sorted { $0.dueDate < $1.dueDate }
     }
     
+    // Check if loan has auto-marked paid payments (existing loan enrollment)
+    private var hasAutoMarkedPayments: Bool {
+        // If the loan was created recently (within last minute) and has paid payments
+        // that were paid on their due date, it's likely an existing loan enrollment
+        let recentlyCreated = Date().timeIntervalSince(loan.createdAt) < 60
+        let hasPaidPayments = loan.payments.contains { $0.status == .paid }
+        let hasPaidOnDueDate = loan.payments.contains { payment in
+            payment.status == .paid && payment.paidDate != nil &&
+            Calendar.current.isDate(payment.paidDate!, inSameDayAs: payment.dueDate)
+        }
+        return recentlyCreated && hasPaidPayments && hasPaidOnDueDate
+    }
+    
     // MARK: - Initializers
     
     init(loan: Loan, focusPaymentId: UUID? = nil, focusDueDate: Date? = nil) {
@@ -183,6 +196,25 @@ struct LoanDetailView: View {
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     } else {
+                        // Show info message if there are auto-marked paid payments
+                        if hasAutoMarkedPayments {
+                            HStack(alignment: .top, spacing: MonetiqTheme.Spacing.sm) {
+                                Image(systemName: "info.circle.fill")
+                                    .font(.caption)
+                                    .foregroundColor(MonetiqTheme.Colors.accent)
+                                
+                                Text(L10n.string("loan_detail_auto_marked_info"))
+                                    .font(MonetiqTheme.Typography.caption)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            .padding(MonetiqTheme.Spacing.md)
+                            .background(
+                                RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.sm)
+                                    .fill(MonetiqTheme.Colors.accent.opacity(0.1))
+                            )
+                        }
+                        
                         LazyVStack(spacing: MonetiqTheme.Spacing.sm) {
                             ForEach(sortedPayments, id: \.id) { payment in
                                 PaymentRowView(

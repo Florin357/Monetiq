@@ -327,3 +327,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Memento Plată (Amânat)";
 "notification_payment_snoozed_body" = "Memento pentru %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Tip Împrumut";
+"loan_type_label" = "Ce fel de împrumut este acesta?";
+"loan_type_new" = "Împrumut Nou";
+"loan_type_existing" = "Împrumut Existent";
+"loan_type_new_footer" = "Începe de astăzi";
+"loan_type_existing_footer" = "Deja în curs";
+
+"existing_loan_status_section" = "Status Curent";
+"existing_loan_method_label" = "Cum vrei să urmărești progresul?";
+"existing_loan_method_next_due_date" = "Data Următoare";
+"existing_loan_method_paid_months" = "Luni Plătite";
+
+"existing_loan_next_due_date_label" = "Data Următoare Scadentă";
+"existing_loan_next_due_date_footer" = "Toate plățile înainte de această dată vor fi marcate automat ca plătite.";
+
+"existing_loan_paid_months_placeholder" = "Număr de luni deja plătite";
+"existing_loan_paid_months_footer" = "Primele X plăți vor fi marcate ca plătite.";
+
+"original_start_date_label" = "Data Start Originală";
+
+"loan_detail_auto_marked_info" = "Plățile trecute au fost marcate automat ca plătite pe baza statusului curent.";
