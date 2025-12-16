@@ -55,6 +55,8 @@ struct SettingsView: View {
                     SettingsToggleRow(
                         title: L10n.string("settings_notifications"),
                         subtitle: L10n.string("settings_notifications_subtitle"),
+                        icon: "bell.fill",
+                        iconColor: .blue,
                         isOn: Binding(
                             get: { settings.notificationsEnabled },
                             set: { newValue in
@@ -94,6 +96,8 @@ struct SettingsView: View {
                     SettingsToggleRow(
                         title: L10n.string("settings_weekly_review"),
                         subtitle: L10n.string("settings_weekly_review_subtitle"),
+                        icon: "calendar",
+                        iconColor: .green,
                         isOn: Binding(
                             get: { settings.weeklyReviewEnabled },
                             set: { newValue in
@@ -147,6 +151,8 @@ struct SettingsView: View {
                     SettingsToggleRow(
                         title: L10n.string("settings_biometric"),
                         subtitle: L10n.string("settings_biometric_subtitle"),
+                        icon: "faceid",
+                        iconColor: .purple,
                         isOn: Binding(
                             get: { settings.biometricLockEnabled },
                             set: { newValue in
@@ -486,10 +492,27 @@ struct SettingsSection<Content: View>: View {
 struct SettingsToggleRow: View {
     let title: String
     let subtitle: String
+    let icon: String?
+    let iconColor: Color
     @Binding var isOn: Bool
+    
+    init(title: String, subtitle: String, icon: String? = nil, iconColor: Color = .blue, isOn: Binding<Bool>) {
+        self.title = title
+        self.subtitle = subtitle
+        self.icon = icon
+        self.iconColor = iconColor
+        self._isOn = isOn
+    }
     
     var body: some View {
         HStack(spacing: MonetiqTheme.Spacing.md) {
+            if let icon = icon {
+                Image(systemName: icon)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(iconColor)
+                    .frame(width: 28, height: 28)
+            }
+            
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(title)
                     .font(MonetiqTheme.Typography.bodyEmphasized)
