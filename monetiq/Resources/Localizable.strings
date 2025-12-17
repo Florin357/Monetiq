@@ -180,7 +180,6 @@
 "biometric_error_unknown" = "An unknown error occurred";
 "biometric_unavailable_title" = "Biometrics Unavailable";
 "biometric_unavailable_message" = "Biometric authentication is not available on this device";
-"general_ok" = "OK";
 
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Payment Reminder";
@@ -284,14 +283,10 @@
 "status_paid_on" = "Paid on %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Start Date";
 "loan_detail_payment_frequency" = "Payment Frequency";
 "loan_detail_number_of_payments" = "Number of Payments";
 "loan_detail_interest_mode" = "Interest Mode";
 "loan_detail_annual_interest_rate" = "Annual Interest Rate";
-"loan_detail_total_to_repay" = "Total to Repay";
-"loan_detail_total_paid" = "Total Paid";
-"loan_detail_remaining" = "Remaining";
 "loan_detail_next_due_date" = "Next Due Date";
 "loan_detail_created" = "Created";
 "loan_detail_last_updated" = "Last Updated";
