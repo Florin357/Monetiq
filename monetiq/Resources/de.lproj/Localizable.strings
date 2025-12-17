@@ -116,6 +116,7 @@
 // MARK: - Settings - Notifications Denied
 "settings_notifications_denied_title" = "Benachrichtigungen sind deaktiviert";
 "settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie Benachrichtigungen in Einstellungen > Monetiq > Benachrichtigungen";
+"settings_open_settings" = "Einstellungen öffnen";
 "calculator_frequency" = "Zahlungshäufigkeit";
 "calculator_calculate" = "Zahlung berechnen";
 "calculator_results" = "Ergebnisse";
@@ -275,14 +276,11 @@
 
 
 // MARK: - Settings - Notifications
-"settings_notifications_denied_title" = "Benachrichtigungen deaktiviert";
-"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie bitte Benachrichtigungen in den Einstellungen";
 "settings_open_settings" = "Einstellungen öffnen";
 "biometric_error_title" = "Authentifizierung fehlgeschlagen";
 "biometric_error_unknown" = "Ein unbekannter Fehler ist aufgetreten";
 "biometric_unavailable_title" = "Biometrie nicht verfügbar";
 "biometric_unavailable_message" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
-"general_ok" = "OK";
 
 // Payment due date labels
 "payment_due_today" = "Heute fällig";
@@ -293,14 +291,10 @@
 "status_paid_on" = "Bezahlt am %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Startdatum";
 "loan_detail_payment_frequency" = "Zahlungsfrequenz";
 "loan_detail_number_of_payments" = "Anzahl der Zahlungen";
 "loan_detail_interest_mode" = "Zinsmodus";
 "loan_detail_annual_interest_rate" = "Jährlicher Zinssatz";
-"loan_detail_total_to_repay" = "Gesamtrückzahlung";
-"loan_detail_total_paid" = "Gesamt bezahlt";
-"loan_detail_remaining" = "Verbleibend";
 "loan_detail_next_due_date" = "Nächstes Fälligkeitsdatum";
 "loan_detail_created" = "Erstellt";
 "loan_detail_last_updated" = "Zuletzt aktualisiert";

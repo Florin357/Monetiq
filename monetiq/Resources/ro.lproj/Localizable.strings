@@ -115,6 +115,7 @@
 // MARK: - Settings - Notifications Denied
 "settings_notifications_denied_title" = "Notificările sunt dezactivate";
 "settings_notifications_denied_message" = "Pentru a primi reamintiri de plăți, activează notificările în Setări > Monetiq > Notificări";
+"settings_open_settings" = "Deschide Setările";
 "calculator_frequency" = "Frecvența Plăților";
 "calculator_calculate" = "Calculează Plata";
 "calculator_results" = "Rezultate";
@@ -177,7 +178,6 @@
 "biometric_error_unknown" = "A apărut o eroare necunoscută";
 "biometric_unavailable_title" = "Biometria Indisponibilă";
 "biometric_unavailable_message" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
-"general_ok" = "OK";
 
 "settings_view_notifications" = "Vezi Notificările Programate";
 "settings_view_notifications_subtitle" = "Verifică notificările programate";
@@ -278,8 +278,6 @@
 "notification_test_body" = "Aceasta este o notificare de test de la Monetiq";
 
 // MARK: - Settings - Notifications
-"settings_notifications_denied_title" = "Notificări Dezactivate";
-"settings_notifications_denied_message" = "Pentru a primi mementouri de plată, vă rugăm să activați notificările în Setări";
 "settings_open_settings" = "Deschide Setările";
 
 // Payment due date labels
@@ -291,14 +289,10 @@
 "status_paid_on" = "Plătit pe %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Data de Început";
 "loan_detail_payment_frequency" = "Frecvența Plăților";
 "loan_detail_number_of_payments" = "Numărul de Plăți";
 "loan_detail_interest_mode" = "Modul de Dobândă";
 "loan_detail_annual_interest_rate" = "Rata Anuală de Dobândă";
-"loan_detail_total_to_repay" = "Total de Rambursat";
-"loan_detail_total_paid" = "Total Plătit";
-"loan_detail_remaining" = "Rămas";
 "loan_detail_next_due_date" = "Următoarea Scadență";
 "loan_detail_created" = "Creat";
 "loan_detail_last_updated" = "Ultima Actualizare";
