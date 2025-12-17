@@ -11,6 +11,7 @@ import SwiftData
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var allSettings: [AppSettings]
+    @Query private var allPayments: [Payment]  // For badge count calculation
     
     @State private var appSettings: AppSettings?
     // Appearance mode is now handled through AppSettings
@@ -285,7 +286,7 @@ struct SettingsView: View {
             } else {
                 // Cancel all notifications and clear badge
                 await notificationManager.cancelAllNotifications()
-                await notificationManager.updateBadgeCount()
+                await notificationManager.updateBadgeCount(payments: allPayments)
             }
         }
     }

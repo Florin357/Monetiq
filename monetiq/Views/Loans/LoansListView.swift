@@ -11,6 +11,7 @@ import SwiftData
 struct LoansListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
+    @Query private var allPayments: [Payment]  // For badge count calculation
     @State private var showingAddLoan = false
     
     private var notificationManager: NotificationManager {
@@ -97,7 +98,7 @@ struct LoansListView: View {
                 // Cancel notifications for this loan before deletion
                 Task {
                     await notificationManager.cancelNotifications(for: loan)
-                    await notificationManager.updateBadgeCount()
+                    await notificationManager.updateBadgeCount(payments: allPayments)
                 }
                 
                 modelContext.delete(loan)

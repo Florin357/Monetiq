@@ -12,6 +12,7 @@ struct AddEditLoanView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @Query private var existingCounterparties: [Counterparty]
+    @Query private var allPayments: [Payment]  // For badge count calculation
     
     let editingLoan: Loan?
     
@@ -512,8 +513,8 @@ struct AddEditLoanView: View {
             // Schedule notifications for this loan
             await notificationManager.schedulePaymentNotifications(for: loan)
             
-            // Update badge count after scheduling
-            await notificationManager.updateBadgeCount()
+            // Update badge count after scheduling (based on all payments in database)
+            await notificationManager.updateBadgeCount(payments: allPayments)
         }
         
         dismiss()

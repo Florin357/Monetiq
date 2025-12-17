@@ -158,6 +158,30 @@ AND dueDate < today + 30 days
 - Badge count reflects this filter
 - Single source of truth: 30 days (configurable constant)
 
+### Badge Count Policy
+
+**Option A (IMPLEMENTED):** Badge shows upcoming count **regardless of notification settings**
+
+**Rationale:**
+- The badge is a **finance reminder**, not just a notification indicator
+- Users should always see they have upcoming payments, even if notifications are disabled
+- Badge count = upcoming payments count from **data model**, NOT from pending notifications
+- Provides consistent user experience across notification preferences
+
+**Implementation:**
+```swift
+// Badge derives from Payment data model (SOURCE OF TRUTH)
+let badgeCount = payments.filter { payment in
+    payment.status == .planned &&
+    payment.dueDate >= today &&
+    payment.dueDate < today + 30 days
+}.count
+```
+
+**Alternative (Not Implemented):**
+- Option B: Badge = 0 when notifications disabled
+- This was rejected because it hides financial obligations from the user
+
 ### Postpone/Snooze Behavior
 **Rule:** "Postpone 1 day" = **snooze reminder only**
 

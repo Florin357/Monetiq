@@ -11,6 +11,7 @@ import SwiftData
 struct LoanDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Query private var allPayments: [Payment]  // For badge count calculation
     
     let loan: Loan
     let focusPaymentId: UUID? // Optional payment to focus on
@@ -302,7 +303,7 @@ struct LoanDetailView: View {
         // Cancel notifications for this loan before deletion
         Task {
             await notificationManager.cancelNotifications(for: loan)
-            await notificationManager.updateBadgeCount()
+            await notificationManager.updateBadgeCount(payments: allPayments)
         }
         
         modelContext.delete(loan)
@@ -316,7 +317,7 @@ struct LoanDetailView: View {
         // Cancel notifications for this specific payment and update badge count
         Task {
             await notificationManager.cancelNotifications(for: payment)
-            await notificationManager.updateBadgeCount()
+            await notificationManager.updateBadgeCount(payments: allPayments)
         }
     }
     
