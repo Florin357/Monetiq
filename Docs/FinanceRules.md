@@ -216,20 +216,21 @@ AND dueDate < today + 30 days
 ## Migration Notes
 
 ### Current → Target
-**Current State (v1.0):**
-- Uses simple interest: `P × r × t`
+**Previous State (v1.0 - v1.0.2):**
+- Used simple interest: `P × r × t`
 - Incorrect for bank credits and standard loans
 
-**Target State (v1.1+):**
+**Current State (v1.1+):** ✅ IMPLEMENTED
 - Uses amortization: PMT formula
-- Maintains backward compatibility for existing loans
-- New loans use correct formula
-- Optional: Mark old loans with legacy indicator
+- All new loans use correct calculation
+- Existing loans created before v1.1 may show legacy calculations
+- Paid payment history always preserved
 
 **Migration Strategy:**
-- Do NOT recalculate existing loans automatically
-- Offer optional "recalculate" action in loan details
-- Preserve paid payment history regardless
+- ✅ New loans automatically use PMT formula
+- ✅ Editing existing loans regenerates schedule with correct formula
+- ✅ Paid payments are NEVER recalculated (data integrity preserved)
+- Future: Optional "recalculate" action for legacy loans in UI
 
 ---
 

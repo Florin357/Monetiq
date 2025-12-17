@@ -43,9 +43,22 @@
 - ✅ Total to repay in range 10,500-10,600 RON
 - ✅ NOT 916.67 RON/month (that would be simple interest - WRONG)
 - ✅ Schedule has exactly 12 payments
-- ✅ Sum of payments matches total to repay
+- ✅ Sum of payments matches total to repay (±0.01 tolerance)
+- ✅ All amounts rounded to 2 decimals
+- ✅ Last payment adjusted for rounding errors
 
-**Current Status:** ⚠️ **FAILING** (uses simple interest)
+**Current Status:** ✅ **PASSING** (fixed in PROMPT 3/5)
+
+**Verification:**
+```
+Formula: PMT = P × [r(1+r)^n] / [(1+r)^n - 1]
+P = 10,000
+r = 0.10 / 12 = 0.008333...
+n = 12
+PMT = 10,000 × [0.008333(1.008333)^12] / [(1.008333)^12 - 1]
+PMT ≈ 879.16 RON
+Total ≈ 10,549.92 RON
+```
 
 ---
 
@@ -234,8 +247,13 @@
 **Expected Result:**
 - ✅ Save button disabled when principal ≤ 0
 - ✅ Form shows validation error or save fails gracefully
+- ✅ Calculator backend also validates (safety net)
 
-**Current Status:** ⚠️ **FAILING** (no validation for zero)
+**Current Status:** ✅ **PASSING** (fixed in PROMPT 3/5)
+
+**Implementation:**
+- UI validation: `parseNumericInput(principalAmount) ?? 0 > 0`
+- Backend validation: `guard input.principal > 0` in LoanCalculator
 
 ---
 
@@ -246,6 +264,13 @@
 **Expected Result:**
 - ✅ Form validation prevents negative interest
 - ✅ Save button disabled or error shown
+- ✅ Calculator backend also validates (safety net)
+
+**Current Status:** ✅ **PASSING** (fixed in PROMPT 3/5)
+
+**Implementation:**
+- UI validation: `parseNumericInput(annualInterestRate) ?? 0 >= 0`
+- Backend validation: `if rate < 0` fallback in LoanCalculator
 
 ---
 
@@ -319,28 +344,31 @@
 
 | Category | Total | Passing | Failing | Blocked |
 |----------|-------|---------|---------|---------|
-| Formula | 5 | 3 | 1 | 1 |
+| Formula | 5 | 4 | 0 | 1 |
 | Data Integrity | 3 | 3 | 0 | 0 |
 | Notifications | 4 | 2 | 0 | 2 |
-| Validation | 3 | 1 | 2 | 0 |
+| Validation | 3 | 3 | 0 | 0 |
 | Localization | 2 | 2 | 0 | 0 |
 | Edge Cases | 2 | 2 | 0 | 0 |
-| **TOTAL** | **19** | **13** | **3** | **3** |
+| **TOTAL** | **19** | **16** | **0** | **3** |
 
-**Production Readiness:** ⚠️ **NOT READY** (3 failing, 3 blocked)
-**Progress:** +1 passing (TC-D01 fixed in PROMPT 2/5)
+**Production Readiness:** ⚠️ **APPROACHING READY** (0 failing, 3 blocked)
+**Progress:**
+- PROMPT 2/5: +1 passing (TC-D01 - Data Integrity)
+- PROMPT 3/5: +3 passing (TC-F02, TC-V01, TC-V02 - Finance & Validation)
 
 ---
 
 ## 🎯 Next Steps
 
-**Priority 1 (Blockers):**
-1. Fix TC-N02: Repair postpone button (F03 from audit)
-2. Fix TC-F02: Implement amortization formula (F01 from audit)
-3. Fix TC-D01: Preserve paid payments on edit (F02 from audit)
+**Priority 1 (Blockers) - COMPLETED:** ✅
+1. ✅ Fix TC-D01: Preserve paid payments on edit (F02 from audit) - DONE in PROMPT 2/5
+2. ✅ Fix TC-F02: Implement amortization formula (F01 from audit) - DONE in PROMPT 3/5
+3. ✅ Fix TC-V01: Add principal > 0 validation - DONE in PROMPT 3/5
+4. ✅ Fix TC-V02: Reject negative interest - DONE in PROMPT 3/5
 
-**Priority 2 (Critical):**
-4. Fix TC-V01: Add principal > 0 validation
+**Priority 2 (Still Blocked):**
+1. Fix TC-N02: Repair postpone button (F03 from audit) - NEXT in PROMPT 4/5
 
 **Priority 3 (Important):**
 5. Automate these tests
