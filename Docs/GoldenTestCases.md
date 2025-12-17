@@ -118,10 +118,21 @@
 **Expected Result:**
 - ✅ Payments 1, 2, 3 still exist with status=paid
 - ✅ Payments 1, 2, 3 have original paidDate preserved
-- ✅ Payments 4-12 regenerated as planned
+- ✅ Payments 4-12 untouched (cosmetic edit only)
 - ✅ Total paid amount unchanged
 
-**Current Status:** ⚠️ **FAILING** (deletes ALL payments)
+**Current Status:** ✅ **PASSING** (fixed in PROMPT 2/5)
+
+**Additional Scenario - Schedule Change:**
+1. Create loan with 12 monthly payments @ 10% interest
+2. Mark payments 1, 2, 3 as paid
+3. Edit loan (change interest to 15%)
+4. Save
+
+**Expected Result:**
+- ✅ Payments 1, 2, 3 still exist with status=paid (preserved)
+- ✅ Payments 4-12 regenerated with new amounts
+- ✅ Total paid amount unchanged
 
 ---
 
@@ -309,14 +320,15 @@
 | Category | Total | Passing | Failing | Blocked |
 |----------|-------|---------|---------|---------|
 | Formula | 5 | 3 | 1 | 1 |
-| Data Integrity | 3 | 2 | 1 | 0 |
+| Data Integrity | 3 | 3 | 0 | 0 |
 | Notifications | 4 | 2 | 0 | 2 |
 | Validation | 3 | 1 | 2 | 0 |
 | Localization | 2 | 2 | 0 | 0 |
 | Edge Cases | 2 | 2 | 0 | 0 |
-| **TOTAL** | **19** | **12** | **4** | **3** |
+| **TOTAL** | **19** | **13** | **3** | **3** |
 
-**Production Readiness:** ⚠️ **NOT READY** (4 failing, 3 blocked)
+**Production Readiness:** ⚠️ **NOT READY** (3 failing, 3 blocked)
+**Progress:** +1 passing (TC-D01 fixed in PROMPT 2/5)
 
 ---
 

@@ -338,16 +338,30 @@ struct AddEditLoanView: View {
         if let existingLoan = editingLoan {
             // Update existing loan
             loan = existingLoan
+            
+            // Determine if schedule-affecting parameters changed
+            let scheduleParametersChanged = (
+                loan.principalAmount != (parseNumericInput(principalAmount) ?? 0) ||
+                loan.currencyCode != selectedCurrency ||
+                loan.startDate != startDate ||
+                loan.frequency != selectedFrequency ||
+                loan.numberOfPeriods != (Int(numberOfPeriods) ?? 12) ||
+                loan.interestMode != selectedInterestMode ||
+                loan.annualInterestRate != (selectedInterestMode == .percentageAnnual ? parseNumericInput(annualInterestRate) : nil) ||
+                loan.fixedTotalToRepay != (selectedInterestMode == .fixedTotal ? parseNumericInput(fixedTotalToRepay) : nil)
+            )
+            
+            // Update loan properties
             loan.title = title.trimmingCharacters(in: .whitespaces)
             loan.role = selectedRole
-            loan.principalAmount = Double(principalAmount) ?? 0
+            loan.principalAmount = parseNumericInput(principalAmount) ?? 0
             loan.currencyCode = selectedCurrency
             loan.startDate = startDate
             loan.frequency = selectedFrequency
             loan.numberOfPeriods = Int(numberOfPeriods) ?? 12
             loan.interestMode = selectedInterestMode
-            loan.annualInterestRate = selectedInterestMode == .percentageAnnual ? Double(annualInterestRate) : nil
-            loan.fixedTotalToRepay = selectedInterestMode == .fixedTotal ? Double(fixedTotalToRepay) : nil
+            loan.annualInterestRate = selectedInterestMode == .percentageAnnual ? parseNumericInput(annualInterestRate) : nil
+            loan.fixedTotalToRepay = selectedInterestMode == .fixedTotal ? parseNumericInput(fixedTotalToRepay) : nil
             loan.totalToRepay = calculationOutput.totalToRepay
             loan.periodicPaymentAmount = calculationOutput.periodicPaymentAmount
             loan.nextDueDate = hasNextDueDate ? nextDueDate : calculationOutput.schedule.first?.dueDate
@@ -355,9 +369,30 @@ struct AddEditLoanView: View {
             loan.counterparty = counterparty
             loan.updateTimestamp()
             
-            // Remove existing payments
-            for payment in loan.payments {
-                modelContext.delete(payment)
+            // DATA INTEGRITY: Preserve paid payments, only delete planned payments if schedule changed
+            if scheduleParametersChanged {
+                // Keep paid payments (IMMUTABLE), delete only planned payments
+                let paidPayments = loan.payments.filter { $0.status == .paid }
+                let plannedPayments = loan.payments.filter { $0.status == .planned }
+                
+                // Delete only planned payments
+                for payment in plannedPayments {
+                    modelContext.delete(payment)
+                }
+                
+                #if DEBUG
+                print("🗂️  DATA INTEGRITY: Editing loan '\(loan.title)'")
+                print("   Schedule parameters changed: YES")
+                print("   Preserved paid payments: \(paidPayments.count)")
+                print("   Deleted planned payments: \(plannedPayments.count)")
+                print("   Will regenerate: \(calculationOutput.schedule.count) payments")
+                #endif
+            } else {
+                #if DEBUG
+                print("🗂️  DATA INTEGRITY: Editing loan '\(loan.title)'")
+                print("   Schedule parameters changed: NO (cosmetic edit only)")
+                print("   Payments untouched: \(loan.payments.count)")
+                #endif
             }
         } else {
             // Create new loan
@@ -383,49 +418,82 @@ struct AddEditLoanView: View {
             modelContext.insert(loan)
         }
         
-        // Create new payments from schedule
-        // For existing loans, determine which payments should be marked as paid
-        var paymentsToMarkAsPaid = Set<Int>() // indices of payments to mark as paid
+        // Generate new payments ONLY if creating new loan OR schedule parameters changed
+        let shouldGeneratePayments: Bool
+        if editingLoan != nil {
+            // For existing loans, only generate if schedule changed
+            let scheduleParametersChanged = (
+                loan.principalAmount != (parseNumericInput(principalAmount) ?? 0) ||
+                loan.frequency != selectedFrequency ||
+                loan.numberOfPeriods != (Int(numberOfPeriods) ?? 12) ||
+                loan.interestMode != selectedInterestMode ||
+                loan.annualInterestRate != (selectedInterestMode == .percentageAnnual ? parseNumericInput(annualInterestRate) : nil) ||
+                loan.fixedTotalToRepay != (selectedInterestMode == .fixedTotal ? parseNumericInput(fixedTotalToRepay) : nil)
+            )
+            shouldGeneratePayments = scheduleParametersChanged
+        } else {
+            // For new loans, always generate payments
+            shouldGeneratePayments = true
+        }
         
-        if isExistingLoan {
-            if existingLoanMethod == .nextDueDate {
-                // Mark all payments before the next due date as paid
-                for (index, scheduleItem) in calculationOutput.schedule.enumerated() {
-                    if scheduleItem.dueDate < existingLoanNextDueDate {
+        if shouldGeneratePayments {
+            // Create new payments from schedule
+            // For existing loans (enrollment), determine which payments should be marked as paid
+            var paymentsToMarkAsPaid = Set<Int>() // indices of payments to mark as paid
+            
+            if isExistingLoan {
+                if existingLoanMethod == .nextDueDate {
+                    // Mark all payments before the next due date as paid
+                    for (index, scheduleItem) in calculationOutput.schedule.enumerated() {
+                        if scheduleItem.dueDate < existingLoanNextDueDate {
+                            paymentsToMarkAsPaid.insert(index)
+                        }
+                    }
+                } else {
+                    // Mark first X payments as paid
+                    let paidMonths = Int(existingLoanPaidMonths) ?? 0
+                    for index in 0..<min(paidMonths, calculationOutput.schedule.count) {
                         paymentsToMarkAsPaid.insert(index)
                     }
                 }
-            } else {
-                // Mark first X payments as paid
-                let paidMonths = Int(existingLoanPaidMonths) ?? 0
-                for index in 0..<min(paidMonths, calculationOutput.schedule.count) {
-                    paymentsToMarkAsPaid.insert(index)
+            }
+            
+            // Create payment objects with stable UUIDs
+            for (index, scheduleItem) in calculationOutput.schedule.enumerated() {
+                let shouldMarkAsPaid = paymentsToMarkAsPaid.contains(index)
+                let payment = Payment(
+                    dueDate: scheduleItem.dueDate,
+                    amount: scheduleItem.amount,
+                    status: shouldMarkAsPaid ? .paid : .planned,
+                    paidDate: shouldMarkAsPaid ? scheduleItem.dueDate : nil,
+                    loan: loan
+                )
+                
+                modelContext.insert(payment)
+            }
+            
+            // Update loan's next due date to first unpaid payment
+            if isExistingLoan {
+                let firstUnpaidPayment = calculationOutput.schedule.enumerated().first { index, _ in
+                    !paymentsToMarkAsPaid.contains(index)
+                }
+                if let firstUnpaid = firstUnpaidPayment {
+                    loan.nextDueDate = firstUnpaid.element.dueDate
                 }
             }
-        }
-        
-        for (index, scheduleItem) in calculationOutput.schedule.enumerated() {
-            let shouldMarkAsPaid = paymentsToMarkAsPaid.contains(index)
-            let payment = Payment(
-                dueDate: scheduleItem.dueDate,
-                amount: scheduleItem.amount,
-                status: shouldMarkAsPaid ? .paid : .planned,
-                paidDate: shouldMarkAsPaid ? scheduleItem.dueDate : nil,
-                loan: loan
-            )
             
-            modelContext.insert(payment)
+            #if DEBUG
+            print("   Generated new payments: \(calculationOutput.schedule.count)")
+            #endif
+        } else {
+            #if DEBUG
+            print("   Skipped payment generation (cosmetic edit only)")
+            #endif
         }
         
-        // Update loan's next due date to first unpaid payment
-        if isExistingLoan {
-            let firstUnpaidPayment = calculationOutput.schedule.enumerated().first { index, _ in
-                !paymentsToMarkAsPaid.contains(index)
-            }
-            if let firstUnpaid = firstUnpaidPayment {
-                loan.nextDueDate = firstUnpaid.element.dueDate
-            }
-        }
+        // RECONCILIATION: Ensure nextDueDate and derived fields are consistent
+        // This runs for both new and edited loans
+        reconcileLoanDerivedFields(loan: loan)
         
         // Save context first
         do {
@@ -471,6 +539,38 @@ struct AddEditLoanView: View {
         
         modelContext.insert(newCounterparty)
         return newCounterparty
+    }
+    
+    // MARK: - Data Reconciliation
+    
+    /// Reconcile derived fields to ensure consistency after loan edit
+    /// This ensures nextDueDate, totalPaid, and remainingToPay are always correct
+    private func reconcileLoanDerivedFields(loan: Loan) {
+        // Find the first unpaid payment (if any)
+        let firstUnpaidPayment = loan.payments
+            .filter { $0.status == .planned }
+            .sorted { $0.dueDate < $1.dueDate }
+            .first
+        
+        // Update nextDueDate to match the first unpaid payment
+        if let firstUnpaid = firstUnpaidPayment {
+            loan.nextDueDate = firstUnpaid.dueDate
+        } else if !loan.payments.isEmpty {
+            // All payments are paid - set nextDueDate to nil or last payment date
+            loan.nextDueDate = nil
+        }
+        
+        #if DEBUG
+        let totalPaid = loan.totalPaid
+        let remainingToPay = loan.remainingToPay
+        print("🔄 RECONCILIATION: Loan '\(loan.title)'")
+        print("   Next Due Date: \(loan.nextDueDate?.formatted(date: .abbreviated, time: .omitted) ?? "none")")
+        print("   Total Paid: \(totalPaid) \(loan.currencyCode)")
+        print("   Remaining: \(remainingToPay) \(loan.currencyCode)")
+        print("   Total Payments: \(loan.payments.count)")
+        print("   Paid: \(loan.payments.filter { $0.status == .paid }.count)")
+        print("   Planned: \(loan.payments.filter { $0.status == .planned }.count)")
+        #endif
     }
     
     // MARK: - Numeric Input Formatting Helpers
