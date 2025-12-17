@@ -412,7 +412,7 @@ struct PaymentProgressRow: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
             HStack {
-                Text("Payment Progress")
+                Text(L10n.string("loan_detail_progress"))
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                 

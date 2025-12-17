@@ -115,6 +115,7 @@
 "notification_unknown_error" = "发生未知通知错误";
 "settings_notifications_denied_title" = "通知已禁用";
 "settings_notifications_denied_message" = "要接收付款提醒，请在设置 > Monetiq > 通知中启用通知";
+"settings_open_settings" = "打开设置";
 "calculator_frequency" = "付款频率";
 "calculator_calculate" = "计算付款";
 "calculator_results" = "结果";

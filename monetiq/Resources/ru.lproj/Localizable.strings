@@ -115,6 +115,7 @@
 "notification_unknown_error" = "Произошла неизвестная ошибка уведомлений";
 "settings_notifications_denied_title" = "Уведомления отключены";
 "settings_notifications_denied_message" = "Чтобы получать напоминания о платежах, включите уведомления в Настройки > Monetiq > Уведомления";
+"settings_open_settings" = "Открыть Настройки";
 "calculator_frequency" = "Частота платежей";
 "calculator_calculate" = "Рассчитать платеж";
 "calculator_results" = "Результаты";

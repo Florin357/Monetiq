@@ -115,6 +115,7 @@
 "notification_unknown_error" = "Ocurrió un error de notificación desconocido";
 "settings_notifications_denied_title" = "Notificaciones deshabilitadas";
 "settings_notifications_denied_message" = "Para recibir recordatorios de pago, habilite las notificaciones en Configuración > Monetiq > Notificaciones";
+"settings_open_settings" = "Abrir Ajustes";
 "calculator_frequency" = "Frecuencia de Pago";
 "calculator_calculate" = "Calcular Pago";
 "calculator_results" = "Resultados";
