@@ -79,6 +79,13 @@
 "loan_detail_payments" = "भुगतान अनुसूची";
 "loan_detail_mark_paid" = "भुगतान के रूप में चिह्नित करें";
 "loan_detail_no_payments" = "कोई भुगतान निर्धारित नहीं";
+"loan_detail_details" = "विवरण";
+"loan_detail_no_schedule" = "कोई भुगतान अनुसूची उपलब्ध नहीं";
+"loan_detail_notes" = "नोट्स";
+"loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता।";
+"loan_detail_progress" = "भुगतान प्रगति";
+"loan_detail_progress_paid" = "%.1f%% भुगतान किया गया";
+"loan_detail_progress_no_payments" = "अभी तक कोई भुगतान नहीं";
 
 // MARK: - Calculator
 "calculator_title" = "लोन कैलकुलेटर";
@@ -330,24 +337,24 @@
 "terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैक करने और भुगतान कार्यक्रम प्रबंधित करने के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता है।\n\nइन शर्तों के बारे में प्रश्नों के लिए, App Store के माध्यम से हमसे संपर्क करें।";
 
 // MARK: - Existing Loan Enrollment
-"loan_type_section" = "Loan Type";
-"loan_type_label" = "What kind of loan is this?";
-"loan_type_new" = "New Loan";
-"loan_type_existing" = "Existing Loan";
-"loan_type_new_footer" = "Starting from today";
-"loan_type_existing_footer" = "Already in progress";
+"loan_type_section" = "ऋण प्रकार";
+"loan_type_label" = "यह किस प्रकार का ऋण है?";
+"loan_type_new" = "नया ऋण";
+"loan_type_existing" = "मौजूदा ऋण";
+"loan_type_new_footer" = "आज से शुरू";
+"loan_type_existing_footer" = "पहले से चल रहा";
 
-"existing_loan_status_section" = "Current Status";
-"existing_loan_method_label" = "How do you want to track progress?";
-"existing_loan_method_next_due_date" = "Next Due Date";
-"existing_loan_method_paid_months" = "Paid Months";
+"existing_loan_status_section" = "वर्तमान स्थिति";
+"existing_loan_method_label" = "आप प्रगति को कैसे ट्रैक करना चाहते हैं?";
+"existing_loan_method_next_due_date" = "अगली देय तिथि";
+"existing_loan_method_paid_months" = "भुगतान किए गए महीने";
 
-"existing_loan_next_due_date_label" = "Next Due Date";
-"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+"existing_loan_next_due_date_label" = "अगली देय तिथि";
+"existing_loan_next_due_date_footer" = "इस तिथि से पहले के सभी भुगतान स्वचालित रूप से भुगतान के रूप में चिह्नित किए जाएंगे।";
 
-"existing_loan_paid_months_placeholder" = "Number of months already paid";
-"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+"existing_loan_paid_months_placeholder" = "पहले से भुगतान किए गए महीनों की संख्या";
+"existing_loan_paid_months_footer" = "पहले X भुगतान भुगतान के रूप में चिह्नित किए जाएंगे।";
 
-"original_start_date_label" = "Original Start Date";
+"original_start_date_label" = "मूल प्रारंभ तिथि";
 
-"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";
+"loan_detail_auto_marked_info" = "आपकी वर्तमान स्थिति के आधार पर पिछले भुगतान स्वचालित रूप से भुगतान के रूप में चिह्नित किए गए थे।";

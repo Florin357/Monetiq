@@ -79,6 +79,13 @@
 "loan_detail_payments" = "Cronograma de Pagos";
 "loan_detail_mark_paid" = "Marcar como Pagado";
 "loan_detail_no_payments" = "No hay pagos programados";
+"loan_detail_details" = "Detalles";
+"loan_detail_no_schedule" = "No hay cronograma de pagos disponible";
+"loan_detail_notes" = "Notas";
+"loan_detail_delete_confirm" = "¿Estás seguro de que quieres eliminar '%@'? Esta acción no se puede deshacer.";
+"loan_detail_progress" = "Progreso de Pagos";
+"loan_detail_progress_paid" = "%.1f%% pagado";
+"loan_detail_progress_no_payments" = "Aún no hay pagos";
 
 // MARK: - Calculator
 "calculator_title" = "Calculadora de Préstamos";
@@ -327,24 +334,24 @@
 "notification_payment_snoozed_body" = "Recordatorio para %@ - %@";
 
 // MARK: - Existing Loan Enrollment
-"loan_type_section" = "Loan Type";
-"loan_type_label" = "What kind of loan is this?";
-"loan_type_new" = "New Loan";
-"loan_type_existing" = "Existing Loan";
-"loan_type_new_footer" = "Starting from today";
-"loan_type_existing_footer" = "Already in progress";
+"loan_type_section" = "Tipo de Préstamo";
+"loan_type_label" = "¿Qué tipo de préstamo es este?";
+"loan_type_new" = "Préstamo Nuevo";
+"loan_type_existing" = "Préstamo Existente";
+"loan_type_new_footer" = "A partir de hoy";
+"loan_type_existing_footer" = "Ya en curso";
 
-"existing_loan_status_section" = "Current Status";
-"existing_loan_method_label" = "How do you want to track progress?";
-"existing_loan_method_next_due_date" = "Next Due Date";
-"existing_loan_method_paid_months" = "Paid Months";
+"existing_loan_status_section" = "Estado Actual";
+"existing_loan_method_label" = "¿Cómo quieres seguir el progreso?";
+"existing_loan_method_next_due_date" = "Próxima Fecha de Vencimiento";
+"existing_loan_method_paid_months" = "Meses Pagados";
 
-"existing_loan_next_due_date_label" = "Next Due Date";
-"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+"existing_loan_next_due_date_label" = "Próxima Fecha de Vencimiento";
+"existing_loan_next_due_date_footer" = "Todos los pagos anteriores a esta fecha se marcarán automáticamente como pagados.";
 
-"existing_loan_paid_months_placeholder" = "Number of months already paid";
-"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+"existing_loan_paid_months_placeholder" = "Número de meses ya pagados";
+"existing_loan_paid_months_footer" = "Los primeros X pagos se marcarán como pagados.";
 
-"original_start_date_label" = "Original Start Date";
+"original_start_date_label" = "Fecha de Inicio Original";
 
-"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";
+"loan_detail_auto_marked_info" = "Los pagos pasados se marcaron automáticamente como pagados según tu estado actual.";

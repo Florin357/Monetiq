@@ -79,6 +79,13 @@
 "loan_detail_payments" = "付款计划";
 "loan_detail_mark_paid" = "标记为已付";
 "loan_detail_no_payments" = "没有计划的付款";
+"loan_detail_details" = "详情";
+"loan_detail_no_schedule" = "没有可用的付款计划";
+"loan_detail_notes" = "备注";
+"loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤消。";
+"loan_detail_progress" = "付款进度";
+"loan_detail_progress_paid" = "已付%.1f%%";
+"loan_detail_progress_no_payments" = "尚无付款";
 
 // MARK: - Calculator
 "calculator_title" = "贷款计算器";
@@ -327,24 +334,24 @@
 "notification_payment_snoozed_body" = "%@ 的提醒 - %@";
 
 // MARK: - Existing Loan Enrollment
-"loan_type_section" = "Loan Type";
-"loan_type_label" = "What kind of loan is this?";
-"loan_type_new" = "New Loan";
-"loan_type_existing" = "Existing Loan";
-"loan_type_new_footer" = "Starting from today";
-"loan_type_existing_footer" = "Already in progress";
+"loan_type_section" = "贷款类型";
+"loan_type_label" = "这是什么类型的贷款？";
+"loan_type_new" = "新贷款";
+"loan_type_existing" = "现有贷款";
+"loan_type_new_footer" = "从今天开始";
+"loan_type_existing_footer" = "已在进行中";
 
-"existing_loan_status_section" = "Current Status";
-"existing_loan_method_label" = "How do you want to track progress?";
-"existing_loan_method_next_due_date" = "Next Due Date";
-"existing_loan_method_paid_months" = "Paid Months";
+"existing_loan_status_section" = "当前状态";
+"existing_loan_method_label" = "您想如何跟踪进度？";
+"existing_loan_method_next_due_date" = "下次到期日";
+"existing_loan_method_paid_months" = "已付月数";
 
-"existing_loan_next_due_date_label" = "Next Due Date";
-"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+"existing_loan_next_due_date_label" = "下次到期日";
+"existing_loan_next_due_date_footer" = "此日期之前的所有付款将自动标记为已付。";
 
-"existing_loan_paid_months_placeholder" = "Number of months already paid";
-"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+"existing_loan_paid_months_placeholder" = "已支付的月数";
+"existing_loan_paid_months_footer" = "前X次付款将标记为已付。";
 
-"original_start_date_label" = "Original Start Date";
+"original_start_date_label" = "原始开始日期";
 
-"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";
+"loan_detail_auto_marked_info" = "根据您的当前状态，过去的付款已自动标记为已付。";

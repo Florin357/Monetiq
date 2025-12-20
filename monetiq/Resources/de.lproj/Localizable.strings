@@ -79,6 +79,13 @@
 "loan_detail_payments" = "Zahlungsplan";
 "loan_detail_mark_paid" = "Als bezahlt markieren";
 "loan_detail_no_payments" = "Keine Zahlungen geplant";
+"loan_detail_details" = "Details";
+"loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
+"loan_detail_notes" = "Notizen";
+"loan_detail_delete_confirm" = "Möchten Sie '%@' wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.";
+"loan_detail_progress" = "Zahlungsfortschritt";
+"loan_detail_progress_paid" = "%.1f%% bezahlt";
+"loan_detail_progress_no_payments" = "Noch keine Zahlungen";
 
 // MARK: - Calculator
 "calculator_title" = "Darlehensrechner";
@@ -275,8 +282,6 @@
 "lock_screen_unlock_button" = "Mit %@ entsperren";
 
 
-// MARK: - Settings - Notifications
-"settings_open_settings" = "Einstellungen öffnen";
 "biometric_error_title" = "Authentifizierung fehlgeschlagen";
 "biometric_error_unknown" = "Ein unbekannter Fehler ist aufgetreten";
 "biometric_unavailable_title" = "Biometrie nicht verfügbar";
@@ -325,24 +330,24 @@
 "notification_payment_snoozed_body" = "Erinnerung für %@ - %@";
 
 // MARK: - Existing Loan Enrollment
-"loan_type_section" = "Loan Type";
-"loan_type_label" = "What kind of loan is this?";
-"loan_type_new" = "New Loan";
-"loan_type_existing" = "Existing Loan";
-"loan_type_new_footer" = "Starting from today";
-"loan_type_existing_footer" = "Already in progress";
+"loan_type_section" = "Darlehenstyp";
+"loan_type_label" = "Um welche Art von Darlehen handelt es sich?";
+"loan_type_new" = "Neues Darlehen";
+"loan_type_existing" = "Bestehendes Darlehen";
+"loan_type_new_footer" = "Ab heute beginnend";
+"loan_type_existing_footer" = "Bereits laufend";
 
-"existing_loan_status_section" = "Current Status";
-"existing_loan_method_label" = "How do you want to track progress?";
-"existing_loan_method_next_due_date" = "Next Due Date";
-"existing_loan_method_paid_months" = "Paid Months";
+"existing_loan_status_section" = "Aktueller Status";
+"existing_loan_method_label" = "Wie möchten Sie den Fortschritt verfolgen?";
+"existing_loan_method_next_due_date" = "Nächstes Fälligkeitsdatum";
+"existing_loan_method_paid_months" = "Bezahlte Monate";
 
-"existing_loan_next_due_date_label" = "Next Due Date";
-"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+"existing_loan_next_due_date_label" = "Nächstes Fälligkeitsdatum";
+"existing_loan_next_due_date_footer" = "Alle Zahlungen vor diesem Datum werden automatisch als bezahlt markiert.";
 
-"existing_loan_paid_months_placeholder" = "Number of months already paid";
-"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+"existing_loan_paid_months_placeholder" = "Anzahl der bereits bezahlten Monate";
+"existing_loan_paid_months_footer" = "Die ersten X Zahlungen werden als bezahlt markiert.";
 
-"original_start_date_label" = "Original Start Date";
+"original_start_date_label" = "Ursprüngliches Startdatum";
 
-"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";
+"loan_detail_auto_marked_info" = "Vergangene Zahlungen wurden automatisch als bezahlt markiert basierend auf Ihrem aktuellen Status.";

@@ -78,6 +78,13 @@
 "loan_detail_payments" = "Programul de Plăți";
 "loan_detail_mark_paid" = "Marchează ca Plătit";
 "loan_detail_no_payments" = "Nicio plată programată";
+"loan_detail_details" = "Detalii";
+"loan_detail_no_schedule" = "Niciun program de plăți disponibil";
+"loan_detail_notes" = "Notițe";
+"loan_detail_delete_confirm" = "Sigur vrei să ștergi '%@'? Această acțiune nu poate fi anulată.";
+"loan_detail_progress" = "Progres Plăți";
+"loan_detail_progress_paid" = "%.1f%% plătit";
+"loan_detail_progress_no_payments" = "Încă fără plăți";
 
 // MARK: - Calculator
 "calculator_title" = "Calculator Împrumuturi";
@@ -276,9 +283,6 @@
 "notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Monetiq";
 "notification_test_title" = "Notificare de Test";
 "notification_test_body" = "Aceasta este o notificare de test de la Monetiq";
-
-// MARK: - Settings - Notifications
-"settings_open_settings" = "Deschide Setările";
 
 // Payment due date labels
 "payment_due_today" = "Scadent azi";

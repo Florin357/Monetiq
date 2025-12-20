@@ -82,6 +82,9 @@
 "loan_detail_no_payments" = "No payments scheduled";
 "loan_detail_details" = "Details";
 "loan_detail_no_schedule" = "No payment schedule available";
+"loan_detail_progress" = "Payment Progress";
+"loan_detail_progress_paid" = "%.1f%% paid";
+"loan_detail_progress_no_payments" = "No payments yet";
 "loan_detail_notes" = "Notes";
 "loan_detail_delete_confirm" = "Are you sure you want to delete '%@'? This action cannot be undone.";
 
