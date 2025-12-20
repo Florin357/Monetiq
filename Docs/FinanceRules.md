@@ -1,6 +1,6 @@
 # Monetiq Finance Rules & Calculation Standards
 
-**Last Updated:** December 17, 2025  
+**Last Updated:** December 20, 2025  
 **Purpose:** Define the single source of truth for all financial calculations in Monetiq.
 
 ---
@@ -144,23 +144,50 @@ This ensures the schedule always sums exactly to the total.
 
 ## Notification Rules
 
-### Upcoming Window
+### Upcoming Window (Dashboard + Badge)
 **Definition:** Payments are "upcoming" if:
 ```
 status == .planned
 AND dueDate >= today
-AND dueDate < today + 30 days
+AND dueDate <= today + 15 days
 ```
+
+**Business Rule:** **15-day window** (updated from 30 days on 2025-12-20)
 
 **Consistency:**
 - Dashboard "Upcoming Payments" uses this filter
-- Scheduled notifications use this filter
 - Badge count reflects this filter
-- Single source of truth: 30 days (configurable constant)
+- **Independent of notification settings** (Days Before Due)
+- Single source of truth: `UpcomingPaymentsFilter.swift`
+
+---
+
+### Notification Scheduling
+
+**Business Rule:** Each payment gets **TWO separate notifications**:
+
+#### Notification A: X days before due
+- **When:** X = user setting "Days Before Due" (0-7)
+- **Condition:** Only schedule if X > 0 AND fireDate >= now
+- **Identifier:** `reminder:<loanID>:<paymentID>:<X>`
+- **Fire time:** 9:00 AM, X days before due date
+
+#### Notification B: 1 day before due (always)
+- **When:** Always, 1 day before due date
+- **Condition:** Only schedule if fireDate >= now
+- **Identifier:** `oneDay:<loanID>:<paymentID>`
+- **Fire time:** 9:00 AM, 1 day before due date
+
+**Important:**
+- Notifications are scheduled for **ALL planned payments**, not just the 15-day window
+- If a notification's fire date would be in the past, it is **skipped** (not scheduled)
+- When a payment is marked as paid or deleted, **both notifications** are canceled
+
+---
 
 ### Badge Count Policy
 
-**Option A (IMPLEMENTED):** Badge shows upcoming count **regardless of notification settings**
+**IMPLEMENTED:** Badge shows upcoming count (15-day window) **regardless of notification settings**
 
 **Rationale:**
 - The badge is a **finance reminder**, not just a notification indicator
@@ -174,7 +201,7 @@ AND dueDate < today + 30 days
 let badgeCount = payments.filter { payment in
     payment.status == .planned &&
     payment.dueDate >= today &&
-    payment.dueDate < today + 30 days
+    payment.dueDate <= today + 15 days
 }.count
 ```
 

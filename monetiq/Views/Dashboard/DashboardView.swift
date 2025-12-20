@@ -198,18 +198,12 @@ struct DashboardView: View {
     /// SOURCE OF TRUTH: Upcoming Payments Logic
     /// Uses UpcomingPaymentsFilter for consistent filtering across:
     /// 1. Dashboard "Upcoming Payments" section
-    /// 2. Notification scheduling
-    /// 3. App icon badge count
+    /// 2. App icon badge count
     ///
-    /// A payment is "upcoming" if its earliest notification will fire within the next 30 days.
-    /// This accounts for the "Days Before Due" setting to ensure Dashboard matches notifications.
+    /// Business Rule: A payment is "upcoming" if it's due within the next 15 days.
+    /// This is INDEPENDENT of notification settings.
     private var upcomingPayments: [UpcomingPaymentItem] {
-        let daysBeforeDue = appSettings.daysBeforeDueNotification
-        let upcomingFiltered = UpcomingPaymentsFilter.filterUpcomingPayments(
-            from: payments,
-            daysBeforeDue: daysBeforeDue
-        )
-        
+        let upcomingFiltered = UpcomingPaymentsFilter.filterUpcomingPayments(from: payments)
         return upcomingFiltered.map { UpcomingPaymentItem(payment: $0) }
     }
     
