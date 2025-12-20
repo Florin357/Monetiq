@@ -120,14 +120,18 @@ struct DashboardView: View {
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button(L10n.string("dashboard_mark_paid")) {
+                                    Button {
                                         markPaymentAsPaid(item)
+                                    } label: {
+                                        Label(L10n.string("dashboard_mark_paid"), systemImage: "checkmark.circle.fill")
                                     }
                                     .tint(MonetiqTheme.Colors.success)
                                 }
                                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                                    Button(L10n.string("dashboard_postpone")) {
+                                    Button {
                                         postponePayment(item)
+                                    } label: {
+                                        Label(L10n.string("dashboard_postpone"), systemImage: "clock.arrow.circlepath")
                                     }
                                     .tint(MonetiqTheme.Colors.warning)
                                 }
