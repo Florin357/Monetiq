@@ -196,30 +196,21 @@ struct DashboardView: View {
     }
     
     /// SOURCE OF TRUTH: Upcoming Payments Logic
-    /// This defines what payments are considered "upcoming" and should:
-    /// 1. Appear in the Dashboard "Plăți Viitoare" section
-    /// 2. Have scheduled notifications (if notifications enabled)
-    /// 3. Contribute to the app icon badge count
-    /// 
-    /// Rules:
-    /// - payment.status == .planned (not paid)
-    /// - payment.dueDate >= today (not overdue)
-    /// - payment.dueDate < today + 30 days (within upcoming window)
-    /// - snoozeUntil is handled separately for notification timing
+    /// Uses UpcomingPaymentsFilter for consistent filtering across:
+    /// 1. Dashboard "Upcoming Payments" section
+    /// 2. Notification scheduling
+    /// 3. App icon badge count
+    ///
+    /// A payment is "upcoming" if its earliest notification will fire within the next 30 days.
+    /// This accounts for the "Days Before Due" setting to ensure Dashboard matches notifications.
     private var upcomingPayments: [UpcomingPaymentItem] {
-        let today = Date()
-        let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
+        let daysBeforeDue = appSettings.daysBeforeDueNotification
+        let upcomingFiltered = UpcomingPaymentsFilter.filterUpcomingPayments(
+            from: payments,
+            daysBeforeDue: daysBeforeDue
+        )
         
-        let allPlannedPayments = payments.filter { $0.status == .planned }
-        let upcomingFiltered = allPlannedPayments.filter { 
-            $0.dueDate >= today && 
-            $0.dueDate < thirtyDaysFromNow 
-        }
-        
-        
-        return upcomingFiltered
-            .sorted { $0.dueDate < $1.dueDate }
-            .map { UpcomingPaymentItem(payment: $0) }
+        return upcomingFiltered.map { UpcomingPaymentItem(payment: $0) }
     }
     
     private var recentLoans: [Loan] {

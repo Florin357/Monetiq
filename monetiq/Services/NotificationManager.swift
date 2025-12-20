@@ -108,23 +108,14 @@ class NotificationManager {
     }
     
     /// Calculate badge count directly from payment data model
-    /// This MUST match the Dashboard upcomingPayments logic exactly
+    /// Uses UpcomingPaymentsFilter for consistency with Dashboard
     /// SOURCE OF TRUTH: Payment data model, not pending notifications
     private func calculateUpcomingPaymentsBadgeCount(from payments: [Payment]) -> Int {
-        let today = Date()
-        let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
-        
-        // Count payments matching Dashboard upcoming logic:
-        // - status == .planned (not paid)
-        // - dueDate >= today (not overdue)
-        // - dueDate < today + 30 days (within upcoming window)
-        let upcomingCount = payments.filter { payment in
-            payment.status == .planned &&
-            payment.dueDate >= today &&
-            payment.dueDate < thirtyDaysFromNow
-        }.count
-        
-        return upcomingCount
+        guard let settings = appSettings else { return 0 }
+        return UpcomingPaymentsFilter.calculateBadgeCount(
+            from: payments,
+            daysBeforeDue: settings.daysBeforeDueNotification
+        )
     }
     
     // Helper to extract trigger date from notification request (for diagnostics)
@@ -172,16 +163,11 @@ class NotificationManager {
         // Cancel existing notifications for this loan first
         await cancelNotifications(for: loan)
         
-        // FIXED: Only schedule notifications for upcoming payments (same logic as Dashboard)
-        let today = Date()
-        let upcomingWindow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
-        
-        let upcomingPayments = loan.payments.filter { 
-            $0.status == .planned && 
-            $0.dueDate >= today && 
-            $0.dueDate < upcomingWindow 
-        }
-        
+        // Use UpcomingPaymentsFilter for consistency with Dashboard and badge
+        let upcomingPayments = UpcomingPaymentsFilter.filterUpcomingPayments(
+            from: loan.payments,
+            daysBeforeDue: settings.daysBeforeDueNotification
+        )
         
         for payment in upcomingPayments {
             await scheduleNotifications(for: payment, loan: loan, settings: settings)
