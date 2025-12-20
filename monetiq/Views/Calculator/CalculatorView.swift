@@ -334,7 +334,7 @@ struct CalculatorView: View {
         \(L10n.string("calculator_share_title"))
         
         \(L10n.string("calculator_principal")): \(principal.formattedWithSymbol(currency: selectedCurrency))
-        \(L10n.string("calculator_interest_rate")): \(String(format: "%.2f", rate))%
+        \(L10n.string("calculator_interest_rate")): \(CurrencyFormatter.shared.formatAmount(rate))%
         \(L10n.string("calculator_number_of_payments")): \(term)
         \(L10n.string("calculator_frequency")): \(selectedFrequency.localizedLabel)
         

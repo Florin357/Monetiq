@@ -113,7 +113,7 @@ struct LoanDetailView: View {
                         Spacer()
                         
                         VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
-                            Text(String(format: "%.2f", loan.principalAmount))
+                            Text(CurrencyFormatter.shared.formatAmount(loan.principalAmount))
                                 .font(MonetiqTheme.Typography.title2)
                                 .foregroundColor(MonetiqTheme.Colors.accent)
                                 .fontWeight(.semibold)
@@ -140,7 +140,7 @@ struct LoanDetailView: View {
                         DetailRow(title: L10n.string("loan_detail_interest_mode"), value: loan.interestMode.localizedLabel)
                         
                         if let rate = loan.annualInterestRate {
-                            DetailRow(title: L10n.string("loan_detail_annual_interest_rate"), value: String(format: "%.2f%%", rate))
+                            DetailRow(title: L10n.string("loan_detail_annual_interest_rate"), value: "\(CurrencyFormatter.shared.formatAmount(rate))%")
                         }
                         
                         if let totalToRepay = loan.totalToRepay {
@@ -484,7 +484,7 @@ struct PaymentRowView: View {
             
             VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
                 // Amount - Premium currency display
-                Text(String(format: "%.2f %@", payment.amount, payment.loan?.currencyCode ?? "RON"))
+                Text(CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: payment.loan?.currencyCode ?? "RON"))
                     .font(MonetiqTheme.Typography.currencySmall)
                     .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     .fontWeight(.semibold)
