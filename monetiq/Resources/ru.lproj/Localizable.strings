@@ -42,6 +42,8 @@
 "loans_delete_title" = "Удалить займ";
 "loans_delete_message" = "Вы уверены, что хотите удалить этот займ? Это действие нельзя отменить.";
 "loans_next_due" = "Следующий: %@";
+"loans_created" = "Создан: %@";
+"loans_created_short" = "Создан %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Название";

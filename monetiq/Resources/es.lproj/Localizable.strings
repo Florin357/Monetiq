@@ -42,6 +42,8 @@
 "loans_delete_title" = "Eliminar Préstamo";
 "loans_delete_message" = "¿Estás seguro de que quieres eliminar este préstamo? Esta acción no se puede deshacer.";
 "loans_next_due" = "Próximo: %@";
+"loans_created" = "Creado: %@";
+"loans_created_short" = "Creado %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Título";

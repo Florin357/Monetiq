@@ -42,6 +42,8 @@
 "loans_delete_title" = "Darlehen löschen";
 "loans_delete_message" = "Sind Sie sicher, dass Sie dieses Darlehen löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
 "loans_next_due" = "Nächste: %@";
+"loans_created" = "Erstellt: %@";
+"loans_created_short" = "Erstellt %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Titel";

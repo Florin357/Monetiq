@@ -42,6 +42,8 @@
 "loans_delete_title" = "Supprimer le prêt";
 "loans_delete_message" = "Êtes-vous sûr de vouloir supprimer ce prêt ? Cette action ne peut pas être annulée.";
 "loans_next_due" = "Prochain : %@";
+"loans_created" = "Créé : %@";
+"loans_created_short" = "Créé %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Titre";

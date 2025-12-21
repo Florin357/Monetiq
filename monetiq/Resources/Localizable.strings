@@ -43,6 +43,8 @@
 "loans_delete_title" = "Delete Loan";
 "loans_delete_message" = "Are you sure you want to delete this loan? This action cannot be undone.";
 "loans_next_due" = "Next: %@";
+"loans_created" = "Created: %@";
+"loans_created_short" = "Created %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Title";

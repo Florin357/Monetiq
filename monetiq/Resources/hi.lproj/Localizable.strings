@@ -42,6 +42,8 @@
 "loans_delete_title" = "लोन डिलीट करें";
 "loans_delete_message" = "क्या आप वाकई इस लोन को डिलीट करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।";
 "loans_next_due" = "अगला: %@";
+"loans_created" = "बनाया गया: %@";
+"loans_created_short" = "बनाया गया %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "शीर्षक";

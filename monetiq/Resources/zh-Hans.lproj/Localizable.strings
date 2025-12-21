@@ -42,6 +42,8 @@
 "loans_delete_title" = "删除贷款";
 "loans_delete_message" = "您确定要删除这笔贷款吗？此操作无法撤销。";
 "loans_next_due" = "下次：%@";
+"loans_created" = "创建于：%@";
+"loans_created_short" = "创建于 %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "标题";

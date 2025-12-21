@@ -162,6 +162,15 @@ struct LoanRowView: View {
                     Text(counterparty.name)
                         .monetiqCardSubtitle()
                         .opacity(0.9)
+                    
+                    Text("•")
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        .opacity(0.5)
+                    
+                    Text(L10n.string("loans_created_short", loan.createdAt.formatted(date: .abbreviated, time: .omitted)))
+                        .font(MonetiqTheme.Typography.caption)
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        .opacity(0.7)
                 }
                 .padding(.leading, MonetiqTheme.Spacing.lg + MonetiqTheme.Spacing.sm) // Align with content
             }
