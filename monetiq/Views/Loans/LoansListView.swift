@@ -18,13 +18,11 @@ struct LoansListView: View {
         NotificationManager.shared
     }
     
+    /// Sort loans by creation date (newest first)
+    /// This ensures newly created loans always appear at the top
+    /// Consistent with Dashboard "Recent Loans" ordering
     private var sortedLoans: [Loan] {
-        loans.sorted { first, second in
-            if first.role != second.role {
-                return first.role.rawValue < second.role.rawValue
-            }
-            return first.title < second.title
-        }
+        loans.sorted { $0.createdAt > $1.createdAt }
     }
     
     var body: some View {
