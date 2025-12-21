@@ -667,11 +667,12 @@ struct CurrencyPickerRow: View {
             
             Picker(title, selection: $selection) {
                 ForEach(currencies, id: \.code) { currency in
-                    Text(currency.displayName).tag(currency.code)
+                    Text("\(currency.flag)  \(currency.symbol)  \(currency.code) – \(currency.name)")
+                        .tag(currency.code)
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            .tint(MonetiqTheme.Colors.accent)
+            .tint(MonetiqTheme.Colors.textSecondary)
         }
         .padding(MonetiqTheme.Spacing.md)
         .background(MonetiqTheme.Colors.surface)
@@ -701,11 +702,12 @@ struct LanguagePickerRow: View {
             
             Picker(title, selection: $selection) {
                 ForEach(languages, id: \.code) { language in
-                    Text(language.displayName).tag(language.code)
+                    Text("\(language.flag)  \(language.displayName)")
+                        .tag(language.code)
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            .tint(MonetiqTheme.Colors.accent)
+            .tint(MonetiqTheme.Colors.textSecondary)
         }
         .padding(MonetiqTheme.Spacing.md)
         .background(MonetiqTheme.Colors.surface)

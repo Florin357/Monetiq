@@ -50,8 +50,8 @@ struct AddEditLoanView: View {
         case paidMonths
     }
     
-    private var currencies: [String] {
-        CurrencyCatalog.shared.currencyCodes
+    private var currencies: [Currency] {
+        CurrencyCatalog.shared.supportedCurrencies
     }
     
     private var appSettings: AppSettings {
@@ -165,8 +165,9 @@ struct AddEditLoanView: View {
                             }
                         
                         Picker(L10n.string("currency_label"), selection: $selectedCurrency) {
-                            ForEach(currencies, id: \.self) { currency in
-                                Text(currency).tag(currency)
+                            ForEach(currencies, id: \.code) { currency in
+                                Text("\(currency.flag)  \(currency.symbol)  \(currency.code)")
+                                    .tag(currency.code)
                             }
                         }
                         .pickerStyle(.menu)
