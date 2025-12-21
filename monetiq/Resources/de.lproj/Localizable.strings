@@ -213,6 +213,7 @@
 "financial_details_section" = "Finanzielle Details";
 "amount_placeholder" = "Betrag";
 "currency_label" = "Währung";
+"currency_locked_message" = "Die Währung kann nach der Erstellung des Darlehens nicht mehr geändert werden.";
 "repayment_schedule_section" = "Rückzahlungsplan";
 "payment_frequency_label" = "Zahlungsfrequenz";
 "number_of_payments_placeholder" = "Anzahl der Zahlungen";

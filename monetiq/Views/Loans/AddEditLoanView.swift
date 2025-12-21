@@ -170,6 +170,16 @@ struct AddEditLoanView: View {
                             }
                         }
                         .pickerStyle(.menu)
+                        .disabled(editingLoan != nil) // Disable currency picker when editing existing loan
+                    }
+                    
+                    // Show helper text when editing existing loan
+                    if editingLoan != nil {
+                        Text(L10n.string("currency_locked_message"))
+                            .font(MonetiqTheme.Typography.caption)
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            .padding(.horizontal, MonetiqTheme.Spacing.md)
+                            .padding(.top, MonetiqTheme.Spacing.xs)
                     }
                 }
                 

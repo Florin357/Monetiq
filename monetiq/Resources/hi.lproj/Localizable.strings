@@ -222,6 +222,7 @@
 "financial_details_section" = "वित्तीय विवरण";
 "amount_placeholder" = "राशि";
 "currency_label" = "मुद्रा";
+"currency_locked_message" = "ऋण बनाने के बाद मुद्रा नहीं बदली जा सकती।";
 "repayment_schedule_section" = "चुकौती अनुसूची";
 "payment_frequency_label" = "भुगतान आवृत्ति";
 "number_of_payments_placeholder" = "भुगतानों की संख्या";

@@ -230,6 +230,7 @@
 "financial_details_section" = "财务详情";
 "amount_placeholder" = "金额";
 "currency_label" = "货币";
+"currency_locked_message" = "创建贷款后无法更改货币。";
 "repayment_schedule_section" = "还款计划";
 "payment_frequency_label" = "付款频率";
 "number_of_payments_placeholder" = "付款次数";

@@ -224,6 +224,7 @@
 "financial_details_section" = "Financial Details";
 "amount_placeholder" = "Amount";
 "currency_label" = "Currency";
+"currency_locked_message" = "Currency can't be changed after the loan is created.";
 "repayment_schedule_section" = "Repayment Schedule";
 "number_of_payments_placeholder" = "Number of Payments";
 "interest_section" = "Interest";

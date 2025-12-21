@@ -230,6 +230,7 @@
 "financial_details_section" = "Detalles Financieros";
 "amount_placeholder" = "Cantidad";
 "currency_label" = "Moneda";
+"currency_locked_message" = "La moneda no se puede cambiar después de crear el préstamo.";
 "repayment_schedule_section" = "Cronograma de Pago";
 "payment_frequency_label" = "Frecuencia de Pago";
 "number_of_payments_placeholder" = "Número de Pagos";

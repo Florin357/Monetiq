@@ -250,6 +250,7 @@
 "financial_details_section" = "Dettagli Finanziari";
 "amount_placeholder" = "Importo";
 "currency_label" = "Valuta";
+"currency_locked_message" = "La valuta non può essere modificata dopo la creazione del prestito.";
 "repayment_schedule_section" = "Piano di Rimborso";
 "payment_frequency_label" = "Frequenza Pagamento";
 "number_of_payments_placeholder" = "Numero di Pagamenti";

@@ -230,6 +230,7 @@
 "financial_details_section" = "Détails Financiers";
 "amount_placeholder" = "Montant";
 "currency_label" = "Devise";
+"currency_locked_message" = "La devise ne peut pas être modifiée après la création du prêt.";
 "repayment_schedule_section" = "Calendrier de Remboursement";
 "payment_frequency_label" = "Fréquence de Paiement";
 "number_of_payments_placeholder" = "Nombre de Paiements";

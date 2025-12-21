@@ -230,6 +230,7 @@
 "financial_details_section" = "Финансовые Детали";
 "amount_placeholder" = "Сумма";
 "currency_label" = "Валюта";
+"currency_locked_message" = "Валюту нельзя изменить после создания займа.";
 "repayment_schedule_section" = "График Погашения";
 "payment_frequency_label" = "Частота Платежей";
 "number_of_payments_placeholder" = "Количество Платежей";

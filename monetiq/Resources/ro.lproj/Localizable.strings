@@ -250,6 +250,7 @@
 "financial_details_section" = "Detalii Financiare";
 "amount_placeholder" = "Sumă";
 "currency_label" = "Monedă";
+"currency_locked_message" = "Moneda nu poate fi schimbată după crearea împrumutului.";
 "repayment_schedule_section" = "Program de Rambursare";
 "payment_frequency_label" = "Frecvența Plăților";
 "number_of_payments_placeholder" = "Numărul de Plăți";
