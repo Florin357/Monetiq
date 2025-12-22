@@ -403,7 +403,8 @@ struct PaymentProgressRow: View {
     
     private var statusText: String {
         if totalPaid > 0 {
-            return String(format: L10n.string("loan_detail_progress_paid"), progressPercentage)
+            // Pass the percentage value directly to L10n.string for proper formatting
+            return L10n.string("loan_detail_progress_paid", progressPercentage)
         } else {
             return L10n.string("loan_detail_progress_no_payments")
         }
