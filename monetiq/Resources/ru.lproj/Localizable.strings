@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "Ваш финансовый обзор";
 "dashboard_to_receive" = "К получению";
 "dashboard_to_pay" = "К оплате";
+"dashboard_to_receive_detail_title" = "К получению - Подробности";
+"dashboard_to_pay_detail_title" = "К оплате - Подробности";
+"dashboard_detail_empty_state" = "Нет активных займов в этой категории";
+"dashboard_detail_total" = "Всего";
 "dashboard_upcoming_payments" = "Предстоящие платежи";
 "dashboard_no_payments" = "Нет предстоящих платежей";
 "dashboard_no_payments_subtitle" = "Все ваши платежи актуальны";

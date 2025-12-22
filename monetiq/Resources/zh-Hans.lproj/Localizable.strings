@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "您的财务概览";
 "dashboard_to_receive" = "应收";
 "dashboard_to_pay" = "应付";
+"dashboard_to_receive_detail_title" = "应收 - 明细";
+"dashboard_to_pay_detail_title" = "应付 - 明细";
+"dashboard_detail_empty_state" = "此类别中没有活动贷款";
+"dashboard_detail_total" = "总计";
 "dashboard_upcoming_payments" = "即将到期的付款";
 "dashboard_no_payments" = "没有即将到期的付款";
 "dashboard_no_payments_subtitle" = "您的所有付款都是最新的";

@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "आपका वित्तीय अवलोकन";
 "dashboard_to_receive" = "प्राप्त करना है";
 "dashboard_to_pay" = "भुगतान करना है";
+"dashboard_to_receive_detail_title" = "प्राप्त करना है - विवरण";
+"dashboard_to_pay_detail_title" = "भुगतान करना है - विवरण";
+"dashboard_detail_empty_state" = "इस श्रेणी में कोई सक्रिय ऋण नहीं";
+"dashboard_detail_total" = "कुल";
 "dashboard_upcoming_payments" = "आगामी भुगतान";
 "dashboard_no_payments" = "कोई आगामी भुगतान नहीं";
 "dashboard_no_payments_subtitle" = "आपके सभी भुगतान अप टू डेट हैं";

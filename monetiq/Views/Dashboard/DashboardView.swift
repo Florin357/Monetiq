@@ -41,6 +41,9 @@ struct DashboardView: View {
     @Query private var loans: [Loan]
     @Query private var payments: [Payment]
     
+    @State private var showToReceiveDetail = false
+    @State private var showToPayDetail = false
+    
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
     }
@@ -58,12 +61,18 @@ struct DashboardView: View {
                         totals: calculateToReceiveByCurrency(),
                         color: MonetiqTheme.Colors.positive
                     )
+                    .onTapGesture {
+                        showToReceiveDetail = true
+                    }
                     
                     MultiCurrencySummaryCard(
                         title: L10n.string("dashboard_to_pay"),
                         totals: calculateToPayByCurrency(),
                         color: MonetiqTheme.Colors.negative
                     )
+                    .onTapGesture {
+                        showToPayDetail = true
+                    }
                 }
                 .monetiqSection()
                 
@@ -193,6 +202,20 @@ struct DashboardView: View {
         .navigationTitle(L10n.string("dashboard_title"))
         .navigationBarTitleDisplayMode(.large)
         .monetiqBackground()
+        .sheet(isPresented: $showToReceiveDetail) {
+            DashboardTotalsDetailView(
+                kind: .toReceive,
+                loans: loans,
+                calculateTotals: calculateToReceiveByCurrency
+            )
+        }
+        .sheet(isPresented: $showToPayDetail) {
+            DashboardTotalsDetailView(
+                kind: .toPay,
+                loans: loans,
+                calculateTotals: calculateToPayByCurrency
+            )
+        }
     }
     
     /// SOURCE OF TRUTH: Upcoming Payments Logic
@@ -575,6 +598,226 @@ struct CompactAmountView: View {
             .minimumScaleFactor(0.85)
             .layoutPriority(1)
             .multilineTextAlignment(.trailing)
+    }
+}
+
+// MARK: - Dashboard Totals Detail View
+
+enum DashboardTotalsKind {
+    case toReceive
+    case toPay
+    
+    var title: String {
+        switch self {
+        case .toReceive:
+            return L10n.string("dashboard_to_receive_detail_title")
+        case .toPay:
+            return L10n.string("dashboard_to_pay_detail_title")
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .toReceive:
+            return MonetiqTheme.Colors.positive
+        case .toPay:
+            return MonetiqTheme.Colors.negative
+        }
+    }
+    
+    var loanRole: [LoanRole] {
+        switch self {
+        case .toReceive:
+            return [.lent]
+        case .toPay:
+            return [.borrowed, .bankCredit]
+        }
+    }
+}
+
+struct DashboardTotalsDetailView: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    let kind: DashboardTotalsKind
+    let loans: [Loan]
+    let calculateTotals: () -> [String: Double]
+    
+    private var filteredLoans: [Loan] {
+        loans.filter { kind.loanRole.contains($0.role) }
+            .filter { loan in
+                let remaining = (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+                return remaining > 0
+            }
+            .sorted { $0.createdAt > $1.createdAt }
+    }
+    
+    private var totals: [String: Double] {
+        calculateTotals()
+    }
+    
+    private var sortedTotals: [(String, Double)] {
+        totals.sorted { $0.value > $1.value }
+    }
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: MonetiqTheme.Spacing.lg) {
+                    if filteredLoans.isEmpty {
+                        // Empty state
+                        VStack(spacing: MonetiqTheme.Spacing.lg) {
+                            Spacer()
+                                .frame(height: 60)
+                            
+                            Image(systemName: "tray")
+                                .font(.system(size: 48, weight: .light))
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                            
+                            VStack(spacing: MonetiqTheme.Spacing.xs) {
+                                Text(L10n.string("dashboard_detail_empty_state"))
+                                    .font(MonetiqTheme.Typography.body)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .multilineTextAlignment(.center)
+                            }
+                            
+                            Spacer()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(MonetiqTheme.Spacing.lg)
+                    } else {
+                        // Totals Summary Card
+                        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                            Text(L10n.string("dashboard_detail_total"))
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                .textCase(.uppercase)
+                                .tracking(0.8)
+                            
+                            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                                ForEach(sortedTotals, id: \.0) { currency, amount in
+                                    HStack {
+                                        Text(CurrencyFormatter.shared.format(amount: amount, currencyCode: currency))
+                                            .font(sortedTotals.count == 1 ? MonetiqTheme.Typography.currencyLarge : MonetiqTheme.Typography.currencyMedium)
+                                            .foregroundColor(kind.color)
+                                            .fontWeight(.bold)
+                                        
+                                        Spacer()
+                                    }
+                                }
+                            }
+                        }
+                        .monetiqPremiumCard()
+                        .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                        
+                        // Loans Breakdown
+                        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                            Text("Loans")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                .textCase(.uppercase)
+                                .tracking(0.8)
+                                .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                            
+                            VStack(spacing: MonetiqTheme.Spacing.sm) {
+                                ForEach(filteredLoans, id: \.id) { loan in
+                                    LoanBreakdownRow(loan: loan, color: kind.color)
+                                }
+                            }
+                            .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                        }
+                    }
+                }
+                .padding(.vertical, MonetiqTheme.Spacing.md)
+            }
+            .navigationTitle(kind.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.body.weight(.medium))
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    }
+                }
+            }
+            .monetiqBackground()
+        }
+    }
+}
+
+struct LoanBreakdownRow: View {
+    let loan: Loan
+    let color: Color
+    
+    private var remaining: Double {
+        (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+    }
+    
+    var body: some View {
+        VStack(spacing: MonetiqTheme.Spacing.sm) {
+            HStack(spacing: MonetiqTheme.Spacing.md) {
+                // Loan info
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                    Text(loan.title)
+                        .font(MonetiqTheme.Typography.bodyEmphasized)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                        .lineLimit(1)
+                    
+                    if let counterparty = loan.counterparty {
+                        HStack(spacing: MonetiqTheme.Spacing.xs) {
+                            Image(systemName: counterparty.type == .person ? "person.fill" : "building.fill")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                            
+                            Text(counterparty.name)
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                .lineLimit(1)
+                        }
+                    }
+                }
+                
+                Spacer()
+                
+                // Remaining amount
+                VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
+                    Text(CurrencyFormatter.shared.format(amount: remaining, currencyCode: loan.currencyCode))
+                        .font(MonetiqTheme.Typography.currencySmall)
+                        .foregroundColor(color)
+                        .fontWeight(.semibold)
+                    
+                    // Progress indicator
+                    if loan.totalToRepay ?? loan.principalAmount > 0 {
+                        let progress = loan.totalPaid / (loan.totalToRepay ?? loan.principalAmount)
+                        Text("\(Int(progress * 100))%")
+                            .font(MonetiqTheme.Typography.caption2)
+                            .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                    }
+                }
+            }
+            
+            // Progress bar
+            if loan.totalToRepay ?? loan.principalAmount > 0 {
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        // Background
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(MonetiqTheme.Colors.surface)
+                            .frame(height: 4)
+                        
+                        // Progress
+                        let progress = loan.totalPaid / (loan.totalToRepay ?? loan.principalAmount)
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(color.opacity(0.3))
+                            .frame(width: geometry.size.width * progress, height: 4)
+                    }
+                }
+                .frame(height: 4)
+            }
+        }
+        .monetiqPremiumCard()
     }
 }
 

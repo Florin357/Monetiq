@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "Tu resumen financiero";
 "dashboard_to_receive" = "Por Recibir";
 "dashboard_to_pay" = "Por Pagar";
+"dashboard_to_receive_detail_title" = "Por Recibir - Desglose";
+"dashboard_to_pay_detail_title" = "Por Pagar - Desglose";
+"dashboard_detail_empty_state" = "No hay préstamos activos en esta categoría";
+"dashboard_detail_total" = "Total";
 "dashboard_upcoming_payments" = "Próximos Pagos";
 "dashboard_no_payments" = "No hay próximos pagos";
 "dashboard_no_payments_subtitle" = "Todos tus pagos están al día";

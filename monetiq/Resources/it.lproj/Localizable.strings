@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "La tua panoramica finanziaria";
 "dashboard_to_receive" = "Da Ricevere";
 "dashboard_to_pay" = "Da Pagare";
+"dashboard_to_receive_detail_title" = "Da Ricevere - Dettagli";
+"dashboard_to_pay_detail_title" = "Da Pagare - Dettagli";
+"dashboard_detail_empty_state" = "Nessun prestito attivo in questa categoria";
+"dashboard_detail_total" = "Totale";
 "dashboard_upcoming_payments" = "Pagamenti Imminenti";
 "dashboard_no_payments" = "Nessun pagamento imminente";
 "dashboard_no_payments_subtitle" = "Tutti i tuoi pagamenti sono aggiornati";

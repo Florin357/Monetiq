@@ -27,6 +27,10 @@
 "dashboard_subtitle" = "Prezentarea generală financiară";
 "dashboard_to_receive" = "De Primit";
 "dashboard_to_pay" = "De Plătit";
+"dashboard_to_receive_detail_title" = "De Primit - Detalii";
+"dashboard_to_pay_detail_title" = "De Plătit - Detalii";
+"dashboard_detail_empty_state" = "Niciun împrumut activ în această categorie";
+"dashboard_detail_total" = "Total";
 "dashboard_upcoming_payments" = "Plăți Viitoare";
 "dashboard_no_payments" = "Nicio plată viitoare";
 "dashboard_no_payments_subtitle" = "Toate plățile sunt la zi";

@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "Ihre Finanzübersicht";
 "dashboard_to_receive" = "Zu erhalten";
 "dashboard_to_pay" = "Zu zahlen";
+"dashboard_to_receive_detail_title" = "Zu erhalten - Aufschlüsselung";
+"dashboard_to_pay_detail_title" = "Zu zahlen - Aufschlüsselung";
+"dashboard_detail_empty_state" = "Keine aktiven Darlehen in dieser Kategorie";
+"dashboard_detail_total" = "Gesamt";
 "dashboard_upcoming_payments" = "Anstehende Zahlungen";
 "dashboard_no_payments" = "Keine anstehenden Zahlungen";
 "dashboard_no_payments_subtitle" = "Alle Ihre Zahlungen sind aktuell";

@@ -27,6 +27,10 @@
 "dashboard_subtitle" = "Your financial overview";
 "dashboard_to_receive" = "To Receive";
 "dashboard_to_pay" = "To Pay";
+"dashboard_to_receive_detail_title" = "To Receive - Breakdown";
+"dashboard_to_pay_detail_title" = "To Pay - Breakdown";
+"dashboard_detail_empty_state" = "No active loans in this category";
+"dashboard_detail_total" = "Total";
 "dashboard_upcoming_payments" = "Upcoming Payments";
 "dashboard_no_payments" = "No upcoming payments";
 "dashboard_no_payments_subtitle" = "All your payments are up to date";

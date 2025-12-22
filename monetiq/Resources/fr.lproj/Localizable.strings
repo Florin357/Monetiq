@@ -28,6 +28,10 @@
 "dashboard_subtitle" = "Votre aperçu financier";
 "dashboard_to_receive" = "À recevoir";
 "dashboard_to_pay" = "À payer";
+"dashboard_to_receive_detail_title" = "À recevoir - Détails";
+"dashboard_to_pay_detail_title" = "À payer - Détails";
+"dashboard_detail_empty_state" = "Aucun prêt actif dans cette catégorie";
+"dashboard_detail_total" = "Total";
 "dashboard_upcoming_payments" = "Paiements à venir";
 "dashboard_no_payments" = "Aucun paiement à venir";
 "dashboard_no_payments_subtitle" = "Tous vos paiements sont à jour";
