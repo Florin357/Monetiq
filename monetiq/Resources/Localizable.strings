@@ -34,6 +34,16 @@
 "dashboard_upcoming_payments" = "Upcoming Payments";
 "dashboard_no_payments" = "No upcoming payments";
 "dashboard_no_payments_subtitle" = "All your payments are up to date";
+"dashboard_cashflow" = "Cashflow";
+"dashboard_cashflow_subtitle" = "Next 30 days";
+"dashboard_cashflow_net" = "Net";
+"dashboard_cashflow_empty" = "Not enough payment data";
+"dashboard_cashflow_to_receive" = "To Receive";
+"dashboard_cashflow_to_pay" = "To Pay";
+"dashboard_cashflow_helper" = "Based on scheduled payments";
+"dashboard_cashflow_today" = "Today";
+"dashboard_cashflow_more_currencies" = "+%d more";
+"dashboard_cashflow_low_activity" = "Mostly stable over the next 30 days";
 "dashboard_recent_loans" = "Recent Loans";
 "dashboard_no_loans" = "No loans yet";
 

@@ -216,6 +216,16 @@
 "calculator_share_title" = "贷款计算摘要";
 "calculator_share_footer" = "由 Monetiq 制作";
 "dashboard_no_loans" = "暂无贷款";
+"dashboard_cashflow" = "现金流";
+"dashboard_cashflow_subtitle" = "未来30天";
+"dashboard_cashflow_net" = "净额";
+"dashboard_cashflow_empty" = "支付数据不足";
+"dashboard_cashflow_to_receive" = "待收";
+"dashboard_cashflow_to_pay" = "待付";
+"dashboard_cashflow_helper" = "基于预定付款";
+"dashboard_cashflow_today" = "今天";
+"dashboard_cashflow_more_currencies" = "+%d 更多";
+"dashboard_cashflow_low_activity" = "未来30天基本稳定";
 "dashboard_recent_loans" = "最近贷款";
 "loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤销。";
 "loan_detail_details" = "详情";

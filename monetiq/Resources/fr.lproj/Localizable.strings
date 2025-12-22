@@ -216,6 +216,16 @@
 "calculator_share_title" = "Résumé du Calcul de Prêt";
 "calculator_share_footer" = "Créé avec Monetiq";
 "dashboard_no_loans" = "Aucun prêt pour le moment";
+"dashboard_cashflow" = "Flux de trésorerie";
+"dashboard_cashflow_subtitle" = "30 prochains jours";
+"dashboard_cashflow_net" = "Net";
+"dashboard_cashflow_empty" = "Données de paiement insuffisantes";
+"dashboard_cashflow_to_receive" = "À recevoir";
+"dashboard_cashflow_to_pay" = "À payer";
+"dashboard_cashflow_helper" = "Basé sur les paiements programmés";
+"dashboard_cashflow_today" = "Aujourd'hui";
+"dashboard_cashflow_more_currencies" = "+%d de plus";
+"dashboard_cashflow_low_activity" = "Principalement stable au cours des 30 prochains jours";
 "dashboard_recent_loans" = "Prêts récents";
 "loan_detail_delete_confirm" = "Êtes-vous sûr de vouloir supprimer '%@' ? Cette action ne peut pas être annulée.";
 "loan_detail_details" = "Détails";

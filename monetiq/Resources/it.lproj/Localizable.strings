@@ -236,6 +236,16 @@
 "calculator_share_title" = "Riepilogo Calcolo Prestito";
 "calculator_share_footer" = "Creato con Monetiq";
 "dashboard_no_loans" = "Nessun prestito ancora";
+"dashboard_cashflow" = "Flusso di cassa";
+"dashboard_cashflow_subtitle" = "Prossimi 30 giorni";
+"dashboard_cashflow_net" = "Netto";
+"dashboard_cashflow_empty" = "Dati di pagamento insufficienti";
+"dashboard_cashflow_to_receive" = "Da ricevere";
+"dashboard_cashflow_to_pay" = "Da pagare";
+"dashboard_cashflow_helper" = "In base ai pagamenti programmati";
+"dashboard_cashflow_today" = "Oggi";
+"dashboard_cashflow_more_currencies" = "+%d altre";
+"dashboard_cashflow_low_activity" = "Prevalentemente stabile nei prossimi 30 giorni";
 "dashboard_recent_loans" = "Prestiti recenti";
 "loan_detail_delete_confirm" = "Sei sicuro di voler eliminare '%@'? Questa azione non può essere annullata.";
 "loan_detail_details" = "Dettagli";

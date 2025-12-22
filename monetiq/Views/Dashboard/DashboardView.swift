@@ -154,6 +154,10 @@ struct DashboardView: View {
                     }
                 }
                 
+                // Cashflow Chart - 30 days preview
+                CashflowCardView(loans: loans, windowDays: 30)
+                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                
                 // Recent Loans - Premium section
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
                     HStack {

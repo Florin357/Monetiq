@@ -216,6 +216,16 @@
 "calculator_share_title" = "Resumen de Cálculo de Préstamo";
 "calculator_share_footer" = "Hecho con Monetiq";
 "dashboard_no_loans" = "Aún no hay préstamos";
+"dashboard_cashflow" = "Flujo de caja";
+"dashboard_cashflow_subtitle" = "Próximos 30 días";
+"dashboard_cashflow_net" = "Neto";
+"dashboard_cashflow_empty" = "Datos de pago insuficientes";
+"dashboard_cashflow_to_receive" = "A recibir";
+"dashboard_cashflow_to_pay" = "A pagar";
+"dashboard_cashflow_helper" = "Basado en pagos programados";
+"dashboard_cashflow_today" = "Hoy";
+"dashboard_cashflow_more_currencies" = "+%d más";
+"dashboard_cashflow_low_activity" = "Mayormente estable durante los próximos 30 días";
 "dashboard_recent_loans" = "Préstamos recientes";
 "loan_detail_delete_confirm" = "¿Estás seguro de que quieres eliminar '%@'? Esta acción no se puede deshacer.";
 "loan_detail_details" = "Detalles";

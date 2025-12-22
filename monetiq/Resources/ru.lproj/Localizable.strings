@@ -216,6 +216,16 @@
 "calculator_share_title" = "Сводка Расчета Кредита";
 "calculator_share_footer" = "Создано с Monetiq";
 "dashboard_no_loans" = "Пока нет займов";
+"dashboard_cashflow" = "Денежный поток";
+"dashboard_cashflow_subtitle" = "Следующие 30 дней";
+"dashboard_cashflow_net" = "Нетто";
+"dashboard_cashflow_empty" = "Недостаточно данных о платежах";
+"dashboard_cashflow_to_receive" = "К получению";
+"dashboard_cashflow_to_pay" = "К оплате";
+"dashboard_cashflow_helper" = "На основе запланированных платежей";
+"dashboard_cashflow_today" = "Сегодня";
+"dashboard_cashflow_more_currencies" = "+%d ещё";
+"dashboard_cashflow_low_activity" = "В основном стабильно в течение следующих 30 дней";
 "dashboard_recent_loans" = "Недавние займы";
 "loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";
 "loan_detail_details" = "Подробности";

@@ -199,6 +199,16 @@
 "calculator_share_footer" = "Erstellt mit Monetiq";
 "calculator_share" = "Teilen";
 "dashboard_no_loans" = "Noch keine Darlehen";
+"dashboard_cashflow" = "Cashflow";
+"dashboard_cashflow_subtitle" = "Nächste 30 Tage";
+"dashboard_cashflow_net" = "Netto";
+"dashboard_cashflow_empty" = "Nicht genügend Zahlungsdaten";
+"dashboard_cashflow_to_receive" = "Zu erhalten";
+"dashboard_cashflow_to_pay" = "Zu zahlen";
+"dashboard_cashflow_helper" = "Basierend auf geplanten Zahlungen";
+"dashboard_cashflow_today" = "Heute";
+"dashboard_cashflow_more_currencies" = "+%d weitere";
+"dashboard_cashflow_low_activity" = "Weitgehend stabil in den nächsten 30 Tagen";
 "dashboard_recent_loans" = "Aktuelle Darlehen";
 "loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
 "loan_detail_details" = "Details";

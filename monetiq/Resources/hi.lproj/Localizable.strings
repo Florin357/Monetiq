@@ -208,6 +208,16 @@
 "calculator_share_title" = "ऋण गणना सारांश";
 "calculator_share_footer" = "Monetiq के साथ बनाया गया";
 "dashboard_no_loans" = "अभी तक कोई लोन नहीं";
+"dashboard_cashflow" = "नकदी प्रवाह";
+"dashboard_cashflow_subtitle" = "अगले 30 दिन";
+"dashboard_cashflow_net" = "नेट";
+"dashboard_cashflow_empty" = "भुगतान डेटा अपर्याप्त";
+"dashboard_cashflow_to_receive" = "प्राप्त करने के लिए";
+"dashboard_cashflow_to_pay" = "भुगतान करने के लिए";
+"dashboard_cashflow_helper" = "निर्धारित भुगतान के आधार पर";
+"dashboard_cashflow_today" = "आज";
+"dashboard_cashflow_more_currencies" = "+%d और";
+"dashboard_cashflow_low_activity" = "अगले 30 दिनों में अधिकतर स्थिर";
 "dashboard_recent_loans" = "हाल के लोन";
 "loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।";
 "loan_detail_details" = "विवरण";
