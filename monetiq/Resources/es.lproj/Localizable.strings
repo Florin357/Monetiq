@@ -156,17 +156,17 @@
 "settings_device_info" = "Datos locales • Sin cuenta requerida";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Política de Privacidad\n\nFecha Efectiva: 15 de Diciembre de 2025\n\nMonetiq está diseñado con la privacidad en mente. Todos sus datos financieros se almacenan localmente en su dispositivo y nunca se transmiten a nuestros servidores o terceros.\n\n1. Información que Recopilamos\n• Información de préstamos\n• Horarios de pago e historial\n• Preferencias de la aplicación\n• Preferencias de notificaciones locales\n\n2. Cómo Usamos su Información\nSus datos se usan únicamente para proporcionar funcionalidad de seguimiento de préstamos y recordatorios de pago.\n\n3. Almacenamiento y Seguridad\nTodos los datos se almacenan localmente usando el almacenamiento seguro de iOS. No se transmiten datos por internet.\n\n4. Compartir Datos\nNo compartimos, vendemos o transmitimos su información personal a terceros.\n\n5. Sus Derechos\nPuede eliminar todos los datos de la aplicación en cualquier momento a través de Configuración → Restablecer Aplicación.\n\nPara preguntas sobre esta política de privacidad, contáctenos a través del App Store.";
+"privacy_policy_content" = "Política de Privacidad\n\nFecha Efectiva: 15 de Diciembre de 2025\n\nYpsilon está diseñado con la privacidad en mente. Todos sus datos financieros se almacenan localmente en su dispositivo y nunca se transmiten a nuestros servidores o terceros.\n\n1. Información que Recopilamos\n• Información de préstamos\n• Horarios de pago e historial\n• Preferencias de la aplicación\n• Preferencias de notificaciones locales\n\n2. Cómo Usamos su Información\nSus datos se usan únicamente para proporcionar funcionalidad de seguimiento de préstamos y recordatorios de pago.\n\n3. Almacenamiento y Seguridad\nTodos los datos se almacenan localmente usando el almacenamiento seguro de iOS. No se transmiten datos por internet.\n\n4. Compartir Datos\nNo compartimos, vendemos o transmitimos su información personal a terceros.\n\n5. Sus Derechos\nPuede eliminar todos los datos de la aplicación en cualquier momento a través de Configuración → Restablecer Aplicación.\n\nPara preguntas sobre esta política de privacidad, contáctenos a través del App Store.";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "Términos de Servicio\n\nFecha Efectiva: 15 de Diciembre de 2025\n\n1. Aceptación de Términos\nAl usar Monetiq, acepta estos Términos de Servicio.\n\n2. Descripción del Servicio\nMonetiq es una aplicación de finanzas personales para rastrear préstamos y gestionar horarios de pago.\n\n3. Responsabilidades del Usuario\n• Es responsable de la precisión de los datos que ingresa\n• Debe cumplir con las leyes aplicables\n• Es responsable de respaldar su dispositivo\n\n4. Limitaciones\n• Monetiq es solo para uso personal\n• La aplicación no proporciona asesoramiento financiero, legal o fiscal\n• No somos responsables de decisiones financieras basadas en datos de la aplicación\n\n5. Datos y Privacidad\nTodos los datos se almacenan localmente en su dispositivo.\n\n6. Limitación de Responsabilidad\nNo seremos responsables de daños indirectos, incidentales o consecuentes.\n\nPara preguntas sobre estos términos, contáctenos a través del App Store.";
+"terms_of_service_content" = "Términos de Servicio\n\nFecha Efectiva: 15 de Diciembre de 2025\n\n1. Aceptación de Términos\nAl usar Ypsilon, acepta estos Términos de Servicio.\n\n2. Descripción del Servicio\nYpsilon es una aplicación de finanzas personales para rastrear préstamos y gestionar horarios de pago.\n\n3. Responsabilidades del Usuario\n• Es responsable de la precisión de los datos que ingresa\n• Debe cumplir con las leyes aplicables\n• Es responsable de respaldar su dispositivo\n\n4. Limitaciones\n• Ypsilon es solo para uso personal\n• La aplicación no proporciona asesoramiento financiero, legal o fiscal\n• No somos responsables de decisiones financieras basadas en datos de la aplicación\n\n5. Datos y Privacidad\nTodos los datos se almacenan localmente en su dispositivo.\n\n6. Limitación de Responsabilidad\nNo seremos responsables de daños indirectos, incidentales o consecuentes.\n\nPara preguntas sobre estos términos, contáctenos a través del App Store.";
 
 // MARK: - Missing Keys
 "calculator_share" = "Compartir";
 "notification_permission_not_requested" = "El permiso de notificación aún no ha sido solicitado";
 "notification_unknown_error" = "Ocurrió un error de notificación desconocido";
 "settings_notifications_denied_title" = "Notificaciones deshabilitadas";
-"settings_notifications_denied_message" = "Para recibir recordatorios de pago, habilite las notificaciones en Configuración > Monetiq > Notificaciones";
+"settings_notifications_denied_message" = "Para recibir recordatorios de pago, habilite las notificaciones en Configuración > Ypsilon > Notificaciones";
 "settings_open_settings" = "Abrir Ajustes";
 "calculator_frequency" = "Frecuencia de Pago";
 "calculator_calculate" = "Calcular Pago";
@@ -179,7 +179,7 @@
 
 // MARK: - Settings
 "settings_title" = "Ajustes";
-"settings_subtitle" = "Personaliza tu experiencia Monetiq";
+"settings_subtitle" = "Personaliza tu experiencia Ypsilon";
 "settings_general" = "General";
 "settings_security" = "Seguridad";
 "settings_appearance" = "Apariencia";
@@ -253,7 +253,7 @@
 "calculator_currency" = "Moneda";
 "calculator_generated" = "Generado";
 "calculator_share_title" = "Resumen de Cálculo de Préstamo";
-"calculator_share_footer" = "Hecho con Monetiq";
+"calculator_share_footer" = "Hecho con Ypsilon";
 "dashboard_no_loans" = "Aún no hay préstamos";
 "dashboard_cashflow" = "Flujo de caja";
 "dashboard_cashflow_subtitle" = "Próximos 30 días";
@@ -316,9 +316,9 @@
 "notification_payment_due_title" = "Pago Vence Hoy";
 "notification_payment_due_body" = "El pago de '%@' vence hoy: %@";
 "notification_weekly_review_title" = "Revisión Financiera Semanal";
-"notification_weekly_review_body" = "Es hora de revisar tus préstamos y próximos pagos en Monetiq";
+"notification_weekly_review_body" = "Es hora de revisar tus préstamos y próximos pagos en Ypsilon";
 "notification_test_title" = "Notificación de Prueba";
-"notification_test_body" = "Esta es una notificación de prueba de Monetiq";
+"notification_test_body" = "Esta es una notificación de prueba de Ypsilon";
 
 
 
@@ -332,7 +332,7 @@
 "settings_reset_app_confirm_action" = "Eliminar Todos los Datos";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Desbloquea Monetiq para acceder a tus datos financieros";
+"biometric_unlock_reason" = "Desbloquea Ypsilon para acceder a tus datos financieros";
 "biometric_enable_reason" = "Autentícate para habilitar la seguridad biométrica";
 "lock_screen_title" = "Bloqueado";
 "lock_screen_subtitle" = "Desbloquear con %@";
