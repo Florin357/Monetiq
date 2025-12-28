@@ -7,65 +7,62 @@
 
 import SwiftUI
 
-// MARK: - Locale-Aware Number Formatting Helper
-/// Handles locale-aware parsing and formatting for calculator numeric inputs
-/// Supports different locales (e.g., Italian uses comma, English uses dot as decimal separator)
+// MARK: - Locale-Aware Number Formatting Helper (Calculator-specific)
+/// Handles parsing and formatting for calculator numeric inputs
+/// Displays decimals with COMMA (like Loan screens) but accepts both comma and dot from user
 class CalculatorNumberFormatter {
     static let shared = CalculatorNumberFormatter()
     
-    private let decimalFormatter: NumberFormatter
+    private let displayFormatter: NumberFormatter
     private let integerFormatter: NumberFormatter
-    private let percentageFormatter: NumberFormatter
     
     private init() {
-        // Decimal formatter for Principal Amount (currency-like)
-        decimalFormatter = NumberFormatter()
-        decimalFormatter.numberStyle = .decimal
-        decimalFormatter.locale = Locale(identifier: "en_US") // Force dot as decimal separator
-        decimalFormatter.maximumFractionDigits = 2
-        decimalFormatter.minimumFractionDigits = 0
-        decimalFormatter.usesGroupingSeparator = false // Keep simple while editing
+        // Display formatter - uses COMMA as decimal separator (matches app style)
+        displayFormatter = NumberFormatter()
+        displayFormatter.numberStyle = .decimal
+        displayFormatter.locale = Locale(identifier: "en_US_POSIX")
+        displayFormatter.decimalSeparator = ","
+        displayFormatter.maximumFractionDigits = 2
+        displayFormatter.minimumFractionDigits = 2
+        displayFormatter.usesGroupingSeparator = false
         
         // Integer formatter for Number of Payments
         integerFormatter = NumberFormatter()
         integerFormatter.numberStyle = .none
-        integerFormatter.locale = Locale(identifier: "en_US")
+        integerFormatter.locale = Locale(identifier: "en_US_POSIX")
         integerFormatter.maximumFractionDigits = 0
         integerFormatter.allowsFloats = false
-        
-        // Percentage formatter for Interest Rate
-        percentageFormatter = NumberFormatter()
-        percentageFormatter.numberStyle = .decimal
-        percentageFormatter.locale = Locale(identifier: "en_US") // Force dot as decimal separator
-        percentageFormatter.maximumFractionDigits = 2
-        percentageFormatter.minimumFractionDigits = 0
-        percentageFormatter.usesGroupingSeparator = false
     }
     
     // MARK: - Parsing (String -> Number)
     
+    /// Parse decimal input - accepts BOTH comma and dot as decimal separator
     func parseDecimal(_ string: String) -> Double? {
         let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return nil }
-        return decimalFormatter.number(from: trimmed)?.doubleValue
+        
+        // Normalize: replace comma with dot for parsing
+        let normalized = trimmed.replacingOccurrences(of: ",", with: ".")
+        
+        // Parse using standard Double initializer
+        return Double(normalized)
     }
     
     func parseInteger(_ string: String) -> Int? {
         let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return nil }
-        return integerFormatter.number(from: trimmed)?.intValue
+        return Int(trimmed)
     }
     
+    /// Parse percentage - same as parseDecimal (accepts both separators)
     func parsePercentage(_ string: String) -> Double? {
-        let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return nil }
-        return percentageFormatter.number(from: trimmed)?.doubleValue
+        return parseDecimal(string)
     }
     
-    // MARK: - Formatting (Number -> String)
+    // MARK: - Formatting (Number -> String with COMMA)
     
     func formatDecimal(_ value: Double) -> String {
-        return decimalFormatter.string(from: NSNumber(value: value)) ?? ""
+        return displayFormatter.string(from: NSNumber(value: value)) ?? ""
     }
     
     func formatInteger(_ value: Int) -> String {
@@ -73,28 +70,36 @@ class CalculatorNumberFormatter {
     }
     
     func formatPercentage(_ value: Double) -> String {
-        return percentageFormatter.string(from: NSNumber(value: value)) ?? ""
+        return displayFormatter.string(from: NSNumber(value: value)) ?? ""
     }
     
     // MARK: - Input Filtering
     
-    /// Filters input for decimal fields (allows digits and one decimal separator)
+    /// Filters input for decimal fields - allows digits and BOTH comma and dot
     func filterDecimalInput(_ input: String) -> String {
-        let decimalSeparator = decimalFormatter.decimalSeparator ?? "."
-        let allowedCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: decimalSeparator))
-        
+        // Allow digits, comma, and dot
+        let allowedCharacters = CharacterSet.decimalDigits.union(CharacterSet(charactersIn: ".,"))
         var filtered = input.components(separatedBy: allowedCharacters.inverted).joined()
         
-        // Allow only one decimal separator
-        let separatorCount = filtered.components(separatedBy: decimalSeparator).count - 1
-        if separatorCount > 1 {
-            // Keep only the first occurrence
-            if let firstSeparatorIndex = filtered.firstIndex(of: Character(decimalSeparator)) {
-                let beforeSeparator = String(filtered[..<firstSeparatorIndex])
-                let afterSeparator = String(filtered[filtered.index(after: firstSeparatorIndex)...])
-                    .replacingOccurrences(of: decimalSeparator, with: "")
-                filtered = beforeSeparator + decimalSeparator + afterSeparator
-            }
+        // Allow only one decimal separator (either comma or dot)
+        let commaCount = filtered.filter { $0 == "," }.count
+        let dotCount = filtered.filter { $0 == "." }.count
+        let totalSeparators = commaCount + dotCount
+        
+        if totalSeparators > 1 {
+            // Keep only the first separator (comma or dot)
+            var foundSeparator = false
+            filtered = String(filtered.compactMap { char in
+                if char == "," || char == "." {
+                    if foundSeparator {
+                        return nil // Skip additional separators
+                    } else {
+                        foundSeparator = true
+                        return char
+                    }
+                }
+                return char
+            })
         }
         
         return filtered
@@ -103,11 +108,6 @@ class CalculatorNumberFormatter {
     /// Filters input for integer fields (allows digits only)
     func filterIntegerInput(_ input: String) -> String {
         return input.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-    }
-    
-    /// Gets the current locale's decimal separator for display purposes
-    var currentDecimalSeparator: String {
-        return decimalFormatter.decimalSeparator ?? "."
     }
 }
 
@@ -384,6 +384,16 @@ struct AmountCurrencyField: View {
     var focusedField: FocusState<CalculatorView.Field?>.Binding
     let fieldType: CalculatorView.Field
     
+    /// Format the text when user finishes editing
+    private func formatOnEndEditing() {
+        guard !text.isEmpty else { return }
+        
+        let formatter = CalculatorNumberFormatter.shared
+        if let value = formatter.parseDecimal(text) {
+            text = formatter.formatDecimal(value)
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
             Text(title)
@@ -394,10 +404,15 @@ struct AmountCurrencyField: View {
                 TextField(placeholder, text: Binding(
                     get: { text },
                     set: { newValue in
-                        // LOCALE-AWARE INPUT FILTERING: Allow digits and locale-specific decimal separator
+                        // INPUT FILTERING: Allow digits and both comma and dot
                         text = CalculatorNumberFormatter.shared.filterDecimalInput(newValue)
                     }
-                ))
+                ), onEditingChanged: { isEditing in
+                    // Format when user finishes editing
+                    if !isEditing {
+                        formatOnEndEditing()
+                    }
+                })
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                     .keyboardType(.decimalPad)
@@ -475,6 +490,29 @@ struct CalculatorInputField: View {
         }
     }
     
+    /// Format the text when user finishes editing (for decimal fields)
+    private func formatOnEndEditing() {
+        guard !text.isEmpty else { return }
+        
+        let formatter = CalculatorNumberFormatter.shared
+        
+        switch fieldType {
+        case .interest:
+            // Format interest rate with comma and 2 decimals (e.g., "7,50")
+            if let value = formatter.parsePercentage(text) {
+                text = formatter.formatPercentage(value)
+            }
+        case .principal:
+            // Format principal amount with comma and 2 decimals
+            if let value = formatter.parseDecimal(text) {
+                text = formatter.formatDecimal(value)
+            }
+        case .term:
+            // Integer - no formatting needed
+            break
+        }
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
             Text(title)
@@ -488,7 +526,7 @@ struct CalculatorInputField: View {
                         // FIELD-SPECIFIC INPUT FILTERING
                         switch fieldType {
                         case .interest:
-                            // Interest Rate: Allow decimals with locale-aware separator
+                            // Interest Rate: Allow decimals with both comma and dot
                             text = CalculatorNumberFormatter.shared.filterDecimalInput(newValue)
                         case .term:
                             // Number of Payments: Integers only
@@ -497,7 +535,12 @@ struct CalculatorInputField: View {
                             text = newValue
                         }
                     }
-                ))
+                ), onEditingChanged: { isEditing in
+                    // Format when user finishes editing
+                    if !isEditing {
+                        formatOnEndEditing()
+                    }
+                })
                     .font(MonetiqTheme.Typography.body)
                     .foregroundColor(MonetiqTheme.Colors.onSurface)
                     .keyboardType(keyboardTypeForField)

@@ -40,7 +40,18 @@ final class Payment {
     }
     
     var isOverdue: Bool {
-        status == .planned && dueDate < Date()
+        guard status == .planned else { return false }
+        
+        // Calculate the deadline: start of the day AFTER the due date
+        // This ensures payments due TODAY are not overdue until tomorrow at 00:00
+        let calendar = Calendar.current
+        guard let startOfDueDay = calendar.startOfDay(for: dueDate) as Date?,
+              let deadline = calendar.date(byAdding: .day, value: 1, to: startOfDueDay) else {
+            return false // Fallback: not overdue if date calculation fails
+        }
+        
+        // Overdue only if current time is past the deadline (start of next day)
+        return Date() >= deadline
     }
     
     func markAsPaid() {
