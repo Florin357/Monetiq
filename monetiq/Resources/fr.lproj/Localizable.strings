@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Tableau de bord";
+"tab_income" = "Revenus";
 "tab_loans" = "Prêts";
 "tab_calculator" = "Calculatrice";
 "tab_settings" = "Paramètres";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "À payer - Détails";
 "dashboard_detail_empty_state" = "Aucun prêt actif dans cette catégorie";
 "dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "Des Prêts";
+"dashboard_detail_from_income" = "Revenus";
+"dashboard_income_unknown" = "Revenu Inconnu";
+"dashboard_income_badge" = "Revenu";
+"dashboard_mark_received" = "Marquer Reçu";
+"dashboard_unknown_loan" = "Prêt Inconnu";
 "dashboard_upcoming_payments" = "Paiements à venir";
 "dashboard_no_payments" = "Aucun paiement à venir";
 "dashboard_no_payments_subtitle" = "Tous vos paiements sont à jour";
+
+// MARK: - Income
+"income_title" = "Revenus";
+"income_subtitle" = "Gérez vos revenus et jours de paie";
+"income_empty_title" = "Aucun revenu pour le moment";
+"income_empty_subtitle" = "Ajoutez votre premier revenu pour voir les prochains jours de paie";
+"income_add_title" = "Ajouter un revenu";
+"income_edit_title" = "Modifier le revenu";
+"income_delete_title" = "Supprimer le revenu";
+"income_delete_message" = "Êtes-vous sûr de vouloir supprimer ce revenu ? Cette action ne peut pas être annulée.";
+"income_next_payday" = "Prochain : %@";
+"income_frequency_weekly" = "Hebdomadaire";
+"income_frequency_monthly" = "Mensuel";
+"income_frequency_quarterly" = "Trimestriel";
+"income_frequency_yearly" = "Annuel";
+"income_frequency_one_time" = "Une Fois";
+
+// MARK: - Income Form
+"income_form_title" = "Titre";
+"income_form_title_placeholder" = "ex. Salaire, Freelance";
+"income_form_amount" = "Montant";
+"income_form_amount_placeholder" = "Entrez le montant";
+"income_form_currency" = "Devise";
+"income_form_frequency" = "Fréquence";
+"income_form_start_date" = "Date de début";
+"income_form_end_date" = "Date de fin";
+"income_form_has_end_date" = "A une date de fin";
+"income_form_counterparty" = "Source (Optionnel)";
+"income_form_counterparty_placeholder" = "ex. Nom de l'employeur";
+"income_form_notes" = "Notes";
+"income_form_notes_placeholder" = "Notes optionnelles";
+"income_form_details_section" = "Détails du revenu";
 
 // MARK: - Loans
 "loans_title" = "Prêts";

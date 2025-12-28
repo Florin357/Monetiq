@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Dashboard";
+"tab_income" = "Reddito";
 "tab_loans" = "Prestiti";
 "tab_calculator" = "Calcolatrice";
 "tab_settings" = "Impostazioni";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "Da Pagare - Dettagli";
 "dashboard_detail_empty_state" = "Nessun prestito attivo in questa categoria";
 "dashboard_detail_total" = "Totale";
+"dashboard_detail_from_loans" = "Dai Prestiti";
+"dashboard_detail_from_income" = "Reddito";
+"dashboard_income_unknown" = "Reddito Sconosciuto";
+"dashboard_income_badge" = "Reddito";
+"dashboard_mark_received" = "Segna Ricevuto";
+"dashboard_unknown_loan" = "Prestito Sconosciuto";
 "dashboard_upcoming_payments" = "Pagamenti Imminenti";
 "dashboard_no_payments" = "Nessun pagamento imminente";
 "dashboard_no_payments_subtitle" = "Tutti i tuoi pagamenti sono aggiornati";
+
+// MARK: - Income
+"income_title" = "Reddito";
+"income_subtitle" = "Gestisci il tuo reddito e i giorni di paga";
+"income_empty_title" = "Nessun reddito ancora";
+"income_empty_subtitle" = "Aggiungi il tuo primo reddito per vedere i prossimi giorni di paga";
+"income_add_title" = "Aggiungi Reddito";
+"income_edit_title" = "Modifica Reddito";
+"income_delete_title" = "Elimina Reddito";
+"income_delete_message" = "Sei sicuro di voler eliminare questo reddito? Questa azione non può essere annullata.";
+"income_next_payday" = "Prossimo: %@";
+"income_frequency_weekly" = "Settimanale";
+"income_frequency_monthly" = "Mensile";
+"income_frequency_quarterly" = "Trimestrale";
+"income_frequency_yearly" = "Annuale";
+"income_frequency_one_time" = "Una Volta";
+
+// MARK: - Income Form
+"income_form_title" = "Titolo";
+"income_form_title_placeholder" = "es. Stipendio, Freelance";
+"income_form_amount" = "Importo";
+"income_form_amount_placeholder" = "Inserisci l'importo";
+"income_form_currency" = "Valuta";
+"income_form_frequency" = "Frequenza";
+"income_form_start_date" = "Data di inizio";
+"income_form_end_date" = "Data di fine";
+"income_form_has_end_date" = "Ha data di fine";
+"income_form_counterparty" = "Fonte (Opzionale)";
+"income_form_counterparty_placeholder" = "es. Nome del datore di lavoro";
+"income_form_notes" = "Note";
+"income_form_notes_placeholder" = "Note opzionali";
+"income_form_details_section" = "Dettagli del reddito";
 
 // MARK: - Loans
 "loans_title" = "Prestiti";

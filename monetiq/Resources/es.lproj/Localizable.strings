@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Panel";
+"tab_income" = "Ingresos";
 "tab_loans" = "Préstamos";
 "tab_calculator" = "Calculadora";
 "tab_settings" = "Ajustes";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "Por Pagar - Desglose";
 "dashboard_detail_empty_state" = "No hay préstamos activos en esta categoría";
 "dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "De Préstamos";
+"dashboard_detail_from_income" = "Ingresos";
+"dashboard_income_unknown" = "Ingreso Desconocido";
+"dashboard_income_badge" = "Ingreso";
+"dashboard_mark_received" = "Marcar Recibido";
+"dashboard_unknown_loan" = "Préstamo Desconocido";
 "dashboard_upcoming_payments" = "Próximos Pagos";
 "dashboard_no_payments" = "No hay próximos pagos";
 "dashboard_no_payments_subtitle" = "Todos tus pagos están al día";
+
+// MARK: - Income
+"income_title" = "Ingresos";
+"income_subtitle" = "Gestiona tus ingresos y días de pago";
+"income_empty_title" = "Aún no hay ingresos";
+"income_empty_subtitle" = "Añade tu primer ingreso para ver los próximos días de pago";
+"income_add_title" = "Añadir Ingreso";
+"income_edit_title" = "Editar Ingreso";
+"income_delete_title" = "Eliminar Ingreso";
+"income_delete_message" = "¿Estás seguro de que quieres eliminar este ingreso? Esta acción no se puede deshacer.";
+"income_next_payday" = "Próximo: %@";
+"income_frequency_weekly" = "Semanal";
+"income_frequency_monthly" = "Mensual";
+"income_frequency_quarterly" = "Trimestral";
+"income_frequency_yearly" = "Anual";
+"income_frequency_one_time" = "Una Vez";
+
+// MARK: - Income Form
+"income_form_title" = "Título";
+"income_form_title_placeholder" = "ej. Salario, Freelance";
+"income_form_amount" = "Monto";
+"income_form_amount_placeholder" = "Ingresa el monto";
+"income_form_currency" = "Moneda";
+"income_form_frequency" = "Frecuencia";
+"income_form_start_date" = "Fecha de Inicio";
+"income_form_end_date" = "Fecha de Fin";
+"income_form_has_end_date" = "Tiene Fecha de Fin";
+"income_form_counterparty" = "Fuente (Opcional)";
+"income_form_counterparty_placeholder" = "ej. Nombre del empleador";
+"income_form_notes" = "Notas";
+"income_form_notes_placeholder" = "Notas opcionales";
+"income_form_details_section" = "Detalles del Ingreso";
 
 // MARK: - Loans
 "loans_title" = "Préstamos";

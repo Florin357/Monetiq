@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Übersicht";
+"tab_income" = "Einkommen";
 "tab_loans" = "Darlehen";
 "tab_calculator" = "Rechner";
 "tab_settings" = "Einstellungen";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "Zu zahlen - Aufschlüsselung";
 "dashboard_detail_empty_state" = "Keine aktiven Darlehen in dieser Kategorie";
 "dashboard_detail_total" = "Gesamt";
+"dashboard_detail_from_loans" = "Aus Darlehen";
+"dashboard_detail_from_income" = "Einkommen";
+"dashboard_income_unknown" = "Unbekanntes Einkommen";
+"dashboard_income_badge" = "Einkommen";
+"dashboard_mark_received" = "Als Erhalten Markieren";
+"dashboard_unknown_loan" = "Unbekanntes Darlehen";
 "dashboard_upcoming_payments" = "Anstehende Zahlungen";
 "dashboard_no_payments" = "Keine anstehenden Zahlungen";
 "dashboard_no_payments_subtitle" = "Alle Ihre Zahlungen sind aktuell";
+
+// MARK: - Income
+"income_title" = "Einkommen";
+"income_subtitle" = "Verwalten Sie Ihr Einkommen und Zahlungstage";
+"income_empty_title" = "Noch kein Einkommen";
+"income_empty_subtitle" = "Fügen Sie Ihr erstes Einkommen hinzu, um bevorstehende Zahlungstage zu sehen";
+"income_add_title" = "Einkommen hinzufügen";
+"income_edit_title" = "Einkommen bearbeiten";
+"income_delete_title" = "Einkommen löschen";
+"income_delete_message" = "Sind Sie sicher, dass Sie dieses Einkommen löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
+"income_next_payday" = "Nächste: %@";
+"income_frequency_weekly" = "Wöchentlich";
+"income_frequency_monthly" = "Monatlich";
+"income_frequency_quarterly" = "Vierteljährlich";
+"income_frequency_yearly" = "Jährlich";
+"income_frequency_one_time" = "Einmalig";
+
+// MARK: - Income Form
+"income_form_title" = "Titel";
+"income_form_title_placeholder" = "z.B. Gehalt, Freelance";
+"income_form_amount" = "Betrag";
+"income_form_amount_placeholder" = "Betrag eingeben";
+"income_form_currency" = "Währung";
+"income_form_frequency" = "Häufigkeit";
+"income_form_start_date" = "Startdatum";
+"income_form_end_date" = "Enddatum";
+"income_form_has_end_date" = "Hat Enddatum";
+"income_form_counterparty" = "Quelle (Optional)";
+"income_form_counterparty_placeholder" = "z.B. Arbeitgebername";
+"income_form_notes" = "Notizen";
+"income_form_notes_placeholder" = "Optionale Notizen";
+"income_form_details_section" = "Einkommensdetails";
 
 // MARK: - Loans
 "loans_title" = "Darlehen";

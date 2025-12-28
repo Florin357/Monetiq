@@ -18,6 +18,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Dashboard";
+"tab_income" = "Income";
 "tab_loans" = "Loans";
 "tab_calculator" = "Calculator";
 "tab_settings" = "Settings";
@@ -31,6 +32,12 @@
 "dashboard_to_pay_detail_title" = "To Pay - Breakdown";
 "dashboard_detail_empty_state" = "No active loans in this category";
 "dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "From Loans";
+"dashboard_detail_from_income" = "Income";
+"dashboard_income_unknown" = "Unknown Income";
+"dashboard_income_badge" = "Income";
+"dashboard_mark_received" = "Mark Received";
+"dashboard_unknown_loan" = "Unknown Loan";
 "dashboard_upcoming_payments" = "Upcoming Payments";
 "dashboard_no_payments" = "No upcoming payments";
 "dashboard_no_payments_subtitle" = "All your payments are up to date";
@@ -46,6 +53,38 @@
 "dashboard_cashflow_low_activity" = "Mostly stable over the next 30 days";
 "dashboard_recent_loans" = "Recent Loans";
 "dashboard_no_loans" = "No loans yet";
+
+// MARK: - Income
+"income_title" = "Income";
+"income_subtitle" = "Manage your income and paydays";
+"income_empty_title" = "No income yet";
+"income_empty_subtitle" = "Add your first income to see upcoming paydays";
+"income_add_title" = "Add Income";
+"income_edit_title" = "Edit Income";
+"income_delete_title" = "Delete Income";
+"income_delete_message" = "Are you sure you want to delete this income? This action cannot be undone.";
+"income_next_payday" = "Next: %@";
+"income_frequency_weekly" = "Weekly";
+"income_frequency_monthly" = "Monthly";
+"income_frequency_quarterly" = "Quarterly";
+"income_frequency_yearly" = "Yearly";
+"income_frequency_one_time" = "One Time";
+
+// MARK: - Income Form
+"income_form_title" = "Title";
+"income_form_title_placeholder" = "e.g. Salary, Freelance";
+"income_form_amount" = "Amount";
+"income_form_amount_placeholder" = "Enter amount";
+"income_form_currency" = "Currency";
+"income_form_frequency" = "Frequency";
+"income_form_start_date" = "Start Date";
+"income_form_end_date" = "End Date";
+"income_form_has_end_date" = "Has End Date";
+"income_form_counterparty" = "Source (Optional)";
+"income_form_counterparty_placeholder" = "e.g. Employer name";
+"income_form_notes" = "Notes";
+"income_form_notes_placeholder" = "Optional notes";
+"income_form_details_section" = "Income Details";
 
 // MARK: - Loans
 "loans_title" = "Loans";

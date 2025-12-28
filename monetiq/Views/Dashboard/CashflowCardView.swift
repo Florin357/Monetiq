@@ -11,10 +11,12 @@ import Charts
 
 struct CashflowCardView: View {
     let loans: [Loan]
+    let incomePayments: [IncomePayment]
     let windowDays: Int
     
-    init(loans: [Loan], windowDays: Int = 30) {
+    init(loans: [Loan], incomePayments: [IncomePayment] = [], windowDays: Int = 30) {
         self.loans = loans
+        self.incomePayments = incomePayments
         self.windowDays = windowDays
     }
     
@@ -213,12 +215,18 @@ struct CashflowCardView: View {
         let today = Calendar.current.startOfDay(for: Date())
         let endDate = Calendar.current.date(byAdding: .day, value: windowDays, to: today)!
         
-        let allPayments = loans.flatMap { $0.payments }
+        let loanPayments = loans.flatMap { $0.payments }
             .filter { $0.status == .planned }
             .filter { $0.dueDate >= today && $0.dueDate <= endDate }
         
+        let plannedIncomePayments = incomePayments
+            .filter { $0.status == .planned }
+            .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+        
+        let totalPayments = loanPayments.count + plannedIncomePayments.count
+        
         // Show hint if there are 1-3 payments total (very low activity)
-        return allPayments.count > 0 && allPayments.count <= 3
+        return totalPayments > 0 && totalPayments <= 3
     }
     
     // MARK: - Visual Theme
@@ -236,15 +244,22 @@ struct CashflowCardView: View {
     // MARK: - Data Helpers
     
     /// Calculate net cashflow by currency (receive - pay)
+    /// Receive = Loan inflows + Income inflows
     private func calculateNetByCurrency() -> [String: Double] {
-        let receive = calculateTotalsForRole(.lent)
+        let loanReceive = calculateTotalsForRole(.lent)
+        let incomeReceive = calculateIncomeScheduledPayments()
         let pay = calculateTotalsForRoles([.borrowed, .bankCredit])
         
         var net: [String: Double] = [:]
         
-        // Add all receive currencies
-        for (currency, amount) in receive {
+        // Add all loan receive currencies
+        for (currency, amount) in loanReceive {
             net[currency] = amount
+        }
+        
+        // Add all income receive currencies
+        for (currency, amount) in incomeReceive {
+            net[currency, default: 0] += amount
         }
         
         // Subtract all pay currencies
@@ -257,27 +272,35 @@ struct CashflowCardView: View {
     }
     
     /// Build cumulative chart data for receive and pay lines
+    /// Receive = Loan inflows + Income inflows
     private func buildChartData() -> (receiveData: [CashflowDataPoint], payData: [CashflowDataPoint]) {
         let today = Calendar.current.startOfDay(for: Date())
         let endDate = Calendar.current.date(byAdding: .day, value: windowDays, to: today)!
         
-        // Get all planned payments in the window
-        let allPayments = loans.flatMap { $0.payments }
+        // Get all planned loan payments in the window
+        let allLoanPayments = loans.flatMap { $0.payments }
             .filter { $0.status == .planned }
             .filter { $0.dueDate >= today && $0.dueDate <= endDate }
         
-        // Separate by role
-        let receivePayments = allPayments.filter { payment in
+        // Get all planned income payments in the window
+        let allIncomePayments = incomePayments
+            .filter { $0.status == .planned }
+            .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+        
+        // Separate loan payments by role
+        let loanReceivePayments = allLoanPayments.filter { payment in
             payment.loan?.role == .lent
         }
         
-        let payPayments = allPayments.filter { payment in
+        let payPayments = allLoanPayments.filter { payment in
             payment.loan?.role == .borrowed || payment.loan?.role == .bankCredit
         }
         
         // Build cumulative series
-        let receiveData = buildCumulativeSeries(
-            payments: receivePayments,
+        // Receive = Loan receive + Income
+        let receiveData = buildCumulativeSeriesWithIncome(
+            loanPayments: loanReceivePayments,
+            incomePayments: allIncomePayments,
             startDate: today,
             windowDays: windowDays
         )
@@ -303,6 +326,88 @@ struct CashflowCardView: View {
         var dailyTotals: [Int: Double] = [:]
         
         for payment in payments {
+            let dayOffset = Calendar.current.dateComponents([.day], from: startDate, to: payment.dueDate).day ?? 0
+            if dayOffset >= 0 && dayOffset <= windowDays {
+                dailyTotals[dayOffset, default: 0] += payment.amount
+            }
+        }
+        
+        // Build cumulative series with smooth transitions
+        var cumulative: Double = 0
+        var dataPoints: [CashflowDataPoint] = []
+        
+        // Always start at day 0 with 0 (anchored to "Today")
+        dataPoints.append(CashflowDataPoint(day: 0, cumulativeAmount: 0))
+        
+        // Track previous cumulative for spike detection
+        var previousCumulative: Double = 0
+        
+        // Add strategic points to create smooth, readable lines
+        for day in 1...windowDays {
+            if let dayTotal = dailyTotals[day] {
+                cumulative += dayTotal
+            }
+            
+            // Detect if this is a "spike day" (large jump)
+            let jump = cumulative - previousCumulative
+            let isLargeJump = jump > (cumulative * 0.2) && jump > 100 // 20% jump or >100 units
+            
+            // Add points strategically:
+            // 1. When there's a payment (to show actual changes)
+            // 2. Before a large jump (to smooth the curve visually)
+            // 3. At regular intervals (every 2 days) for smooth interpolation
+            // 4. At key markers (15, 30)
+            let isPaymentDay = dailyTotals[day] != nil
+            let isRegularInterval = day % 2 == 0
+            let isKeyMarker = day == 15 || day == 30
+            let needsSmoothingPoint = isLargeJump && day > 1
+            
+            // Add a point before large jump for smoother visual transition
+            if needsSmoothingPoint && dataPoints.last?.day != day - 1 {
+                dataPoints.append(CashflowDataPoint(day: day - 1, cumulativeAmount: previousCumulative))
+            }
+            
+            if isPaymentDay || isRegularInterval || isKeyMarker {
+                dataPoints.append(CashflowDataPoint(day: day, cumulativeAmount: cumulative))
+            }
+            
+            previousCumulative = cumulative
+        }
+        
+        // Ensure we always end at day 30
+        if dataPoints.last?.day != windowDays {
+            dataPoints.append(CashflowDataPoint(day: windowDays, cumulativeAmount: cumulative))
+        }
+        
+        // Ensure we have at least 2 points for a visible line
+        if dataPoints.count == 1 {
+            dataPoints.append(CashflowDataPoint(day: windowDays, cumulativeAmount: cumulative))
+        }
+        
+        return dataPoints
+    }
+    
+    /// Build a cumulative series combining loan and income payments
+    /// Used for the "To Receive" line which includes both sources
+    private func buildCumulativeSeriesWithIncome(
+        loanPayments: [Payment],
+        incomePayments: [IncomePayment],
+        startDate: Date,
+        windowDays: Int
+    ) -> [CashflowDataPoint] {
+        // Group payments by day and sum amounts
+        var dailyTotals: [Int: Double] = [:]
+        
+        // Add loan payments
+        for payment in loanPayments {
+            let dayOffset = Calendar.current.dateComponents([.day], from: startDate, to: payment.dueDate).day ?? 0
+            if dayOffset >= 0 && dayOffset <= windowDays {
+                dailyTotals[dayOffset, default: 0] += payment.amount
+            }
+        }
+        
+        // Add income payments
+        for payment in incomePayments {
             let dayOffset = Calendar.current.dateComponents([.day], from: startDate, to: payment.dueDate).day ?? 0
             if dayOffset >= 0 && dayOffset <= windowDays {
                 dailyTotals[dayOffset, default: 0] += payment.amount
@@ -391,6 +496,24 @@ struct CashflowCardView: View {
             for payment in plannedPayments {
                 totals[loan.currencyCode, default: 0] += payment.amount
             }
+        }
+        
+        return totals
+    }
+    
+    /// Calculate scheduled income payment totals by currency for the next 30 days
+    private func calculateIncomeScheduledPayments() -> [String: Double] {
+        let today = Calendar.current.startOfDay(for: Date())
+        let endDate = Calendar.current.date(byAdding: .day, value: windowDays, to: today)!
+        
+        var totals: [String: Double] = [:]
+        
+        let plannedIncomePayments = incomePayments
+            .filter { $0.status == .planned }
+            .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+        
+        for payment in plannedIncomePayments {
+            totals[payment.currencyCode, default: 0] += payment.amount
         }
         
         return totals

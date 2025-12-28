@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Панель";
+"tab_income" = "Доходы";
 "tab_loans" = "Займы";
 "tab_calculator" = "Калькулятор";
 "tab_settings" = "Настройки";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "К оплате - Подробности";
 "dashboard_detail_empty_state" = "Нет активных займов в этой категории";
 "dashboard_detail_total" = "Всего";
+"dashboard_detail_from_loans" = "Из Займов";
+"dashboard_detail_from_income" = "Доходы";
+"dashboard_income_unknown" = "Неизвестный Доход";
+"dashboard_income_badge" = "Доход";
+"dashboard_mark_received" = "Отметить Получено";
+"dashboard_unknown_loan" = "Неизвестный Займ";
 "dashboard_upcoming_payments" = "Предстоящие платежи";
 "dashboard_no_payments" = "Нет предстоящих платежей";
 "dashboard_no_payments_subtitle" = "Все ваши платежи актуальны";
+
+// MARK: - Income
+"income_title" = "Доходы";
+"income_subtitle" = "Управляйте своими доходами и днями выплат";
+"income_empty_title" = "Пока нет доходов";
+"income_empty_subtitle" = "Добавьте свой первый доход, чтобы видеть предстоящие дни выплат";
+"income_add_title" = "Добавить доход";
+"income_edit_title" = "Редактировать доход";
+"income_delete_title" = "Удалить доход";
+"income_delete_message" = "Вы уверены, что хотите удалить этот доход? Это действие нельзя отменить.";
+"income_next_payday" = "Следующий: %@";
+"income_frequency_weekly" = "Еженедельно";
+"income_frequency_monthly" = "Ежемесячно";
+"income_frequency_quarterly" = "Ежеквартально";
+"income_frequency_yearly" = "Ежегодно";
+"income_frequency_one_time" = "Один Раз";
+
+// MARK: - Income Form
+"income_form_title" = "Название";
+"income_form_title_placeholder" = "напр. Зарплата, Фриланс";
+"income_form_amount" = "Сумма";
+"income_form_amount_placeholder" = "Введите сумму";
+"income_form_currency" = "Валюта";
+"income_form_frequency" = "Частота";
+"income_form_start_date" = "Дата начала";
+"income_form_end_date" = "Дата окончания";
+"income_form_has_end_date" = "Имеет дату окончания";
+"income_form_counterparty" = "Источник (Необязательно)";
+"income_form_counterparty_placeholder" = "напр. Название работодателя";
+"income_form_notes" = "Заметки";
+"income_form_notes_placeholder" = "Необязательные заметки";
+"income_form_details_section" = "Детали дохода";
 
 // MARK: - Loans
 "loans_title" = "Займы";

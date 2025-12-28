@@ -329,10 +329,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-			GCC_WARN_UNUSED_FUNCTION = YES;
-			GCC_WARN_UNUSED_VARIABLE = YES;
-			IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-			LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -389,10 +389,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-			GCC_WARN_UNUSED_FUNCTION = YES;
-			GCC_WARN_UNUSED_VARIABLE = YES;
-			IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-			LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -408,34 +408,34 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-			CURRENT_PROJECT_VERSION = 4;
-			DEVELOPMENT_TEAM = 8N74NY869P;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 8N74NY869P;
 				ENABLE_PREVIEWS = YES;
-			GENERATE_INFOPLIST_FILE = YES;
-			INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
-			INFOPLIST_KEY_NSFaceIDUsageDescription = "Monetiq uses Face ID to securely unlock the app and protect your financial data.";
-			INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-			INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-			INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-			INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-		INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-		IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-		LD_RUNPATH_SEARCH_PATHS = (
-				"$(inherited)",
-				"@executable_path/Frameworks",
-			);
-			MARKETING_VERSION = 1.0;
-			PRODUCT_BUNDLE_IDENTIFIER = eu.ityes.monetiq.monetiq;
-			PRODUCT_NAME = "$(TARGET_NAME)";
-			STRING_CATALOG_GENERATE_SYMBOLS = YES;
-			SWIFT_APPROACHABLE_CONCURRENCY = YES;
-			SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-			SWIFT_EMIT_LOC_STRINGS = YES;
-			SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-			SWIFT_VERSION = 5.0;
-			TARGETED_DEVICE_FAMILY = "1,2";
-		};
-		name = Debug;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Monetiq uses Face ID to securely unlock the app and protect your financial data.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.ityes.monetiq.monetiq;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 		2A094A742EE5B69700ABEB67 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -443,34 +443,34 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-			CURRENT_PROJECT_VERSION = 4;
-			DEVELOPMENT_TEAM = 8N74NY869P;
-			ENABLE_PREVIEWS = YES;
-			GENERATE_INFOPLIST_FILE = YES;
-			INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
-			INFOPLIST_KEY_NSFaceIDUsageDescription = "Monetiq uses Face ID to securely unlock the app and protect your financial data.";
-			INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-			INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-			INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-			INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-		INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-		IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-		LD_RUNPATH_SEARCH_PATHS = (
-				"$(inherited)",
-				"@executable_path/Frameworks",
-			);
-			MARKETING_VERSION = 1.0;
-			PRODUCT_BUNDLE_IDENTIFIER = eu.ityes.monetiq.monetiq;
-			PRODUCT_NAME = "$(TARGET_NAME)";
-			STRING_CATALOG_GENERATE_SYMBOLS = YES;
-			SWIFT_APPROACHABLE_CONCURRENCY = YES;
-			SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-			SWIFT_EMIT_LOC_STRINGS = YES;
-			SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-			SWIFT_VERSION = 5.0;
-			TARGETED_DEVICE_FAMILY = "1,2";
-		};
-		name = Release;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 8N74NY869P;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Monetiq uses Face ID to securely unlock the app and protect your financial data.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = eu.ityes.monetiq.monetiq;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
 		};
 		2A094A762EE5B69700ABEB67 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -478,10 +478,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-			DEVELOPMENT_TEAM = HKSRBG8X5H;
-			GENERATE_INFOPLIST_FILE = YES;
-			IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-			MARKETING_VERSION = 1.0;
+				DEVELOPMENT_TEAM = HKSRBG8X5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.ityes.monetiq.monetiqTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
@@ -500,10 +500,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-			DEVELOPMENT_TEAM = HKSRBG8X5H;
-			GENERATE_INFOPLIST_FILE = YES;
-			IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-			MARKETING_VERSION = 1.0;
+				DEVELOPMENT_TEAM = HKSRBG8X5H;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = eu.ityes.monetiq.monetiqTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;

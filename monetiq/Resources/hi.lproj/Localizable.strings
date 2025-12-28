@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "डैशबोर्ड";
+"tab_income" = "आय";
 "tab_loans" = "लोन";
 "tab_calculator" = "कैलकुलेटर";
 "tab_settings" = "सेटिंग्स";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "भुगतान करना है - विवरण";
 "dashboard_detail_empty_state" = "इस श्रेणी में कोई सक्रिय ऋण नहीं";
 "dashboard_detail_total" = "कुल";
+"dashboard_detail_from_loans" = "ऋणों से";
+"dashboard_detail_from_income" = "आय";
+"dashboard_income_unknown" = "अज्ञात आय";
+"dashboard_income_badge" = "आय";
+"dashboard_mark_received" = "प्राप्त के रूप में चिह्नित करें";
+"dashboard_unknown_loan" = "अज्ञात ऋण";
 "dashboard_upcoming_payments" = "आगामी भुगतान";
 "dashboard_no_payments" = "कोई आगामी भुगतान नहीं";
 "dashboard_no_payments_subtitle" = "आपके सभी भुगतान अप टू डेट हैं";
+
+// MARK: - Income
+"income_title" = "आय";
+"income_subtitle" = "अपनी आय और वेतन दिवस का प्रबंधन करें";
+"income_empty_title" = "अभी तक कोई आय नहीं";
+"income_empty_subtitle" = "आगामी वेतन दिवस देखने के लिए अपनी पहली आय जोड़ें";
+"income_add_title" = "आय जोड़ें";
+"income_edit_title" = "आय एडिट करें";
+"income_delete_title" = "आय डिलीट करें";
+"income_delete_message" = "क्या आप वाकई इस आय को डिलीट करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।";
+"income_next_payday" = "अगला: %@";
+"income_frequency_weekly" = "साप्ताहिक";
+"income_frequency_monthly" = "मासिक";
+"income_frequency_quarterly" = "त्रैमासिक";
+"income_frequency_yearly" = "वार्षिक";
+"income_frequency_one_time" = "एक बार";
+
+// MARK: - Income Form
+"income_form_title" = "शीर्षक";
+"income_form_title_placeholder" = "उदा. वेतन, फ्रीलांस";
+"income_form_amount" = "राशि";
+"income_form_amount_placeholder" = "राशि दर्ज करें";
+"income_form_currency" = "मुद्रा";
+"income_form_frequency" = "आवृत्ति";
+"income_form_start_date" = "प्रारंभ तिथि";
+"income_form_end_date" = "समाप्ति तिथि";
+"income_form_has_end_date" = "समाप्ति तिथि है";
+"income_form_counterparty" = "स्रोत (वैकल्पिक)";
+"income_form_counterparty_placeholder" = "उदा. नियोक्ता का नाम";
+"income_form_notes" = "नोट्स";
+"income_form_notes_placeholder" = "वैकल्पिक नोट्स";
+"income_form_details_section" = "आय विवरण";
 
 // MARK: - Loans
 "loans_title" = "लोन";

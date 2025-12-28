@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "仪表板";
+"tab_income" = "收入";
 "tab_loans" = "贷款";
 "tab_calculator" = "计算器";
 "tab_settings" = "设置";
@@ -32,9 +33,47 @@
 "dashboard_to_pay_detail_title" = "应付 - 明细";
 "dashboard_detail_empty_state" = "此类别中没有活动贷款";
 "dashboard_detail_total" = "总计";
+"dashboard_detail_from_loans" = "来自贷款";
+"dashboard_detail_from_income" = "收入";
+"dashboard_income_unknown" = "未知收入";
+"dashboard_income_badge" = "收入";
+"dashboard_mark_received" = "标记为已收到";
+"dashboard_unknown_loan" = "未知贷款";
 "dashboard_upcoming_payments" = "即将到期的付款";
 "dashboard_no_payments" = "没有即将到期的付款";
 "dashboard_no_payments_subtitle" = "您的所有付款都是最新的";
+
+// MARK: - Income
+"income_title" = "收入";
+"income_subtitle" = "管理您的收入和发薪日";
+"income_empty_title" = "暂无收入";
+"income_empty_subtitle" = "添加您的第一笔收入以查看即将到来的发薪日";
+"income_add_title" = "添加收入";
+"income_edit_title" = "编辑收入";
+"income_delete_title" = "删除收入";
+"income_delete_message" = "您确定要删除这笔收入吗？此操作无法撤销。";
+"income_next_payday" = "下次：%@";
+"income_frequency_weekly" = "每周";
+"income_frequency_monthly" = "每月";
+"income_frequency_quarterly" = "每季度";
+"income_frequency_yearly" = "每年";
+"income_frequency_one_time" = "一次性";
+
+// MARK: - Income Form
+"income_form_title" = "标题";
+"income_form_title_placeholder" = "例如 工资、自由职业";
+"income_form_amount" = "金额";
+"income_form_amount_placeholder" = "输入金额";
+"income_form_currency" = "货币";
+"income_form_frequency" = "频率";
+"income_form_start_date" = "开始日期";
+"income_form_end_date" = "结束日期";
+"income_form_has_end_date" = "有结束日期";
+"income_form_counterparty" = "来源（可选）";
+"income_form_counterparty_placeholder" = "例如 雇主名称";
+"income_form_notes" = "备注";
+"income_form_notes_placeholder" = "可选备注";
+"income_form_details_section" = "收入详情";
 
 // MARK: - Loans
 "loans_title" = "贷款";

@@ -18,6 +18,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Panou";
+"tab_income" = "Venituri";
 "tab_loans" = "Împrumuturi";
 "tab_calculator" = "Calculator";
 "tab_settings" = "Setări";
@@ -31,9 +32,47 @@
 "dashboard_to_pay_detail_title" = "De Plătit - Detalii";
 "dashboard_detail_empty_state" = "Niciun împrumut activ în această categorie";
 "dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "Din Împrumuturi";
+"dashboard_detail_from_income" = "Venituri";
+"dashboard_income_unknown" = "Venit Necunoscut";
+"dashboard_income_badge" = "Venit";
+"dashboard_mark_received" = "Marchează Primit";
+"dashboard_unknown_loan" = "Împrumut Necunoscut";
 "dashboard_upcoming_payments" = "Plăți Viitoare";
 "dashboard_no_payments" = "Nicio plată viitoare";
 "dashboard_no_payments_subtitle" = "Toate plățile sunt la zi";
+
+// MARK: - Income
+"income_title" = "Venituri";
+"income_subtitle" = "Gestionează veniturile și zilele de plată";
+"income_empty_title" = "Încă nu ai venituri";
+"income_empty_subtitle" = "Adaugă primul tău venit pentru a vedea zilele de plată viitoare";
+"income_add_title" = "Adaugă Venit";
+"income_edit_title" = "Editează Venit";
+"income_delete_title" = "Șterge Venit";
+"income_delete_message" = "Ești sigur că vrei să ștergi acest venit? Această acțiune nu poate fi anulată.";
+"income_next_payday" = "Următoarea: %@";
+"income_frequency_weekly" = "Săptămânal";
+"income_frequency_monthly" = "Lunar";
+"income_frequency_quarterly" = "Trimestrial";
+"income_frequency_yearly" = "Anual";
+"income_frequency_one_time" = "O Singură Dată";
+
+// MARK: - Income Form
+"income_form_title" = "Titlu";
+"income_form_title_placeholder" = "ex. Salariu, Freelance";
+"income_form_amount" = "Sumă";
+"income_form_amount_placeholder" = "Introdu suma";
+"income_form_currency" = "Monedă";
+"income_form_frequency" = "Frecvență";
+"income_form_start_date" = "Data de Început";
+"income_form_end_date" = "Data de Sfârșit";
+"income_form_has_end_date" = "Are Dată de Sfârșit";
+"income_form_counterparty" = "Sursă (Opțional)";
+"income_form_counterparty_placeholder" = "ex. Numele angajatorului";
+"income_form_notes" = "Notițe";
+"income_form_notes_placeholder" = "Notițe opționale";
+"income_form_details_section" = "Detalii Venit";
 
 // MARK: - Loans
 "loans_title" = "Împrumuturi";
