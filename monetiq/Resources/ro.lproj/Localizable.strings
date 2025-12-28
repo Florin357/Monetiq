@@ -73,6 +73,10 @@
 "income_form_notes" = "Notițe";
 "income_form_notes_placeholder" = "Notițe opționale";
 "income_form_details_section" = "Detalii Venit";
+"income_section_active" = "Active";
+"income_section_completed" = "Finalizate";
+"income_status_done" = "Finalizat";
+"income_ended_date" = "Încheiat: %@";
 
 // MARK: - Loans
 "loans_title" = "Împrumuturi";

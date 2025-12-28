@@ -74,6 +74,10 @@
 "income_form_notes" = "Заметки";
 "income_form_notes_placeholder" = "Необязательные заметки";
 "income_form_details_section" = "Детали дохода";
+"income_section_active" = "Активные";
+"income_section_completed" = "Завершённые";
+"income_status_done" = "Завершён";
+"income_ended_date" = "Завершён: %@";
 
 // MARK: - Loans
 "loans_title" = "Займы";

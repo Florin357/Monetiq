@@ -59,6 +59,18 @@ final class IncomeSource {
         return endDate >= Date() ? .active : .ended
     }
     
+    /// Check if income is completed (ended)
+    /// Uses timezone-safe date comparison
+    var isCompleted: Bool {
+        guard let endDate = endDate else { return false }
+        
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let endDay = calendar.startOfDay(for: endDate)
+        
+        return endDay < today
+    }
+    
     /// Total amount received from this income source
     var totalReceived: Double {
         payments.filter { $0.status == .received }.reduce(0) { $0 + $1.amount }

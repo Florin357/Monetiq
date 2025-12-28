@@ -74,6 +74,10 @@
 "income_form_notes" = "नोट्स";
 "income_form_notes_placeholder" = "वैकल्पिक नोट्स";
 "income_form_details_section" = "आय विवरण";
+"income_section_active" = "सक्रिय";
+"income_section_completed" = "पूर्ण";
+"income_status_done" = "पूर्ण";
+"income_ended_date" = "समाप्त: %@";
 
 // MARK: - Loans
 "loans_title" = "लोन";

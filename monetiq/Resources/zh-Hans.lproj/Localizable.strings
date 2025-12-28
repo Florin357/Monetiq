@@ -74,6 +74,10 @@
 "income_form_notes" = "备注";
 "income_form_notes_placeholder" = "可选备注";
 "income_form_details_section" = "收入详情";
+"income_section_active" = "活跃";
+"income_section_completed" = "已完成";
+"income_status_done" = "完成";
+"income_ended_date" = "结束：%@";
 
 // MARK: - Loans
 "loans_title" = "贷款";

@@ -11,6 +11,10 @@ import SwiftData
 struct IncomeRowView: View {
     let income: IncomeSource
     
+    private var accentColor: Color {
+        income.isCompleted ? Color.purple : MonetiqTheme.Colors.success
+    }
+    
     private var frequencyLabel: String {
         switch income.frequency {
         case .weekly:
@@ -29,9 +33,9 @@ struct IncomeRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
             HStack(alignment: .top, spacing: MonetiqTheme.Spacing.md) {
-                // Leading accent indicator (green for income)
+                // Leading accent indicator (purple for completed, green for active)
                 RoundedRectangle(cornerRadius: 3)
-                    .fill(MonetiqTheme.Colors.success)
+                    .fill(accentColor)
                     .frame(width: 5, height: 50)
                 
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
@@ -41,17 +45,33 @@ struct IncomeRowView: View {
                         .foregroundColor(MonetiqTheme.Colors.textPrimary)
                         .lineLimit(2)
                     
-                    // Frequency badge - Premium styling
-                    Text(frequencyLabel)
-                        .font(MonetiqTheme.Typography.caption)
-                        .foregroundColor(MonetiqTheme.Colors.success)
-                        .fontWeight(.medium)
-                        .padding(.horizontal, MonetiqTheme.Spacing.md)
-                        .padding(.vertical, MonetiqTheme.Spacing.xs)
-                        .background(
-                            Capsule()
-                                .fill(MonetiqTheme.Colors.success.opacity(0.15))
-                        )
+                    HStack(spacing: MonetiqTheme.Spacing.sm) {
+                        // Status badge for completed income
+                        if income.isCompleted {
+                            Text(L10n.string("income_status_done"))
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(.purple)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                .background(
+                                    Capsule()
+                                        .fill(Color.purple.opacity(0.15))
+                                )
+                        } else {
+                            // Frequency badge - Premium styling
+                            Text(frequencyLabel)
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(accentColor)
+                                .fontWeight(.medium)
+                                .padding(.horizontal, MonetiqTheme.Spacing.md)
+                                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                                .background(
+                                    Capsule()
+                                        .fill(accentColor.opacity(0.15))
+                                )
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -63,7 +83,14 @@ struct IncomeRowView: View {
                         .foregroundColor(MonetiqTheme.Colors.textPrimary)
                         .fontWeight(.bold)
                     
-                    if let nextPayday = income.nextPaymentDate {
+                    if income.isCompleted {
+                        if let endDate = income.endDate {
+                            Text(L10n.string("income_ended_date", endDate.formatted(date: .abbreviated, time: .omitted)))
+                                .font(MonetiqTheme.Typography.caption2)
+                                .foregroundColor(.purple.opacity(0.8))
+                                .opacity(0.9)
+                        }
+                    } else if let nextPayday = income.nextPaymentDate {
                         Text(L10n.string("income_next_payday", nextPayday.formatted(date: .abbreviated, time: .omitted)))
                             .font(MonetiqTheme.Typography.caption2)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)

@@ -74,6 +74,10 @@
 "income_form_notes" = "Notas";
 "income_form_notes_placeholder" = "Notas opcionales";
 "income_form_details_section" = "Detalles del Ingreso";
+"income_section_active" = "Activos";
+"income_section_completed" = "Completados";
+"income_status_done" = "Completado";
+"income_ended_date" = "Finalizado: %@";
 
 // MARK: - Loans
 "loans_title" = "Préstamos";
