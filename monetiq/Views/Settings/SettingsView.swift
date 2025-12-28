@@ -651,32 +651,62 @@ struct CurrencyPickerRow: View {
     @Binding var selection: String
     let currencies: [Currency]
     
+    private var selectedCurrency: Currency? {
+        currencies.first { $0.code == selection }
+    }
+    
     var body: some View {
-        HStack {
+        HStack(spacing: MonetiqTheme.Spacing.md) {
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(title)
-                    .font(MonetiqTheme.Typography.body)
-                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    .font(MonetiqTheme.Typography.bodyEmphasized)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
                 
                 Text(subtitle)
-                    .font(MonetiqTheme.Typography.caption)
+                    .font(MonetiqTheme.Typography.footnote)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
-            Spacer()
+            Spacer(minLength: MonetiqTheme.Spacing.sm)
             
-            Picker(title, selection: $selection) {
+            // Value display + Picker
+            Menu {
                 ForEach(currencies, id: \.code) { currency in
-                    Text("\(currency.flag)  \(currency.symbol)  \(currency.code) – \(currency.name)")
-                        .tag(currency.code)
+                    Button(action: {
+                        selection = currency.code
+                    }) {
+                        HStack {
+                            Text("\(currency.flag)  \(currency.symbol)  \(currency.code) – \(currency.name)")
+                            if currency.code == selection {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
                 }
+            } label: {
+                HStack(spacing: 4) {
+                    if let currency = selectedCurrency {
+                        Text("\(currency.flag) \(currency.symbol) \(currency.code)")
+                            .font(MonetiqTheme.Typography.body)
+                            .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                            .lineLimit(1)
+                    }
+                    
+                    Image(systemName: "chevron.up.chevron.down")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                }
+                .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                .background(
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(MonetiqTheme.Colors.surface.opacity(0.5))
+                )
             }
-            .pickerStyle(MenuPickerStyle())
-            .tint(MonetiqTheme.Colors.textSecondary)
         }
-        .padding(MonetiqTheme.Spacing.md)
-        .background(MonetiqTheme.Colors.surface)
-        .cornerRadius(MonetiqTheme.CornerRadius.md)
+        .padding(MonetiqTheme.Spacing.cardPadding)
+        .background(Color.clear)
     }
 }
 
@@ -686,32 +716,68 @@ struct LanguagePickerRow: View {
     @Binding var selection: String
     let languages: [Language]
     
+    private var selectedLanguage: Language? {
+        languages.first { $0.code == selection }
+    }
+    
+    private var displayValue: String {
+        if let language = selectedLanguage {
+            return "\(language.flag) \(language.displayName)"
+        }
+        return "🌐 System Default"
+    }
+    
     var body: some View {
-        HStack {
+        HStack(spacing: MonetiqTheme.Spacing.md) {
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
                 Text(title)
-                    .font(MonetiqTheme.Typography.body)
-                    .foregroundColor(MonetiqTheme.Colors.onSurface)
+                    .font(MonetiqTheme.Typography.bodyEmphasized)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
                 
                 Text(subtitle)
-                    .font(MonetiqTheme.Typography.caption)
+                    .font(MonetiqTheme.Typography.footnote)
                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             
-            Spacer()
+            Spacer(minLength: MonetiqTheme.Spacing.sm)
             
-            Picker(title, selection: $selection) {
+            // Value display + Picker
+            Menu {
                 ForEach(languages, id: \.code) { language in
-                    Text("\(language.flag)  \(language.displayName)")
-                        .tag(language.code)
+                    Button(action: {
+                        selection = language.code
+                    }) {
+                        HStack {
+                            Text("\(language.flag)  \(language.displayName)")
+                            if language.code == selection {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
                 }
+            } label: {
+                HStack(spacing: 4) {
+                    Text(displayValue)
+                        .font(MonetiqTheme.Typography.body)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                    
+                    Image(systemName: "chevron.up.chevron.down")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                }
+                .padding(.horizontal, MonetiqTheme.Spacing.sm)
+                .padding(.vertical, MonetiqTheme.Spacing.xs)
+                .background(
+                    RoundedRectangle(cornerRadius: 6)
+                        .fill(MonetiqTheme.Colors.surface.opacity(0.5))
+                )
             }
-            .pickerStyle(MenuPickerStyle())
-            .tint(MonetiqTheme.Colors.textSecondary)
         }
-        .padding(MonetiqTheme.Spacing.md)
-        .background(MonetiqTheme.Colors.surface)
-        .cornerRadius(MonetiqTheme.CornerRadius.md)
+        .padding(MonetiqTheme.Spacing.cardPadding)
+        .background(Color.clear)
     }
 }
 
