@@ -769,12 +769,17 @@ struct DashboardTotalsDetailView: View {
         totals.sorted { $0.value > $1.value }
     }
     
+    private var isEmpty: Bool {
+        // Empty only if BOTH loans and income are empty
+        filteredLoans.isEmpty && filteredIncomePayments.isEmpty
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: MonetiqTheme.Spacing.lg) {
-                    if filteredLoans.isEmpty {
-                        // Empty state
+                    if isEmpty {
+                        // Empty state - shown only when both loans and income are empty
                         VStack(spacing: MonetiqTheme.Spacing.lg) {
                             Spacer()
                                 .frame(height: 60)
