@@ -234,7 +234,6 @@
 "biometric_error_unknown" = "Si è verificato un errore sconosciuto";
 "biometric_unavailable_title" = "Biometria Non Disponibile";
 "biometric_unavailable_message" = "L'autenticazione biometrica non è disponibile su questo dispositivo";
-"general_ok" = "OK";
 
 "settings_view_notifications" = "Visualizza Notifiche in Sospeso";
 "settings_view_notifications_subtitle" = "Controlla le notifiche programmate";
@@ -290,10 +289,6 @@
 "dashboard_cashflow_more_currencies" = "+%d altre";
 "dashboard_cashflow_low_activity" = "Prevalentemente stabile nei prossimi 30 giorni";
 "dashboard_recent_loans" = "Prestiti recenti";
-"loan_detail_delete_confirm" = "Sei sicuro di voler eliminare '%@'? Questa azione non può essere annullata.";
-"loan_detail_details" = "Dettagli";
-"loan_detail_no_schedule" = "Nessun piano di pagamento disponibile";
-"loan_detail_notes" = "Note";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Aggiungi Prestito";
@@ -353,14 +348,10 @@
 "status_paid_on" = "Pagato il %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Data di Inizio";
 "loan_detail_payment_frequency" = "Frequenza di Pagamento";
 "loan_detail_number_of_payments" = "Numero di Pagamenti";
 "loan_detail_interest_mode" = "Modalità di Interesse";
 "loan_detail_annual_interest_rate" = "Tasso di Interesse Annuale";
-"loan_detail_total_to_repay" = "Totale da Rimborsare";
-"loan_detail_total_paid" = "Totale Pagato";
-"loan_detail_remaining" = "Rimanente";
 "loan_detail_next_due_date" = "Prossima Scadenza";
 "loan_detail_created" = "Creato";
 "loan_detail_last_updated" = "Ultimo Aggiornamento";

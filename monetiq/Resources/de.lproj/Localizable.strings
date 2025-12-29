@@ -253,10 +253,6 @@
 "dashboard_cashflow_more_currencies" = "+%d weitere";
 "dashboard_cashflow_low_activity" = "Weitgehend stabil in den nächsten 30 Tagen";
 "dashboard_recent_loans" = "Aktuelle Darlehen";
-"loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
-"loan_detail_details" = "Details";
-"loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
-"loan_detail_notes" = "Notizen";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Darlehen hinzufügen";

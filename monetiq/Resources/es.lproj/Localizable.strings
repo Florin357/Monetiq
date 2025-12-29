@@ -270,10 +270,6 @@
 "dashboard_cashflow_more_currencies" = "+%d más";
 "dashboard_cashflow_low_activity" = "Mayormente estable durante los próximos 30 días";
 "dashboard_recent_loans" = "Préstamos recientes";
-"loan_detail_delete_confirm" = "¿Estás seguro de que quieres eliminar '%@'? Esta acción no se puede deshacer.";
-"loan_detail_details" = "Detalles";
-"loan_detail_no_schedule" = "No hay calendario de pagos disponible";
-"loan_detail_notes" = "Notas";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Agregar Préstamo";
@@ -345,7 +341,6 @@
 "biometric_error_unknown" = "Ocurrió un error desconocido";
 "biometric_unavailable_title" = "Biometría No Disponible";
 "biometric_unavailable_message" = "La autenticación biométrica no está disponible en este dispositivo";
-"general_ok" = "OK";
 
 // Payment due date labels
 "payment_due_today" = "Vence hoy";
@@ -356,14 +351,10 @@
 "status_paid_on" = "Pagado el %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Fecha de Inicio";
 "loan_detail_payment_frequency" = "Frecuencia de Pago";
 "loan_detail_number_of_payments" = "Número de Pagos";
 "loan_detail_interest_mode" = "Modo de Interés";
 "loan_detail_annual_interest_rate" = "Tasa de Interés Anual";
-"loan_detail_total_to_repay" = "Total a Pagar";
-"loan_detail_total_paid" = "Total Pagado";
-"loan_detail_remaining" = "Restante";
 "loan_detail_next_due_date" = "Próximo Vencimiento";
 "loan_detail_created" = "Creado";
 "loan_detail_last_updated" = "Última Actualización";

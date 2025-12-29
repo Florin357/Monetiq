@@ -270,10 +270,6 @@
 "dashboard_cashflow_more_currencies" = "+%d 更多";
 "dashboard_cashflow_low_activity" = "未来30天基本稳定";
 "dashboard_recent_loans" = "最近贷款";
-"loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤销。";
-"loan_detail_details" = "详情";
-"loan_detail_no_schedule" = "无可用还款计划";
-"loan_detail_notes" = "备注";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "添加贷款";
@@ -345,7 +341,6 @@
 "biometric_error_unknown" = "发生未知错误";
 "biometric_unavailable_title" = "生物识别不可用";
 "biometric_unavailable_message" = "此设备上不支持生物识别认证";
-"general_ok" = "确定";
 
 // Payment due date labels
 "payment_due_today" = "今天到期";
@@ -356,14 +351,10 @@
 "status_paid_on" = "已于%@支付";
 
 // Loan detail labels
-"loan_detail_start_date" = "开始日期";
 "loan_detail_payment_frequency" = "付款频率";
 "loan_detail_number_of_payments" = "付款次数";
 "loan_detail_interest_mode" = "利息模式";
 "loan_detail_annual_interest_rate" = "年利率";
-"loan_detail_total_to_repay" = "总还款额";
-"loan_detail_total_paid" = "已付总额";
-"loan_detail_remaining" = "剩余";
 "loan_detail_next_due_date" = "下次到期日";
 "loan_detail_created" = "创建时间";
 "loan_detail_last_updated" = "最后更新";

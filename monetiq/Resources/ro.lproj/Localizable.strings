@@ -290,10 +290,6 @@
 "dashboard_cashflow_more_currencies" = "+%d în plus";
 "dashboard_cashflow_low_activity" = "Majoritar stabil în următoarele 30 de zile";
 "dashboard_recent_loans" = "Împrumuturi recente";
-"loan_detail_delete_confirm" = "Sunteți sigur că doriți să ștergeți '%@'? Această acțiune nu poate fi anulată.";
-"loan_detail_details" = "Detalii";
-"loan_detail_no_schedule" = "Nu există program de plăți disponibil";
-"loan_detail_notes" = "Notițe";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Adaugă Împrumut";

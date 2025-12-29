@@ -270,10 +270,6 @@
 "dashboard_cashflow_more_currencies" = "+%d ещё";
 "dashboard_cashflow_low_activity" = "В основном стабильно в течение следующих 30 дней";
 "dashboard_recent_loans" = "Недавние займы";
-"loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";
-"loan_detail_details" = "Подробности";
-"loan_detail_no_schedule" = "График платежей недоступен";
-"loan_detail_notes" = "Заметки";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Добавить Займ";
@@ -345,7 +341,6 @@
 "biometric_error_unknown" = "Произошла неизвестная ошибка";
 "biometric_unavailable_title" = "Биометрия Недоступна";
 "biometric_unavailable_message" = "Биометрическая аутентификация недоступна на этом устройстве";
-"general_ok" = "OK";
 
 // Payment due date labels
 "payment_due_today" = "Срок сегодня";
@@ -356,14 +351,10 @@
 "status_paid_on" = "Оплачено %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Дата Начала";
 "loan_detail_payment_frequency" = "Частота Платежей";
 "loan_detail_number_of_payments" = "Количество Платежей";
 "loan_detail_interest_mode" = "Режим Процентов";
 "loan_detail_annual_interest_rate" = "Годовая Процентная Ставка";
-"loan_detail_total_to_repay" = "Общая Сумма к Возврату";
-"loan_detail_total_paid" = "Общая Сумма Выплачена";
-"loan_detail_remaining" = "Остаток";
 "loan_detail_next_due_date" = "Следующий Срок Платежа";
 "loan_detail_created" = "Создано";
 "loan_detail_last_updated" = "Последнее Обновление";
