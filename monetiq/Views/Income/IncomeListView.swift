@@ -16,10 +16,14 @@ struct IncomeListView: View {
     @State private var editingIncome: IncomeSource?
     @State private var incomeToDelete: IncomeSource?
     @State private var showingDeleteConfirmation = false
+    @State private var appState = AppState.shared
     
     // Computed properties for Active and Completed sections
     private var activeIncomeSources: [IncomeSource] {
-        allIncomeSources
+        // Don't access income properties during reset
+        guard !appState.isResetting else { return [] }
+        
+        return allIncomeSources
             .filter { !$0.isCompleted }
             .sorted { income1, income2 in
                 // Sort by next payment date (soonest first)
@@ -30,7 +34,10 @@ struct IncomeListView: View {
     }
     
     private var completedIncomeSources: [IncomeSource] {
-        allIncomeSources
+        // Don't access income properties during reset
+        guard !appState.isResetting else { return [] }
+        
+        return allIncomeSources
             .filter { $0.isCompleted }
             .sorted { income1, income2 in
                 // Sort by end date descending (most recently completed first)

@@ -67,12 +67,30 @@ struct DashboardView: View {
     
     @State private var showToReceiveDetail = false
     @State private var showToPayDetail = false
+    @State private var appState = AppState.shared
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
     }
     
     var body: some View {
+        // Show loading state during reset to prevent accessing deleted objects
+        if appState.isResetting {
+            VStack(spacing: MonetiqTheme.Spacing.lg) {
+                ProgressView()
+                    .scaleEffect(1.5)
+                Text(L10n.string("general_loading"))
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .monetiqBackground()
+        } else {
+            mainContent
+        }
+    }
+    
+    private var mainContent: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
                 // Summary Cards
@@ -270,6 +288,9 @@ struct DashboardView: View {
     /// Business Rule: An item is "upcoming" if it's due within the next 15 days.
     /// This is INDEPENDENT of notification settings.
     private var upcomingPayments: [UpcomingPaymentItem] {
+        // Don't access payment properties during reset
+        guard !appState.isResetting else { return [] }
+        
         var items: [UpcomingPaymentItem] = []
         
         // 1. Loan payments
@@ -285,10 +306,15 @@ struct DashboardView: View {
     }
     
     private var recentLoans: [Loan] {
-        loans.sorted { $0.createdAt > $1.createdAt }
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [] }
+        return loans.sorted { $0.createdAt > $1.createdAt }
     }
     
     private func calculateToReceiveByCurrency() -> [String: Double] {
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [:] }
+        
         var totals: [String: Double] = [:]
         
         // 1. From Loans (lent money)
@@ -311,6 +337,9 @@ struct DashboardView: View {
     }
     
     private func calculateToPayByCurrency() -> [String: Double] {
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [:] }
+        
         let borrowedLoans = loans.filter { $0.role == .borrowed || $0.role == .bankCredit }
         var totals: [String: Double] = [:]
         

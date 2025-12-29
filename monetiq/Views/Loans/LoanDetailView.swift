@@ -20,13 +20,16 @@ struct LoanDetailView: View {
     @State private var showingEditLoan = false
     @State private var showingDeleteAlert = false
     @State private var highlightedPaymentId: UUID? // For brief highlighting
+    @State private var appState = AppState.shared
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
     }
     
     private var sortedPayments: [Payment] {
-        loan.payments.sorted { $0.dueDate < $1.dueDate }
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [] }
+        return loan.payments.sorted { $0.dueDate < $1.dueDate }
     }
     
     // Check if loan has auto-marked paid payments (existing loan enrollment)

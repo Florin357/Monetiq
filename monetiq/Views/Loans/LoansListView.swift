@@ -13,6 +13,7 @@ struct LoansListView: View {
     @Query private var loans: [Loan]
     @Query private var allPayments: [Payment]  // For badge count calculation
     @State private var showingAddLoan = false
+    @State private var appState = AppState.shared
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
@@ -22,7 +23,10 @@ struct LoansListView: View {
     /// Active loans: newest first (consistent with Dashboard)
     /// Completed loans: always at the bottom
     private var sortedLoans: [Loan] {
-        loans.sorted { loan1, loan2 in
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [] }
+        
+        return loans.sorted { loan1, loan2 in
             let completed1 = loan1.isCompleted
             let completed2 = loan2.isCompleted
             

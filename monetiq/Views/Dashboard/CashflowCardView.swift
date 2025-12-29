@@ -14,6 +14,8 @@ struct CashflowCardView: View {
     let incomePayments: [IncomePayment]
     let windowDays: Int
     
+    @State private var appState = AppState.shared
+    
     init(loans: [Loan], incomePayments: [IncomePayment] = [], windowDays: Int = 30) {
         self.loans = loans
         self.incomePayments = incomePayments
@@ -21,6 +23,19 @@ struct CashflowCardView: View {
     }
     
     var body: some View {
+        // Don't render during reset to avoid accessing deleted loan properties
+        if appState.isResetting {
+            VStack(spacing: MonetiqTheme.Spacing.md) {
+                ProgressView()
+            }
+            .frame(height: 200)
+            .monetiqPremiumCard()
+        } else {
+            cashflowContent
+        }
+    }
+    
+    private var cashflowContent: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
             // Header
             HStack(alignment: .top) {
