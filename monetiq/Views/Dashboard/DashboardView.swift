@@ -497,7 +497,7 @@ struct DashboardPaymentRowContent: View {
     }
     
     private var daysUntilDue: Int {
-        Calendar.current.dateComponents([.day], from: Date(), to: paymentItem.dueDate).day ?? 0
+        DueDateHelper.daysBetween(from: Date(), to: paymentItem.dueDate)
     }
     
     private var dueDateText: String {
@@ -957,7 +957,7 @@ struct IncomeBreakdownRow: View {
     let color: Color
     
     private var daysUntilDue: Int {
-        Calendar.current.dateComponents([.day], from: Date(), to: payment.dueDate).day ?? 0
+        DueDateHelper.daysBetween(from: Date(), to: payment.dueDate)
     }
     
     private var dueDateText: String {
