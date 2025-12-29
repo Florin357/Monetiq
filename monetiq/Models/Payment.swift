@@ -40,7 +40,11 @@ final class Payment {
     }
     
     var isOverdue: Bool {
-        status == .planned && dueDate < Date()
+        guard status == .planned else { return false }
+        
+        // Use DueDateHelper for consistent calendar day-based logic
+        // A payment is overdue only if the due day has fully passed (after 23:59)
+        return DueDateHelper.isOverdue(dueDate: dueDate)
     }
     
     func markAsPaid() {

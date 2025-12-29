@@ -15,6 +15,11 @@ struct Currency {
     var displayName: String {
         return "\(code) – \(name)"
     }
+    
+    /// Returns the flag emoji for this currency's primary country
+    var flag: String {
+        return CurrencyCatalog.shared.flag(for: code)
+    }
 }
 
 struct CurrencyCatalog {
@@ -53,5 +58,23 @@ struct CurrencyCatalog {
     
     var currencyCodes: [String] {
         return supportedCurrencies.map { $0.code }
+    }
+    
+    /// Returns the flag emoji for a given currency code
+    /// Maps currency to its primary country/region
+    func flag(for code: String) -> String {
+        switch code {
+        case "RON": return "🇷🇴" // Romania
+        case "EUR": return "🇪🇺" // European Union
+        case "USD": return "🇺🇸" // United States
+        case "GBP": return "🇬🇧" // United Kingdom
+        case "CHF": return "🇨🇭" // Switzerland
+        case "CAD": return "🇨🇦" // Canada
+        case "AUD": return "🇦🇺" // Australia
+        case "CNY": return "🇨🇳" // China
+        case "INR": return "🇮🇳" // India
+        case "RUB": return "🇷🇺" // Russia
+        default: return "🌐" // Fallback: globe icon
+        }
     }
 }

@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Панель";
+"tab_income" = "Доходы";
 "tab_loans" = "Займы";
 "tab_calculator" = "Калькулятор";
 "tab_settings" = "Настройки";
@@ -28,9 +29,55 @@
 "dashboard_subtitle" = "Ваш финансовый обзор";
 "dashboard_to_receive" = "К получению";
 "dashboard_to_pay" = "К оплате";
+"dashboard_to_receive_detail_title" = "К получению - Подробности";
+"dashboard_to_pay_detail_title" = "К оплате - Подробности";
+"dashboard_detail_empty_state" = "Нет активных займов в этой категории";
+"dashboard_detail_total" = "Всего";
+"dashboard_detail_from_loans" = "Из Займов";
+"dashboard_detail_from_income" = "Доходы";
+"dashboard_income_unknown" = "Неизвестный Доход";
+"dashboard_income_badge" = "Доход";
+"dashboard_mark_received" = "Отметить Получено";
+"dashboard_unknown_loan" = "Неизвестный Займ";
 "dashboard_upcoming_payments" = "Предстоящие платежи";
 "dashboard_no_payments" = "Нет предстоящих платежей";
 "dashboard_no_payments_subtitle" = "Все ваши платежи актуальны";
+
+// MARK: - Income
+"income_title" = "Доходы";
+"income_subtitle" = "Управляйте своими доходами и днями выплат";
+"income_empty_title" = "Пока нет доходов";
+"income_empty_subtitle" = "Добавьте свой первый доход, чтобы видеть предстоящие дни выплат";
+"income_add_title" = "Добавить доход";
+"income_edit_title" = "Редактировать доход";
+"income_delete_title" = "Удалить доход";
+"income_delete_message" = "Вы уверены, что хотите удалить этот доход? Это действие нельзя отменить.";
+"income_next_payday" = "Следующий: %@";
+"income_frequency_weekly" = "Еженедельно";
+"income_frequency_monthly" = "Ежемесячно";
+"income_frequency_quarterly" = "Ежеквартально";
+"income_frequency_yearly" = "Ежегодно";
+"income_frequency_one_time" = "Один Раз";
+
+// MARK: - Income Form
+"income_form_title" = "Название";
+"income_form_title_placeholder" = "напр. Зарплата, Фриланс";
+"income_form_amount" = "Сумма";
+"income_form_amount_placeholder" = "Введите сумму";
+"income_form_currency" = "Валюта";
+"income_form_frequency" = "Частота";
+"income_form_start_date" = "Дата начала";
+"income_form_end_date" = "Дата окончания";
+"income_form_has_end_date" = "Имеет дату окончания";
+"income_form_counterparty" = "Источник (Необязательно)";
+"income_form_counterparty_placeholder" = "напр. Название работодателя";
+"income_form_notes" = "Заметки";
+"income_form_notes_placeholder" = "Необязательные заметки";
+"income_form_details_section" = "Детали дохода";
+"income_section_active" = "Активные";
+"income_section_completed" = "Завершённые";
+"income_status_done" = "Завершён";
+"income_ended_date" = "Завершён: %@";
 
 // MARK: - Loans
 "loans_title" = "Займы";
@@ -42,6 +89,8 @@
 "loans_delete_title" = "Удалить займ";
 "loans_delete_message" = "Вы уверены, что хотите удалить этот займ? Это действие нельзя отменить.";
 "loans_next_due" = "Следующий: %@";
+"loans_created" = "Создан: %@";
+"loans_created_short" = "Создан %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Название";
@@ -79,6 +128,13 @@
 "loan_detail_payments" = "График платежей";
 "loan_detail_mark_paid" = "Отметить как оплаченный";
 "loan_detail_no_payments" = "Нет запланированных платежей";
+"loan_detail_details" = "Детали";
+"loan_detail_no_schedule" = "График платежей недоступен";
+"loan_detail_notes" = "Заметки";
+"loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";
+"loan_detail_progress" = "Прогресс Платежей";
+"loan_detail_progress_paid" = "%.1f%% оплачено";
+"loan_detail_progress_no_payments" = "Пока нет платежей";
 
 // MARK: - Calculator
 "calculator_title" = "Калькулятор займов";
@@ -104,17 +160,18 @@
 "settings_device_info" = "Локальные данные • Аккаунт не требуется";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Политика Конфиденциальности\n\nДата Вступления в Силу: 15 Декабря 2025\n\nMonetiq разработан с учетом конфиденциальности. Все ваши финансовые данные хранятся локально на вашем устройстве и никогда не передаются на наши серверы или третьим лицам.\n\n1. Информация, Которую Мы Собираем\n• Информация о займах\n• Графики платежей и история\n• Настройки приложения\n\n2. Как Мы Используем Вашу Информацию\nВаши данные используются исключительно для предоставления функций отслеживания займов и напоминаний о платежах.\n\n3. Хранение и Безопасность\nВсе данные хранятся локально с использованием безопасного хранилища iOS.\n\n4. Обмен Данными\nМы не делимся, не продаем и не передаем вашу личную информацию третьим лицам.\n\nПо вопросам об этой политике конфиденциальности обращайтесь к нам через App Store.";
+"privacy_policy_content" = "Политика Конфиденциальности\n\nДата Вступления в Силу: 15 Декабря 2025\n\nYpsilon разработан с учетом конфиденциальности. Все ваши финансовые данные хранятся локально на вашем устройстве и никогда не передаются на наши серверы или третьим лицам.\n\n1. Информация, Которую Мы Собираем\n• Информация о займах\n• Графики платежей и история\n• Настройки приложения\n\n2. Как Мы Используем Вашу Информацию\nВаши данные используются исключительно для предоставления функций отслеживания займов и напоминаний о платежах.\n\n3. Хранение и Безопасность\nВсе данные хранятся локально с использованием безопасного хранилища iOS.\n\n4. Обмен Данными\nМы не делимся, не продаем и не передаем вашу личную информацию третьим лицам.\n\nПо вопросам об этой политике конфиденциальности обращайтесь к нам через App Store.";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "Условия Обслуживания\n\nДата Вступления в Силу: 15 Декабря 2025\n\n1. Принятие Условий\nИспользуя Monetiq, вы соглашаетесь с этими Условиями Обслуживания.\n\n2. Описание Сервиса\nMonetiq - это приложение для личных финансов для отслеживания займов и управления графиками платежей.\n\n3. Обязанности Пользователя\nВы несете ответственность за точность вводимых данных.\n\n4. Ограничения\nMonetiq предназначен только для личного использования. Приложение не предоставляет финансовых, юридических или налоговых консультаций.\n\nПо вопросам об этих условиях обращайтесь к нам через App Store.";
+"terms_of_service_content" = "Условия Обслуживания\n\nДата Вступления в Силу: 15 Декабря 2025\n\n1. Принятие Условий\nИспользуя Ypsilon, вы соглашаетесь с этими Условиями Обслуживания.\n\n2. Описание Сервиса\nYpsilon - это приложение для личных финансов для отслеживания займов и управления графиками платежей.\n\n3. Обязанности Пользователя\nВы несете ответственность за точность вводимых данных.\n\n4. Ограничения\nYpsilon предназначен только для личного использования. Приложение не предоставляет финансовых, юридических или налоговых консультаций.\n\nПо вопросам об этих условиях обращайтесь к нам через App Store.";
 
 // MARK: - Missing Keys
 "calculator_share" = "Поделиться";
 "notification_permission_not_requested" = "Разрешение на уведомления еще не запрашивалось";
 "notification_unknown_error" = "Произошла неизвестная ошибка уведомлений";
 "settings_notifications_denied_title" = "Уведомления отключены";
-"settings_notifications_denied_message" = "Чтобы получать напоминания о платежах, включите уведомления в Настройки > Monetiq > Уведомления";
+"settings_notifications_denied_message" = "Чтобы получать напоминания о платежах, включите уведомления в Настройки > Ypsilon > Уведомления";
+"settings_open_settings" = "Открыть Настройки";
 "calculator_frequency" = "Частота платежей";
 "calculator_calculate" = "Рассчитать платеж";
 "calculator_results" = "Результаты";
@@ -126,7 +183,7 @@
 
 // MARK: - Settings
 "settings_title" = "Настройки";
-"settings_subtitle" = "Настройте свой опыт работы с Monetiq";
+"settings_subtitle" = "Настройте свой опыт работы с Ypsilon";
 "settings_general" = "Общие";
 "settings_security" = "Безопасность";
 "settings_appearance" = "Внешний вид";
@@ -200,13 +257,19 @@
 "calculator_currency" = "Валюта";
 "calculator_generated" = "Создано";
 "calculator_share_title" = "Сводка Расчета Кредита";
-"calculator_share_footer" = "Создано с Monetiq";
+"calculator_share_footer" = "Создано с Ypsilon";
 "dashboard_no_loans" = "Пока нет займов";
+"dashboard_cashflow" = "Денежный поток";
+"dashboard_cashflow_subtitle" = "Следующие 30 дней";
+"dashboard_cashflow_net" = "Нетто";
+"dashboard_cashflow_empty" = "Недостаточно данных о платежах";
+"dashboard_cashflow_to_receive" = "К получению";
+"dashboard_cashflow_to_pay" = "К оплате";
+"dashboard_cashflow_helper" = "На основе запланированных платежей";
+"dashboard_cashflow_today" = "Сегодня";
+"dashboard_cashflow_more_currencies" = "+%d ещё";
+"dashboard_cashflow_low_activity" = "В основном стабильно в течение следующих 30 дней";
 "dashboard_recent_loans" = "Недавние займы";
-"loan_detail_delete_confirm" = "Вы уверены, что хотите удалить '%@'? Это действие нельзя отменить.";
-"loan_detail_details" = "Подробности";
-"loan_detail_no_schedule" = "График платежей недоступен";
-"loan_detail_notes" = "Заметки";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Добавить Займ";
@@ -220,6 +283,7 @@
 "financial_details_section" = "Финансовые Детали";
 "amount_placeholder" = "Сумма";
 "currency_label" = "Валюта";
+"currency_locked_message" = "Валюту нельзя изменить после создания займа.";
 "repayment_schedule_section" = "График Погашения";
 "payment_frequency_label" = "Частота Платежей";
 "number_of_payments_placeholder" = "Количество Платежей";
@@ -252,9 +316,9 @@
 "notification_payment_due_title" = "Платеж сегодня";
 "notification_payment_due_body" = "Платеж по '%@' должен быть произведен сегодня: %@";
 "notification_weekly_review_title" = "Еженедельный финансовый обзор";
-"notification_weekly_review_body" = "Время просмотреть ваши займы и предстоящие платежи в Monetiq";
+"notification_weekly_review_body" = "Время просмотреть ваши займы и предстоящие платежи в Ypsilon";
 "notification_test_title" = "Тестовое уведомление";
-"notification_test_body" = "Это тестовое уведомление от Monetiq";
+"notification_test_body" = "Это тестовое уведомление от Ypsilon";
 
 
 
@@ -268,7 +332,7 @@
 "settings_reset_app_confirm_action" = "Удалить Все Данные";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Разблокируйте Monetiq для доступа к вашим финансовым данным";
+"biometric_unlock_reason" = "Разблокируйте Ypsilon для доступа к вашим финансовым данным";
 "biometric_enable_reason" = "Аутентифицируйтесь для включения биометрической безопасности";
 "lock_screen_title" = "Заблокировано";
 "lock_screen_subtitle" = "Разблокировать с %@";
@@ -277,7 +341,6 @@
 "biometric_error_unknown" = "Произошла неизвестная ошибка";
 "biometric_unavailable_title" = "Биометрия Недоступна";
 "biometric_unavailable_message" = "Биометрическая аутентификация недоступна на этом устройстве";
-"general_ok" = "OK";
 
 // Payment due date labels
 "payment_due_today" = "Срок сегодня";
@@ -288,14 +351,10 @@
 "status_paid_on" = "Оплачено %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Дата Начала";
 "loan_detail_payment_frequency" = "Частота Платежей";
 "loan_detail_number_of_payments" = "Количество Платежей";
 "loan_detail_interest_mode" = "Режим Процентов";
 "loan_detail_annual_interest_rate" = "Годовая Процентная Ставка";
-"loan_detail_total_to_repay" = "Общая Сумма к Возврату";
-"loan_detail_total_paid" = "Общая Сумма Выплачена";
-"loan_detail_remaining" = "Остаток";
 "loan_detail_next_due_date" = "Следующий Срок Платежа";
 "loan_detail_created" = "Создано";
 "loan_detail_last_updated" = "Последнее Обновление";
@@ -324,3 +383,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Напоминание о Платеже (Отложено)";
 "notification_payment_snoozed_body" = "Напоминание для %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Тип Займа";
+"loan_type_label" = "Какой это тип займа?";
+"loan_type_new" = "Новый Займ";
+"loan_type_existing" = "Существующий Займ";
+"loan_type_new_footer" = "Начиная с сегодня";
+"loan_type_existing_footer" = "Уже в процессе";
+
+"existing_loan_status_section" = "Текущий Статус";
+"existing_loan_method_label" = "Как вы хотите отслеживать прогресс?";
+"existing_loan_method_next_due_date" = "Следующая Дата Платежа";
+"existing_loan_method_paid_months" = "Оплаченные Месяцы";
+
+"existing_loan_next_due_date_label" = "Следующая Дата Платежа";
+"existing_loan_next_due_date_footer" = "Все платежи до этой даты будут автоматически отмечены как оплаченные.";
+
+"existing_loan_paid_months_placeholder" = "Количество уже оплаченных месяцев";
+"existing_loan_paid_months_footer" = "Первые X платежей будут отмечены как оплаченные.";
+
+"original_start_date_label" = "Исходная Дата Начала";
+
+"loan_detail_auto_marked_info" = "Прошлые платежи были автоматически отмечены как оплаченные на основе вашего текущего статуса.";

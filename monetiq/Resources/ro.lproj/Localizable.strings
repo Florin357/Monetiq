@@ -18,6 +18,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Panou";
+"tab_income" = "Venituri";
 "tab_loans" = "Împrumuturi";
 "tab_calculator" = "Calculator";
 "tab_settings" = "Setări";
@@ -27,9 +28,55 @@
 "dashboard_subtitle" = "Prezentarea generală financiară";
 "dashboard_to_receive" = "De Primit";
 "dashboard_to_pay" = "De Plătit";
+"dashboard_to_receive_detail_title" = "De Primit - Detalii";
+"dashboard_to_pay_detail_title" = "De Plătit - Detalii";
+"dashboard_detail_empty_state" = "Niciun împrumut activ în această categorie";
+"dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "Din Împrumuturi";
+"dashboard_detail_from_income" = "Venituri";
+"dashboard_income_unknown" = "Venit Necunoscut";
+"dashboard_income_badge" = "Venit";
+"dashboard_mark_received" = "Marchează Primit";
+"dashboard_unknown_loan" = "Împrumut Necunoscut";
 "dashboard_upcoming_payments" = "Plăți Viitoare";
 "dashboard_no_payments" = "Nicio plată viitoare";
 "dashboard_no_payments_subtitle" = "Toate plățile sunt la zi";
+
+// MARK: - Income
+"income_title" = "Venituri";
+"income_subtitle" = "Gestionează veniturile și zilele de plată";
+"income_empty_title" = "Încă nu ai venituri";
+"income_empty_subtitle" = "Adaugă primul tău venit pentru a vedea zilele de plată viitoare";
+"income_add_title" = "Adaugă Venit";
+"income_edit_title" = "Editează Venit";
+"income_delete_title" = "Șterge Venit";
+"income_delete_message" = "Ești sigur că vrei să ștergi acest venit? Această acțiune nu poate fi anulată.";
+"income_next_payday" = "Următoarea: %@";
+"income_frequency_weekly" = "Săptămânal";
+"income_frequency_monthly" = "Lunar";
+"income_frequency_quarterly" = "Trimestrial";
+"income_frequency_yearly" = "Anual";
+"income_frequency_one_time" = "O Singură Dată";
+
+// MARK: - Income Form
+"income_form_title" = "Titlu";
+"income_form_title_placeholder" = "ex. Salariu, Freelance";
+"income_form_amount" = "Sumă";
+"income_form_amount_placeholder" = "Introdu suma";
+"income_form_currency" = "Monedă";
+"income_form_frequency" = "Frecvență";
+"income_form_start_date" = "Data de Început";
+"income_form_end_date" = "Data de Sfârșit";
+"income_form_has_end_date" = "Are Dată de Sfârșit";
+"income_form_counterparty" = "Sursă (Opțional)";
+"income_form_counterparty_placeholder" = "ex. Numele angajatorului";
+"income_form_notes" = "Notițe";
+"income_form_notes_placeholder" = "Notițe opționale";
+"income_form_details_section" = "Detalii Venit";
+"income_section_active" = "Active";
+"income_section_completed" = "Finalizate";
+"income_status_done" = "Finalizat";
+"income_ended_date" = "Încheiat: %@";
 
 // MARK: - Loans
 "loans_title" = "Împrumuturi";
@@ -41,6 +88,8 @@
 "loans_delete_title" = "Șterge Împrumut";
 "loans_delete_message" = "Ești sigur că vrei să ștergi acest împrumut? Această acțiune nu poate fi anulată.";
 "loans_next_due" = "Următoarea: %@";
+"loans_created" = "Creat: %@";
+"loans_created_short" = "Creat %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Titlu";
@@ -78,6 +127,13 @@
 "loan_detail_payments" = "Programul de Plăți";
 "loan_detail_mark_paid" = "Marchează ca Plătit";
 "loan_detail_no_payments" = "Nicio plată programată";
+"loan_detail_details" = "Detalii";
+"loan_detail_no_schedule" = "Niciun program de plăți disponibil";
+"loan_detail_notes" = "Notițe";
+"loan_detail_delete_confirm" = "Sigur vrei să ștergi '%@'? Această acțiune nu poate fi anulată.";
+"loan_detail_progress" = "Progres Plăți";
+"loan_detail_progress_paid" = "%.1f%% plătit";
+"loan_detail_progress_no_payments" = "Încă fără plăți";
 
 // MARK: - Calculator
 "calculator_title" = "Calculator Împrumuturi";
@@ -103,10 +159,10 @@
 "settings_device_info" = "Date locale • Fără cont necesar";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Politica de Confidențialitate\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Informațiile pe Care le Colectăm\n\nMonetiq este proiectat cu confidențialitatea în minte. Toate datele tale financiare sunt stocate local pe dispozitivul tău și nu sunt niciodată transmise către serverele noastre sau către terțe părți.\n\n• Informații despre împrumuturi (sume, date, contrapartide)\n• Programe de plăți și istoric\n• Preferințe și setări ale aplicației\n• Preferințe pentru notificări locale\n\n2. Cum Folosim Informațiile Tale\n\nDatele tale sunt folosite exclusiv pentru:\n• Furnizarea funcționalității de urmărire a împrumuturilor și reamintiri de plăți\n• Calcularea programelor de plăți și dobânzilor\n• Trimiterea notificărilor locale pentru plățile viitoare\n• Menținerea preferințelor tale din aplicație\n\n3. Stocarea și Securitatea Datelor\n\n• Toate datele sunt stocate local pe dispozitivul tău folosind stocarea securizată iOS\n• Nicio dată nu este transmisă prin internet\n• Fără conturi de utilizator sau sincronizare cloud\n• Datele sunt protejate de funcțiile de securitate ale dispozitivului tău (Face ID, Touch ID, cod)\n\n4. Partajarea Datelor\n\nNu partajăm, vindem sau transmitem informațiile tale personale către terțe părți. Datele tale financiare rămân private și sub controlul tău.\n\n5. Drepturile Tale\n\n• Poți șterge toate datele aplicației oricând prin Setări → Resetează Aplicația\n• Controlezi toate preferințele de notificare\n• Nicio recuperare de date nu este posibilă odată șterse (deoarece nu stocăm backup-uri)\n\n6. Modificări ale Acestei Politici\n\nAm putea actualiza această politică de confidențialitate din când în când. Orice modificări vor fi reflectate în aplicație cu o dată de intrare în vigoare actualizată.\n\n7. Contactează-ne\n\nDacă ai întrebări despre această politică de confidențialitate, te rugăm să ne contactezi prin App Store.";
+"privacy_policy_content" = "Politica de Confidențialitate\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Informațiile pe Care le Colectăm\n\nYpsilon este proiectat cu confidențialitatea în minte. Toate datele tale financiare sunt stocate local pe dispozitivul tău și nu sunt niciodată transmise către serverele noastre sau către terțe părți.\n\n• Informații despre împrumuturi (sume, date, contrapartide)\n• Programe de plăți și istoric\n• Preferințe și setări ale aplicației\n• Preferințe pentru notificări locale\n\n2. Cum Folosim Informațiile Tale\n\nDatele tale sunt folosite exclusiv pentru:\n• Furnizarea funcționalității de urmărire a împrumuturilor și reamintiri de plăți\n• Calcularea programelor de plăți și dobânzilor\n• Trimiterea notificărilor locale pentru plățile viitoare\n• Menținerea preferințelor tale din aplicație\n\n3. Stocarea și Securitatea Datelor\n\n• Toate datele sunt stocate local pe dispozitivul tău folosind stocarea securizată iOS\n• Nicio dată nu este transmisă prin internet\n• Fără conturi de utilizator sau sincronizare cloud\n• Datele sunt protejate de funcțiile de securitate ale dispozitivului tău (Face ID, Touch ID, cod)\n\n4. Partajarea Datelor\n\nNu partajăm, vindem sau transmitem informațiile tale personale către terțe părți. Datele tale financiare rămân private și sub controlul tău.\n\n5. Drepturile Tale\n\n• Poți șterge toate datele aplicației oricând prin Setări → Resetează Aplicația\n• Controlezi toate preferințele de notificare\n• Nicio recuperare de date nu este posibilă odată șterse (deoarece nu stocăm backup-uri)\n\n6. Modificări ale Acestei Politici\n\nAm putea actualiza această politică de confidențialitate din când în când. Orice modificări vor fi reflectate în aplicație cu o dată de intrare în vigoare actualizată.\n\n7. Contactează-ne\n\nDacă ai întrebări despre această politică de confidențialitate, te rugăm să ne contactezi prin App Store.";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "Termenii de Serviciu\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Acceptarea Termenilor\n\nPrin folosirea Monetiq, accepți acești Termeni de Serviciu. Dacă nu accepți, te rugăm să nu folosești aplicația.\n\n2. Descrierea Serviciului\n\nMonetiq este o aplicație de finanțe personale pentru urmărirea împrumuturilor și gestionarea programelor de plăți. Aplicația:\n• Te ajută să urmărești împrumuturile personale (date și primite)\n• Calculează programe de plăți și dobânzi\n• Furnizează reamintiri locale de plăți\n• Stochează toate datele local pe dispozitivul tău\n\n3. Responsabilitățile Utilizatorului\n\n• Ești responsabil pentru acuratețea datelor pe care le introduci\n• Trebuie să respecți legile aplicabile când folosești aplicația\n• Ești responsabil pentru backup-ul dispozitivului tău dacă vrei să păstrezi datele\n• Nu trebuie să folosești aplicația pentru activități financiare ilegale\n\n4. Limitări și Declinări de Responsabilitate\n\n• Monetiq este doar pentru uz personal și ținerea evidenței\n• Aplicația nu oferă sfaturi financiare, legale sau fiscale\n• Calculele dobânzilor sunt estimări; consultă profesioniști pentru calcule oficiale\n• Nu suntem responsabili pentru deciziile financiare luate pe baza datelor din aplicație\n• Aplicația nu facilitează transferuri reale de bani sau plăți\n\n5. Date și Confidențialitate\n\n• Toate datele sunt stocate local pe dispozitivul tău\n• Nu colectăm, stocăm sau transmitem informațiile tale personale\n• Ești responsabil pentru securitatea dispozitivului tău\n• Datele nu pot fi recuperate dacă sunt pierdute sau șterse\n\n6. Proprietatea Intelectuală\n\nAplicația Monetiq, inclusiv designul, codul și conținutul său, este protejată de drepturi de autor și alte legi ale proprietății intelectuale.\n\n7. Limitarea Responsabilității\n\nÎn măsura maximă permisă de lege, nu vom fi responsabili pentru daune indirecte, incidentale, speciale sau consecutive care rezultă din folosirea aplicației.\n\n8. Încetarea\n\nPoți înceta să folosești aplicația oricând prin ștergerea ei de pe dispozitivul tău. Acești termeni rămân în vigoare până la încetare.\n\n9. Modificări ale Termenilor\n\nAm putea actualiza acești termeni din când în când. Folosirea continuă a aplicației după modificări constituie acceptarea noilor termeni.\n\n10. Legea Aplicabilă\n\nAcești termeni sunt guvernați de legile jurisdicției unde aplicația este dezvoltată și distribuită.\n\n11. Informații de Contact\n\nPentru întrebări despre acești termeni, te rugăm să ne contactezi prin App Store.";
+"terms_of_service_content" = "Termenii de Serviciu\n\nData Intrării în Vigoare: 15 Decembrie 2025\n\n1. Acceptarea Termenilor\n\nPrin folosirea Ypsilon, accepți acești Termeni de Serviciu. Dacă nu accepți, te rugăm să nu folosești aplicația.\n\n2. Descrierea Serviciului\n\nYpsilon este o aplicație de finanțe personale pentru urmărirea împrumuturilor și gestionarea programelor de plăți. Aplicația:\n• Te ajută să urmărești împrumuturile personale (date și primite)\n• Calculează programe de plăți și dobânzi\n• Furnizează reamintiri locale de plăți\n• Stochează toate datele local pe dispozitivul tău\n\n3. Responsabilitățile Utilizatorului\n\n• Ești responsabil pentru acuratețea datelor pe care le introduci\n• Trebuie să respecți legile aplicabile când folosești aplicația\n• Ești responsabil pentru backup-ul dispozitivului tău dacă vrei să păstrezi datele\n• Nu trebuie să folosești aplicația pentru activități financiare ilegale\n\n4. Limitări și Declinări de Responsabilitate\n\n• Ypsilon este doar pentru uz personal și ținerea evidenței\n• Aplicația nu oferă sfaturi financiare, legale sau fiscale\n• Calculele dobânzilor sunt estimări; consultă profesioniști pentru calcule oficiale\n• Nu suntem responsabili pentru deciziile financiare luate pe baza datelor din aplicație\n• Aplicația nu facilitează transferuri reale de bani sau plăți\n\n5. Date și Confidențialitate\n\n• Toate datele sunt stocate local pe dispozitivul tău\n• Nu colectăm, stocăm sau transmitem informațiile tale personale\n• Ești responsabil pentru securitatea dispozitivului tău\n• Datele nu pot fi recuperate dacă sunt pierdute sau șterse\n\n6. Proprietatea Intelectuală\n\nAplicația Ypsilon, inclusiv designul, codul și conținutul său, este protejată de drepturi de autor și alte legi ale proprietății intelectuale.\n\n7. Limitarea Responsabilității\n\nÎn măsura maximă permisă de lege, nu vom fi responsabili pentru daune indirecte, incidentale, speciale sau consecutive care rezultă din folosirea aplicației.\n\n8. Încetarea\n\nPoți înceta să folosești aplicația oricând prin ștergerea ei de pe dispozitivul tău. Acești termeni rămân în vigoare până la încetare.\n\n9. Modificări ale Termenilor\n\nAm putea actualiza acești termeni din când în când. Folosirea continuă a aplicației după modificări constituie acceptarea noilor termeni.\n\n10. Legea Aplicabilă\n\nAcești termeni sunt guvernați de legile jurisdicției unde aplicația este dezvoltată și distribuită.\n\n11. Informații de Contact\n\nPentru întrebări despre acești termeni, te rugăm să ne contactezi prin App Store.";
 
 // MARK: - Notifications
 "notification_permission_not_requested" = "Permisiunea pentru notificări nu a fost încă solicitată";
@@ -114,7 +170,8 @@
 
 // MARK: - Settings - Notifications Denied
 "settings_notifications_denied_title" = "Notificările sunt dezactivate";
-"settings_notifications_denied_message" = "Pentru a primi reamintiri de plăți, activează notificările în Setări > Monetiq > Notificări";
+"settings_notifications_denied_message" = "Pentru a primi reamintiri de plăți, activează notificările în Setări > Ypsilon > Notificări";
+"settings_open_settings" = "Deschide Setările";
 "calculator_frequency" = "Frecvența Plăților";
 "calculator_calculate" = "Calculează Plata";
 "calculator_results" = "Rezultate";
@@ -126,7 +183,7 @@
 
 // MARK: - Settings
 "settings_title" = "Setări";
-"settings_subtitle" = "Personalizează experiența Monetiq";
+"settings_subtitle" = "Personalizează experiența Ypsilon";
 "settings_general" = "General";
 "settings_security" = "Securitate";
 "settings_appearance" = "Aspect";
@@ -168,7 +225,7 @@
 "settings_reset_app_confirm_action" = "Șterge Toate Datele";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Deblochează Monetiq pentru a accesa datele tale financiare";
+"biometric_unlock_reason" = "Deblochează Ypsilon pentru a accesa datele tale financiare";
 "biometric_enable_reason" = "Autentifică-te pentru a activa securitatea biometrică";
 "lock_screen_title" = "Blocat";
 "lock_screen_subtitle" = "Deblochează cu %@";
@@ -177,7 +234,6 @@
 "biometric_error_unknown" = "A apărut o eroare necunoscută";
 "biometric_unavailable_title" = "Biometria Indisponibilă";
 "biometric_unavailable_message" = "Autentificarea biometrică nu este disponibilă pe acest dispozitiv";
-"general_ok" = "OK";
 
 "settings_view_notifications" = "Vezi Notificările Programate";
 "settings_view_notifications_subtitle" = "Verifică notificările programate";
@@ -220,14 +276,20 @@
 "calculator_currency" = "Monedă";
 "calculator_generated" = "Generat";
 "calculator_share_title" = "Rezumat Calcul Împrumut";
-"calculator_share_footer" = "Creat cu Monetiq";
+"calculator_share_footer" = "Creat cu Ypsilon";
 "calculator_share" = "Partajează";
 "dashboard_no_loans" = "Încă nu aveți împrumuturi";
+"dashboard_cashflow" = "Flux de numerar";
+"dashboard_cashflow_subtitle" = "Următoarele 30 de zile";
+"dashboard_cashflow_net" = "Net";
+"dashboard_cashflow_empty" = "Date insuficiente despre plăți";
+"dashboard_cashflow_to_receive" = "De primit";
+"dashboard_cashflow_to_pay" = "De plătit";
+"dashboard_cashflow_helper" = "Pe baza plăților programate";
+"dashboard_cashflow_today" = "Astăzi";
+"dashboard_cashflow_more_currencies" = "+%d în plus";
+"dashboard_cashflow_low_activity" = "Majoritar stabil în următoarele 30 de zile";
 "dashboard_recent_loans" = "Împrumuturi recente";
-"loan_detail_delete_confirm" = "Sunteți sigur că doriți să ștergeți '%@'? Această acțiune nu poate fi anulată.";
-"loan_detail_details" = "Detalii";
-"loan_detail_no_schedule" = "Nu există program de plăți disponibil";
-"loan_detail_notes" = "Notițe";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Adaugă Împrumut";
@@ -241,6 +303,7 @@
 "financial_details_section" = "Detalii Financiare";
 "amount_placeholder" = "Sumă";
 "currency_label" = "Monedă";
+"currency_locked_message" = "Moneda nu poate fi schimbată după crearea împrumutului.";
 "repayment_schedule_section" = "Program de Rambursare";
 "payment_frequency_label" = "Frecvența Plăților";
 "number_of_payments_placeholder" = "Numărul de Plăți";
@@ -273,14 +336,9 @@
 "notification_payment_due_title" = "Plată Scadentă Astăzi";
 "notification_payment_due_body" = "Plata pentru '%@' scade astăzi: %@";
 "notification_weekly_review_title" = "Revizuire Financiară Săptămânală";
-"notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Monetiq";
+"notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Ypsilon";
 "notification_test_title" = "Notificare de Test";
-"notification_test_body" = "Aceasta este o notificare de test de la Monetiq";
-
-// MARK: - Settings - Notifications
-"settings_notifications_denied_title" = "Notificări Dezactivate";
-"settings_notifications_denied_message" = "Pentru a primi mementouri de plată, vă rugăm să activați notificările în Setări";
-"settings_open_settings" = "Deschide Setările";
+"notification_test_body" = "Aceasta este o notificare de test de la Ypsilon";
 
 // Payment due date labels
 "payment_due_today" = "Scadent azi";
@@ -291,14 +349,10 @@
 "status_paid_on" = "Plătit pe %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Data de Început";
 "loan_detail_payment_frequency" = "Frecvența Plăților";
 "loan_detail_number_of_payments" = "Numărul de Plăți";
 "loan_detail_interest_mode" = "Modul de Dobândă";
 "loan_detail_annual_interest_rate" = "Rata Anuală de Dobândă";
-"loan_detail_total_to_repay" = "Total de Rambursat";
-"loan_detail_total_paid" = "Total Plătit";
-"loan_detail_remaining" = "Rămas";
 "loan_detail_next_due_date" = "Următoarea Scadență";
 "loan_detail_created" = "Creat";
 "loan_detail_last_updated" = "Ultima Actualizare";
@@ -327,3 +381,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Memento Plată (Amânat)";
 "notification_payment_snoozed_body" = "Memento pentru %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Tip Împrumut";
+"loan_type_label" = "Ce fel de împrumut este acesta?";
+"loan_type_new" = "Împrumut Nou";
+"loan_type_existing" = "Împrumut Existent";
+"loan_type_new_footer" = "Începe de astăzi";
+"loan_type_existing_footer" = "Deja în curs";
+
+"existing_loan_status_section" = "Status Curent";
+"existing_loan_method_label" = "Cum vrei să urmărești progresul?";
+"existing_loan_method_next_due_date" = "Data Următoare";
+"existing_loan_method_paid_months" = "Luni Plătite";
+
+"existing_loan_next_due_date_label" = "Data Următoare Scadentă";
+"existing_loan_next_due_date_footer" = "Toate plățile înainte de această dată vor fi marcate automat ca plătite.";
+
+"existing_loan_paid_months_placeholder" = "Număr de luni deja plătite";
+"existing_loan_paid_months_footer" = "Primele X plăți vor fi marcate ca plătite.";
+
+"original_start_date_label" = "Data Start Originală";
+
+"loan_detail_auto_marked_info" = "Plățile trecute au fost marcate automat ca plătite pe baza statusului curent.";

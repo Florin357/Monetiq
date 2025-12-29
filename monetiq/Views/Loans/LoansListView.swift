@@ -11,18 +11,32 @@ import SwiftData
 struct LoansListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
+    @Query private var allPayments: [Payment]  // For badge count calculation
     @State private var showingAddLoan = false
+    @State private var appState = AppState.shared
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
     }
     
+    /// Sort loans: active loans first (by creation date), completed loans at bottom
+    /// Active loans: newest first (consistent with Dashboard)
+    /// Completed loans: always at the bottom
     private var sortedLoans: [Loan] {
-        loans.sorted { first, second in
-            if first.role != second.role {
-                return first.role.rawValue < second.role.rawValue
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [] }
+        
+        return loans.sorted { loan1, loan2 in
+            let completed1 = loan1.isCompleted
+            let completed2 = loan2.isCompleted
+            
+            // If completion status differs, active loans come first
+            if completed1 != completed2 {
+                return !completed1 // Active (false) comes before completed (true)
             }
-            return first.title < second.title
+            
+            // Within same completion status, sort by creation date (newest first)
+            return loan1.createdAt > loan2.createdAt
         }
     }
     
@@ -97,7 +111,7 @@ struct LoansListView: View {
                 // Cancel notifications for this loan before deletion
                 Task {
                     await notificationManager.cancelNotifications(for: loan)
-                    await notificationManager.updateBadgeCount()
+                    await notificationManager.updateBadgeCount(payments: allPayments)
                 }
                 
                 modelContext.delete(loan)
@@ -109,40 +123,46 @@ struct LoansListView: View {
 struct LoanRowView: View {
     let loan: Loan
     
+    // Purple color for completed loans
+    private var completedColor: Color {
+        Color(red: 0.6, green: 0.4, blue: 0.8) // Pleasant purple/violet
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
             HStack(alignment: .top, spacing: MonetiqTheme.Spacing.lg) {
-                // Leading accent indicator
+                // Leading accent indicator (purple if completed, role color if active)
                 RoundedRectangle(cornerRadius: 3)
-                    .fill(roleColor(for: loan.role))
+                    .fill(loan.isCompleted ? completedColor : roleColor(for: loan.role))
                     .frame(width: 5, height: 50)
                 
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                    // Primary title - Enhanced hierarchy
+                    // Primary title - Enhanced hierarchy (purple if completed)
                     Text(loan.title)
                         .monetiqCardTitle()
+                        .foregroundColor(loan.isCompleted ? completedColor : MonetiqTheme.Colors.textPrimary)
                         .lineLimit(2)
                     
-                    // Role badge - Premium styling
+                    // Role badge - Premium styling (purple if completed)
                     Text(loan.role.localizedLabel)
                         .font(MonetiqTheme.Typography.caption)
-                        .foregroundColor(roleColor(for: loan.role))
+                        .foregroundColor(loan.isCompleted ? completedColor : roleColor(for: loan.role))
                         .fontWeight(.medium)
                         .padding(.horizontal, MonetiqTheme.Spacing.md)
                         .padding(.vertical, MonetiqTheme.Spacing.xs)
                         .background(
                             Capsule()
-                                .fill(roleColor(for: loan.role).opacity(0.15))
+                                .fill(loan.isCompleted ? completedColor.opacity(0.15) : roleColor(for: loan.role).opacity(0.15))
                         )
                 }
                 
                 Spacer()
                 
                 VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
-                    // Amount - Premium currency display
+                    // Amount - Premium currency display (purple if completed)
                     Text(CurrencyFormatter.shared.format(amount: loan.principalAmount, currencyCode: loan.currencyCode))
                         .font(MonetiqTheme.Typography.currencySmall)
-                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                        .foregroundColor(loan.isCompleted ? completedColor : MonetiqTheme.Colors.textPrimary)
                         .fontWeight(.bold)
                     
                     if let nextDueDate = loan.nextDueDate {
@@ -163,6 +183,15 @@ struct LoanRowView: View {
                     Text(counterparty.name)
                         .monetiqCardSubtitle()
                         .opacity(0.9)
+                    
+                    Text("•")
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        .opacity(0.5)
+                    
+                    Text(L10n.string("loans_created_short", loan.createdAt.formatted(date: .abbreviated, time: .omitted)))
+                        .font(MonetiqTheme.Typography.caption)
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        .opacity(0.7)
                 }
                 .padding(.leading, MonetiqTheme.Spacing.lg + MonetiqTheme.Spacing.sm) // Align with content
             }

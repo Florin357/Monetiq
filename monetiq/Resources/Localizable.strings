@@ -18,6 +18,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Dashboard";
+"tab_income" = "Income";
 "tab_loans" = "Loans";
 "tab_calculator" = "Calculator";
 "tab_settings" = "Settings";
@@ -27,11 +28,67 @@
 "dashboard_subtitle" = "Your financial overview";
 "dashboard_to_receive" = "To Receive";
 "dashboard_to_pay" = "To Pay";
+"dashboard_to_receive_detail_title" = "To Receive - Breakdown";
+"dashboard_to_pay_detail_title" = "To Pay - Breakdown";
+"dashboard_detail_empty_state" = "No active loans in this category";
+"dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "From Loans";
+"dashboard_detail_from_income" = "Income";
+"dashboard_income_unknown" = "Unknown Income";
+"dashboard_income_badge" = "Income";
+"dashboard_mark_received" = "Mark Received";
+"dashboard_unknown_loan" = "Unknown Loan";
 "dashboard_upcoming_payments" = "Upcoming Payments";
 "dashboard_no_payments" = "No upcoming payments";
 "dashboard_no_payments_subtitle" = "All your payments are up to date";
+"dashboard_cashflow" = "Cashflow";
+"dashboard_cashflow_subtitle" = "Next 30 days";
+"dashboard_cashflow_net" = "Net";
+"dashboard_cashflow_empty" = "Not enough payment data";
+"dashboard_cashflow_to_receive" = "To Receive";
+"dashboard_cashflow_to_pay" = "To Pay";
+"dashboard_cashflow_helper" = "Based on scheduled payments";
+"dashboard_cashflow_today" = "Today";
+"dashboard_cashflow_more_currencies" = "+%d more";
+"dashboard_cashflow_low_activity" = "Mostly stable over the next 30 days";
 "dashboard_recent_loans" = "Recent Loans";
 "dashboard_no_loans" = "No loans yet";
+
+// MARK: - Income
+"income_title" = "Income";
+"income_subtitle" = "Manage your income and paydays";
+"income_empty_title" = "No income yet";
+"income_empty_subtitle" = "Add your first income to see upcoming paydays";
+"income_add_title" = "Add Income";
+"income_edit_title" = "Edit Income";
+"income_delete_title" = "Delete Income";
+"income_delete_message" = "Are you sure you want to delete this income? This action cannot be undone.";
+"income_next_payday" = "Next: %@";
+"income_frequency_weekly" = "Weekly";
+"income_frequency_monthly" = "Monthly";
+"income_frequency_quarterly" = "Quarterly";
+"income_frequency_yearly" = "Yearly";
+"income_frequency_one_time" = "One Time";
+
+// MARK: - Income Form
+"income_form_title" = "Title";
+"income_form_title_placeholder" = "e.g. Salary, Freelance";
+"income_form_amount" = "Amount";
+"income_form_amount_placeholder" = "Enter amount";
+"income_form_currency" = "Currency";
+"income_form_frequency" = "Frequency";
+"income_form_start_date" = "Start Date";
+"income_form_end_date" = "End Date";
+"income_form_has_end_date" = "Has End Date";
+"income_form_counterparty" = "Source (Optional)";
+"income_form_counterparty_placeholder" = "e.g. Employer name";
+"income_form_notes" = "Notes";
+"income_form_notes_placeholder" = "Optional notes";
+"income_form_details_section" = "Income Details";
+"income_section_active" = "Active";
+"income_section_completed" = "Completed";
+"income_status_done" = "Done";
+"income_ended_date" = "Ended: %@";
 
 // MARK: - Loans
 "loans_title" = "Loans";
@@ -43,6 +100,8 @@
 "loans_delete_title" = "Delete Loan";
 "loans_delete_message" = "Are you sure you want to delete this loan? This action cannot be undone.";
 "loans_next_due" = "Next: %@";
+"loans_created" = "Created: %@";
+"loans_created_short" = "Created %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Title";
@@ -82,6 +141,9 @@
 "loan_detail_no_payments" = "No payments scheduled";
 "loan_detail_details" = "Details";
 "loan_detail_no_schedule" = "No payment schedule available";
+"loan_detail_progress" = "Payment Progress";
+"loan_detail_progress_paid" = "%.1f%% paid";
+"loan_detail_progress_no_payments" = "No payments yet";
 "loan_detail_notes" = "Notes";
 "loan_detail_delete_confirm" = "Are you sure you want to delete '%@'? This action cannot be undone.";
 
@@ -109,10 +171,10 @@
 "settings_device_info" = "On-device data • No account required";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Privacy Policy\n\nEffective Date: December 15, 2025\n\n1. Information We Collect\n\nMonetiq is designed with privacy in mind. All your financial data is stored locally on your device and is never transmitted to our servers or any third parties.\n\n• Loan information (amounts, dates, counterparties)\n• Payment schedules and history\n• App preferences and settings\n• Local notifications preferences\n\n2. How We Use Your Information\n\nYour data is used solely to:\n• Provide loan tracking and payment reminder functionality\n• Calculate payment schedules and interest\n• Send local notifications for upcoming payments\n• Maintain your app preferences\n\n3. Data Storage and Security\n\n• All data is stored locally on your device using iOS secure storage\n• No data is transmitted over the internet\n• No user accounts or cloud synchronization\n• Data is protected by your device's security features (Face ID, Touch ID, passcode)\n\n4. Data Sharing\n\nWe do not share, sell, or transmit your personal information to any third parties. Your financial data remains private and under your control.\n\n5. Your Rights\n\n• You can delete all app data at any time through Settings → Reset App\n• You control all notification preferences\n• No data recovery is possible once deleted (as we don't store backups)\n\n6. Changes to This Policy\n\nWe may update this privacy policy from time to time. Any changes will be reflected in the app with an updated effective date.\n\n7. Contact Us\n\nIf you have questions about this privacy policy, please contact us through the App Store.";
+"privacy_policy_content" = "Privacy Policy\n\nEffective Date: December 15, 2025\n\n1. Information We Collect\n\nYpsilon is designed with privacy in mind. All your financial data is stored locally on your device and is never transmitted to our servers or any third parties.\n\n• Loan information (amounts, dates, counterparties)\n• Payment schedules and history\n• App preferences and settings\n• Local notifications preferences\n\n2. How We Use Your Information\n\nYour data is used solely to:\n• Provide loan tracking and payment reminder functionality\n• Calculate payment schedules and interest\n• Send local notifications for upcoming payments\n• Maintain your app preferences\n\n3. Data Storage and Security\n\n• All data is stored locally on your device using iOS secure storage\n• No data is transmitted over the internet\n• No user accounts or cloud synchronization\n• Data is protected by your device's security features (Face ID, Touch ID, passcode)\n\n4. Data Sharing\n\nWe do not share, sell, or transmit your personal information to any third parties. Your financial data remains private and under your control.\n\n5. Your Rights\n\n• You can delete all app data at any time through Settings → Reset App\n• You control all notification preferences\n• No data recovery is possible once deleted (as we don't store backups)\n\n6. Changes to This Policy\n\nWe may update this privacy policy from time to time. Any changes will be reflected in the app with an updated effective date.\n\n7. Contact Us\n\nIf you have questions about this privacy policy, please contact us through the App Store.";
 
 // Legal Documents - Terms of Service  
-"terms_of_service_content" = "Terms of Service\n\nEffective Date: December 15, 2025\n\n1. Acceptance of Terms\n\nBy using Monetiq, you agree to these Terms of Service. If you do not agree, please do not use the app.\n\n2. Description of Service\n\nMonetiq is a personal finance app for tracking loans and managing payment schedules. The app:\n• Helps you track personal loans (given and received)\n• Calculates payment schedules and interest\n• Provides local payment reminders\n• Stores all data locally on your device\n\n3. User Responsibilities\n\n• You are responsible for the accuracy of data you enter\n• You must comply with applicable laws when using the app\n• You are responsible for backing up your device if you want to preserve data\n• You must not use the app for illegal financial activities\n\n4. Limitations and Disclaimers\n\n• Monetiq is for personal use and record-keeping only\n• The app does not provide financial, legal, or tax advice\n• Interest calculations are estimates; consult professionals for official calculations\n• We are not responsible for financial decisions made based on app data\n• The app does not facilitate actual money transfers or payments\n\n5. Data and Privacy\n\n• All data is stored locally on your device\n• We do not collect, store, or transmit your personal information\n• You are responsible for your device's security\n• Data cannot be recovered if lost or deleted\n\n6. Intellectual Property\n\nThe Monetiq app, including its design, code, and content, is protected by copyright and other intellectual property laws.\n\n7. Limitation of Liability\n\nTo the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the app.\n\n8. Termination\n\nYou may stop using the app at any time by deleting it from your device. These terms remain in effect until terminated.\n\n9. Changes to Terms\n\nWe may update these terms from time to time. Continued use of the app after changes constitutes acceptance of the new terms.\n\n10. Governing Law\n\nThese terms are governed by the laws of the jurisdiction where the app is developed and distributed.\n\n11. Contact Information\n\nFor questions about these terms, please contact us through the App Store.";
+"terms_of_service_content" = "Terms of Service\n\nEffective Date: December 15, 2025\n\n1. Acceptance of Terms\n\nBy using Ypsilon, you agree to these Terms of Service. If you do not agree, please do not use the app.\n\n2. Description of Service\n\nYpsilon is a personal finance app for tracking loans and managing payment schedules. The app:\n• Helps you track personal loans (given and received)\n• Calculates payment schedules and interest\n• Provides local payment reminders\n• Stores all data locally on your device\n\n3. User Responsibilities\n\n• You are responsible for the accuracy of data you enter\n• You must comply with applicable laws when using the app\n• You are responsible for backing up your device if you want to preserve data\n• You must not use the app for illegal financial activities\n\n4. Limitations and Disclaimers\n\n• Ypsilon is for personal use and record-keeping only\n• The app does not provide financial, legal, or tax advice\n• Interest calculations are estimates; consult professionals for official calculations\n• We are not responsible for financial decisions made based on app data\n• The app does not facilitate actual money transfers or payments\n\n5. Data and Privacy\n\n• All data is stored locally on your device\n• We do not collect, store, or transmit your personal information\n• You are responsible for your device's security\n• Data cannot be recovered if lost or deleted\n\n6. Intellectual Property\n\nThe Ypsilon app, including its design, code, and content, is protected by copyright and other intellectual property laws.\n\n7. Limitation of Liability\n\nTo the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the app.\n\n8. Termination\n\nYou may stop using the app at any time by deleting it from your device. These terms remain in effect until terminated.\n\n9. Changes to Terms\n\nWe may update these terms from time to time. Continued use of the app after changes constitutes acceptance of the new terms.\n\n10. Governing Law\n\nThese terms are governed by the laws of the jurisdiction where the app is developed and distributed.\n\n11. Contact Information\n\nFor questions about these terms, please contact us through the App Store.";
 "calculator_frequency" = "Payment Frequency";
 "calculator_calculate" = "Calculate Payment";
 "calculator_results" = "Results";
@@ -124,12 +186,12 @@
 "calculator_currency" = "Currency";
 "calculator_generated" = "Generated";
 "calculator_share_title" = "Loan Calculation Summary";
-"calculator_share_footer" = "Made with Monetiq";
+"calculator_share_footer" = "Made with Ypsilon";
 "calculator_share" = "Share";
 
 // MARK: - Settings
 "settings_title" = "Settings";
-"settings_subtitle" = "Customize your Monetiq experience";
+"settings_subtitle" = "Customize your Ypsilon experience";
 "settings_general" = "General";
 "settings_security" = "Security";
 "settings_appearance" = "Appearance";
@@ -171,7 +233,7 @@
 "settings_reset_app_confirm_action" = "Delete All Data";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Unlock Monetiq to access your financial data";
+"biometric_unlock_reason" = "Unlock Ypsilon to access your financial data";
 "biometric_enable_reason" = "Authenticate to enable biometric security";
 "lock_screen_title" = "Locked";
 "lock_screen_subtitle" = "Unlock with %@";
@@ -180,7 +242,6 @@
 "biometric_error_unknown" = "An unknown error occurred";
 "biometric_unavailable_title" = "Biometrics Unavailable";
 "biometric_unavailable_message" = "Biometric authentication is not available on this device";
-"general_ok" = "OK";
 
 // MARK: - Notifications
 "notification_payment_reminder_title" = "Payment Reminder";
@@ -188,9 +249,9 @@
 "notification_payment_due_title" = "Payment Due Today";
 "notification_payment_due_body" = "Payment for '%@' is due today: %@";
 "notification_weekly_review_title" = "Weekly Financial Review";
-"notification_weekly_review_body" = "Time to review your loans and upcoming payments in Monetiq";
+"notification_weekly_review_body" = "Time to review your loans and upcoming payments in Ypsilon";
 "notification_test_title" = "Test Notification";
-"notification_test_body" = "This is a test notification from Monetiq";
+"notification_test_body" = "This is a test notification from Ypsilon";
 
 // MARK: - Settings - Notifications
 "settings_notifications_denied_title" = "Notifications Disabled";
@@ -220,6 +281,7 @@
 "financial_details_section" = "Financial Details";
 "amount_placeholder" = "Amount";
 "currency_label" = "Currency";
+"currency_locked_message" = "Currency can't be changed after the loan is created.";
 "repayment_schedule_section" = "Repayment Schedule";
 "number_of_payments_placeholder" = "Number of Payments";
 "interest_section" = "Interest";
@@ -284,14 +346,10 @@
 "status_paid_on" = "Paid on %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Start Date";
 "loan_detail_payment_frequency" = "Payment Frequency";
 "loan_detail_number_of_payments" = "Number of Payments";
 "loan_detail_interest_mode" = "Interest Mode";
 "loan_detail_annual_interest_rate" = "Annual Interest Rate";
-"loan_detail_total_to_repay" = "Total to Repay";
-"loan_detail_total_paid" = "Total Paid";
-"loan_detail_remaining" = "Remaining";
 "loan_detail_next_due_date" = "Next Due Date";
 "loan_detail_created" = "Created";
 "loan_detail_last_updated" = "Last Updated";
@@ -320,3 +378,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Payment Reminder (Snoozed)";
 "notification_payment_snoozed_body" = "Reminder for %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Loan Type";
+"loan_type_label" = "What kind of loan is this?";
+"loan_type_new" = "New Loan";
+"loan_type_existing" = "Existing Loan";
+"loan_type_new_footer" = "Starting from today";
+"loan_type_existing_footer" = "Already in progress";
+
+"existing_loan_status_section" = "Current Status";
+"existing_loan_method_label" = "How do you want to track progress?";
+"existing_loan_method_next_due_date" = "Next Due Date";
+"existing_loan_method_paid_months" = "Paid Months";
+
+"existing_loan_next_due_date_label" = "Next Due Date";
+"existing_loan_next_due_date_footer" = "All payments before this date will be marked as paid automatically.";
+
+"existing_loan_paid_months_placeholder" = "Number of months already paid";
+"existing_loan_paid_months_footer" = "The first X payments will be marked as paid.";
+
+"original_start_date_label" = "Original Start Date";
+
+"loan_detail_auto_marked_info" = "Past payments were automatically marked as paid based on your current status.";

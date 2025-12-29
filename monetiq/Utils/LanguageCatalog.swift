@@ -14,6 +14,11 @@ struct Language {
     var displayName: String {
         return name
     }
+    
+    /// Returns the flag emoji for this language's primary country
+    var flag: String {
+        return LanguageCatalog.shared.flag(for: code)
+    }
 }
 
 struct LanguageCatalog {
@@ -45,5 +50,23 @@ struct LanguageCatalog {
     
     var languageCodes: [String] {
         return supportedLanguages.map { $0.code }
+    }
+    
+    /// Returns the flag emoji for a given language code
+    /// Maps language to its primary country/region
+    func flag(for code: String) -> String {
+        switch code {
+        case "system": return "🌐" // Globe for system default
+        case "en": return "🇬🇧" // English (UK flag)
+        case "ro": return "🇷🇴" // Romanian
+        case "de": return "🇩🇪" // German
+        case "zh-Hans": return "🇨🇳" // Chinese Simplified
+        case "hi": return "🇮🇳" // Hindi
+        case "it": return "🇮🇹" // Italian
+        case "es": return "🇪🇸" // Spanish
+        case "ru": return "🇷🇺" // Russian
+        case "fr": return "🇫🇷" // French
+        default: return "🌐" // Fallback: globe icon
+        }
     }
 }

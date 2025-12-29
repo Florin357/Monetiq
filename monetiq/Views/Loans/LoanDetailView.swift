@@ -11,6 +11,7 @@ import SwiftData
 struct LoanDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Query private var allPayments: [Payment]  // For badge count calculation
     
     let loan: Loan
     let focusPaymentId: UUID? // Optional payment to focus on
@@ -19,13 +20,29 @@ struct LoanDetailView: View {
     @State private var showingEditLoan = false
     @State private var showingDeleteAlert = false
     @State private var highlightedPaymentId: UUID? // For brief highlighting
+    @State private var appState = AppState.shared
     
     private var notificationManager: NotificationManager {
         NotificationManager.shared
     }
     
     private var sortedPayments: [Payment] {
-        loan.payments.sorted { $0.dueDate < $1.dueDate }
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [] }
+        return loan.payments.sorted { $0.dueDate < $1.dueDate }
+    }
+    
+    // Check if loan has auto-marked paid payments (existing loan enrollment)
+    private var hasAutoMarkedPayments: Bool {
+        // If the loan was created recently (within last minute) and has paid payments
+        // that were paid on their due date, it's likely an existing loan enrollment
+        let recentlyCreated = Date().timeIntervalSince(loan.createdAt) < 60
+        let hasPaidPayments = loan.payments.contains { $0.status == .paid }
+        let hasPaidOnDueDate = loan.payments.contains { payment in
+            payment.status == .paid && payment.paidDate != nil &&
+            Calendar.current.isDate(payment.paidDate!, inSameDayAs: payment.dueDate)
+        }
+        return recentlyCreated && hasPaidPayments && hasPaidOnDueDate
     }
     
     // MARK: - Initializers
@@ -99,7 +116,7 @@ struct LoanDetailView: View {
                         Spacer()
                         
                         VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
-                            Text(String(format: "%.2f", loan.principalAmount))
+                            Text(CurrencyFormatter.shared.formatAmount(loan.principalAmount))
                                 .font(MonetiqTheme.Typography.title2)
                                 .foregroundColor(MonetiqTheme.Colors.accent)
                                 .fontWeight(.semibold)
@@ -126,14 +143,21 @@ struct LoanDetailView: View {
                         DetailRow(title: L10n.string("loan_detail_interest_mode"), value: loan.interestMode.localizedLabel)
                         
                         if let rate = loan.annualInterestRate {
-                            DetailRow(title: L10n.string("loan_detail_annual_interest_rate"), value: String(format: "%.2f%%", rate))
+                            DetailRow(title: L10n.string("loan_detail_annual_interest_rate"), value: "\(CurrencyFormatter.shared.formatAmount(rate))%")
                         }
                         
                         if let totalToRepay = loan.totalToRepay {
                             DetailRow(title: L10n.string("loan_detail_total_to_repay"), value: CurrencyFormatter.shared.format(amount: totalToRepay, currencyCode: loan.currencyCode))
                         }
                         
-                        DetailRow(title: L10n.string("loan_detail_total_paid"), value: CurrencyFormatter.shared.format(amount: loan.totalPaid, currencyCode: loan.currencyCode))
+                        // Payment Progress Indicator
+                        PaymentProgressRow(
+                            totalPaid: loan.totalPaid,
+                            remaining: loan.remainingToPay,
+                            currencyCode: loan.currencyCode
+                        )
+                        
+                        DetailRow(title: L10n.string("loan_detail_total_paid"), value: CurrencyFormatter.shared.format(amount: loan.totalPaid, currencyCode: loan.currencyCode), valueColor: loan.totalPaid > 0 ? MonetiqTheme.Colors.success : MonetiqTheme.Colors.error)
                         DetailRow(title: L10n.string("loan_detail_remaining"), value: CurrencyFormatter.shared.format(amount: loan.remainingToPay, currencyCode: loan.currencyCode))
                         
                         if let nextDueDate = loan.nextDueDate {
@@ -176,6 +200,25 @@ struct LoanDetailView: View {
                             .font(MonetiqTheme.Typography.body)
                             .foregroundColor(MonetiqTheme.Colors.textSecondary)
                     } else {
+                        // Show info message if there are auto-marked paid payments
+                        if hasAutoMarkedPayments {
+                            HStack(alignment: .top, spacing: MonetiqTheme.Spacing.sm) {
+                                Image(systemName: "info.circle.fill")
+                                    .font(.caption)
+                                    .foregroundColor(MonetiqTheme.Colors.accent)
+                                
+                                Text(L10n.string("loan_detail_auto_marked_info"))
+                                    .font(MonetiqTheme.Typography.caption)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            .padding(MonetiqTheme.Spacing.md)
+                            .background(
+                                RoundedRectangle(cornerRadius: MonetiqTheme.CornerRadius.sm)
+                                    .fill(MonetiqTheme.Colors.accent.opacity(0.1))
+                            )
+                        }
+                        
                         LazyVStack(spacing: MonetiqTheme.Spacing.sm) {
                             ForEach(sortedPayments, id: \.id) { payment in
                                 PaymentRowView(
@@ -263,7 +306,7 @@ struct LoanDetailView: View {
         // Cancel notifications for this loan before deletion
         Task {
             await notificationManager.cancelNotifications(for: loan)
-            await notificationManager.updateBadgeCount()
+            await notificationManager.updateBadgeCount(payments: allPayments)
         }
         
         modelContext.delete(loan)
@@ -277,7 +320,7 @@ struct LoanDetailView: View {
         // Cancel notifications for this specific payment and update badge count
         Task {
             await notificationManager.cancelNotifications(for: payment)
-            await notificationManager.updateBadgeCount()
+            await notificationManager.updateBadgeCount(payments: allPayments)
         }
     }
     
@@ -321,6 +364,7 @@ struct LoanDetailView: View {
 struct DetailRow: View {
     let title: String
     let value: String
+    var valueColor: Color? = nil
     
     var body: some View {
         HStack {
@@ -332,8 +376,75 @@ struct DetailRow: View {
             
             Text(value)
                 .font(MonetiqTheme.Typography.body)
-                .foregroundColor(MonetiqTheme.Colors.onSurface)
+                .foregroundColor(valueColor ?? MonetiqTheme.Colors.onSurface)
+                .fontWeight(valueColor != nil ? .semibold : .regular)
         }
+    }
+}
+
+struct PaymentProgressRow: View {
+    let totalPaid: Double
+    let remaining: Double
+    let currencyCode: String
+    
+    private var totalAmount: Double {
+        totalPaid + remaining
+    }
+    
+    private var progressPercentage: Double {
+        guard totalAmount > 0 else { return 0 }
+        return (totalPaid / totalAmount) * 100
+    }
+    
+    private var statusColor: Color {
+        if totalPaid > 0 {
+            return MonetiqTheme.Colors.success
+        } else {
+            return MonetiqTheme.Colors.error
+        }
+    }
+    
+    private var statusText: String {
+        if totalPaid > 0 {
+            // Pass the percentage value directly to L10n.string for proper formatting
+            return L10n.string("loan_detail_progress_paid", progressPercentage)
+        } else {
+            return L10n.string("loan_detail_progress_no_payments")
+        }
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+            HStack {
+                Text(L10n.string("loan_detail_progress"))
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                
+                Spacer()
+                
+                Text(statusText)
+                    .font(MonetiqTheme.Typography.caption)
+                    .foregroundColor(statusColor)
+                    .fontWeight(.semibold)
+            }
+            
+            // Progress bar
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    // Background
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(MonetiqTheme.Colors.surface.opacity(0.3))
+                        .frame(height: 8)
+                    
+                    // Progress
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(statusColor)
+                        .frame(width: geometry.size.width * CGFloat(progressPercentage / 100), height: 8)
+                }
+            }
+            .frame(height: 8)
+        }
+        .padding(.vertical, MonetiqTheme.Spacing.xs)
     }
 }
 
@@ -373,14 +484,18 @@ struct PaymentRowView: View {
                     )
             }
             
-            Spacer()
+            Spacer(minLength: 12)
             
             VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
                 // Amount - Premium currency display
-                Text(String(format: "%.2f %@", payment.amount, payment.loan?.currencyCode ?? "RON"))
+                Text(CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: payment.loan?.currencyCode ?? "RON"))
                     .font(MonetiqTheme.Typography.currencySmall)
                     .foregroundColor(MonetiqTheme.Colors.textPrimary)
                     .fontWeight(.semibold)
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+                    .minimumScaleFactor(0.85)
+                    .layoutPriority(1)
                 
                 if payment.status == .planned && !payment.isOverdue {
                     Button(L10n.string("mark_paid_button")) {

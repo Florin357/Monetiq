@@ -79,7 +79,8 @@ class BiometricAuthService {
         print("🔒 BiometricAuthService: Checking biometric availability...")
         #endif
         
-        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+        // Use biometrics-only policy (no passcode fallback)
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
             let biometricError = mapLAError(error)
             #if DEBUG
             print("🔒 BiometricAuthService: Biometrics not available: \(biometricError.errorDescription ?? "Unknown")")
@@ -103,9 +104,13 @@ class BiometricAuthService {
         // Use a fresh context for each authentication attempt
         let authContext = LAContext()
         
+        // Configure context to prefer biometrics without passcode fallback
+        authContext.localizedFallbackTitle = "" // Hide "Enter Password" button
+        
         // Check availability first using the same context
         var error: NSError?
-        guard authContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+        // Use biometrics-only policy (no passcode fallback)
+        guard authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
             let biometricError = mapLAError(error)
             #if DEBUG
             print("🔒 BiometricAuthService: Authentication failed - biometrics not available: \(biometricError.errorDescription ?? "Unknown")")
@@ -114,8 +119,9 @@ class BiometricAuthService {
         }
         
         do {
+            // Use biometrics-only policy
             let success = try await authContext.evaluatePolicy(
-                .deviceOwnerAuthentication,
+                .deviceOwnerAuthenticationWithBiometrics,
                 localizedReason: reason
             )
             

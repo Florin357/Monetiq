@@ -10,29 +10,51 @@ import SwiftData
 
 // MARK: - Dashboard-specific types for upcoming payments interactions
 
+enum UpcomingItemType {
+    case loanPayment
+    case incomePayment
+}
+
 struct UpcomingPaymentItem: Identifiable {
     let id: String // stable key for SwiftUI
-    let loanID: UUID
-    let loanTitle: String
+    let type: UpcomingItemType
+    let title: String
     let counterparty: String?
     let dueDate: Date
     let amount: Double
     let currency: String
     let paymentReference: UUID // payment.id for stable reference
-    let payment: Payment // reference to actual payment for actions
+    
+    // Optional references (only one will be non-nil)
+    let loanPayment: Payment?
+    let incomePayment: IncomePayment?
     
     var stableKey: String { id }
     
     init(payment: Payment) {
-        self.payment = payment
+        self.loanPayment = payment
+        self.incomePayment = nil
+        self.type = .loanPayment
         self.paymentReference = payment.id
-        self.id = payment.id.uuidString // use payment UUID as stable key
-        self.loanID = payment.loan?.id ?? UUID()
-        self.loanTitle = payment.loan?.title ?? "Unknown Loan"
+        self.id = "loan-\(payment.id.uuidString)" // prefix for uniqueness
+        self.title = payment.loan?.title ?? L10n.string("dashboard_unknown_loan")
         self.counterparty = payment.loan?.counterparty?.name
         self.dueDate = payment.dueDate
         self.amount = payment.amount
         self.currency = payment.loan?.currencyCode ?? "RON"
+    }
+    
+    init(incomePayment: IncomePayment) {
+        self.loanPayment = nil
+        self.incomePayment = incomePayment
+        self.type = .incomePayment
+        self.paymentReference = incomePayment.id
+        self.id = "income-\(incomePayment.id.uuidString)" // prefix for uniqueness
+        self.title = incomePayment.incomeSource?.title ?? L10n.string("dashboard_income_unknown")
+        self.counterparty = incomePayment.incomeSource?.counterpartyName
+        self.dueDate = incomePayment.dueDate
+        self.amount = incomePayment.amount
+        self.currency = incomePayment.currencyCode
     }
 }
 
@@ -40,28 +62,37 @@ struct DashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var loans: [Loan]
     @Query private var payments: [Payment]
+    @Query private var incomeSources: [IncomeSource]
+    @Query private var incomePayments: [IncomePayment]
+    
+    @State private var showToReceiveDetail = false
+    @State private var showToPayDetail = false
+    @State private var appState = AppState.shared
     
     private var appSettings: AppSettings {
         AppSettings.getOrCreate(in: modelContext)
     }
     
     var body: some View {
+        // Show loading state during reset to prevent accessing deleted objects
+        if appState.isResetting {
+            VStack(spacing: MonetiqTheme.Spacing.lg) {
+                ProgressView()
+                    .scaleEffect(1.5)
+                Text(L10n.string("general_loading"))
+                    .font(MonetiqTheme.Typography.body)
+                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .monetiqBackground()
+        } else {
+            mainContent
+        }
+    }
+    
+    private var mainContent: some View {
         ScrollView {
             VStack(spacing: MonetiqTheme.Spacing.sectionSpacing) {
-                // Header - Premium styling
-                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
-                    Text(L10n.string("dashboard_title"))
-                        .font(MonetiqTheme.Typography.largeTitle)
-                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
-                    
-                    Text(L10n.string("dashboard_subtitle"))
-                        .font(MonetiqTheme.Typography.subheadline)
-                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
-                        .opacity(0.8)
-                }
-                .monetiqHeader()
-                .padding(.bottom, MonetiqTheme.Spacing.sm)
-                
                 // Summary Cards
                 LazyVGrid(columns: [
                     GridItem(.flexible()),
@@ -72,12 +103,18 @@ struct DashboardView: View {
                         totals: calculateToReceiveByCurrency(),
                         color: MonetiqTheme.Colors.positive
                     )
+                    .onTapGesture {
+                        showToReceiveDetail = true
+                    }
                     
                     MultiCurrencySummaryCard(
                         title: L10n.string("dashboard_to_pay"),
                         totals: calculateToPayByCurrency(),
                         color: MonetiqTheme.Colors.negative
                     )
+                    .onTapGesture {
+                        showToPayDetail = true
+                    }
                 }
                 .monetiqSection()
                 
@@ -122,26 +159,44 @@ struct DashboardView: View {
                         .monetiqEmptyState()
                     } else {
                         List(upcomingPayments.prefix(5), id: \.stableKey) { item in
-                            if let loan = item.payment.loan {
-                                NavigationLink(destination: LoanDetailView(
-                                    loan: loan,
-                                    focusPaymentId: item.paymentReference
-                                )) {
+                            Group {
+                                switch item.type {
+                                case .loanPayment:
+                                    if let loan = item.loanPayment?.loan {
+                                        NavigationLink(destination: LoanDetailView(
+                                            loan: loan,
+                                            focusPaymentId: item.paymentReference
+                                        )) {
+                                            DashboardPaymentRowContent(paymentItem: item)
+                                        }
+                                    } else {
+                                        DashboardPaymentRowContent(paymentItem: item)
+                                    }
+                                    
+                                case .incomePayment:
+                                    // Income payments don't have detail navigation yet
                                     DashboardPaymentRowContent(paymentItem: item)
                                 }
-                                .buttonStyle(PlainButtonStyle())
-                                .listRowBackground(Color.clear)
-                                .listRowSeparator(.hidden)
-                                .listRowInsets(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
-                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                    Button(L10n.string("dashboard_mark_paid")) {
-                                        markPaymentAsPaid(item)
-                                    }
-                                    .tint(MonetiqTheme.Colors.success)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button {
+                                    markPaymentAsPaid(item)
+                                } label: {
+                                    Label(item.type == .loanPayment ? L10n.string("dashboard_mark_paid") : L10n.string("dashboard_mark_received"), systemImage: "checkmark.circle.fill")
                                 }
-                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                                    Button(L10n.string("dashboard_postpone")) {
+                                .tint(MonetiqTheme.Colors.success)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                // Only show postpone for loan payments
+                                if item.type == .loanPayment {
+                                    Button {
                                         postponePayment(item)
+                                    } label: {
+                                        Label(L10n.string("dashboard_postpone"), systemImage: "clock.arrow.circlepath")
                                     }
                                     .tint(MonetiqTheme.Colors.warning)
                                 }
@@ -154,6 +209,10 @@ struct DashboardView: View {
                         .environment(\.defaultMinListRowHeight, 0)
                     }
                 }
+                
+                // Cashflow Chart - 30 days preview
+                CashflowCardView(loans: loans, incomePayments: incomePayments, windowDays: 30)
+                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
                 
                 // Recent Loans - Premium section
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
@@ -200,44 +259,66 @@ struct DashboardView: View {
             }
             .padding(.vertical, MonetiqTheme.Spacing.sectionSpacing)
         }
+        .navigationTitle(L10n.string("dashboard_title"))
+        .navigationBarTitleDisplayMode(.large)
         .monetiqBackground()
+        .sheet(isPresented: $showToReceiveDetail) {
+            DashboardTotalsDetailView(
+                kind: .toReceive,
+                loans: loans,
+                incomePayments: incomePayments,
+                calculateTotals: calculateToReceiveByCurrency
+            )
+        }
+        .sheet(isPresented: $showToPayDetail) {
+            DashboardTotalsDetailView(
+                kind: .toPay,
+                loans: loans,
+                incomePayments: incomePayments,
+                calculateTotals: calculateToPayByCurrency
+            )
+        }
     }
     
     /// SOURCE OF TRUTH: Upcoming Payments Logic
-    /// This defines what payments are considered "upcoming" and should:
-    /// 1. Appear in the Dashboard "Plăți Viitoare" section
-    /// 2. Have scheduled notifications (if notifications enabled)
-    /// 3. Contribute to the app icon badge count
-    /// 
-    /// Rules:
-    /// - payment.status == .planned (not paid)
-    /// - payment.dueDate >= today (not overdue)
-    /// - payment.dueDate < today + 30 days (within upcoming window)
-    /// - snoozeUntil is handled separately for notification timing
+    /// Uses filters for consistent filtering across:
+    /// 1. Dashboard "Upcoming Payments" section
+    /// 2. App icon badge count
+    ///
+    /// Business Rule: An item is "upcoming" if it's due within the next 15 days.
+    /// This is INDEPENDENT of notification settings.
     private var upcomingPayments: [UpcomingPaymentItem] {
-        let today = Date()
-        let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
+        // Don't access payment properties during reset
+        guard !appState.isResetting else { return [] }
         
-        let allPlannedPayments = payments.filter { $0.status == .planned }
-        let upcomingFiltered = allPlannedPayments.filter { 
-            $0.dueDate >= today && 
-            $0.dueDate < thirtyDaysFromNow 
-        }
+        var items: [UpcomingPaymentItem] = []
         
+        // 1. Loan payments
+        let upcomingLoanPayments = UpcomingPaymentsFilter.filterUpcomingPayments(from: payments)
+        items.append(contentsOf: upcomingLoanPayments.map { UpcomingPaymentItem(payment: $0) })
         
-        return upcomingFiltered
-            .sorted { $0.dueDate < $1.dueDate }
-            .map { UpcomingPaymentItem(payment: $0) }
+        // 2. Income payments
+        let upcomingIncomePayments = IncomeUpcomingFilter.getUpcoming(from: incomePayments)
+        items.append(contentsOf: upcomingIncomePayments.map { UpcomingPaymentItem(incomePayment: $0) })
+        
+        // Sort by due date (ascending)
+        return items.sorted { $0.dueDate < $1.dueDate }
     }
     
     private var recentLoans: [Loan] {
-        loans.sorted { $0.createdAt > $1.createdAt }
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [] }
+        return loans.sorted { $0.createdAt > $1.createdAt }
     }
     
     private func calculateToReceiveByCurrency() -> [String: Double] {
-        let lentLoans = loans.filter { $0.role == .lent }
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [:] }
+        
         var totals: [String: Double] = [:]
         
+        // 1. From Loans (lent money)
+        let lentLoans = loans.filter { $0.role == .lent }
         for loan in lentLoans {
             let remaining = (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
             if remaining > 0 {
@@ -245,10 +326,20 @@ struct DashboardView: View {
             }
         }
         
+        // 2. From Income (planned income payments)
+        // Use the same filtering approach as UpcomingPaymentsFilter for consistency
+        let upcomingIncomePayments = IncomeUpcomingFilter.getUpcoming(from: incomePayments)
+        for payment in upcomingIncomePayments {
+            totals[payment.currencyCode, default: 0] += payment.amount
+        }
+        
         return totals
     }
     
     private func calculateToPayByCurrency() -> [String: Double] {
+        // Don't access loan properties during reset
+        guard !appState.isResetting else { return [:] }
+        
         let borrowedLoans = loans.filter { $0.role == .borrowed || $0.role == .bankCredit }
         var totals: [String: Double] = [:]
         
@@ -265,15 +356,27 @@ struct DashboardView: View {
     // MARK: - Payment Actions
     
     private func markPaymentAsPaid(_ item: UpcomingPaymentItem) {
-        let payment = item.payment
-        
-        // Use the same domain action as in Loan Details (single source of truth)
-        payment.markAsPaid()
-        payment.loan?.updateTimestamp()
-        
-        // CONSISTENCY FIX: Trigger full reconciliation to ensure consistency
-        Task {
-            await NotificationManager.shared.reconcileAllPaymentNotifications(with: loans)
+        switch item.type {
+        case .loanPayment:
+            guard let payment = item.loanPayment else { return }
+            
+            // Use the same domain action as in Loan Details (single source of truth)
+            payment.markAsPaid()
+            payment.loan?.updateTimestamp()
+            
+            // CONSISTENCY FIX: Trigger full reconciliation to ensure consistency
+            Task {
+                await NotificationManager.shared.reconcileAllPaymentNotifications(with: loans)
+            }
+            
+        case .incomePayment:
+            guard let payment = item.incomePayment else { return }
+            
+            // Mark income payment as received
+            payment.markAsReceived()
+            payment.incomeSource?.updateTimestamp()
+            
+            // TODO: Add notification reconciliation for income when notifications are implemented
         }
         
         // UI will update automatically due to @Query reactivity
@@ -281,7 +384,9 @@ struct DashboardView: View {
     }
     
     private func postponePayment(_ item: UpcomingPaymentItem) {
-        let payment = item.payment
+        // Only loan payments support snooze for now
+        // Income payments don't have snooze functionality yet
+        guard item.type == .loanPayment, let payment = item.loanPayment else { return }
         
         // Postpone reminder by 1 day (Option 1: snooze reminder only, not actual due date)
         payment.postponeReminder(by: 1)
@@ -364,6 +469,9 @@ struct MultiCurrencySummaryCard: View {
                             .font(sortedTotals.count == 1 ? MonetiqTheme.Typography.currencyLarge : MonetiqTheme.Typography.currencyMedium)
                             .foregroundColor(color)
                             .fontWeight(.bold)
+                            .lineLimit(1)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .minimumScaleFactor(0.7)
                     }
                     
                     // Additional currencies (if any) - Subtle secondary display
@@ -374,6 +482,9 @@ struct MultiCurrencySummaryCard: View {
                                     .font(MonetiqTheme.Typography.currencyCaption)
                                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                                     .opacity(0.8)
+                                    .lineLimit(1)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .minimumScaleFactor(0.75)
                             }
                             
                             if sortedTotals.count > 3 {
@@ -395,29 +506,35 @@ struct MultiCurrencySummaryCard: View {
 struct DashboardPaymentRowContent: View {
     let paymentItem: UpcomingPaymentItem
     
-    // Convenience accessor for the underlying payment
-    private var payment: Payment { paymentItem.payment }
-    
     private var roleColor: Color {
-        guard let role = payment.loan?.role else { return MonetiqTheme.Colors.neutral }
-        
-        switch role {
-        case .lent:
-            return MonetiqTheme.Colors.positive  // Green - money to receive
-        case .borrowed:
-            return MonetiqTheme.Colors.negative  // Orange - money to pay
-        case .bankCredit:
-            return MonetiqTheme.Colors.error     // Red - bank credit
+        switch paymentItem.type {
+        case .loanPayment:
+            guard let role = paymentItem.loanPayment?.loan?.role else { return MonetiqTheme.Colors.neutral }
+            
+            switch role {
+            case .lent:
+                return MonetiqTheme.Colors.positive  // Green - money to receive
+            case .borrowed:
+                return MonetiqTheme.Colors.negative  // Orange - money to pay
+            case .bankCredit:
+                return MonetiqTheme.Colors.error     // Red - bank credit
+            }
+            
+        case .incomePayment:
+            return MonetiqTheme.Colors.positive  // Green - money to receive (income)
         }
     }
     
     private var daysUntilDue: Int {
-        Calendar.current.dateComponents([.day], from: Date(), to: paymentItem.dueDate).day ?? 0
+        DueDateHelper.daysBetween(from: Date(), to: paymentItem.dueDate)
     }
     
     private var dueDateText: String {
-        // Show snooze status if payment is snoozed
-        if payment.isReminderSnoozed, let snoozeUntil = payment.snoozeUntil {
+        // Show snooze status if payment is snoozed (loan payments only)
+        if paymentItem.type == .loanPayment,
+           let payment = paymentItem.loanPayment,
+           payment.isReminderSnoozed,
+           let snoozeUntil = payment.snoozeUntil {
             return L10n.string("dashboard_payment_snoozed_until", snoozeUntil.formatted(date: .abbreviated, time: .omitted))
         }
         
@@ -433,7 +550,10 @@ struct DashboardPaymentRowContent: View {
     }
     
     private var dueDateColor: Color {
-        if payment.isReminderSnoozed {
+        // Check snooze status (loan payments only)
+        if paymentItem.type == .loanPayment,
+           let payment = paymentItem.loanPayment,
+           payment.isReminderSnoozed {
             return MonetiqTheme.Colors.warning // Orange for snoozed
         } else if daysUntilDue <= 1 {
             return MonetiqTheme.Colors.error // Red for urgent
@@ -450,10 +570,26 @@ struct DashboardPaymentRowContent: View {
                 .frame(width: 5, height: 40)
             
             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
-                // Primary title - Enhanced hierarchy
-                Text(paymentItem.loanTitle)
-                    .monetiqCardTitle()
-                    .lineLimit(1)
+                // Primary title with type badge
+                HStack(spacing: MonetiqTheme.Spacing.sm) {
+                    Text(paymentItem.title)
+                        .monetiqCardTitle()
+                        .lineLimit(1)
+                    
+                    // Type badge (Income only)
+                    if paymentItem.type == .incomePayment {
+                        Text(L10n.string("dashboard_income_badge"))
+                            .font(MonetiqTheme.Typography.caption2)
+                            .foregroundColor(MonetiqTheme.Colors.positive)
+                            .fontWeight(.medium)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(
+                                Capsule()
+                                    .fill(MonetiqTheme.Colors.positive.opacity(0.15))
+                            )
+                    }
+                }
                 
                 // Secondary info - Better visual separation
                 HStack(spacing: MonetiqTheme.Spacing.sm) {
@@ -463,10 +599,12 @@ struct DashboardPaymentRowContent: View {
                             .lineLimit(1)
                     }
                     
-                    Text("•")
-                        .font(MonetiqTheme.Typography.caption2)
-                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
-                        .opacity(0.6)
+                    if paymentItem.counterparty != nil {
+                        Text("•")
+                            .font(MonetiqTheme.Typography.caption2)
+                            .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                            .opacity(0.6)
+                    }
                     
                     Text(dueDateText)
                         .font(MonetiqTheme.Typography.caption)
@@ -592,6 +730,326 @@ struct CompactAmountView: View {
             .minimumScaleFactor(0.85)
             .layoutPriority(1)
             .multilineTextAlignment(.trailing)
+    }
+}
+
+// MARK: - Dashboard Totals Detail View
+
+enum DashboardTotalsKind {
+    case toReceive
+    case toPay
+    
+    var title: String {
+        switch self {
+        case .toReceive:
+            return L10n.string("dashboard_to_receive_detail_title")
+        case .toPay:
+            return L10n.string("dashboard_to_pay_detail_title")
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .toReceive:
+            return MonetiqTheme.Colors.positive
+        case .toPay:
+            return MonetiqTheme.Colors.negative
+        }
+    }
+    
+    var loanRole: [LoanRole] {
+        switch self {
+        case .toReceive:
+            return [.lent]
+        case .toPay:
+            return [.borrowed, .bankCredit]
+        }
+    }
+}
+
+struct DashboardTotalsDetailView: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    let kind: DashboardTotalsKind
+    let loans: [Loan]
+    let incomePayments: [IncomePayment]
+    let calculateTotals: () -> [String: Double]
+    
+    private var filteredLoans: [Loan] {
+        loans.filter { kind.loanRole.contains($0.role) }
+            .filter { loan in
+                let remaining = (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+                return remaining > 0
+            }
+            .sorted { $0.createdAt > $1.createdAt }
+    }
+    
+    private var filteredIncomePayments: [IncomePayment] {
+        // Only show income for "To Receive"
+        guard kind == .toReceive else { return [] }
+        return IncomeUpcomingFilter.getUpcoming(from: incomePayments)
+    }
+    
+    private var totals: [String: Double] {
+        calculateTotals()
+    }
+    
+    private var sortedTotals: [(String, Double)] {
+        totals.sorted { $0.value > $1.value }
+    }
+    
+    private var isEmpty: Bool {
+        // Empty only if BOTH loans and income are empty
+        filteredLoans.isEmpty && filteredIncomePayments.isEmpty
+    }
+    
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: MonetiqTheme.Spacing.lg) {
+                    if isEmpty {
+                        // Empty state - shown only when both loans and income are empty
+                        VStack(spacing: MonetiqTheme.Spacing.lg) {
+                            Spacer()
+                                .frame(height: 60)
+                            
+                            Image(systemName: "tray")
+                                .font(.system(size: 48, weight: .light))
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                            
+                            VStack(spacing: MonetiqTheme.Spacing.xs) {
+                                Text(L10n.string("dashboard_detail_empty_state"))
+                                    .font(MonetiqTheme.Typography.body)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .multilineTextAlignment(.center)
+                            }
+                            
+                            Spacer()
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(MonetiqTheme.Spacing.lg)
+                    } else {
+                        // Totals Summary Card
+                        VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                            Text(L10n.string("dashboard_detail_total"))
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                .textCase(.uppercase)
+                                .tracking(0.8)
+                            
+                            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.sm) {
+                                ForEach(sortedTotals, id: \.0) { currency, amount in
+                                    HStack {
+                                        Text(CurrencyFormatter.shared.format(amount: amount, currencyCode: currency))
+                                            .font(sortedTotals.count == 1 ? MonetiqTheme.Typography.currencyLarge : MonetiqTheme.Typography.currencyMedium)
+                                            .foregroundColor(kind.color)
+                                            .fontWeight(.bold)
+                                        
+                                        Spacer()
+                                    }
+                                }
+                            }
+                        }
+                        .monetiqPremiumCard()
+                        .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                        
+                        // Loans Breakdown
+                        if !filteredLoans.isEmpty {
+                            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                                Text(L10n.string("dashboard_detail_from_loans"))
+                                    .font(MonetiqTheme.Typography.caption)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .textCase(.uppercase)
+                                    .tracking(0.8)
+                                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                                
+                                VStack(spacing: MonetiqTheme.Spacing.sm) {
+                                    ForEach(filteredLoans, id: \.id) { loan in
+                                        LoanBreakdownRow(loan: loan, color: kind.color)
+                                    }
+                                }
+                                .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                            }
+                        }
+                        
+                        // Income Breakdown (only for "To Receive")
+                        if !filteredIncomePayments.isEmpty {
+                            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
+                                Text(L10n.string("dashboard_detail_from_income"))
+                                    .font(MonetiqTheme.Typography.caption)
+                                    .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                    .textCase(.uppercase)
+                                    .tracking(0.8)
+                                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                                
+                                VStack(spacing: MonetiqTheme.Spacing.sm) {
+                                    ForEach(filteredIncomePayments, id: \.id) { payment in
+                                        IncomeBreakdownRow(payment: payment, color: kind.color)
+                                    }
+                                }
+                                .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical, MonetiqTheme.Spacing.md)
+            }
+            .navigationTitle(kind.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.body.weight(.medium))
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                    }
+                }
+            }
+            .monetiqBackground()
+        }
+    }
+}
+
+struct LoanBreakdownRow: View {
+    let loan: Loan
+    let color: Color
+    
+    private var remaining: Double {
+        (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
+    }
+    
+    var body: some View {
+        VStack(spacing: MonetiqTheme.Spacing.sm) {
+            HStack(spacing: MonetiqTheme.Spacing.md) {
+                // Loan info
+                VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                    Text(loan.title)
+                        .font(MonetiqTheme.Typography.bodyEmphasized)
+                        .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                        .lineLimit(1)
+                    
+                    if let counterparty = loan.counterparty {
+                        HStack(spacing: MonetiqTheme.Spacing.xs) {
+                            Image(systemName: counterparty.type == .person ? "person.fill" : "building.fill")
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                            
+                            Text(counterparty.name)
+                                .font(MonetiqTheme.Typography.caption)
+                                .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                                .lineLimit(1)
+                        }
+                    }
+                }
+                
+                Spacer()
+                
+                // Remaining amount
+                VStack(alignment: .trailing, spacing: MonetiqTheme.Spacing.xs) {
+                    Text(CurrencyFormatter.shared.format(amount: remaining, currencyCode: loan.currencyCode))
+                        .font(MonetiqTheme.Typography.currencySmall)
+                        .foregroundColor(color)
+                        .fontWeight(.semibold)
+                    
+                    // Progress indicator
+                    if loan.totalToRepay ?? loan.principalAmount > 0 {
+                        let progress = loan.totalPaid / (loan.totalToRepay ?? loan.principalAmount)
+                        Text("\(Int(progress * 100))%")
+                            .font(MonetiqTheme.Typography.caption2)
+                            .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                    }
+                }
+            }
+            
+            // Progress bar
+            if loan.totalToRepay ?? loan.principalAmount > 0 {
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        // Background
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(MonetiqTheme.Colors.surface)
+                            .frame(height: 4)
+                        
+                        // Progress
+                        let progress = loan.totalPaid / (loan.totalToRepay ?? loan.principalAmount)
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(color.opacity(0.3))
+                            .frame(width: geometry.size.width * progress, height: 4)
+                    }
+                }
+                .frame(height: 4)
+            }
+        }
+        .monetiqPremiumCard()
+    }
+}
+
+struct IncomeBreakdownRow: View {
+    let payment: IncomePayment
+    let color: Color
+    
+    private var daysUntilDue: Int {
+        DueDateHelper.daysBetween(from: Date(), to: payment.dueDate)
+    }
+    
+    private var dueDateText: String {
+        if daysUntilDue == 0 {
+            return L10n.string("payment_due_today")
+        } else if daysUntilDue == 1 {
+            return L10n.string("payment_due_tomorrow")
+        } else if daysUntilDue > 1 {
+            return L10n.string("payment_due_in_days", daysUntilDue)
+        } else {
+            return payment.dueDate.formatted(date: .abbreviated, time: .omitted)
+        }
+    }
+    
+    var body: some View {
+        HStack(spacing: MonetiqTheme.Spacing.md) {
+            // Income info
+            VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.xs) {
+                Text(payment.incomeSource?.title ?? L10n.string("dashboard_income_unknown"))
+                    .font(MonetiqTheme.Typography.bodyEmphasized)
+                    .foregroundColor(MonetiqTheme.Colors.textPrimary)
+                    .lineLimit(1)
+                
+                HStack(spacing: MonetiqTheme.Spacing.xs) {
+                    Image(systemName: "calendar")
+                        .font(MonetiqTheme.Typography.caption)
+                        .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                    
+                    Text(dueDateText)
+                        .font(MonetiqTheme.Typography.caption)
+                        .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                        .lineLimit(1)
+                }
+                
+                // Counterparty if available
+                if let counterparty = payment.incomeSource?.counterpartyName {
+                    HStack(spacing: MonetiqTheme.Spacing.xs) {
+                        Image(systemName: "person.fill")
+                            .font(MonetiqTheme.Typography.caption)
+                            .foregroundColor(MonetiqTheme.Colors.textTertiary)
+                        
+                        Text(counterparty)
+                            .font(MonetiqTheme.Typography.caption)
+                            .foregroundColor(MonetiqTheme.Colors.textSecondary)
+                            .lineLimit(1)
+                    }
+                }
+            }
+            
+            Spacer()
+            
+            // Amount
+            Text(CurrencyFormatter.shared.format(amount: payment.amount, currencyCode: payment.currencyCode))
+                .font(MonetiqTheme.Typography.currencySmall)
+                .foregroundColor(color)
+                .fontWeight(.semibold)
+        }
+        .monetiqPremiumCard()
     }
 }
 

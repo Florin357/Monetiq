@@ -88,48 +88,34 @@ class NotificationManager {
         }
     }
     
-    /// Update badge count based on pending payment notifications
-    func updateBadgeCount() async {
-        guard let settings = appSettings, settings.notificationsEnabled else {
-            clearBadgeCount()
-            return
-        }
-        
-        // FIXED: Count upcoming payments that need attention (same logic as Dashboard)
-        // This ensures badge matches what user sees in "Upcoming Payments"
-        let badgeCount = await calculateUpcomingPaymentsBadgeCount()
-        
+    /// Update badge count based on upcoming payments from data model
+    /// BADGE POLICY (Option A - Recommended): Badge shows upcoming count even if notifications disabled
+    /// This is a finance reminder - users should see they have upcoming payments regardless of notification settings
+    func updateBadgeCount(payments: [Payment]) async {
+        // FIXED (F04): Badge count now derives from data model, not from pending notifications
+        // This ensures badge always matches Dashboard "Upcoming Payments" count
+        let badgeCount = calculateUpcomingPaymentsBadgeCount(from: payments)
         
         do {
             try await notificationCenter.setBadgeCount(badgeCount)
+            
+            #if DEBUG
+            print("🔔 BADGE UPDATE: Set badge to \(badgeCount)")
+            #endif
         } catch {
             print("Failed to update badge count: \(error)")
         }
     }
     
-    // FIXED: Calculate badge count based on upcoming payments logic
-    private func calculateUpcomingPaymentsBadgeCount() async -> Int {
-        // This must match the Dashboard upcomingPayments logic exactly
-        let today = Date()
-        let thirtyDaysFromNow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
-        
-        // We need access to all payments - this should be injected or accessed differently
-        // For now, we'll count scheduled notifications that are within the upcoming window
-        let pendingRequests = await notificationCenter.pendingNotificationRequests()
-        let upcomingNotifications = pendingRequests.filter { request in
-            guard request.identifier.hasPrefix("payment_") else { return false }
-            
-            // Check if notification is scheduled within the upcoming window
-            if let triggerDate = extractTriggerDate(from: request) {
-                return triggerDate >= today && triggerDate < thirtyDaysFromNow
-            }
-            return false
-        }
-        
-        return upcomingNotifications.count
+    /// Calculate badge count directly from payment data model
+    /// Uses UpcomingPaymentsFilter for consistency with Dashboard
+    /// Business Rule: Badge shows count of payments due within 15 days (independent of notification settings)
+    /// SOURCE OF TRUTH: Payment data model, not pending notifications
+    private func calculateUpcomingPaymentsBadgeCount(from payments: [Payment]) -> Int {
+        return UpcomingPaymentsFilter.calculateBadgeCount(from: payments)
     }
     
-    // Helper to extract trigger date from notification request
+    // Helper to extract trigger date from notification request (for diagnostics)
     private func extractTriggerDate(from request: UNNotificationRequest) -> Date? {
         if let calendarTrigger = request.trigger as? UNCalendarNotificationTrigger {
             return calendarTrigger.nextTriggerDate()
@@ -174,95 +160,109 @@ class NotificationManager {
         // Cancel existing notifications for this loan first
         await cancelNotifications(for: loan)
         
-        // FIXED: Only schedule notifications for upcoming payments (same logic as Dashboard)
-        let today = Date()
-        let upcomingWindow = Calendar.current.date(byAdding: .day, value: 30, to: today) ?? today
+        // Schedule notifications for ALL planned payments (not just upcoming 15-day window)
+        // Business rule: Each payment gets TWO notifications:
+        // 1. X days before due (where X = user setting, 0-7)
+        // 2. Always 1 day before due
+        let plannedPayments = loan.payments.filter { $0.status == .planned && $0.dueDate >= Date() }
         
-        let upcomingPayments = loan.payments.filter { 
-            $0.status == .planned && 
-            $0.dueDate >= today && 
-            $0.dueDate < upcomingWindow 
-        }
-        
-        
-        for payment in upcomingPayments {
+        for payment in plannedPayments {
             await scheduleNotifications(for: payment, loan: loan, settings: settings)
         }
     }
     
     private func scheduleNotifications(for payment: Payment, loan: Loan, settings: AppSettings) async {
         let now = Date()
+        let calendar = Calendar.current
         let dueDate = payment.dueDate
         
-        // Schedule notification X days before due date
-        let daysBeforeInterval = TimeInterval(settings.daysBeforeDueNotification * 24 * 60 * 60)
-        let beforeDueDate = dueDate.addingTimeInterval(-daysBeforeInterval)
-        
-        if beforeDueDate > now {
-            let beforeDueIdentifier = "payment_before_\(payment.id.uuidString)"
-            let beforeDueContent = createPaymentNotificationContent(
-                for: payment,
-                loan: loan,
-                isReminder: true,
-                daysUntilDue: settings.daysBeforeDueNotification
-            )
+        // NOTIFICATION A: X days before due (where X = user setting, 0-7)
+        // Only schedule if X > 0 and fireDate >= now
+        let daysBeforeDue = settings.daysBeforeDueNotification
+        if daysBeforeDue > 0 {
+            guard let reminderDate = calendar.date(byAdding: .day, value: -daysBeforeDue, to: dueDate) else {
+                print("Failed to calculate reminder date for payment \(payment.id)")
+                return
+            }
             
-            // Schedule at 9:00 AM on the notification date for consistency
-            var beforeDueDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: beforeDueDate)
-            beforeDueDateComponents.hour = 9
-            beforeDueDateComponents.minute = 0
-            
-            let beforeDueTrigger = UNCalendarNotificationTrigger(
-                dateMatching: beforeDueDateComponents,
-                repeats: false
-            )
-            
-            let beforeDueRequest = UNNotificationRequest(
-                identifier: beforeDueIdentifier,
-                content: beforeDueContent,
-                trigger: beforeDueTrigger
-            )
-            
-            do {
-                try await notificationCenter.add(beforeDueRequest)
-                print("Scheduled before-due notification for payment \(payment.id) at \(beforeDueDate)")
-            } catch {
-                print("Failed to schedule before-due notification: \(error)")
+            // Only schedule if reminder date is in the future
+            if reminderDate >= now {
+                let reminderIdentifier = "reminder:\(loan.id.uuidString):\(payment.id.uuidString):\(daysBeforeDue)"
+                let reminderContent = createPaymentNotificationContent(
+                    for: payment,
+                    loan: loan,
+                    isReminder: true,
+                    daysUntilDue: daysBeforeDue
+                )
+                
+                // Schedule at 9:00 AM on the reminder date
+                var reminderComponents = calendar.dateComponents([.year, .month, .day], from: reminderDate)
+                reminderComponents.hour = 9
+                reminderComponents.minute = 0
+                
+                let reminderTrigger = UNCalendarNotificationTrigger(
+                    dateMatching: reminderComponents,
+                    repeats: false
+                )
+                
+                let reminderRequest = UNNotificationRequest(
+                    identifier: reminderIdentifier,
+                    content: reminderContent,
+                    trigger: reminderTrigger
+                )
+                
+                do {
+                    try await notificationCenter.add(reminderRequest)
+                    print("✅ Scheduled reminder notification for payment \(payment.id): \(daysBeforeDue) days before due at \(reminderDate)")
+                } catch {
+                    print("❌ Failed to schedule reminder notification: \(error)")
+                }
+            } else {
+                print("⏭️ Skipped reminder notification (in the past): payment \(payment.id), \(daysBeforeDue) days before due")
             }
         }
         
-        // Schedule notification on due date
-        if dueDate > now {
-            let dueDateIdentifier = "payment_due_\(payment.id.uuidString)"
-            let dueDateContent = createPaymentNotificationContent(
+        // NOTIFICATION B: Always 1 day before due
+        // Only schedule if fireDate >= now
+        guard let oneDayBeforeDate = calendar.date(byAdding: .day, value: -1, to: dueDate) else {
+            print("Failed to calculate one-day-before date for payment \(payment.id)")
+            return
+        }
+        
+        // Only schedule if one-day-before date is in the future
+        if oneDayBeforeDate >= now {
+            let oneDayBeforeIdentifier = "oneDay:\(loan.id.uuidString):\(payment.id.uuidString)"
+            let oneDayBeforeContent = createPaymentNotificationContent(
                 for: payment,
                 loan: loan,
-                isReminder: false,
-                daysUntilDue: 0
+                isReminder: true,
+                daysUntilDue: 1
             )
             
-            // Schedule at 9:00 AM on the due date for consistency
-            var dueDateComponents = Calendar.current.dateComponents([.year, .month, .day], from: dueDate)
-            dueDateComponents.hour = 9
-            dueDateComponents.minute = 0
+            // Schedule at 9:00 AM one day before due
+            var oneDayBeforeComponents = calendar.dateComponents([.year, .month, .day], from: oneDayBeforeDate)
+            oneDayBeforeComponents.hour = 9
+            oneDayBeforeComponents.minute = 0
             
-            let dueDateTrigger = UNCalendarNotificationTrigger(
-                dateMatching: dueDateComponents,
+            let oneDayBeforeTrigger = UNCalendarNotificationTrigger(
+                dateMatching: oneDayBeforeComponents,
                 repeats: false
             )
             
-            let dueDateRequest = UNNotificationRequest(
-                identifier: dueDateIdentifier,
-                content: dueDateContent,
-                trigger: dueDateTrigger
+            let oneDayBeforeRequest = UNNotificationRequest(
+                identifier: oneDayBeforeIdentifier,
+                content: oneDayBeforeContent,
+                trigger: oneDayBeforeTrigger
             )
             
             do {
-                try await notificationCenter.add(dueDateRequest)
-                print("Scheduled due-date notification for payment \(payment.id) at \(dueDate)")
+                try await notificationCenter.add(oneDayBeforeRequest)
+                print("✅ Scheduled one-day-before notification for payment \(payment.id) at \(oneDayBeforeDate)")
             } catch {
-                print("Failed to schedule due-date notification: \(error)")
+                print("❌ Failed to schedule one-day-before notification: \(error)")
             }
+        } else {
+            print("⏭️ Skipped one-day-before notification (in the past): payment \(payment.id)")
         }
     }
     
@@ -299,12 +299,22 @@ class NotificationManager {
     // MARK: - Cancellation
     
     func cancelNotifications(for loan: Loan) async {
-        let identifiers = loan.payments.flatMap { payment in
-            [
-                "payment_before_\(payment.id.uuidString)",
-                "payment_due_\(payment.id.uuidString)",
-                "snooze_\(payment.id.uuidString)" // Also cancel snooze notifications
-            ]
+        // NEW IDENTIFIER FORMAT:
+        // - "reminder:<loanID>:<paymentID>:<daysBeforeDue>"
+        // - "oneDay:<loanID>:<paymentID>"
+        // - "snooze_<paymentID>" (legacy)
+        
+        // Since we don't know the exact daysBeforeDue value, we need to cancel all possible variants (0-7)
+        var identifiers: [String] = []
+        for payment in loan.payments {
+            // Cancel all possible reminder notifications (0-7 days before)
+            for days in 0...7 {
+                identifiers.append("reminder:\(loan.id.uuidString):\(payment.id.uuidString):\(days)")
+            }
+            // Cancel one-day-before notification
+            identifiers.append("oneDay:\(loan.id.uuidString):\(payment.id.uuidString)")
+            // Cancel snooze notification (legacy)
+            identifiers.append("snooze_\(payment.id.uuidString)")
         }
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: identifiers)
@@ -312,11 +322,25 @@ class NotificationManager {
     }
     
     func cancelNotifications(for payment: Payment) async {
-        let identifiers = [
-            "payment_before_\(payment.id.uuidString)",
-            "payment_due_\(payment.id.uuidString)",
-            "snooze_\(payment.id.uuidString)" // Also cancel snooze notifications
-        ]
+        guard let loan = payment.loan else {
+            print("⚠️ Cannot cancel notifications: payment has no associated loan")
+            return
+        }
+        
+        // NEW IDENTIFIER FORMAT:
+        // - "reminder:<loanID>:<paymentID>:<daysBeforeDue>"
+        // - "oneDay:<loanID>:<paymentID>"
+        // - "snooze_<paymentID>" (legacy)
+        
+        // Cancel all possible reminder notifications (0-7 days before)
+        var identifiers: [String] = []
+        for days in 0...7 {
+            identifiers.append("reminder:\(loan.id.uuidString):\(payment.id.uuidString):\(days)")
+        }
+        // Cancel one-day-before notification
+        identifiers.append("oneDay:\(loan.id.uuidString):\(payment.id.uuidString)")
+        // Cancel snooze notification (legacy)
+        identifiers.append("snooze_\(payment.id.uuidString)")
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: identifiers)
         print("Canceled notifications for payment \(payment.id)")
@@ -383,8 +407,9 @@ class NotificationManager {
             }
         }
         
-        // Step 3: Update badge count
-        await updateBadgeCount()
+        // Step 3: Update badge count based on all payments
+        let allPayments = loans.flatMap { $0.payments }
+        await updateBadgeCount(payments: allPayments)
     }
     
     func rescheduleNotifications(for payment: Payment) async {
@@ -514,8 +539,9 @@ class NotificationManager {
             await scheduleWeeklyReviewNotification()
         }
         
-        // Update badge count after rescheduling
-        await updateBadgeCount()
+        // Update badge count after rescheduling (based on all payments)
+        let allPayments = loans.flatMap { $0.payments }
+        await updateBadgeCount(payments: allPayments)
     }
     
     // MARK: - Debug/Testing

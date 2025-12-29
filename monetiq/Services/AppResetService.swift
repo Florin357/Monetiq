@@ -21,21 +21,30 @@ class AppResetService {
     func resetApp(modelContext: ModelContext) async -> UUID {
         print("🔄 Starting complete app reset...")
         
-        // 1. Cancel all notifications
+        // 1. Set resetting flag to prevent UI from accessing deleted objects
+        AppState.shared.beginReset()
+        
+        // 2. Small delay to allow UI to react to isResetting flag
+        try? await Task.sleep(nanoseconds: 100_000_000) // 0.1 seconds
+        
+        // 3. Cancel all notifications
         await cancelAllNotifications()
         
-        // 2. Delete all SwiftData entities
+        // 4. Delete all SwiftData entities
         await deleteAllSwiftDataEntities(modelContext: modelContext)
         
-        // 3. Reset app settings to defaults
+        // 5. Reset app settings to defaults
         resetAppSettings(modelContext: modelContext)
         
-        // 4. Clear any UserDefaults/AppStorage if needed
+        // 6. Clear any UserDefaults/AppStorage if needed
         clearUserDefaults()
         
-        // 5. Trigger UI refresh via AppState
+        // 7. Trigger UI refresh via AppState
         AppState.shared.triggerAppReset()
         let resetToken = AppState.shared.resetToken
+        
+        // 8. Clear resetting flag
+        AppState.shared.endReset()
         
         print("✅ App reset completed successfully")
         return resetToken
@@ -67,7 +76,7 @@ class AppResetService {
         print("🔄 Deleting all SwiftData entities...")
         
         do {
-            // Delete all Payments
+            // Delete all Payments (must be deleted before Loans due to relationships)
             let paymentDescriptor = FetchDescriptor<Payment>()
             let payments = try modelContext.fetch(paymentDescriptor)
             for payment in payments {
@@ -90,6 +99,22 @@ class AppResetService {
                 modelContext.delete(counterparty)
             }
             print("✅ Deleted \(counterparties.count) counterparties")
+            
+            // Delete all Income Payments (must be deleted before Income Sources)
+            let incomePaymentDescriptor = FetchDescriptor<IncomePayment>()
+            let incomePayments = try modelContext.fetch(incomePaymentDescriptor)
+            for incomePayment in incomePayments {
+                modelContext.delete(incomePayment)
+            }
+            print("✅ Deleted \(incomePayments.count) income payments")
+            
+            // Delete all Income Sources
+            let incomeSourceDescriptor = FetchDescriptor<IncomeSource>()
+            let incomeSources = try modelContext.fetch(incomeSourceDescriptor)
+            for incomeSource in incomeSources {
+                modelContext.delete(incomeSource)
+            }
+            print("✅ Deleted \(incomeSources.count) income sources")
             
             // Delete all AppSettings (they will be recreated with defaults)
             let settingsDescriptor = FetchDescriptor<AppSettings>()

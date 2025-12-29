@@ -92,10 +92,18 @@ struct ContentView: View {
             }
             
             NavigationStack {
+                IncomeListView()
+            }
+            .tabItem {
+                Image(systemName: "arrow.down.circle.fill")
+                Text(L10n.string("tab_income"))
+            }
+            
+            NavigationStack {
                 LoansListView()
             }
             .tabItem {
-                Image(systemName: "banknote.fill")
+                Image(systemName: "creditcard.fill")
                 Text(L10n.string("tab_loans"))
             }
             

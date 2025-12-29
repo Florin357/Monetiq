@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Dashboard";
+"tab_income" = "Reddito";
 "tab_loans" = "Prestiti";
 "tab_calculator" = "Calcolatrice";
 "tab_settings" = "Impostazioni";
@@ -28,9 +29,55 @@
 "dashboard_subtitle" = "La tua panoramica finanziaria";
 "dashboard_to_receive" = "Da Ricevere";
 "dashboard_to_pay" = "Da Pagare";
+"dashboard_to_receive_detail_title" = "Da Ricevere - Dettagli";
+"dashboard_to_pay_detail_title" = "Da Pagare - Dettagli";
+"dashboard_detail_empty_state" = "Nessun prestito attivo in questa categoria";
+"dashboard_detail_total" = "Totale";
+"dashboard_detail_from_loans" = "Dai Prestiti";
+"dashboard_detail_from_income" = "Reddito";
+"dashboard_income_unknown" = "Reddito Sconosciuto";
+"dashboard_income_badge" = "Reddito";
+"dashboard_mark_received" = "Segna Ricevuto";
+"dashboard_unknown_loan" = "Prestito Sconosciuto";
 "dashboard_upcoming_payments" = "Pagamenti Imminenti";
 "dashboard_no_payments" = "Nessun pagamento imminente";
 "dashboard_no_payments_subtitle" = "Tutti i tuoi pagamenti sono aggiornati";
+
+// MARK: - Income
+"income_title" = "Reddito";
+"income_subtitle" = "Gestisci il tuo reddito e i giorni di paga";
+"income_empty_title" = "Nessun reddito ancora";
+"income_empty_subtitle" = "Aggiungi il tuo primo reddito per vedere i prossimi giorni di paga";
+"income_add_title" = "Aggiungi Reddito";
+"income_edit_title" = "Modifica Reddito";
+"income_delete_title" = "Elimina Reddito";
+"income_delete_message" = "Sei sicuro di voler eliminare questo reddito? Questa azione non può essere annullata.";
+"income_next_payday" = "Prossimo: %@";
+"income_frequency_weekly" = "Settimanale";
+"income_frequency_monthly" = "Mensile";
+"income_frequency_quarterly" = "Trimestrale";
+"income_frequency_yearly" = "Annuale";
+"income_frequency_one_time" = "Una Volta";
+
+// MARK: - Income Form
+"income_form_title" = "Titolo";
+"income_form_title_placeholder" = "es. Stipendio, Freelance";
+"income_form_amount" = "Importo";
+"income_form_amount_placeholder" = "Inserisci l'importo";
+"income_form_currency" = "Valuta";
+"income_form_frequency" = "Frequenza";
+"income_form_start_date" = "Data di inizio";
+"income_form_end_date" = "Data di fine";
+"income_form_has_end_date" = "Ha data di fine";
+"income_form_counterparty" = "Fonte (Opzionale)";
+"income_form_counterparty_placeholder" = "es. Nome del datore di lavoro";
+"income_form_notes" = "Note";
+"income_form_notes_placeholder" = "Note opzionali";
+"income_form_details_section" = "Dettagli del reddito";
+"income_section_active" = "Attive";
+"income_section_completed" = "Completate";
+"income_status_done" = "Completato";
+"income_ended_date" = "Terminato: %@";
 
 // MARK: - Loans
 "loans_title" = "Prestiti";
@@ -42,6 +89,8 @@
 "loans_delete_title" = "Elimina Prestito";
 "loans_delete_message" = "Sei sicuro di voler eliminare questo prestito? Questa azione non può essere annullata.";
 "loans_next_due" = "Prossimo: %@";
+"loans_created" = "Creato: %@";
+"loans_created_short" = "Creato %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Titolo";
@@ -79,6 +128,13 @@
 "loan_detail_payments" = "Piano di Pagamento";
 "loan_detail_mark_paid" = "Segna come Pagato";
 "loan_detail_no_payments" = "Nessun pagamento programmato";
+"loan_detail_details" = "Dettagli";
+"loan_detail_no_schedule" = "Nessun piano di pagamento disponibile";
+"loan_detail_notes" = "Note";
+"loan_detail_delete_confirm" = "Sei sicuro di voler eliminare '%@'? Questa azione non può essere annullata.";
+"loan_detail_progress" = "Progresso Pagamenti";
+"loan_detail_progress_paid" = "%.1f%% pagato";
+"loan_detail_progress_no_payments" = "Nessun pagamento ancora";
 
 // MARK: - Calculator
 "calculator_title" = "Calcolatrice Prestiti";
@@ -104,17 +160,18 @@
 "settings_device_info" = "Dati locali • Nessun account richiesto";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Informativa sulla Privacy\n\nData di Entrata in Vigore: 15 Dicembre 2025\n\n1. Informazioni che Raccogliamo\n\nMonetiq è progettato con la privacy in mente. Tutti i tuoi dati finanziari sono memorizzati localmente sul tuo dispositivo e non vengono mai trasmessi ai nostri server o a terze parti.\n\n• Informazioni sui prestiti (importi, date, controparti)\n• Programmi di pagamento e cronologia\n• Preferenze e impostazioni dell'app\n• Preferenze delle notifiche locali\n\n2. Come Utilizziamo le Tue Informazioni\n\nI tuoi dati vengono utilizzati esclusivamente per:\n• Fornire funzionalità di tracciamento prestiti e promemoria pagamenti\n• Calcolare programmi di pagamento e interessi\n• Inviare notifiche locali per pagamenti imminenti\n• Mantenere le tue preferenze dell'app\n\n3. Archiviazione e Sicurezza dei Dati\n\n• Tutti i dati sono memorizzati localmente sul tuo dispositivo utilizzando l'archiviazione sicura iOS\n• Nessun dato viene trasmesso via internet\n• Nessun account utente o sincronizzazione cloud\n• I dati sono protetti dalle funzionalità di sicurezza del tuo dispositivo (Face ID, Touch ID, codice)\n\n4. Condivisione dei Dati\n\nNon condividiamo, vendiamo o trasmettiamo le tue informazioni personali a terze parti. I tuoi dati finanziari rimangono privati e sotto il tuo controllo.\n\n5. I Tuoi Diritti\n\n• Puoi eliminare tutti i dati dell'app in qualsiasi momento tramite Impostazioni → Reimposta App\n• Controlli tutte le preferenze delle notifiche\n• Nessun recupero dati è possibile una volta eliminati (poiché non memorizziamo backup)\n\n6. Modifiche a Questa Politica\n\nPotremmo aggiornare questa informativa sulla privacy di tanto in tanto. Eventuali modifiche saranno riflesse nell'app con una data di entrata in vigore aggiornata.\n\n7. Contattaci\n\nSe hai domande su questa informativa sulla privacy, contattaci tramite l'App Store.";
+"privacy_policy_content" = "Informativa sulla Privacy\n\nData di Entrata in Vigore: 15 Dicembre 2025\n\n1. Informazioni che Raccogliamo\n\nYpsilon è progettato con la privacy in mente. Tutti i tuoi dati finanziari sono memorizzati localmente sul tuo dispositivo e non vengono mai trasmessi ai nostri server o a terze parti.\n\n• Informazioni sui prestiti (importi, date, controparti)\n• Programmi di pagamento e cronologia\n• Preferenze e impostazioni dell'app\n• Preferenze delle notifiche locali\n\n2. Come Utilizziamo le Tue Informazioni\n\nI tuoi dati vengono utilizzati esclusivamente per:\n• Fornire funzionalità di tracciamento prestiti e promemoria pagamenti\n• Calcolare programmi di pagamento e interessi\n• Inviare notifiche locali per pagamenti imminenti\n• Mantenere le tue preferenze dell'app\n\n3. Archiviazione e Sicurezza dei Dati\n\n• Tutti i dati sono memorizzati localmente sul tuo dispositivo utilizzando l'archiviazione sicura iOS\n• Nessun dato viene trasmesso via internet\n• Nessun account utente o sincronizzazione cloud\n• I dati sono protetti dalle funzionalità di sicurezza del tuo dispositivo (Face ID, Touch ID, codice)\n\n4. Condivisione dei Dati\n\nNon condividiamo, vendiamo o trasmettiamo le tue informazioni personali a terze parti. I tuoi dati finanziari rimangono privati e sotto il tuo controllo.\n\n5. I Tuoi Diritti\n\n• Puoi eliminare tutti i dati dell'app in qualsiasi momento tramite Impostazioni → Reimposta App\n• Controlli tutte le preferenze delle notifiche\n• Nessun recupero dati è possibile una volta eliminati (poiché non memorizziamo backup)\n\n6. Modifiche a Questa Politica\n\nPotremmo aggiornare questa informativa sulla privacy di tanto in tanto. Eventuali modifiche saranno riflesse nell'app con una data di entrata in vigore aggiornata.\n\n7. Contattaci\n\nSe hai domande su questa informativa sulla privacy, contattaci tramite l'App Store.";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "Termini di Servizio\n\nData di Entrata in Vigore: 15 Dicembre 2025\n\n1. Accettazione dei Termini\n\nUtilizzando Monetiq, accetti questi Termini di Servizio. Se non accetti, non utilizzare l'app.\n\n2. Descrizione del Servizio\n\nMonetiq è un'app di finanza personale per tracciare prestiti e gestire programmi di pagamento. L'app:\n• Ti aiuta a tracciare prestiti personali (dati e ricevuti)\n• Calcola programmi di pagamento e interessi\n• Fornisce promemoria di pagamento locali\n• Memorizza tutti i dati localmente sul tuo dispositivo\n\n3. Responsabilità dell'Utente\n\n• Sei responsabile dell'accuratezza dei dati che inserisci\n• Devi rispettare le leggi applicabili quando usi l'app\n• Sei responsabile del backup del tuo dispositivo se vuoi preservare i dati\n• Non devi usare l'app per attività finanziarie illegali\n\n4. Limitazioni e Esclusioni di Responsabilità\n\n• Monetiq è solo per uso personale e tenuta dei registri\n• L'app non fornisce consigli finanziari, legali o fiscali\n• I calcoli degli interessi sono stime; consulta professionisti per calcoli ufficiali\n• Non siamo responsabili per decisioni finanziarie basate sui dati dell'app\n• L'app non facilita trasferimenti di denaro o pagamenti reali\n\n5. Dati e Privacy\n\n• Tutti i dati sono memorizzati localmente sul tuo dispositivo\n• Non raccogliamo, memorizziamo o trasmettiamo le tue informazioni personali\n• Sei responsabile della sicurezza del tuo dispositivo\n• I dati non possono essere recuperati se persi o eliminati\n\n6. Proprietà Intellettuale\n\nL'app Monetiq, incluso il suo design, codice e contenuto, è protetta da copyright e altre leggi sulla proprietà intellettuale.\n\n7. Limitazione di Responsabilità\n\nNella massima misura consentita dalla legge, non saremo responsabili per danni indiretti, incidentali, speciali o consequenziali derivanti dal tuo uso dell'app.\n\n8. Risoluzione\n\nPuoi smettere di usare l'app in qualsiasi momento eliminandola dal tuo dispositivo. Questi termini rimangono in vigore fino alla risoluzione.\n\n9. Modifiche ai Termini\n\nPotremmo aggiornare questi termini di tanto in tanto. L'uso continuato dell'app dopo le modifiche costituisce accettazione dei nuovi termini.\n\n10. Legge Applicabile\n\nQuesti termini sono regolati dalle leggi della giurisdizione dove l'app è sviluppata e distribuita.\n\n11. Informazioni di Contatto\n\nPer domande su questi termini, contattaci tramite l'App Store.";
+"terms_of_service_content" = "Termini di Servizio\n\nData di Entrata in Vigore: 15 Dicembre 2025\n\n1. Accettazione dei Termini\n\nUtilizzando Ypsilon, accetti questi Termini di Servizio. Se non accetti, non utilizzare l'app.\n\n2. Descrizione del Servizio\n\nYpsilon è un'app di finanza personale per tracciare prestiti e gestire programmi di pagamento. L'app:\n• Ti aiuta a tracciare prestiti personali (dati e ricevuti)\n• Calcola programmi di pagamento e interessi\n• Fornisce promemoria di pagamento locali\n• Memorizza tutti i dati localmente sul tuo dispositivo\n\n3. Responsabilità dell'Utente\n\n• Sei responsabile dell'accuratezza dei dati che inserisci\n• Devi rispettare le leggi applicabili quando usi l'app\n• Sei responsabile del backup del tuo dispositivo se vuoi preservare i dati\n• Non devi usare l'app per attività finanziarie illegali\n\n4. Limitazioni e Esclusioni di Responsabilità\n\n• Ypsilon è solo per uso personale e tenuta dei registri\n• L'app non fornisce consigli finanziari, legali o fiscali\n• I calcoli degli interessi sono stime; consulta professionisti per calcoli ufficiali\n• Non siamo responsabili per decisioni finanziarie basate sui dati dell'app\n• L'app non facilita trasferimenti di denaro o pagamenti reali\n\n5. Dati e Privacy\n\n• Tutti i dati sono memorizzati localmente sul tuo dispositivo\n• Non raccogliamo, memorizziamo o trasmettiamo le tue informazioni personali\n• Sei responsabile della sicurezza del tuo dispositivo\n• I dati non possono essere recuperati se persi o eliminati\n\n6. Proprietà Intellettuale\n\nL'app Ypsilon, incluso il suo design, codice e contenuto, è protetta da copyright e altre leggi sulla proprietà intellettuale.\n\n7. Limitazione di Responsabilità\n\nNella massima misura consentita dalla legge, non saremo responsabili per danni indiretti, incidentali, speciali o consequenziali derivanti dal tuo uso dell'app.\n\n8. Risoluzione\n\nPuoi smettere di usare l'app in qualsiasi momento eliminandola dal tuo dispositivo. Questi termini rimangono in vigore fino alla risoluzione.\n\n9. Modifiche ai Termini\n\nPotremmo aggiornare questi termini di tanto in tanto. L'uso continuato dell'app dopo le modifiche costituisce accettazione dei nuovi termini.\n\n10. Legge Applicabile\n\nQuesti termini sono regolati dalle leggi della giurisdizione dove l'app è sviluppata e distribuita.\n\n11. Informazioni di Contatto\n\nPer domande su questi termini, contattaci tramite l'App Store.";
 
 // MARK: - Missing Keys
 "calculator_share" = "Condividi";
 "notification_permission_not_requested" = "Il permesso per le notifiche non è ancora stato richiesto";
 "notification_unknown_error" = "Si è verificato un errore sconosciuto nelle notifiche";
 "settings_notifications_denied_title" = "Notifiche disabilitate";
-"settings_notifications_denied_message" = "Per ricevere promemoria di pagamento, abilita le notifiche in Impostazioni > Monetiq > Notifiche";
+"settings_notifications_denied_message" = "Per ricevere promemoria di pagamento, abilita le notifiche in Impostazioni > Ypsilon > Notifiche";
+"settings_open_settings" = "Apri Impostazioni";
 "calculator_frequency" = "Frequenza di Pagamento";
 "calculator_calculate" = "Calcola Pagamento";
 "calculator_results" = "Risultati";
@@ -126,7 +183,7 @@
 
 // MARK: - Settings
 "settings_title" = "Impostazioni";
-"settings_subtitle" = "Personalizza la tua esperienza Monetiq";
+"settings_subtitle" = "Personalizza la tua esperienza Ypsilon";
 "settings_general" = "Generale";
 "settings_security" = "Sicurezza";
 "settings_appearance" = "Aspetto";
@@ -168,7 +225,7 @@
 "settings_reset_app_confirm_action" = "Elimina Tutti i Dati";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Sblocca Monetiq per accedere ai tuoi dati finanziari";
+"biometric_unlock_reason" = "Sblocca Ypsilon per accedere ai tuoi dati finanziari";
 "biometric_enable_reason" = "Autenticati per abilitare la sicurezza biometrica";
 "lock_screen_title" = "Bloccato";
 "lock_screen_subtitle" = "Sblocca con %@";
@@ -177,7 +234,6 @@
 "biometric_error_unknown" = "Si è verificato un errore sconosciuto";
 "biometric_unavailable_title" = "Biometria Non Disponibile";
 "biometric_unavailable_message" = "L'autenticazione biometrica non è disponibile su questo dispositivo";
-"general_ok" = "OK";
 
 "settings_view_notifications" = "Visualizza Notifiche in Sospeso";
 "settings_view_notifications_subtitle" = "Controlla le notifiche programmate";
@@ -220,13 +276,19 @@
 "calculator_currency" = "Valuta";
 "calculator_generated" = "Generato";
 "calculator_share_title" = "Riepilogo Calcolo Prestito";
-"calculator_share_footer" = "Creato con Monetiq";
+"calculator_share_footer" = "Creato con Ypsilon";
 "dashboard_no_loans" = "Nessun prestito ancora";
+"dashboard_cashflow" = "Flusso di cassa";
+"dashboard_cashflow_subtitle" = "Prossimi 30 giorni";
+"dashboard_cashflow_net" = "Netto";
+"dashboard_cashflow_empty" = "Dati di pagamento insufficienti";
+"dashboard_cashflow_to_receive" = "Da ricevere";
+"dashboard_cashflow_to_pay" = "Da pagare";
+"dashboard_cashflow_helper" = "In base ai pagamenti programmati";
+"dashboard_cashflow_today" = "Oggi";
+"dashboard_cashflow_more_currencies" = "+%d altre";
+"dashboard_cashflow_low_activity" = "Prevalentemente stabile nei prossimi 30 giorni";
 "dashboard_recent_loans" = "Prestiti recenti";
-"loan_detail_delete_confirm" = "Sei sicuro di voler eliminare '%@'? Questa azione non può essere annullata.";
-"loan_detail_details" = "Dettagli";
-"loan_detail_no_schedule" = "Nessun piano di pagamento disponibile";
-"loan_detail_notes" = "Note";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Aggiungi Prestito";
@@ -240,6 +302,7 @@
 "financial_details_section" = "Dettagli Finanziari";
 "amount_placeholder" = "Importo";
 "currency_label" = "Valuta";
+"currency_locked_message" = "La valuta non può essere modificata dopo la creazione del prestito.";
 "repayment_schedule_section" = "Piano di Rimborso";
 "payment_frequency_label" = "Frequenza Pagamento";
 "number_of_payments_placeholder" = "Numero di Pagamenti";
@@ -272,9 +335,9 @@
 "notification_payment_due_title" = "Pagamento Dovuto Oggi";
 "notification_payment_due_body" = "Il pagamento per '%@' è dovuto oggi: %@";
 "notification_weekly_review_title" = "Revisione Finanziaria Settimanale";
-"notification_weekly_review_body" = "È ora di rivedere i tuoi prestiti e i pagamenti imminenti in Monetiq";
+"notification_weekly_review_body" = "È ora di rivedere i tuoi prestiti e i pagamenti imminenti in Ypsilon";
 "notification_test_title" = "Notifica di Test";
-"notification_test_body" = "Questa è una notifica di test da Monetiq";
+"notification_test_body" = "Questa è una notifica di test da Ypsilon";
 
 // Payment due date labels
 "payment_due_today" = "In scadenza oggi";
@@ -285,14 +348,10 @@
 "status_paid_on" = "Pagato il %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Data di Inizio";
 "loan_detail_payment_frequency" = "Frequenza di Pagamento";
 "loan_detail_number_of_payments" = "Numero di Pagamenti";
 "loan_detail_interest_mode" = "Modalità di Interesse";
 "loan_detail_annual_interest_rate" = "Tasso di Interesse Annuale";
-"loan_detail_total_to_repay" = "Totale da Rimborsare";
-"loan_detail_total_paid" = "Totale Pagato";
-"loan_detail_remaining" = "Rimanente";
 "loan_detail_next_due_date" = "Prossima Scadenza";
 "loan_detail_created" = "Creato";
 "loan_detail_last_updated" = "Ultimo Aggiornamento";
@@ -321,3 +380,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Promemoria Pagamento (Rimandato)";
 "notification_payment_snoozed_body" = "Promemoria per %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Tipo di Prestito";
+"loan_type_label" = "Che tipo di prestito è questo?";
+"loan_type_new" = "Nuovo Prestito";
+"loan_type_existing" = "Prestito Esistente";
+"loan_type_new_footer" = "A partire da oggi";
+"loan_type_existing_footer" = "Già in corso";
+
+"existing_loan_status_section" = "Stato Attuale";
+"existing_loan_method_label" = "Come vuoi monitorare il progresso?";
+"existing_loan_method_next_due_date" = "Prossima Scadenza";
+"existing_loan_method_paid_months" = "Mesi Pagati";
+
+"existing_loan_next_due_date_label" = "Prossima Scadenza";
+"existing_loan_next_due_date_footer" = "Tutti i pagamenti prima di questa data saranno automaticamente contrassegnati come pagati.";
+
+"existing_loan_paid_months_placeholder" = "Numero di mesi già pagati";
+"existing_loan_paid_months_footer" = "I primi X pagamenti saranno contrassegnati come pagati.";
+
+"original_start_date_label" = "Data di Inizio Originale";
+
+"loan_detail_auto_marked_info" = "I pagamenti passati sono stati automaticamente contrassegnati come pagati in base al tuo stato attuale.";

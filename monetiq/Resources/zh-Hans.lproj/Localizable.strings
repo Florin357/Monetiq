@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "仪表板";
+"tab_income" = "收入";
 "tab_loans" = "贷款";
 "tab_calculator" = "计算器";
 "tab_settings" = "设置";
@@ -28,9 +29,55 @@
 "dashboard_subtitle" = "您的财务概览";
 "dashboard_to_receive" = "应收";
 "dashboard_to_pay" = "应付";
+"dashboard_to_receive_detail_title" = "应收 - 明细";
+"dashboard_to_pay_detail_title" = "应付 - 明细";
+"dashboard_detail_empty_state" = "此类别中没有活动贷款";
+"dashboard_detail_total" = "总计";
+"dashboard_detail_from_loans" = "来自贷款";
+"dashboard_detail_from_income" = "收入";
+"dashboard_income_unknown" = "未知收入";
+"dashboard_income_badge" = "收入";
+"dashboard_mark_received" = "标记为已收到";
+"dashboard_unknown_loan" = "未知贷款";
 "dashboard_upcoming_payments" = "即将到期的付款";
 "dashboard_no_payments" = "没有即将到期的付款";
 "dashboard_no_payments_subtitle" = "您的所有付款都是最新的";
+
+// MARK: - Income
+"income_title" = "收入";
+"income_subtitle" = "管理您的收入和发薪日";
+"income_empty_title" = "暂无收入";
+"income_empty_subtitle" = "添加您的第一笔收入以查看即将到来的发薪日";
+"income_add_title" = "添加收入";
+"income_edit_title" = "编辑收入";
+"income_delete_title" = "删除收入";
+"income_delete_message" = "您确定要删除这笔收入吗？此操作无法撤销。";
+"income_next_payday" = "下次：%@";
+"income_frequency_weekly" = "每周";
+"income_frequency_monthly" = "每月";
+"income_frequency_quarterly" = "每季度";
+"income_frequency_yearly" = "每年";
+"income_frequency_one_time" = "一次性";
+
+// MARK: - Income Form
+"income_form_title" = "标题";
+"income_form_title_placeholder" = "例如 工资、自由职业";
+"income_form_amount" = "金额";
+"income_form_amount_placeholder" = "输入金额";
+"income_form_currency" = "货币";
+"income_form_frequency" = "频率";
+"income_form_start_date" = "开始日期";
+"income_form_end_date" = "结束日期";
+"income_form_has_end_date" = "有结束日期";
+"income_form_counterparty" = "来源（可选）";
+"income_form_counterparty_placeholder" = "例如 雇主名称";
+"income_form_notes" = "备注";
+"income_form_notes_placeholder" = "可选备注";
+"income_form_details_section" = "收入详情";
+"income_section_active" = "活跃";
+"income_section_completed" = "已完成";
+"income_status_done" = "完成";
+"income_ended_date" = "结束：%@";
 
 // MARK: - Loans
 "loans_title" = "贷款";
@@ -42,6 +89,8 @@
 "loans_delete_title" = "删除贷款";
 "loans_delete_message" = "您确定要删除这笔贷款吗？此操作无法撤销。";
 "loans_next_due" = "下次：%@";
+"loans_created" = "创建于：%@";
+"loans_created_short" = "创建于 %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "标题";
@@ -79,6 +128,13 @@
 "loan_detail_payments" = "付款计划";
 "loan_detail_mark_paid" = "标记为已付";
 "loan_detail_no_payments" = "没有计划的付款";
+"loan_detail_details" = "详情";
+"loan_detail_no_schedule" = "没有可用的付款计划";
+"loan_detail_notes" = "备注";
+"loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤消。";
+"loan_detail_progress" = "付款进度";
+"loan_detail_progress_paid" = "已付%.1f%%";
+"loan_detail_progress_no_payments" = "尚无付款";
 
 // MARK: - Calculator
 "calculator_title" = "贷款计算器";
@@ -104,17 +160,18 @@
 "settings_device_info" = "本地数据 • 无需账户";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "隐私政策\n\n生效日期：2025年12月15日\n\nMonetiq的设计以隐私为重点。您的所有财务数据都存储在您的设备本地，从不传输到我们的服务器或第三方。\n\n1. 我们收集的信息\n• 贷款信息\n• 付款计划和历史记录\n• 应用程序偏好设置\n\n2. 我们如何使用您的信息\n您的数据仅用于提供贷款跟踪和付款提醒功能。\n\n3. 存储和安全\n所有数据都使用iOS安全存储在您的设备本地存储。\n\n4. 数据共享\n我们不会与第三方共享、出售或传输您的个人信息。\n\n如对此隐私政策有疑问，请通过App Store联系我们。";
+"privacy_policy_content" = "隐私政策\n\n生效日期：2025年12月15日\n\nYpsilon的设计以隐私为重点。您的所有财务数据都存储在您的设备本地，从不传输到我们的服务器或第三方。\n\n1. 我们收集的信息\n• 贷款信息\n• 付款计划和历史记录\n• 应用程序偏好设置\n\n2. 我们如何使用您的信息\n您的数据仅用于提供贷款跟踪和付款提醒功能。\n\n3. 存储和安全\n所有数据都使用iOS安全存储在您的设备本地存储。\n\n4. 数据共享\n我们不会与第三方共享、出售或传输您的个人信息。\n\n如对此隐私政策有疑问，请通过App Store联系我们。";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "服务条款\n\n生效日期：2025年12月15日\n\n1. 接受条款\n通过使用Monetiq，您同意这些服务条款。\n\n2. 服务描述\nMonetiq是一个用于跟踪贷款和管理付款计划的个人理财应用程序。\n\n3. 用户责任\n您对输入数据的准确性负责。\n\n4. 限制\nMonetiq仅供个人使用。该应用程序不提供财务、法律或税务建议。\n\n如对这些条款有疑问，请通过App Store联系我们。";
+"terms_of_service_content" = "服务条款\n\n生效日期：2025年12月15日\n\n1. 接受条款\n通过使用Ypsilon，您同意这些服务条款。\n\n2. 服务描述\nYpsilon是一个用于跟踪贷款和管理付款计划的个人理财应用程序。\n\n3. 用户责任\n您对输入数据的准确性负责。\n\n4. 限制\nYpsilon仅供个人使用。该应用程序不提供财务、法律或税务建议。\n\n如对这些条款有疑问，请通过App Store联系我们。";
 
 // MARK: - Missing Keys
 "calculator_share" = "分享";
 "notification_permission_not_requested" = "尚未请求通知权限";
 "notification_unknown_error" = "发生未知通知错误";
 "settings_notifications_denied_title" = "通知已禁用";
-"settings_notifications_denied_message" = "要接收付款提醒，请在设置 > Monetiq > 通知中启用通知";
+"settings_notifications_denied_message" = "要接收付款提醒，请在设置 > Ypsilon > 通知中启用通知";
+"settings_open_settings" = "打开设置";
 "calculator_frequency" = "付款频率";
 "calculator_calculate" = "计算付款";
 "calculator_results" = "结果";
@@ -126,7 +183,7 @@
 
 // MARK: - Settings
 "settings_title" = "设置";
-"settings_subtitle" = "自定义您的Monetiq体验";
+"settings_subtitle" = "自定义您的Ypsilon体验";
 "settings_general" = "常规";
 "settings_security" = "安全";
 "settings_appearance" = "外观";
@@ -200,13 +257,19 @@
 "calculator_currency" = "货币";
 "calculator_generated" = "生成于";
 "calculator_share_title" = "贷款计算摘要";
-"calculator_share_footer" = "由 Monetiq 制作";
+"calculator_share_footer" = "由 Ypsilon 制作";
 "dashboard_no_loans" = "暂无贷款";
+"dashboard_cashflow" = "现金流";
+"dashboard_cashflow_subtitle" = "未来30天";
+"dashboard_cashflow_net" = "净额";
+"dashboard_cashflow_empty" = "支付数据不足";
+"dashboard_cashflow_to_receive" = "待收";
+"dashboard_cashflow_to_pay" = "待付";
+"dashboard_cashflow_helper" = "基于预定付款";
+"dashboard_cashflow_today" = "今天";
+"dashboard_cashflow_more_currencies" = "+%d 更多";
+"dashboard_cashflow_low_activity" = "未来30天基本稳定";
 "dashboard_recent_loans" = "最近贷款";
-"loan_detail_delete_confirm" = "您确定要删除'%@'吗？此操作无法撤销。";
-"loan_detail_details" = "详情";
-"loan_detail_no_schedule" = "无可用还款计划";
-"loan_detail_notes" = "备注";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "添加贷款";
@@ -220,6 +283,7 @@
 "financial_details_section" = "财务详情";
 "amount_placeholder" = "金额";
 "currency_label" = "货币";
+"currency_locked_message" = "创建贷款后无法更改货币。";
 "repayment_schedule_section" = "还款计划";
 "payment_frequency_label" = "付款频率";
 "number_of_payments_placeholder" = "付款次数";
@@ -252,9 +316,9 @@
 "notification_payment_due_title" = "今日付款到期";
 "notification_payment_due_body" = "'%@'的付款今日到期：%@";
 "notification_weekly_review_title" = "每周财务回顾";
-"notification_weekly_review_body" = "是时候在Monetiq中回顾您的贷款和即将到期的付款了";
+"notification_weekly_review_body" = "是时候在Ypsilon中回顾您的贷款和即将到期的付款了";
 "notification_test_title" = "测试通知";
-"notification_test_body" = "这是来自Monetiq的测试通知";
+"notification_test_body" = "这是来自Ypsilon的测试通知";
 
 
 
@@ -268,7 +332,7 @@
 "settings_reset_app_confirm_action" = "删除所有数据";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "解锁 Monetiq 以访问您的财务数据";
+"biometric_unlock_reason" = "解锁 Ypsilon 以访问您的财务数据";
 "biometric_enable_reason" = "进行身份验证以启用生物识别安全";
 "lock_screen_title" = "已锁定";
 "lock_screen_subtitle" = "使用 %@ 解锁";
@@ -277,7 +341,6 @@
 "biometric_error_unknown" = "发生未知错误";
 "biometric_unavailable_title" = "生物识别不可用";
 "biometric_unavailable_message" = "此设备上不支持生物识别认证";
-"general_ok" = "确定";
 
 // Payment due date labels
 "payment_due_today" = "今天到期";
@@ -288,14 +351,10 @@
 "status_paid_on" = "已于%@支付";
 
 // Loan detail labels
-"loan_detail_start_date" = "开始日期";
 "loan_detail_payment_frequency" = "付款频率";
 "loan_detail_number_of_payments" = "付款次数";
 "loan_detail_interest_mode" = "利息模式";
 "loan_detail_annual_interest_rate" = "年利率";
-"loan_detail_total_to_repay" = "总还款额";
-"loan_detail_total_paid" = "已付总额";
-"loan_detail_remaining" = "剩余";
 "loan_detail_next_due_date" = "下次到期日";
 "loan_detail_created" = "创建时间";
 "loan_detail_last_updated" = "最后更新";
@@ -324,3 +383,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "付款提醒（已推迟）";
 "notification_payment_snoozed_body" = "%@ 的提醒 - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "贷款类型";
+"loan_type_label" = "这是什么类型的贷款？";
+"loan_type_new" = "新贷款";
+"loan_type_existing" = "现有贷款";
+"loan_type_new_footer" = "从今天开始";
+"loan_type_existing_footer" = "已在进行中";
+
+"existing_loan_status_section" = "当前状态";
+"existing_loan_method_label" = "您想如何跟踪进度？";
+"existing_loan_method_next_due_date" = "下次到期日";
+"existing_loan_method_paid_months" = "已付月数";
+
+"existing_loan_next_due_date_label" = "下次到期日";
+"existing_loan_next_due_date_footer" = "此日期之前的所有付款将自动标记为已付。";
+
+"existing_loan_paid_months_placeholder" = "已支付的月数";
+"existing_loan_paid_months_footer" = "前X次付款将标记为已付。";
+
+"original_start_date_label" = "原始开始日期";
+
+"loan_detail_auto_marked_info" = "根据您的当前状态，过去的付款已自动标记为已付。";

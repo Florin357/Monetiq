@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Übersicht";
+"tab_income" = "Einkommen";
 "tab_loans" = "Darlehen";
 "tab_calculator" = "Rechner";
 "tab_settings" = "Einstellungen";
@@ -28,9 +29,55 @@
 "dashboard_subtitle" = "Ihre Finanzübersicht";
 "dashboard_to_receive" = "Zu erhalten";
 "dashboard_to_pay" = "Zu zahlen";
+"dashboard_to_receive_detail_title" = "Zu erhalten - Aufschlüsselung";
+"dashboard_to_pay_detail_title" = "Zu zahlen - Aufschlüsselung";
+"dashboard_detail_empty_state" = "Keine aktiven Darlehen in dieser Kategorie";
+"dashboard_detail_total" = "Gesamt";
+"dashboard_detail_from_loans" = "Aus Darlehen";
+"dashboard_detail_from_income" = "Einkommen";
+"dashboard_income_unknown" = "Unbekanntes Einkommen";
+"dashboard_income_badge" = "Einkommen";
+"dashboard_mark_received" = "Als Erhalten Markieren";
+"dashboard_unknown_loan" = "Unbekanntes Darlehen";
 "dashboard_upcoming_payments" = "Anstehende Zahlungen";
 "dashboard_no_payments" = "Keine anstehenden Zahlungen";
 "dashboard_no_payments_subtitle" = "Alle Ihre Zahlungen sind aktuell";
+
+// MARK: - Income
+"income_title" = "Einkommen";
+"income_subtitle" = "Verwalten Sie Ihr Einkommen und Zahlungstage";
+"income_empty_title" = "Noch kein Einkommen";
+"income_empty_subtitle" = "Fügen Sie Ihr erstes Einkommen hinzu, um bevorstehende Zahlungstage zu sehen";
+"income_add_title" = "Einkommen hinzufügen";
+"income_edit_title" = "Einkommen bearbeiten";
+"income_delete_title" = "Einkommen löschen";
+"income_delete_message" = "Sind Sie sicher, dass Sie dieses Einkommen löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
+"income_next_payday" = "Nächste: %@";
+"income_frequency_weekly" = "Wöchentlich";
+"income_frequency_monthly" = "Monatlich";
+"income_frequency_quarterly" = "Vierteljährlich";
+"income_frequency_yearly" = "Jährlich";
+"income_frequency_one_time" = "Einmalig";
+
+// MARK: - Income Form
+"income_form_title" = "Titel";
+"income_form_title_placeholder" = "z.B. Gehalt, Freelance";
+"income_form_amount" = "Betrag";
+"income_form_amount_placeholder" = "Betrag eingeben";
+"income_form_currency" = "Währung";
+"income_form_frequency" = "Häufigkeit";
+"income_form_start_date" = "Startdatum";
+"income_form_end_date" = "Enddatum";
+"income_form_has_end_date" = "Hat Enddatum";
+"income_form_counterparty" = "Quelle (Optional)";
+"income_form_counterparty_placeholder" = "z.B. Arbeitgebername";
+"income_form_notes" = "Notizen";
+"income_form_notes_placeholder" = "Optionale Notizen";
+"income_form_details_section" = "Einkommensdetails";
+"income_section_active" = "Aktiv";
+"income_section_completed" = "Abgeschlossen";
+"income_status_done" = "Erledigt";
+"income_ended_date" = "Beendet: %@";
 
 // MARK: - Loans
 "loans_title" = "Darlehen";
@@ -42,6 +89,8 @@
 "loans_delete_title" = "Darlehen löschen";
 "loans_delete_message" = "Sind Sie sicher, dass Sie dieses Darlehen löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
 "loans_next_due" = "Nächste: %@";
+"loans_created" = "Erstellt: %@";
+"loans_created_short" = "Erstellt %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Titel";
@@ -79,6 +128,13 @@
 "loan_detail_payments" = "Zahlungsplan";
 "loan_detail_mark_paid" = "Als bezahlt markieren";
 "loan_detail_no_payments" = "Keine Zahlungen geplant";
+"loan_detail_details" = "Details";
+"loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
+"loan_detail_notes" = "Notizen";
+"loan_detail_delete_confirm" = "Möchten Sie '%@' wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.";
+"loan_detail_progress" = "Zahlungsfortschritt";
+"loan_detail_progress_paid" = "%.1f%% bezahlt";
+"loan_detail_progress_no_payments" = "Noch keine Zahlungen";
 
 // MARK: - Calculator
 "calculator_title" = "Darlehensrechner";
@@ -104,10 +160,10 @@
 "settings_device_info" = "Lokale Daten • Kein Konto erforderlich";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Datenschutzrichtlinie\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Informationen, die wir sammeln\n\nMonetiq wurde mit Fokus auf Datenschutz entwickelt. Alle Ihre Finanzdaten werden lokal auf Ihrem Gerät gespeichert und niemals an unsere Server oder Dritte übertragen.\n\n• Darlehensinformationen (Beträge, Daten, Vertragspartner)\n• Zahlungspläne und Verlauf\n• App-Einstellungen und Präferenzen\n• Lokale Benachrichtigungseinstellungen\n\n2. Wie wir Ihre Informationen verwenden\n\nIhre Daten werden ausschließlich verwendet für:\n• Bereitstellung der Darlehens-Tracking- und Zahlungserinnerungsfunktionen\n• Berechnung von Zahlungsplänen und Zinsen\n• Senden lokaler Benachrichtigungen für anstehende Zahlungen\n• Aufrechterhaltung Ihrer App-Einstellungen\n\n3. Datenspeicherung und Sicherheit\n\n• Alle Daten werden lokal auf Ihrem Gerät mit iOS-sicherem Speicher gespeichert\n• Keine Daten werden über das Internet übertragen\n• Keine Benutzerkonten oder Cloud-Synchronisation\n• Daten sind durch die Sicherheitsfunktionen Ihres Geräts geschützt (Face ID, Touch ID, Passcode)\n\n4. Datenweitergabe\n\nWir teilen, verkaufen oder übertragen Ihre persönlichen Informationen nicht an Dritte. Ihre Finanzdaten bleiben privat und unter Ihrer Kontrolle.\n\n5. Ihre Rechte\n\n• Sie können alle App-Daten jederzeit über Einstellungen → App zurücksetzen löschen\n• Sie kontrollieren alle Benachrichtigungseinstellungen\n• Keine Datenwiederherstellung ist nach dem Löschen möglich (da wir keine Backups speichern)\n\n6. Änderungen an dieser Richtlinie\n\nWir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Alle Änderungen werden in der App mit einem aktualisierten Wirksamkeitsdatum angezeigt.\n\n7. Kontaktieren Sie uns\n\nBei Fragen zu dieser Datenschutzrichtlinie kontaktieren Sie uns bitte über den App Store.";
+"privacy_policy_content" = "Datenschutzrichtlinie\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Informationen, die wir sammeln\n\nYpsilon wurde mit Fokus auf Datenschutz entwickelt. Alle Ihre Finanzdaten werden lokal auf Ihrem Gerät gespeichert und niemals an unsere Server oder Dritte übertragen.\n\n• Darlehensinformationen (Beträge, Daten, Vertragspartner)\n• Zahlungspläne und Verlauf\n• App-Einstellungen und Präferenzen\n• Lokale Benachrichtigungseinstellungen\n\n2. Wie wir Ihre Informationen verwenden\n\nIhre Daten werden ausschließlich verwendet für:\n• Bereitstellung der Darlehens-Tracking- und Zahlungserinnerungsfunktionen\n• Berechnung von Zahlungsplänen und Zinsen\n• Senden lokaler Benachrichtigungen für anstehende Zahlungen\n• Aufrechterhaltung Ihrer App-Einstellungen\n\n3. Datenspeicherung und Sicherheit\n\n• Alle Daten werden lokal auf Ihrem Gerät mit iOS-sicherem Speicher gespeichert\n• Keine Daten werden über das Internet übertragen\n• Keine Benutzerkonten oder Cloud-Synchronisation\n• Daten sind durch die Sicherheitsfunktionen Ihres Geräts geschützt (Face ID, Touch ID, Passcode)\n\n4. Datenweitergabe\n\nWir teilen, verkaufen oder übertragen Ihre persönlichen Informationen nicht an Dritte. Ihre Finanzdaten bleiben privat und unter Ihrer Kontrolle.\n\n5. Ihre Rechte\n\n• Sie können alle App-Daten jederzeit über Einstellungen → App zurücksetzen löschen\n• Sie kontrollieren alle Benachrichtigungseinstellungen\n• Keine Datenwiederherstellung ist nach dem Löschen möglich (da wir keine Backups speichern)\n\n6. Änderungen an dieser Richtlinie\n\nWir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Alle Änderungen werden in der App mit einem aktualisierten Wirksamkeitsdatum angezeigt.\n\n7. Kontaktieren Sie uns\n\nBei Fragen zu dieser Datenschutzrichtlinie kontaktieren Sie uns bitte über den App Store.";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "Nutzungsbedingungen\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Annahme der Bedingungen\n\nDurch die Nutzung von Monetiq stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie nicht zustimmen, verwenden Sie die App bitte nicht.\n\n2. Beschreibung des Dienstes\n\nMonetiq ist eine persönliche Finanz-App zur Verfolgung von Darlehen und Verwaltung von Zahlungsplänen. Die App:\n• Hilft Ihnen, persönliche Darlehen zu verfolgen (gegeben und erhalten)\n• Berechnet Zahlungspläne und Zinsen\n• Bietet lokale Zahlungserinnerungen\n• Speichert alle Daten lokal auf Ihrem Gerät\n\n3. Benutzerverantwortlichkeiten\n\n• Sie sind für die Genauigkeit der eingegebenen Daten verantwortlich\n• Sie müssen bei der Nutzung der App geltende Gesetze einhalten\n• Sie sind für die Sicherung Ihres Geräts verantwortlich, wenn Sie Daten bewahren möchten\n• Sie dürfen die App nicht für illegale Finanzaktivitäten verwenden\n\n4. Einschränkungen und Haftungsausschlüsse\n\n• Monetiq ist nur für den persönlichen Gebrauch und die Aufzeichnung bestimmt\n• Die App bietet keine Finanz-, Rechts- oder Steuerberatung\n• Zinsberechnungen sind Schätzungen; konsultieren Sie Fachleute für offizielle Berechnungen\n• Wir sind nicht verantwortlich für finanzielle Entscheidungen basierend auf App-Daten\n• Die App erleichtert keine tatsächlichen Geldtransfers oder Zahlungen\n\n5. Daten und Datenschutz\n\n• Alle Daten werden lokal auf Ihrem Gerät gespeichert\n• Wir sammeln, speichern oder übertragen Ihre persönlichen Informationen nicht\n• Sie sind für die Sicherheit Ihres Geräts verantwortlich\n• Daten können nicht wiederhergestellt werden, wenn sie verloren oder gelöscht werden\n\n6. Geistiges Eigentum\n\nDie Monetiq-App, einschließlich ihres Designs, Codes und Inhalts, ist durch Urheberrecht und andere Gesetze zum geistigen Eigentum geschützt.\n\n7. Haftungsbeschränkung\n\nIm maximal gesetzlich zulässigen Umfang haften wir nicht für indirekte, zufällige, besondere oder Folgeschäden aus Ihrer Nutzung der App.\n\n8. Kündigung\n\nSie können die Nutzung der App jederzeit beenden, indem Sie sie von Ihrem Gerät löschen. Diese Bedingungen bleiben bis zur Kündigung in Kraft.\n\n9. Änderungen der Bedingungen\n\nWir können diese Bedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung der App nach Änderungen stellt die Annahme der neuen Bedingungen dar.\n\n10. Geltendes Recht\n\nDiese Bedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der die App entwickelt und vertrieben wird.\n\n11. Kontaktinformationen\n\nBei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte über den App Store.";
+"terms_of_service_content" = "Nutzungsbedingungen\n\nWirksamkeitsdatum: 15. Dezember 2025\n\n1. Annahme der Bedingungen\n\nDurch die Nutzung von Ypsilon stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie nicht zustimmen, verwenden Sie die App bitte nicht.\n\n2. Beschreibung des Dienstes\n\nYpsilon ist eine persönliche Finanz-App zur Verfolgung von Darlehen und Verwaltung von Zahlungsplänen. Die App:\n• Hilft Ihnen, persönliche Darlehen zu verfolgen (gegeben und erhalten)\n• Berechnet Zahlungspläne und Zinsen\n• Bietet lokale Zahlungserinnerungen\n• Speichert alle Daten lokal auf Ihrem Gerät\n\n3. Benutzerverantwortlichkeiten\n\n• Sie sind für die Genauigkeit der eingegebenen Daten verantwortlich\n• Sie müssen bei der Nutzung der App geltende Gesetze einhalten\n• Sie sind für die Sicherung Ihres Geräts verantwortlich, wenn Sie Daten bewahren möchten\n• Sie dürfen die App nicht für illegale Finanzaktivitäten verwenden\n\n4. Einschränkungen und Haftungsausschlüsse\n\n• Ypsilon ist nur für den persönlichen Gebrauch und die Aufzeichnung bestimmt\n• Die App bietet keine Finanz-, Rechts- oder Steuerberatung\n• Zinsberechnungen sind Schätzungen; konsultieren Sie Fachleute für offizielle Berechnungen\n• Wir sind nicht verantwortlich für finanzielle Entscheidungen basierend auf App-Daten\n• Die App erleichtert keine tatsächlichen Geldtransfers oder Zahlungen\n\n5. Daten und Datenschutz\n\n• Alle Daten werden lokal auf Ihrem Gerät gespeichert\n• Wir sammeln, speichern oder übertragen Ihre persönlichen Informationen nicht\n• Sie sind für die Sicherheit Ihres Geräts verantwortlich\n• Daten können nicht wiederhergestellt werden, wenn sie verloren oder gelöscht werden\n\n6. Geistiges Eigentum\n\nDie Ypsilon-App, einschließlich ihres Designs, Codes und Inhalts, ist durch Urheberrecht und andere Gesetze zum geistigen Eigentum geschützt.\n\n7. Haftungsbeschränkung\n\nIm maximal gesetzlich zulässigen Umfang haften wir nicht für indirekte, zufällige, besondere oder Folgeschäden aus Ihrer Nutzung der App.\n\n8. Kündigung\n\nSie können die Nutzung der App jederzeit beenden, indem Sie sie von Ihrem Gerät löschen. Diese Bedingungen bleiben bis zur Kündigung in Kraft.\n\n9. Änderungen der Bedingungen\n\nWir können diese Bedingungen von Zeit zu Zeit aktualisieren. Die fortgesetzte Nutzung der App nach Änderungen stellt die Annahme der neuen Bedingungen dar.\n\n10. Geltendes Recht\n\nDiese Bedingungen unterliegen den Gesetzen der Gerichtsbarkeit, in der die App entwickelt und vertrieben wird.\n\n11. Kontaktinformationen\n\nBei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte über den App Store.";
 
 // MARK: - Notifications
 "notification_permission_not_requested" = "Benachrichtigungsberechtigung wurde noch nicht angefordert";
@@ -115,7 +171,8 @@
 
 // MARK: - Settings - Notifications Denied
 "settings_notifications_denied_title" = "Benachrichtigungen sind deaktiviert";
-"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie Benachrichtigungen in Einstellungen > Monetiq > Benachrichtigungen";
+"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie Benachrichtigungen in Einstellungen > Ypsilon > Benachrichtigungen";
+"settings_open_settings" = "Einstellungen öffnen";
 "calculator_frequency" = "Zahlungshäufigkeit";
 "calculator_calculate" = "Zahlung berechnen";
 "calculator_results" = "Ergebnisse";
@@ -127,7 +184,7 @@
 
 // MARK: - Settings
 "settings_title" = "Einstellungen";
-"settings_subtitle" = "Passen Sie Ihre Monetiq-Erfahrung an";
+"settings_subtitle" = "Passen Sie Ihre Ypsilon-Erfahrung an";
 "settings_general" = "Allgemein";
 "settings_security" = "Sicherheit";
 "settings_appearance" = "Erscheinungsbild";
@@ -182,14 +239,20 @@
 "calculator_currency" = "Währung";
 "calculator_generated" = "Erstellt";
 "calculator_share_title" = "Darlehensberechnungs-Zusammenfassung";
-"calculator_share_footer" = "Erstellt mit Monetiq";
+"calculator_share_footer" = "Erstellt mit Ypsilon";
 "calculator_share" = "Teilen";
 "dashboard_no_loans" = "Noch keine Darlehen";
+"dashboard_cashflow" = "Cashflow";
+"dashboard_cashflow_subtitle" = "Nächste 30 Tage";
+"dashboard_cashflow_net" = "Netto";
+"dashboard_cashflow_empty" = "Nicht genügend Zahlungsdaten";
+"dashboard_cashflow_to_receive" = "Zu erhalten";
+"dashboard_cashflow_to_pay" = "Zu zahlen";
+"dashboard_cashflow_helper" = "Basierend auf geplanten Zahlungen";
+"dashboard_cashflow_today" = "Heute";
+"dashboard_cashflow_more_currencies" = "+%d weitere";
+"dashboard_cashflow_low_activity" = "Weitgehend stabil in den nächsten 30 Tagen";
 "dashboard_recent_loans" = "Aktuelle Darlehen";
-"loan_detail_delete_confirm" = "Sind Sie sicher, dass Sie '%@' löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.";
-"loan_detail_details" = "Details";
-"loan_detail_no_schedule" = "Kein Zahlungsplan verfügbar";
-"loan_detail_notes" = "Notizen";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Darlehen hinzufügen";
@@ -203,6 +266,7 @@
 "financial_details_section" = "Finanzielle Details";
 "amount_placeholder" = "Betrag";
 "currency_label" = "Währung";
+"currency_locked_message" = "Die Währung kann nach der Erstellung des Darlehens nicht mehr geändert werden.";
 "repayment_schedule_section" = "Rückzahlungsplan";
 "payment_frequency_label" = "Zahlungsfrequenz";
 "number_of_payments_placeholder" = "Anzahl der Zahlungen";
@@ -262,27 +326,22 @@
 "notification_payment_due_title" = "Zahlung heute fällig";
 "notification_payment_due_body" = "Zahlung für '%@' ist heute fällig: %@";
 "notification_weekly_review_title" = "Wöchentliche Finanzübersicht";
-"notification_weekly_review_body" = "Zeit, Ihre Darlehen und anstehenden Zahlungen in Monetiq zu überprüfen";
+"notification_weekly_review_body" = "Zeit, Ihre Darlehen und anstehenden Zahlungen in Ypsilon zu überprüfen";
 "notification_test_title" = "Test-Benachrichtigung";
-"notification_test_body" = "Dies ist eine Test-Benachrichtigung von Monetiq";
+"notification_test_body" = "Dies ist eine Test-Benachrichtigung von Ypsilon";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Entsperre Monetiq, um auf deine Finanzdaten zuzugreifen";
+"biometric_unlock_reason" = "Entsperre Ypsilon, um auf deine Finanzdaten zuzugreifen";
 "biometric_enable_reason" = "Authentifiziere dich, um biometrische Sicherheit zu aktivieren";
 "lock_screen_title" = "Gesperrt";
 "lock_screen_subtitle" = "Mit %@ entsperren";
 "lock_screen_unlock_button" = "Mit %@ entsperren";
 
 
-// MARK: - Settings - Notifications
-"settings_notifications_denied_title" = "Benachrichtigungen deaktiviert";
-"settings_notifications_denied_message" = "Um Zahlungserinnerungen zu erhalten, aktivieren Sie bitte Benachrichtigungen in den Einstellungen";
-"settings_open_settings" = "Einstellungen öffnen";
 "biometric_error_title" = "Authentifizierung fehlgeschlagen";
 "biometric_error_unknown" = "Ein unbekannter Fehler ist aufgetreten";
 "biometric_unavailable_title" = "Biometrie nicht verfügbar";
 "biometric_unavailable_message" = "Biometrische Authentifizierung ist auf diesem Gerät nicht verfügbar";
-"general_ok" = "OK";
 
 // Payment due date labels
 "payment_due_today" = "Heute fällig";
@@ -293,14 +352,10 @@
 "status_paid_on" = "Bezahlt am %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Startdatum";
 "loan_detail_payment_frequency" = "Zahlungsfrequenz";
 "loan_detail_number_of_payments" = "Anzahl der Zahlungen";
 "loan_detail_interest_mode" = "Zinsmodus";
 "loan_detail_annual_interest_rate" = "Jährlicher Zinssatz";
-"loan_detail_total_to_repay" = "Gesamtrückzahlung";
-"loan_detail_total_paid" = "Gesamt bezahlt";
-"loan_detail_remaining" = "Verbleibend";
 "loan_detail_next_due_date" = "Nächstes Fälligkeitsdatum";
 "loan_detail_created" = "Erstellt";
 "loan_detail_last_updated" = "Zuletzt aktualisiert";
@@ -329,3 +384,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Zahlungserinnerung (Verschoben)";
 "notification_payment_snoozed_body" = "Erinnerung für %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Darlehenstyp";
+"loan_type_label" = "Um welche Art von Darlehen handelt es sich?";
+"loan_type_new" = "Neues Darlehen";
+"loan_type_existing" = "Bestehendes Darlehen";
+"loan_type_new_footer" = "Ab heute beginnend";
+"loan_type_existing_footer" = "Bereits laufend";
+
+"existing_loan_status_section" = "Aktueller Status";
+"existing_loan_method_label" = "Wie möchten Sie den Fortschritt verfolgen?";
+"existing_loan_method_next_due_date" = "Nächstes Fälligkeitsdatum";
+"existing_loan_method_paid_months" = "Bezahlte Monate";
+
+"existing_loan_next_due_date_label" = "Nächstes Fälligkeitsdatum";
+"existing_loan_next_due_date_footer" = "Alle Zahlungen vor diesem Datum werden automatisch als bezahlt markiert.";
+
+"existing_loan_paid_months_placeholder" = "Anzahl der bereits bezahlten Monate";
+"existing_loan_paid_months_footer" = "Die ersten X Zahlungen werden als bezahlt markiert.";
+
+"original_start_date_label" = "Ursprüngliches Startdatum";
+
+"loan_detail_auto_marked_info" = "Vergangene Zahlungen wurden automatisch als bezahlt markiert basierend auf Ihrem aktuellen Status.";

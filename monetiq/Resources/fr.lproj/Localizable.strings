@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Tableau de bord";
+"tab_income" = "Revenus";
 "tab_loans" = "Prêts";
 "tab_calculator" = "Calculatrice";
 "tab_settings" = "Paramètres";
@@ -28,9 +29,55 @@
 "dashboard_subtitle" = "Votre aperçu financier";
 "dashboard_to_receive" = "À recevoir";
 "dashboard_to_pay" = "À payer";
+"dashboard_to_receive_detail_title" = "À recevoir - Détails";
+"dashboard_to_pay_detail_title" = "À payer - Détails";
+"dashboard_detail_empty_state" = "Aucun prêt actif dans cette catégorie";
+"dashboard_detail_total" = "Total";
+"dashboard_detail_from_loans" = "Des Prêts";
+"dashboard_detail_from_income" = "Revenus";
+"dashboard_income_unknown" = "Revenu Inconnu";
+"dashboard_income_badge" = "Revenu";
+"dashboard_mark_received" = "Marquer Reçu";
+"dashboard_unknown_loan" = "Prêt Inconnu";
 "dashboard_upcoming_payments" = "Paiements à venir";
 "dashboard_no_payments" = "Aucun paiement à venir";
 "dashboard_no_payments_subtitle" = "Tous vos paiements sont à jour";
+
+// MARK: - Income
+"income_title" = "Revenus";
+"income_subtitle" = "Gérez vos revenus et jours de paie";
+"income_empty_title" = "Aucun revenu pour le moment";
+"income_empty_subtitle" = "Ajoutez votre premier revenu pour voir les prochains jours de paie";
+"income_add_title" = "Ajouter un revenu";
+"income_edit_title" = "Modifier le revenu";
+"income_delete_title" = "Supprimer le revenu";
+"income_delete_message" = "Êtes-vous sûr de vouloir supprimer ce revenu ? Cette action ne peut pas être annulée.";
+"income_next_payday" = "Prochain : %@";
+"income_frequency_weekly" = "Hebdomadaire";
+"income_frequency_monthly" = "Mensuel";
+"income_frequency_quarterly" = "Trimestriel";
+"income_frequency_yearly" = "Annuel";
+"income_frequency_one_time" = "Une Fois";
+
+// MARK: - Income Form
+"income_form_title" = "Titre";
+"income_form_title_placeholder" = "ex. Salaire, Freelance";
+"income_form_amount" = "Montant";
+"income_form_amount_placeholder" = "Entrez le montant";
+"income_form_currency" = "Devise";
+"income_form_frequency" = "Fréquence";
+"income_form_start_date" = "Date de début";
+"income_form_end_date" = "Date de fin";
+"income_form_has_end_date" = "A une date de fin";
+"income_form_counterparty" = "Source (Optionnel)";
+"income_form_counterparty_placeholder" = "ex. Nom de l'employeur";
+"income_form_notes" = "Notes";
+"income_form_notes_placeholder" = "Notes optionnelles";
+"income_form_details_section" = "Détails du revenu";
+"income_section_active" = "Actifs";
+"income_section_completed" = "Terminés";
+"income_status_done" = "Terminé";
+"income_ended_date" = "Terminé : %@";
 
 // MARK: - Loans
 "loans_title" = "Prêts";
@@ -42,6 +89,8 @@
 "loans_delete_title" = "Supprimer le prêt";
 "loans_delete_message" = "Êtes-vous sûr de vouloir supprimer ce prêt ? Cette action ne peut pas être annulée.";
 "loans_next_due" = "Prochain : %@";
+"loans_created" = "Créé : %@";
+"loans_created_short" = "Créé %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "Titre";
@@ -79,6 +128,13 @@
 "loan_detail_payments" = "Calendrier de paiement";
 "loan_detail_mark_paid" = "Marquer comme payé";
 "loan_detail_no_payments" = "Aucun paiement programmé";
+"loan_detail_details" = "Détails";
+"loan_detail_no_schedule" = "Aucun calendrier de paiement disponible";
+"loan_detail_notes" = "Notes";
+"loan_detail_delete_confirm" = "Êtes-vous sûr de vouloir supprimer '%@'? Cette action ne peut pas être annulée.";
+"loan_detail_progress" = "Progression des Paiements";
+"loan_detail_progress_paid" = "%.1f%% payé";
+"loan_detail_progress_no_payments" = "Aucun paiement encore";
 
 // MARK: - Calculator
 "calculator_title" = "Calculatrice de prêts";
@@ -104,17 +160,18 @@
 "settings_device_info" = "Données locales • Aucun compte requis";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "Politique de Confidentialité\n\nDate d'Entrée en Vigueur : 15 Décembre 2025\n\nMonetiq est conçu avec la confidentialité à l'esprit. Toutes vos données financières sont stockées localement sur votre appareil et ne sont jamais transmises à nos serveurs ou à des tiers.\n\n1. Informations que Nous Collectons\n• Informations sur les prêts\n• Calendriers de paiement et historique\n• Préférences de l'application\n\n2. Comment Nous Utilisons Vos Informations\nVos données sont utilisées uniquement pour fournir la fonctionnalité de suivi des prêts et les rappels de paiement.\n\n3. Stockage et Sécurité\nToutes les données sont stockées localement en utilisant le stockage sécurisé iOS.\n\n4. Partage de Données\nNous ne partageons, vendons ou transmettons pas vos informations personnelles à des tiers.\n\nPour des questions sur cette politique de confidentialité, contactez-nous via l'App Store.";
+"privacy_policy_content" = "Politique de Confidentialité\n\nDate d'Entrée en Vigueur : 15 Décembre 2025\n\nYpsilon est conçu avec la confidentialité à l'esprit. Toutes vos données financières sont stockées localement sur votre appareil et ne sont jamais transmises à nos serveurs ou à des tiers.\n\n1. Informations que Nous Collectons\n• Informations sur les prêts\n• Calendriers de paiement et historique\n• Préférences de l'application\n\n2. Comment Nous Utilisons Vos Informations\nVos données sont utilisées uniquement pour fournir la fonctionnalité de suivi des prêts et les rappels de paiement.\n\n3. Stockage et Sécurité\nToutes les données sont stockées localement en utilisant le stockage sécurisé iOS.\n\n4. Partage de Données\nNous ne partageons, vendons ou transmettons pas vos informations personnelles à des tiers.\n\nPour des questions sur cette politique de confidentialité, contactez-nous via l'App Store.";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "Conditions d'Utilisation\n\nDate d'Entrée en Vigueur : 15 Décembre 2025\n\n1. Acceptation des Conditions\nEn utilisant Monetiq, vous acceptez ces Conditions d'Utilisation.\n\n2. Description du Service\nMonetiq est une application de finances personnelles pour suivre les prêts et gérer les calendriers de paiement.\n\n3. Responsabilités de l'Utilisateur\nVous êtes responsable de l'exactitude des données que vous saisissez.\n\n4. Limitations\nMonetiq est uniquement pour un usage personnel. L'application ne fournit pas de conseils financiers, juridiques ou fiscaux.\n\nPour des questions sur ces conditions, contactez-nous via l'App Store.";
+"terms_of_service_content" = "Conditions d'Utilisation\n\nDate d'Entrée en Vigueur : 15 Décembre 2025\n\n1. Acceptation des Conditions\nEn utilisant Ypsilon, vous acceptez ces Conditions d'Utilisation.\n\n2. Description du Service\nYpsilon est une application de finances personnelles pour suivre les prêts et gérer les calendriers de paiement.\n\n3. Responsabilités de l'Utilisateur\nVous êtes responsable de l'exactitude des données que vous saisissez.\n\n4. Limitations\nYpsilon est uniquement pour un usage personnel. L'application ne fournit pas de conseils financiers, juridiques ou fiscaux.\n\nPour des questions sur ces conditions, contactez-nous via l'App Store.";
 
 // MARK: - Missing Keys
 "calculator_share" = "Partager";
 "notification_permission_not_requested" = "L'autorisation de notification n'a pas encore été demandée";
 "notification_unknown_error" = "Une erreur de notification inconnue s'est produite";
 "settings_notifications_denied_title" = "Notifications désactivées";
-"settings_notifications_denied_message" = "Pour recevoir des rappels de paiement, activez les notifications dans Réglages > Monetiq > Notifications";
+"settings_notifications_denied_message" = "Pour recevoir des rappels de paiement, activez les notifications dans Réglages > Ypsilon > Notifications";
+"settings_open_settings" = "Ouvrir Réglages";
 "calculator_frequency" = "Fréquence de paiement";
 "calculator_calculate" = "Calculer le paiement";
 "calculator_results" = "Résultats";
@@ -126,7 +183,7 @@
 
 // MARK: - Settings
 "settings_title" = "Paramètres";
-"settings_subtitle" = "Personnalisez votre expérience Monetiq";
+"settings_subtitle" = "Personnalisez votre expérience Ypsilon";
 "settings_general" = "Général";
 "settings_security" = "Sécurité";
 "settings_appearance" = "Apparence";
@@ -200,13 +257,19 @@
 "calculator_currency" = "Devise";
 "calculator_generated" = "Généré";
 "calculator_share_title" = "Résumé du Calcul de Prêt";
-"calculator_share_footer" = "Créé avec Monetiq";
+"calculator_share_footer" = "Créé avec Ypsilon";
 "dashboard_no_loans" = "Aucun prêt pour le moment";
+"dashboard_cashflow" = "Flux de trésorerie";
+"dashboard_cashflow_subtitle" = "30 prochains jours";
+"dashboard_cashflow_net" = "Net";
+"dashboard_cashflow_empty" = "Données de paiement insuffisantes";
+"dashboard_cashflow_to_receive" = "À recevoir";
+"dashboard_cashflow_to_pay" = "À payer";
+"dashboard_cashflow_helper" = "Basé sur les paiements programmés";
+"dashboard_cashflow_today" = "Aujourd'hui";
+"dashboard_cashflow_more_currencies" = "+%d de plus";
+"dashboard_cashflow_low_activity" = "Principalement stable au cours des 30 prochains jours";
 "dashboard_recent_loans" = "Prêts récents";
-"loan_detail_delete_confirm" = "Êtes-vous sûr de vouloir supprimer '%@' ? Cette action ne peut pas être annulée.";
-"loan_detail_details" = "Détails";
-"loan_detail_no_schedule" = "Aucun calendrier de paiement disponible";
-"loan_detail_notes" = "Notes";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "Ajouter un Prêt";
@@ -220,6 +283,7 @@
 "financial_details_section" = "Détails Financiers";
 "amount_placeholder" = "Montant";
 "currency_label" = "Devise";
+"currency_locked_message" = "La devise ne peut pas être modifiée après la création du prêt.";
 "repayment_schedule_section" = "Calendrier de Remboursement";
 "payment_frequency_label" = "Fréquence de Paiement";
 "number_of_payments_placeholder" = "Nombre de Paiements";
@@ -252,9 +316,9 @@
 "notification_payment_due_title" = "Paiement dû aujourd'hui";
 "notification_payment_due_body" = "Le paiement pour '%@' est dû aujourd'hui : %@";
 "notification_weekly_review_title" = "Révision financière hebdomadaire";
-"notification_weekly_review_body" = "Il est temps de réviser vos prêts et paiements à venir dans Monetiq";
+"notification_weekly_review_body" = "Il est temps de réviser vos prêts et paiements à venir dans Ypsilon";
 "notification_test_title" = "Notification de test";
-"notification_test_body" = "Ceci est une notification de test de Monetiq";
+"notification_test_body" = "Ceci est une notification de test de Ypsilon";
 
 
 
@@ -268,7 +332,7 @@
 "settings_reset_app_confirm_action" = "Supprimer Toutes les Données";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "Déverrouillez Monetiq pour accéder à vos données financières";
+"biometric_unlock_reason" = "Déverrouillez Ypsilon pour accéder à vos données financières";
 "biometric_enable_reason" = "Authentifiez-vous pour activer la sécurité biométrique";
 "lock_screen_title" = "Verrouillé";
 "lock_screen_subtitle" = "Déverrouiller avec %@";
@@ -277,7 +341,6 @@
 "biometric_error_unknown" = "Une erreur inconnue s'est produite";
 "biometric_unavailable_title" = "Biométrie Non Disponible";
 "biometric_unavailable_message" = "L'authentification biométrique n'est pas disponible sur cet appareil";
-"general_ok" = "OK";
 
 // Payment due date labels
 "payment_due_today" = "Échéance aujourd'hui";
@@ -288,14 +351,10 @@
 "status_paid_on" = "Payé le %@";
 
 // Loan detail labels
-"loan_detail_start_date" = "Date de Début";
 "loan_detail_payment_frequency" = "Fréquence de Paiement";
 "loan_detail_number_of_payments" = "Nombre de Paiements";
 "loan_detail_interest_mode" = "Mode d'Intérêt";
 "loan_detail_annual_interest_rate" = "Taux d'Intérêt Annuel";
-"loan_detail_total_to_repay" = "Total à Rembourser";
-"loan_detail_total_paid" = "Total Payé";
-"loan_detail_remaining" = "Restant";
 "loan_detail_next_due_date" = "Prochaine Échéance";
 "loan_detail_created" = "Créé";
 "loan_detail_last_updated" = "Dernière Mise à Jour";
@@ -324,3 +383,26 @@
 // Snooze Notifications
 "notification_payment_snoozed_title" = "Rappel de Paiement (Reporté)";
 "notification_payment_snoozed_body" = "Rappel pour %@ - %@";
+
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "Type de Prêt";
+"loan_type_label" = "Quel type de prêt est-ce?";
+"loan_type_new" = "Nouveau Prêt";
+"loan_type_existing" = "Prêt Existant";
+"loan_type_new_footer" = "À partir d'aujourd'hui";
+"loan_type_existing_footer" = "Déjà en cours";
+
+"existing_loan_status_section" = "Statut Actuel";
+"existing_loan_method_label" = "Comment voulez-vous suivre la progression?";
+"existing_loan_method_next_due_date" = "Prochaine Échéance";
+"existing_loan_method_paid_months" = "Mois Payés";
+
+"existing_loan_next_due_date_label" = "Prochaine Échéance";
+"existing_loan_next_due_date_footer" = "Tous les paiements avant cette date seront automatiquement marqués comme payés.";
+
+"existing_loan_paid_months_placeholder" = "Nombre de mois déjà payés";
+"existing_loan_paid_months_footer" = "Les X premiers paiements seront marqués comme payés.";
+
+"original_start_date_label" = "Date de Début d'Origine";
+
+"loan_detail_auto_marked_info" = "Les paiements passés ont été automatiquement marqués comme payés en fonction de votre statut actuel.";

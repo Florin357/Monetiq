@@ -13,10 +13,10 @@ struct AppLinks {
     // MARK: - Legal URLs
     
     /// Privacy Policy URL - Update this with your actual privacy policy URL
-    static let privacyURL = "https://monetiq.app/privacy"
+    static let privacyURL = "https://ypsilon.app/privacy"
     
     /// Terms of Service URL - Update this with your actual terms URL  
-    static let termsURL = "https://monetiq.app/terms"
+    static let termsURL = "https://ypsilon.app/terms"
     
     // MARK: - App Information
     
@@ -33,7 +33,7 @@ struct AppLinks {
     /// App name from Bundle
     static var appName: String {
         Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ??
-        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Monetiq"
+        Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "Ypsilon"
     }
     
     /// Complete version string for display

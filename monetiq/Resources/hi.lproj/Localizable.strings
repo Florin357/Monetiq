@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "डैशबोर्ड";
+"tab_income" = "आय";
 "tab_loans" = "लोन";
 "tab_calculator" = "कैलकुलेटर";
 "tab_settings" = "सेटिंग्स";
@@ -28,9 +29,55 @@
 "dashboard_subtitle" = "आपका वित्तीय अवलोकन";
 "dashboard_to_receive" = "प्राप्त करना है";
 "dashboard_to_pay" = "भुगतान करना है";
+"dashboard_to_receive_detail_title" = "प्राप्त करना है - विवरण";
+"dashboard_to_pay_detail_title" = "भुगतान करना है - विवरण";
+"dashboard_detail_empty_state" = "इस श्रेणी में कोई सक्रिय ऋण नहीं";
+"dashboard_detail_total" = "कुल";
+"dashboard_detail_from_loans" = "ऋणों से";
+"dashboard_detail_from_income" = "आय";
+"dashboard_income_unknown" = "अज्ञात आय";
+"dashboard_income_badge" = "आय";
+"dashboard_mark_received" = "प्राप्त के रूप में चिह्नित करें";
+"dashboard_unknown_loan" = "अज्ञात ऋण";
 "dashboard_upcoming_payments" = "आगामी भुगतान";
 "dashboard_no_payments" = "कोई आगामी भुगतान नहीं";
 "dashboard_no_payments_subtitle" = "आपके सभी भुगतान अप टू डेट हैं";
+
+// MARK: - Income
+"income_title" = "आय";
+"income_subtitle" = "अपनी आय और वेतन दिवस का प्रबंधन करें";
+"income_empty_title" = "अभी तक कोई आय नहीं";
+"income_empty_subtitle" = "आगामी वेतन दिवस देखने के लिए अपनी पहली आय जोड़ें";
+"income_add_title" = "आय जोड़ें";
+"income_edit_title" = "आय एडिट करें";
+"income_delete_title" = "आय डिलीट करें";
+"income_delete_message" = "क्या आप वाकई इस आय को डिलीट करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।";
+"income_next_payday" = "अगला: %@";
+"income_frequency_weekly" = "साप्ताहिक";
+"income_frequency_monthly" = "मासिक";
+"income_frequency_quarterly" = "त्रैमासिक";
+"income_frequency_yearly" = "वार्षिक";
+"income_frequency_one_time" = "एक बार";
+
+// MARK: - Income Form
+"income_form_title" = "शीर्षक";
+"income_form_title_placeholder" = "उदा. वेतन, फ्रीलांस";
+"income_form_amount" = "राशि";
+"income_form_amount_placeholder" = "राशि दर्ज करें";
+"income_form_currency" = "मुद्रा";
+"income_form_frequency" = "आवृत्ति";
+"income_form_start_date" = "प्रारंभ तिथि";
+"income_form_end_date" = "समाप्ति तिथि";
+"income_form_has_end_date" = "समाप्ति तिथि है";
+"income_form_counterparty" = "स्रोत (वैकल्पिक)";
+"income_form_counterparty_placeholder" = "उदा. नियोक्ता का नाम";
+"income_form_notes" = "नोट्स";
+"income_form_notes_placeholder" = "वैकल्पिक नोट्स";
+"income_form_details_section" = "आय विवरण";
+"income_section_active" = "सक्रिय";
+"income_section_completed" = "पूर्ण";
+"income_status_done" = "पूर्ण";
+"income_ended_date" = "समाप्त: %@";
 
 // MARK: - Loans
 "loans_title" = "लोन";
@@ -42,6 +89,8 @@
 "loans_delete_title" = "लोन डिलीट करें";
 "loans_delete_message" = "क्या आप वाकई इस लोन को डिलीट करना चाहते हैं? यह कार्रवाई पूर्ववत नहीं की जा सकती।";
 "loans_next_due" = "अगला: %@";
+"loans_created" = "बनाया गया: %@";
+"loans_created_short" = "बनाया गया %@";
 
 // MARK: - Loan Form
 "loan_form_title" = "शीर्षक";
@@ -79,6 +128,13 @@
 "loan_detail_payments" = "भुगतान अनुसूची";
 "loan_detail_mark_paid" = "भुगतान के रूप में चिह्नित करें";
 "loan_detail_no_payments" = "कोई भुगतान निर्धारित नहीं";
+"loan_detail_details" = "विवरण";
+"loan_detail_no_schedule" = "कोई भुगतान अनुसूची उपलब्ध नहीं";
+"loan_detail_notes" = "नोट्स";
+"loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? इस क्रिया को पूर्ववत नहीं किया जा सकता।";
+"loan_detail_progress" = "भुगतान प्रगति";
+"loan_detail_progress_paid" = "%.1f%% भुगतान किया गया";
+"loan_detail_progress_no_payments" = "अभी तक कोई भुगतान नहीं";
 
 // MARK: - Calculator
 "calculator_title" = "लोन कैलकुलेटर";
@@ -104,10 +160,10 @@
 "settings_device_info" = "स्थानीय डेटा • खाता आवश्यक नहीं";
 
 // Legal Documents - Privacy Policy
-"privacy_policy_content" = "गोपनीयता नीति\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\nMonetiq को गोपनीयता को ध्यान में रखकर डिज़ाइन किया गया है। आपका सभी वित्तीय डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत है और कभी भी हमारे सर्वर या तृतीय पक्षों को प्रेषित नहीं किया जाता।\n\n1. हम जो जानकारी एकत्र करते हैं\n• ऋण जानकारी\n• भुगतान कार्यक्रम और इतिहास\n• ऐप प्राथमिकताएं\n\n2. हम आपकी जानकारी का उपयोग कैसे करते हैं\nआपका डेटा केवल ऋण ट्रैकिंग और भुगतान अनुस्मारक कार्यक्षमता प्रदान करने के लिए उपयोग किया जाता है।\n\n3. भंडारण और सुरक्षा\nसभी डेटा iOS सुरक्षित भंडारण का उपयोग करके आपके डिवाइस पर स्थानीय रूप से संग्रहीत है।\n\n4. डेटा साझाकरण\nहम आपकी व्यक्तिगत जानकारी को तृतीय पक्षों के साथ साझा, बेच या प्रेषित नहीं करते।\n\nइस गोपनीयता नीति के बारे में प्रश्नों के लिए, कृपया App Store के माध्यम से हमसे संपर्क करें।";
+"privacy_policy_content" = "गोपनीयता नीति\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\nYpsilon को गोपनीयता को ध्यान में रखकर डिज़ाइन किया गया है। आपका सभी वित्तीय डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत है और कभी भी हमारे सर्वर या तृतीय पक्षों को प्रेषित नहीं किया जाता।\n\n1. हम जो जानकारी एकत्र करते हैं\n• ऋण जानकारी\n• भुगतान कार्यक्रम और इतिहास\n• ऐप प्राथमिकताएं\n\n2. हम आपकी जानकारी का उपयोग कैसे करते हैं\nआपका डेटा केवल ऋण ट्रैकिंग और भुगतान अनुस्मारक कार्यक्षमता प्रदान करने के लिए उपयोग किया जाता है।\n\n3. भंडारण और सुरक्षा\nसभी डेटा iOS सुरक्षित भंडारण का उपयोग करके आपके डिवाइस पर स्थानीय रूप से संग्रहीत है।\n\n4. डेटा साझाकरण\nहम आपकी व्यक्तिगत जानकारी को तृतीय पक्षों के साथ साझा, बेच या प्रेषित नहीं करते।\n\nइस गोपनीयता नीति के बारे में प्रश्नों के लिए, कृपया App Store के माध्यम से हमसे संपर्क करें।";
 
 // Legal Documents - Terms of Service
-"terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत होते हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैकिंग और भुगतान कार्यक्रम प्रबंधन के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता।\n\nइन शर्तों के बारे में प्रश्नों के लिए, कृपया App Store के माध्यम से हमसे संपर्क करें।";
+"terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nYpsilon का उपयोग करके, आप इन सेवा की शर्तों से सहमत होते हैं।\n\n2. सेवा का विवरण\nYpsilon ऋण ट्रैकिंग और भुगतान कार्यक्रम प्रबंधन के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nYpsilon केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता।\n\nइन शर्तों के बारे में प्रश्नों के लिए, कृपया App Store के माध्यम से हमसे संपर्क करें।";
 "calculator_frequency" = "भुगतान आवृत्ति";
 "calculator_calculate" = "भुगतान की गणना करें";
 "calculator_results" = "परिणाम";
@@ -119,7 +175,7 @@
 
 // MARK: - Settings
 "settings_title" = "सेटिंग्स";
-"settings_subtitle" = "अपने Monetiq अनुभव को कस्टमाइज़ करें";
+"settings_subtitle" = "अपने Ypsilon अनुभव को कस्टमाइज़ करें";
 "settings_general" = "सामान्य";
 "settings_security" = "सुरक्षा";
 "settings_appearance" = "दिखावट";
@@ -193,13 +249,19 @@
 "calculator_currency" = "मुद्रा";
 "calculator_generated" = "उत्पन्न";
 "calculator_share_title" = "ऋण गणना सारांश";
-"calculator_share_footer" = "Monetiq के साथ बनाया गया";
+"calculator_share_footer" = "Ypsilon के साथ बनाया गया";
 "dashboard_no_loans" = "अभी तक कोई लोन नहीं";
+"dashboard_cashflow" = "नकदी प्रवाह";
+"dashboard_cashflow_subtitle" = "अगले 30 दिन";
+"dashboard_cashflow_net" = "नेट";
+"dashboard_cashflow_empty" = "भुगतान डेटा अपर्याप्त";
+"dashboard_cashflow_to_receive" = "प्राप्त करने के लिए";
+"dashboard_cashflow_to_pay" = "भुगतान करने के लिए";
+"dashboard_cashflow_helper" = "निर्धारित भुगतान के आधार पर";
+"dashboard_cashflow_today" = "आज";
+"dashboard_cashflow_more_currencies" = "+%d और";
+"dashboard_cashflow_low_activity" = "अगले 30 दिनों में अधिकतर स्थिर";
 "dashboard_recent_loans" = "हाल के लोन";
-"loan_detail_delete_confirm" = "क्या आप वाकई '%@' को हटाना चाहते हैं? यह क्रिया पूर्ववत नहीं की जा सकती।";
-"loan_detail_details" = "विवरण";
-"loan_detail_no_schedule" = "कोई भुगतान अनुसूची उपलब्ध नहीं";
-"loan_detail_notes" = "नोट्स";
 
 // MARK: - Add/Edit Loan
 "add_loan_title" = "लोन जोड़ें";
@@ -213,6 +275,7 @@
 "financial_details_section" = "वित्तीय विवरण";
 "amount_placeholder" = "राशि";
 "currency_label" = "मुद्रा";
+"currency_locked_message" = "ऋण बनाने के बाद मुद्रा नहीं बदली जा सकती।";
 "repayment_schedule_section" = "चुकौती अनुसूची";
 "payment_frequency_label" = "भुगतान आवृत्ति";
 "number_of_payments_placeholder" = "भुगतानों की संख्या";
@@ -245,9 +308,9 @@
 "notification_payment_due_title" = "आज भुगतान देय है";
 "notification_payment_due_body" = "'%@' के लिए भुगतान आज देय है: %@";
 "notification_weekly_review_title" = "साप्ताहिक वित्तीय समीक्षा";
-"notification_weekly_review_body" = "Monetiq में अपने लोन और आगामी भुगतानों की समीक्षा करने का समय है";
+"notification_weekly_review_body" = "Ypsilon में अपने लोन और आगामी भुगतानों की समीक्षा करने का समय है";
 "notification_test_title" = "टेस्ट नोटिफिकेशन";
-"notification_test_body" = "यह Monetiq से एक टेस्ट नोटिफिकेशन है";
+"notification_test_body" = "यह Ypsilon से एक टेस्ट नोटिफिकेशन है";
 
 
 
@@ -261,7 +324,7 @@
 "settings_reset_app_confirm_action" = "सभी डेटा हटाएं";
 
 // MARK: - Biometric Authentication
-"biometric_unlock_reason" = "अपने वित्तीय डेटा तक पहुंचने के लिए Monetiq को अनलॉक करें";
+"biometric_unlock_reason" = "अपने वित्तीय डेटा तक पहुंचने के लिए Ypsilon को अनलॉक करें";
 "biometric_enable_reason" = "बायोमेट्रिक सुरक्षा सक्षम करने के लिए प्रमाणीकरण करें";
 "lock_screen_title" = "लॉक्ड";
 "lock_screen_subtitle" = "%@ के साथ अनलॉक करें";
@@ -270,7 +333,6 @@
 "biometric_error_unknown" = "एक अज्ञात त्रुटि हुई";
 "biometric_unavailable_title" = "बायोमेट्रिक्स उपलब्ध नहीं";
 "biometric_unavailable_message" = "इस डिवाइस पर बायोमेट्रिक प्रमाणीकरण उपलब्ध नहीं है";
-"general_ok" = "ठीक है";
 
 // Payment due date labels
 "payment_due_today" = "आज देय";
@@ -281,14 +343,10 @@
 "status_paid_on" = "%@ को भुगतान किया गया";
 
 // Loan detail labels
-"loan_detail_start_date" = "प्रारंभ तिथि";
 "loan_detail_payment_frequency" = "भुगतान आवृत्ति";
 "loan_detail_number_of_payments" = "भुगतानों की संख्या";
 "loan_detail_interest_mode" = "ब्याज मोड";
 "loan_detail_annual_interest_rate" = "वार्षिक ब्याज दर";
-"loan_detail_total_to_repay" = "कुल चुकाना";
-"loan_detail_total_paid" = "कुल भुगतान";
-"loan_detail_remaining" = "शेष";
 "loan_detail_next_due_date" = "अगली देय तिथि";
 "loan_detail_created" = "बनाया गया";
 "loan_detail_last_updated" = "अंतिम अपडेट";
@@ -323,7 +381,28 @@
 "notification_permission_not_requested" = "अधिसूचना अनुमति अभी तक अनुरोधित नहीं है";
 "notification_unknown_error" = "अज्ञात अधिसूचना त्रुटि हुई";
 "settings_notifications_denied_title" = "अधिसूचनाएं अक्षम";
-"settings_notifications_denied_message" = "भुगतान अनुस्मारक प्राप्त करने के लिए, सेटिंग्स > Monetiq > अधिसूचनाएं में अधिसूचनाएं सक्षम करें";
+"settings_notifications_denied_message" = "भुगतान अनुस्मारक प्राप्त करने के लिए, सेटिंग्स > Ypsilon > अधिसूचनाएं में अधिसूचनाएं सक्षम करें";
+"settings_open_settings" = "सेटिंग्स खोलें";
 
-// Legal Content
-"terms_of_service_content" = "सेवा की शर्तें\n\nप्रभावी तिथि: 15 दिसंबर 2025\n\n1. शर्तों की स्वीकृति\nMonetiq का उपयोग करके, आप इन सेवा की शर्तों से सहमत हैं।\n\n2. सेवा का विवरण\nMonetiq ऋण ट्रैक करने और भुगतान कार्यक्रम प्रबंधित करने के लिए एक व्यक्तिगत वित्त ऐप है।\n\n3. उपयोगकर्ता जिम्मेदारियां\nआप अपने द्वारा दर्ज किए गए डेटा की सटीकता के लिए जिम्मेदार हैं।\n\n4. सीमाएं\nMonetiq केवल व्यक्तिगत उपयोग के लिए है। ऐप वित्तीय, कानूनी या कर सलाह प्रदान नहीं करता है।\n\nइन शर्तों के बारे में प्रश्नों के लिए, App Store के माध्यम से हमसे संपर्क करें।";
+// MARK: - Existing Loan Enrollment
+"loan_type_section" = "ऋण प्रकार";
+"loan_type_label" = "यह किस प्रकार का ऋण है?";
+"loan_type_new" = "नया ऋण";
+"loan_type_existing" = "मौजूदा ऋण";
+"loan_type_new_footer" = "आज से शुरू";
+"loan_type_existing_footer" = "पहले से चल रहा";
+
+"existing_loan_status_section" = "वर्तमान स्थिति";
+"existing_loan_method_label" = "आप प्रगति को कैसे ट्रैक करना चाहते हैं?";
+"existing_loan_method_next_due_date" = "अगली देय तिथि";
+"existing_loan_method_paid_months" = "भुगतान किए गए महीने";
+
+"existing_loan_next_due_date_label" = "अगली देय तिथि";
+"existing_loan_next_due_date_footer" = "इस तिथि से पहले के सभी भुगतान स्वचालित रूप से भुगतान के रूप में चिह्नित किए जाएंगे।";
+
+"existing_loan_paid_months_placeholder" = "पहले से भुगतान किए गए महीनों की संख्या";
+"existing_loan_paid_months_footer" = "पहले X भुगतान भुगतान के रूप में चिह्नित किए जाएंगे।";
+
+"original_start_date_label" = "मूल प्रारंभ तिथि";
+
+"loan_detail_auto_marked_info" = "आपकी वर्तमान स्थिति के आधार पर पिछले भुगतान स्वचालित रूप से भुगतान के रूप में चिह्नित किए गए थे।";

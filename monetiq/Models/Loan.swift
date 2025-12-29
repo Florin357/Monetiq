@@ -86,6 +86,13 @@ final class Loan {
             .filter { $0.status == .planned }
             .sorted { $0.dueDate < $1.dueDate }
     }
+    
+    /// Check if loan is completed (all payments paid)
+    /// Derived from existing data, no new fields needed
+    var isCompleted: Bool {
+        guard !payments.isEmpty else { return false }
+        return payments.allSatisfy { $0.status == .paid }
+    }
 }
 
 enum LoanRole: String, CaseIterable, Codable {

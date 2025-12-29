@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "monetiq_2.png",
+      "filename" : "All.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "monetiq_dark.png",
+      "filename" : "dark.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,7 +25,7 @@
           "value" : "tinted"
         }
       ],
-      "filename" : "monetiq_tint.png",
+      "filename" : "tinted.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
