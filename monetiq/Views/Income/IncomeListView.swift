@@ -93,6 +93,7 @@ struct IncomeListView: View {
                                     .onTapGesture {
                                         editingIncome = income
                                     }
+                                    #if !os(macOS)
                                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                         Button(role: .destructive) {
                                             incomeToDelete = income
@@ -108,6 +109,24 @@ struct IncomeListView: View {
                                         }
                                         .tint(MonetiqTheme.Colors.accent)
                                     }
+                                    #endif
+                                    .contextMenu {
+                                        Button {
+                                            editingIncome = income
+                                        } label: {
+                                            Label(L10n.string("general_edit"), systemImage: "pencil")
+                                        }
+                                        
+                                        Button(role: .destructive) {
+                                            incomeToDelete = income
+                                            showingDeleteConfirmation = true
+                                        } label: {
+                                            Label(L10n.string("general_delete"), systemImage: "trash")
+                                        }
+                                    }
+                            }
+                            .onDelete { offsets in
+                                deleteIncomeAtOffsets(offsets, from: activeIncomeSources)
                             }
                         } header: {
                             Text(L10n.string("income_section_active"))
@@ -130,6 +149,7 @@ struct IncomeListView: View {
                                     .onTapGesture {
                                         editingIncome = income
                                     }
+                                    #if !os(macOS)
                                     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                         Button(role: .destructive) {
                                             incomeToDelete = income
@@ -145,6 +165,24 @@ struct IncomeListView: View {
                                         }
                                         .tint(MonetiqTheme.Colors.accent)
                                     }
+                                    #endif
+                                    .contextMenu {
+                                        Button {
+                                            editingIncome = income
+                                        } label: {
+                                            Label(L10n.string("general_edit"), systemImage: "pencil")
+                                        }
+                                        
+                                        Button(role: .destructive) {
+                                            incomeToDelete = income
+                                            showingDeleteConfirmation = true
+                                        } label: {
+                                            Label(L10n.string("general_delete"), systemImage: "trash")
+                                        }
+                                    }
+                            }
+                            .onDelete { offsets in
+                                deleteIncomeAtOffsets(offsets, from: completedIncomeSources)
                             }
                         } header: {
                             Text(L10n.string("income_section_completed"))
@@ -162,6 +200,12 @@ struct IncomeListView: View {
         }
         .monetiqBackground()
         .toolbar {
+            #if os(macOS)
+            ToolbarItem(placement: .navigationBarLeading) {
+                EditButton()
+            }
+            #endif
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddIncome = true }) {
                     Image(systemName: "plus")
@@ -191,6 +235,15 @@ struct IncomeListView: View {
         withAnimation {
             modelContext.delete(income)
             incomeToDelete = nil
+        }
+    }
+    
+    private func deleteIncomeAtOffsets(_ offsets: IndexSet, from sources: [IncomeSource]) {
+        withAnimation {
+            for index in offsets {
+                let income = sources[index]
+                modelContext.delete(income)
+            }
         }
     }
 }

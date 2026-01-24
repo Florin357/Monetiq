@@ -182,6 +182,7 @@ struct DashboardView: View {
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            #if !os(macOS)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button {
                                     markPaymentAsPaid(item)
@@ -199,6 +200,23 @@ struct DashboardView: View {
                                         Label(L10n.string("dashboard_postpone"), systemImage: "clock.arrow.circlepath")
                                     }
                                     .tint(MonetiqTheme.Colors.warning)
+                                }
+                            }
+                            #endif
+                            .contextMenu {
+                                Button {
+                                    markPaymentAsPaid(item)
+                                } label: {
+                                    Label(item.type == .loanPayment ? L10n.string("dashboard_mark_paid") : L10n.string("dashboard_mark_received"), systemImage: "checkmark.circle.fill")
+                                }
+                                
+                                // Only show postpone for loan payments
+                                if item.type == .loanPayment {
+                                    Button {
+                                        postponePayment(item)
+                                    } label: {
+                                        Label(L10n.string("dashboard_postpone"), systemImage: "clock.arrow.circlepath")
+                                    }
                                 }
                             }
                         }

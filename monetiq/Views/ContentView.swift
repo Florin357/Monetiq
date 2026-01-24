@@ -87,40 +87,35 @@ struct ContentView: View {
                 DashboardView()
             }
             .tabItem {
-                Image(systemName: "chart.pie.fill")
-                Text(L10n.string("tab_dashboard"))
+                Label(L10n.string("tab_dashboard"), systemImage: "chart.pie.fill")
             }
             
             NavigationStack {
                 IncomeListView()
             }
             .tabItem {
-                Image(systemName: "arrow.down.circle.fill")
-                Text(L10n.string("tab_income"))
+                Label(L10n.string("tab_income"), systemImage: "arrow.down.circle.fill")
             }
             
             NavigationStack {
                 LoansListView()
             }
             .tabItem {
-                Image(systemName: "creditcard.fill")
-                Text(L10n.string("tab_loans"))
+                Label(L10n.string("tab_loans"), systemImage: "creditcard.fill")
             }
             
             NavigationStack {
                 CalculatorView()
             }
             .tabItem {
-                Image(systemName: "function")
-                Text(L10n.string("tab_calculator"))
+                Label(L10n.string("tab_calculator"), systemImage: "function")
             }
             
             NavigationStack {
                 SettingsView()
             }
             .tabItem {
-                Image(systemName: "gearshape.fill")
-                Text(L10n.string("tab_settings"))
+                Label(L10n.string("tab_settings"), systemImage: "gearshape.fill")
             }
         }
         .monetiqBackground()
