@@ -81,6 +81,13 @@ struct LoansListView: View {
                                 LoanRowView(loan: loan)
                             }
                             .buttonStyle(PlainButtonStyle())
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    deleteLoan(loan)
+                                } label: {
+                                    Label(L10n.string("general_delete"), systemImage: "trash")
+                                }
+                            }
                         }
                         .onDelete(perform: deleteLoans)
                     }
@@ -91,6 +98,14 @@ struct LoansListView: View {
         }
         .monetiqBackground()
         .toolbar {
+            #if os(macOS)
+            ToolbarItem(placement: .navigationBarLeading) {
+                if !loans.isEmpty {
+                    EditButton()
+                }
+            }
+            #endif
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { showingAddLoan = true }) {
                     Image(systemName: "plus")
@@ -116,6 +131,18 @@ struct LoansListView: View {
                 
                 modelContext.delete(loan)
             }
+        }
+    }
+    
+    private func deleteLoan(_ loan: Loan) {
+        withAnimation {
+            // Cancel notifications for this loan before deletion
+            Task {
+                await notificationManager.cancelNotifications(for: loan)
+                await notificationManager.updateBadgeCount(payments: allPayments)
+            }
+            
+            modelContext.delete(loan)
         }
     }
 }
