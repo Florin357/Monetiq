@@ -4,11 +4,18 @@
 **Branch:** `develop`  
 **Commit:** `2e96193`
 
+**Latest Update:** 2026-01-26 — Expenses v1 Implementation (Phase 1 Complete)
+
 ---
 
 ## ✅ Implementation Complete
 
 All code changes have been successfully implemented and committed.
+
+### Recent Additions (2026-01-26)
+- ✅ **Expenses v1 (Phase 1):** Full CRUD with localization (uncommitted)
+  - See: `Docs/EXPENSES_V1_IMPLEMENTATION.md`
+  - See: `Docs/roadmap/PHASE_1_EXPENSES_V1.md`
 
 ---
 

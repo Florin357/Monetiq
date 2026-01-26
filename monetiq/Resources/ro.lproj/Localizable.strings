@@ -18,6 +18,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Panou";
+"tab_expenses" = "Cheltuieli";
 "tab_income" = "Venituri";
 "tab_loans" = "Împrumuturi";
 "tab_calculator" = "Calculator";
@@ -77,6 +78,51 @@
 "income_section_completed" = "Finalizate";
 "income_status_done" = "Finalizat";
 "income_ended_date" = "Încheiat: %@";
+
+// MARK: - Expenses
+"expenses_title" = "Cheltuieli";
+"expenses_subtitle" = "Urmărește-ți cheltuielile";
+"expenses_empty_title" = "Nicio cheltuială încă";
+"expenses_empty_subtitle" = "Adaugă prima cheltuială pentru a începe";
+"expenses_add_title" = "Adaugă Cheltuială";
+"expenses_edit_title" = "Editează Cheltuiala";
+"expenses_section_active" = "Active";
+"expenses_section_completed" = "Finalizate";
+"expenses_section_archived" = "Arhivate";
+"expenses_section_active_recurring" = "Abonamente Active";
+"expenses_section_one_time" = "Cheltuieli Unice";
+"expenses_field_title" = "Titlu";
+"expenses_field_amount" = "Sumă";
+"expenses_field_currency" = "Monedă";
+"expenses_field_frequency" = "Frecvență";
+"expenses_field_start_date" = "Data de Început";
+"expenses_field_end_date" = "Data de Încheiere";
+"expenses_field_category" = "Categorie (Opțional)";
+"expenses_field_notes" = "Notițe (Opțional)";
+"expenses_form_details_section" = "Detalii Cheltuială";
+"expenses_form_has_end_date" = "Are dată de încheiere";
+"expenses_delete_title" = "Ștergi Cheltuiala?";
+"expenses_delete_message" = "Aceasta va șterge permanent cheltuiala și toate înregistrările de plată.";
+"expenses_next" = "Următoarea: %@";
+"expenses_one_time_on" = "Pe: %@";
+"expenses_ended_date" = "Încheiat: %@";
+"expenses_status_completed" = "Finalizată";
+"expenses_subscribed_months" = "Abonat: %d luni";
+"expenses_subscribed_years" = "Abonat: %d ani";
+"expenses_subscribed_weeks" = "Abonat: %d săptămâni";
+"expenses_subscribed_quarters" = "Abonat: %d trimestre";
+"expenses_starts_in_days" = "Începe în %d zile";
+
+// MARK: - Frequencies (shared)
+"frequency_onetime" = "O singură dată";
+"frequency_weekly" = "Săptămânal";
+"frequency_monthly" = "Lunar";
+"frequency_quarterly" = "Trimestrial";
+"frequency_yearly" = "Anual";
+
+// MARK: - Status (shared)
+"status_planned" = "Planificat";
+"status_paid" = "Plătit";
 
 // MARK: - Loans
 "loans_title" = "Împrumuturi";

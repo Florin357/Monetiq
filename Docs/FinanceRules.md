@@ -1,7 +1,12 @@
-# Monetiq Finance Rules & Calculation Standards
+# Ypsilon Finance Rules & Calculation Standards
 
-**Last Updated:** December 20, 2025  
-**Purpose:** Define the single source of truth for all financial calculations in Monetiq.
+**Last Updated:** January 26, 2026  
+**Purpose:** Define the single source of truth for all financial calculations in Ypsilon.
+
+**Recent Changes:**
+- 2026-01-26: Added Expenses tracking rules (Phase 1)
+- 2025-12-20: Updated notification rules (dual notifications)
+- 2025-12-20: Updated upcoming window (15 days)
 
 ---
 
@@ -285,6 +290,104 @@ let badgeCount = payments.filter { payment in
 
 ---
 
+## Expenses Tracking Rules
+
+**Implementation Date:** 2026-01-27  
+**Version:** v1.1+ (Phase 1.5 - Polished)
+
+### Expense Occurrence Generation
+
+**Business Rule:** Rolling 12-month window for recurring expenses
+
+```
+For recurring expenses:
+- Generate occurrences from startDate to min(endDate, today + 12 months)
+- One-time expenses: Generate single occurrence on startDate
+```
+
+**Frequency Mapping:**
+| Frequency | Calendar Component | Occurrences/Year |
+|-----------|-------------------|------------------|
+| One-time | N/A | 1 (single) |
+| Weekly | `.weekOfYear` | ~52 |
+| Monthly | `.month` | 12 |
+| Quarterly | `.month` (×3) | 4 |
+| Yearly | `.year` | 1 |
+
+### Expense Completion & Archiving Rules
+
+**Definition:** An expense is "completed" if:
+```
+(endDate exists AND endDate < today)
+OR (frequency == .oneTime AND all occurrences status == .paid)
+```
+
+**Definition:** An expense is "archived" if:
+```
+For one-time:
+  expense month < current month (month-based, not day-based)
+
+For recurring:
+  (no planned occurrences >= today) OR (endDate < today)
+```
+
+**Visual Indicators (Phase 1.5):**
+- Active recurring (on-time): Indigo accent + badge
+- Active recurring (overdue): Red accent + badge
+- Active one-time: Teal accent + badge
+- Archived/Completed: Purple accent + badge
+
+**Subscription Age Display:**
+- Shows time-based duration: "Subscribed: X months/years"
+- Calculated from `startDate` to `today` using `Calendar.dateComponents`
+- Formula: `max(1, calculated_periods + 1)` to show "currently in period X"
+- Future subscriptions: "Starts in X days"
+
+### Occurrence Preservation
+
+**CRITICAL:** Paid expense occurrences are **IMMUTABLE**.
+
+- Editing an expense MUST NOT delete paid occurrences
+- Paid occurrences preserve: `paidDate`, `amount`, `status`
+- Only **planned** occurrences may be regenerated on expense edit
+
+### Phase 2 Integration Rules (Planned)
+
+**Dashboard TO PAY:**
+```
+Sum all ExpenseOccurrence where:
+- status == .planned
+- dueDate within calculation window
+Group by: currencyCode
+```
+
+**Upcoming Payments (15-day window):**
+```
+Include ExpenseOccurrence where:
+- status == .planned
+- dueDate >= today
+- dueDate <= today + 15 days
+```
+
+**Cashflow Chart (30-day window):**
+```
+Include ExpenseOccurrence in "To Pay" line where:
+- status == .planned
+- dueDate within chart window (today to today + 30 days)
+Aggregate by: day
+```
+
+**Notifications:**
+- Same dual-notification pattern as loan payments:
+  - Reminder: X days before due (X = user setting)
+  - One-day-before: Always 1 day before due
+- Scheduled for ALL planned expense occurrences
+- Canceled when occurrence marked as paid or expense deleted
+
+**Status:** Phase 2 integration documented but not yet implemented.
+
+---
+
 ## Testing Standards
 
 All calculations MUST pass:
@@ -292,6 +395,7 @@ All calculations MUST pass:
 2. **Rounding verification** (sum equals total)
 3. **Edge case handling** (zero interest, single payment)
 4. **Consistency checks** (upcoming = notifications = badge)
+5. **Expense schedule generation** (recurring occurrences, one-time handling)
 
 ---
 

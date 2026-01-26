@@ -91,6 +91,13 @@ struct ContentView: View {
             }
             
             NavigationStack {
+                ExpenseListView()
+            }
+            .tabItem {
+                Label(L10n.string("tab_expenses"), systemImage: "cart.fill")
+            }
+            
+            NavigationStack {
                 IncomeListView()
             }
             .tabItem {

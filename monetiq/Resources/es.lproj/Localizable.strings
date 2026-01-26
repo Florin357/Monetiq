@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Panel";
+"tab_expenses" = "Gastos";
 "tab_income" = "Ingresos";
 "tab_loans" = "Préstamos";
 "tab_calculator" = "Calculadora";
@@ -78,6 +79,51 @@
 "income_section_completed" = "Completados";
 "income_status_done" = "Completado";
 "income_ended_date" = "Finalizado: %@";
+
+// MARK: - Expenses
+"expenses_title" = "Gastos";
+"expenses_subtitle" = "Rastrea tus gastos";
+"expenses_empty_title" = "Aún no hay gastos";
+"expenses_empty_subtitle" = "Añade tu primer gasto para comenzar";
+"expenses_add_title" = "Añadir Gasto";
+"expenses_edit_title" = "Editar Gasto";
+"expenses_section_active" = "Activos";
+"expenses_section_completed" = "Completados";
+"expenses_section_archived" = "Archivados";
+"expenses_section_active_recurring" = "Suscripciones Activas";
+"expenses_section_one_time" = "Gastos Únicos";
+"expenses_field_title" = "Título";
+"expenses_field_amount" = "Cantidad";
+"expenses_field_currency" = "Moneda";
+"expenses_field_frequency" = "Frecuencia";
+"expenses_field_start_date" = "Fecha de Inicio";
+"expenses_field_end_date" = "Fecha de Finalización";
+"expenses_field_category" = "Categoría (Opcional)";
+"expenses_field_notes" = "Notas (Opcional)";
+"expenses_form_details_section" = "Detalles del Gasto";
+"expenses_form_has_end_date" = "Tiene fecha de finalización";
+"expenses_delete_title" = "¿Eliminar Gasto?";
+"expenses_delete_message" = "Esto eliminará permanentemente este gasto y todos sus registros de pago.";
+"expenses_next" = "Próximo: %@";
+"expenses_one_time_on" = "El: %@";
+"expenses_ended_date" = "Finalizado: %@";
+"expenses_status_completed" = "Completado";
+"expenses_subscribed_months" = "Suscrito: %d meses";
+"expenses_subscribed_years" = "Suscrito: %d años";
+"expenses_subscribed_weeks" = "Suscrito: %d semanas";
+"expenses_subscribed_quarters" = "Suscrito: %d trimestres";
+"expenses_starts_in_days" = "Comienza en %d días";
+
+// MARK: - Frequencies (shared)
+"frequency_onetime" = "Una vez";
+"frequency_weekly" = "Semanal";
+"frequency_monthly" = "Mensual";
+"frequency_quarterly" = "Trimestral";
+"frequency_yearly" = "Anual";
+
+// MARK: - Status (shared)
+"status_planned" = "Planificado";
+"status_paid" = "Pagado";
 
 // MARK: - Loans
 "loans_title" = "Préstamos";

@@ -18,6 +18,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Dashboard";
+"tab_expenses" = "Expenses";
 "tab_income" = "Income";
 "tab_loans" = "Loans";
 "tab_calculator" = "Calculator";
@@ -89,6 +90,51 @@
 "income_section_completed" = "Completed";
 "income_status_done" = "Done";
 "income_ended_date" = "Ended: %@";
+
+// MARK: - Expenses
+"expenses_title" = "Expenses";
+"expenses_subtitle" = "Track your spending";
+"expenses_empty_title" = "No expenses yet";
+"expenses_empty_subtitle" = "Add your first expense to start tracking";
+"expenses_add_title" = "Add Expense";
+"expenses_edit_title" = "Edit Expense";
+"expenses_section_active" = "Active";
+"expenses_section_completed" = "Completed";
+"expenses_section_archived" = "Archived";
+"expenses_section_active_recurring" = "Active Subscriptions";
+"expenses_section_one_time" = "One-Time Expenses";
+"expenses_field_title" = "Title";
+"expenses_field_amount" = "Amount";
+"expenses_field_currency" = "Currency";
+"expenses_field_frequency" = "Frequency";
+"expenses_field_start_date" = "Start Date";
+"expenses_field_end_date" = "End Date";
+"expenses_field_category" = "Category (Optional)";
+"expenses_field_notes" = "Notes (Optional)";
+"expenses_form_details_section" = "Expense Details";
+"expenses_form_has_end_date" = "Has end date";
+"expenses_delete_title" = "Delete Expense?";
+"expenses_delete_message" = "This will permanently delete this expense and all its payment records.";
+"expenses_next" = "Next: %@";
+"expenses_one_time_on" = "On: %@";
+"expenses_ended_date" = "Ended: %@";
+"expenses_status_completed" = "Completed";
+"expenses_subscribed_months" = "Subscribed: %d months";
+"expenses_subscribed_years" = "Subscribed: %d years";
+"expenses_subscribed_weeks" = "Subscribed: %d weeks";
+"expenses_subscribed_quarters" = "Subscribed: %d quarters";
+"expenses_starts_in_days" = "Starts in %d days";
+
+// MARK: - Frequencies (shared)
+"frequency_onetime" = "One-time";
+"frequency_weekly" = "Weekly";
+"frequency_monthly" = "Monthly";
+"frequency_quarterly" = "Quarterly";
+"frequency_yearly" = "Yearly";
+
+// MARK: - Status (shared)
+"status_planned" = "Planned";
+"status_paid" = "Paid";
 
 // MARK: - Loans
 "loans_title" = "Loans";

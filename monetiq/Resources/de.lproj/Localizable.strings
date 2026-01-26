@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "Übersicht";
+"tab_expenses" = "Ausgaben";
 "tab_income" = "Einkommen";
 "tab_loans" = "Darlehen";
 "tab_calculator" = "Rechner";
@@ -78,6 +79,51 @@
 "income_section_completed" = "Abgeschlossen";
 "income_status_done" = "Erledigt";
 "income_ended_date" = "Beendet: %@";
+
+// MARK: - Expenses
+"expenses_title" = "Ausgaben";
+"expenses_subtitle" = "Verfolgen Sie Ihre Ausgaben";
+"expenses_empty_title" = "Noch keine Ausgaben";
+"expenses_empty_subtitle" = "Fügen Sie Ihre erste Ausgabe hinzu";
+"expenses_add_title" = "Ausgabe hinzufügen";
+"expenses_edit_title" = "Ausgabe bearbeiten";
+"expenses_section_active" = "Aktiv";
+"expenses_section_completed" = "Abgeschlossen";
+"expenses_section_archived" = "Archiviert";
+"expenses_section_active_recurring" = "Aktive Abonnements";
+"expenses_section_one_time" = "Einmalige Ausgaben";
+"expenses_field_title" = "Titel";
+"expenses_field_amount" = "Betrag";
+"expenses_field_currency" = "Währung";
+"expenses_field_frequency" = "Häufigkeit";
+"expenses_field_start_date" = "Startdatum";
+"expenses_field_end_date" = "Enddatum";
+"expenses_field_category" = "Kategorie (Optional)";
+"expenses_field_notes" = "Notizen (Optional)";
+"expenses_form_details_section" = "Ausgabendetails";
+"expenses_form_has_end_date" = "Hat Enddatum";
+"expenses_delete_title" = "Ausgabe löschen?";
+"expenses_delete_message" = "Dadurch werden diese Ausgabe und alle Zahlungsaufzeichnungen dauerhaft gelöscht.";
+"expenses_next" = "Nächste: %@";
+"expenses_one_time_on" = "Am: %@";
+"expenses_ended_date" = "Beendet: %@";
+"expenses_status_completed" = "Abgeschlossen";
+"expenses_subscribed_months" = "Abonniert: %d Monate";
+"expenses_subscribed_years" = "Abonniert: %d Jahre";
+"expenses_subscribed_weeks" = "Abonniert: %d Wochen";
+"expenses_subscribed_quarters" = "Abonniert: %d Quartale";
+"expenses_starts_in_days" = "Beginnt in %d Tagen";
+
+// MARK: - Frequencies (shared)
+"frequency_onetime" = "Einmalig";
+"frequency_weekly" = "Wöchentlich";
+"frequency_monthly" = "Monatlich";
+"frequency_quarterly" = "Vierteljährlich";
+"frequency_yearly" = "Jährlich";
+
+// MARK: - Status (shared)
+"status_planned" = "Geplant";
+"status_paid" = "Bezahlt";
 
 // MARK: - Loans
 "loans_title" = "Darlehen";

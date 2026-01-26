@@ -19,6 +19,7 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "仪表板";
+"tab_expenses" = "支出";
 "tab_income" = "收入";
 "tab_loans" = "贷款";
 "tab_calculator" = "计算器";
@@ -78,6 +79,51 @@
 "income_section_completed" = "已完成";
 "income_status_done" = "完成";
 "income_ended_date" = "结束：%@";
+
+// MARK: - Expenses
+"expenses_title" = "支出";
+"expenses_subtitle" = "跟踪您的支出";
+"expenses_empty_title" = "暂无支出";
+"expenses_empty_subtitle" = "添加您的第一笔支出以开始";
+"expenses_add_title" = "添加支出";
+"expenses_edit_title" = "编辑支出";
+"expenses_section_active" = "进行中";
+"expenses_section_completed" = "已完成";
+"expenses_section_archived" = "已归档";
+"expenses_section_active_recurring" = "活跃订阅";
+"expenses_section_one_time" = "一次性支出";
+"expenses_field_title" = "标题";
+"expenses_field_amount" = "金额";
+"expenses_field_currency" = "货币";
+"expenses_field_frequency" = "频率";
+"expenses_field_start_date" = "开始日期";
+"expenses_field_end_date" = "结束日期";
+"expenses_field_category" = "类别（可选）";
+"expenses_field_notes" = "备注（可选）";
+"expenses_form_details_section" = "支出详情";
+"expenses_form_has_end_date" = "有结束日期";
+"expenses_delete_title" = "删除支出？";
+"expenses_delete_message" = "这将永久删除此支出及其所有付款记录。";
+"expenses_next" = "下次：%@";
+"expenses_one_time_on" = "在：%@";
+"expenses_ended_date" = "结束：%@";
+"expenses_status_completed" = "已完成";
+"expenses_subscribed_months" = "已订阅：%d 个月";
+"expenses_subscribed_years" = "已订阅：%d 年";
+"expenses_subscribed_weeks" = "已订阅：%d 周";
+"expenses_subscribed_quarters" = "已订阅：%d 季度";
+"expenses_starts_in_days" = "%d 天后开始";
+
+// MARK: - Frequencies (shared)
+"frequency_onetime" = "一次性";
+"frequency_weekly" = "每周";
+"frequency_monthly" = "每月";
+"frequency_quarterly" = "每季度";
+"frequency_yearly" = "每年";
+
+// MARK: - Status (shared)
+"status_planned" = "计划中";
+"status_paid" = "已付款";
 
 // MARK: - Loans
 "loans_title" = "贷款";
