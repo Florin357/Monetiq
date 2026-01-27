@@ -24,6 +24,8 @@
 "tab_loans" = "लोन";
 "tab_calculator" = "कैलकुलेटर";
 "tab_settings" = "सेटिंग्स";
+"tab_more" = "अधिक";
+"calculator_subtitle" = "ऋण भुगतान कैलकुलेटर";
 
 // MARK: - Dashboard
 "dashboard_title" = "डैशबोर्ड";

@@ -23,6 +23,8 @@
 "tab_loans" = "Împrumuturi";
 "tab_calculator" = "Calculator";
 "tab_settings" = "Setări";
+"tab_more" = "Mai Mult";
+"calculator_subtitle" = "Calculator rate împrumut";
 
 // MARK: - Dashboard
 "dashboard_title" = "Panou de Control";

@@ -24,6 +24,8 @@
 "tab_loans" = "Darlehen";
 "tab_calculator" = "Rechner";
 "tab_settings" = "Einstellungen";
+"tab_more" = "Mehr";
+"calculator_subtitle" = "Darlehensrechner";
 
 // MARK: - Dashboard
 "dashboard_title" = "Übersicht";

@@ -23,6 +23,8 @@
 "tab_loans" = "Loans";
 "tab_calculator" = "Calculator";
 "tab_settings" = "Settings";
+"tab_more" = "More";
+"calculator_subtitle" = "Loan payment calculator";
 
 // MARK: - Dashboard
 "dashboard_title" = "Dashboard";

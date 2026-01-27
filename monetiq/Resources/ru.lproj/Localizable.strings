@@ -24,6 +24,8 @@
 "tab_loans" = "Займы";
 "tab_calculator" = "Калькулятор";
 "tab_settings" = "Настройки";
+"tab_more" = "Ещё";
+"calculator_subtitle" = "Калькулятор платежей";
 
 // MARK: - Dashboard
 "dashboard_title" = "Панель";

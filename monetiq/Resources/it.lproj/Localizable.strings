@@ -24,6 +24,8 @@
 "tab_loans" = "Prestiti";
 "tab_calculator" = "Calcolatrice";
 "tab_settings" = "Impostazioni";
+"tab_more" = "Altro";
+"calculator_subtitle" = "Calcolatore prestiti";
 
 // MARK: - Dashboard
 "dashboard_title" = "Dashboard";

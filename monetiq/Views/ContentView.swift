@@ -112,17 +112,10 @@ struct ContentView: View {
             }
             
             NavigationStack {
-                CalculatorView()
+                MoreView()
             }
             .tabItem {
-                Label(L10n.string("tab_calculator"), systemImage: "function")
-            }
-            
-            NavigationStack {
-                SettingsView()
-            }
-            .tabItem {
-                Label(L10n.string("tab_settings"), systemImage: "gearshape.fill")
+                Label(L10n.string("tab_more"), systemImage: "ellipsis.circle.fill")
             }
         }
         .monetiqBackground()

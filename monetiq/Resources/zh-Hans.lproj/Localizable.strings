@@ -24,6 +24,8 @@
 "tab_loans" = "贷款";
 "tab_calculator" = "计算器";
 "tab_settings" = "设置";
+"tab_more" = "更多";
+"calculator_subtitle" = "贷款计算器";
 
 // MARK: - Dashboard
 "dashboard_title" = "仪表板";
