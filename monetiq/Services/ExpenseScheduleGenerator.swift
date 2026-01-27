@@ -140,13 +140,14 @@ class ExpenseScheduleGenerator {
             }
         }
         
-        // For recurring: start from max(startDate, today)
-        var currentDate = max(expense.startDate, today)
+        // For recurring: ALWAYS start from original startDate to preserve anchor day
+        var currentDate = expense.startDate
         
-        // If startDate is in past, advance to first future occurrence
-        if expense.startDate < today {
-            // Fast-forward to first occurrence >= today
-            while currentDate < today {
+        // If startDate is in past, fast-forward to first occurrence >= today
+        // Important: Start from startDate, not today, to preserve day-of-month
+        if calendar.startOfDay(for: expense.startDate) < today {
+            // Fast-forward by full periods from startDate until >= today
+            while calendar.startOfDay(for: currentDate) < today {
                 guard let next = nextOccurrenceDate(after: currentDate, frequency: expense.frequency, calendar: calendar, originalStartDate: expense.startDate) else {
                     break
                 }
