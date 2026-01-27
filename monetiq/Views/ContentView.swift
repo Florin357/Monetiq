@@ -118,6 +118,7 @@ struct ContentView: View {
                 Label(L10n.string("tab_more"), systemImage: "ellipsis.circle.fill")
             }
         }
+        .environment(\.horizontalSizeClass, .compact)
         .monetiqBackground()
         .preferredColorScheme(appSettings.appearanceMode.colorScheme)
         .environment(\.locale, effectiveLocale)
