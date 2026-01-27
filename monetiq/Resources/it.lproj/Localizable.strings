@@ -38,6 +38,7 @@
 "dashboard_detail_total" = "Totale";
 "dashboard_detail_from_loans" = "Dai Prestiti";
 "dashboard_detail_from_loans_and_expenses" = "Da prestiti e spese";
+"dashboard_detail_from_loans_and_income" = "Da prestiti e reddito";
 "dashboard_detail_from_income" = "Reddito";
 "dashboard_income_unknown" = "Reddito Sconosciuto";
 "dashboard_income_badge" = "Reddito";

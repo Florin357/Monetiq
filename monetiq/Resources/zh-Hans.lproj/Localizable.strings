@@ -38,6 +38,7 @@
 "dashboard_detail_total" = "总计";
 "dashboard_detail_from_loans" = "来自贷款";
 "dashboard_detail_from_loans_and_expenses" = "来自贷款和支出";
+"dashboard_detail_from_loans_and_income" = "来自贷款和收入";
 "dashboard_detail_from_income" = "收入";
 "dashboard_income_unknown" = "未知收入";
 "dashboard_income_badge" = "收入";

@@ -38,6 +38,7 @@
 "dashboard_detail_total" = "Gesamt";
 "dashboard_detail_from_loans" = "Aus Darlehen";
 "dashboard_detail_from_loans_and_expenses" = "Aus Darlehen und Ausgaben";
+"dashboard_detail_from_loans_and_income" = "Aus Darlehen und Einkommen";
 "dashboard_detail_from_income" = "Einkommen";
 "dashboard_income_unknown" = "Unbekanntes Einkommen";
 "dashboard_income_badge" = "Einkommen";

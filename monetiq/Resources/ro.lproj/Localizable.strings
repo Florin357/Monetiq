@@ -37,6 +37,7 @@
 "dashboard_detail_total" = "Total";
 "dashboard_detail_from_loans" = "Din Împrumuturi";
 "dashboard_detail_from_loans_and_expenses" = "Din împrumuturi și cheltuieli";
+"dashboard_detail_from_loans_and_income" = "Din împrumuturi și venituri";
 "dashboard_detail_from_income" = "Venituri";
 "dashboard_income_unknown" = "Venit Necunoscut";
 "dashboard_income_badge" = "Venit";

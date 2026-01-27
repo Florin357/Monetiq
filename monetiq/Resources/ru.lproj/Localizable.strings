@@ -38,6 +38,7 @@
 "dashboard_detail_total" = "Всего";
 "dashboard_detail_from_loans" = "Из Займов";
 "dashboard_detail_from_loans_and_expenses" = "Из займов и расходов";
+"dashboard_detail_from_loans_and_income" = "Из займов и доходов";
 "dashboard_detail_from_income" = "Доходы";
 "dashboard_income_unknown" = "Неизвестный Доход";
 "dashboard_income_badge" = "Доход";

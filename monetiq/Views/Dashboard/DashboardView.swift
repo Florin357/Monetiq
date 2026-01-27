@@ -852,6 +852,15 @@ struct DashboardTotalsDetailView: View {
         return IncomeUpcomingFilter.getUpcoming(from: incomePayments)
     }
     
+    private var sourcesLabel: String {
+        switch kind {
+        case .toReceive:
+            return L10n.string("dashboard_detail_from_loans_and_income")
+        case .toPay:
+            return L10n.string("dashboard_detail_from_loans_and_expenses")
+        }
+    }
+    
     private var totals: [String: Double] {
         calculateTotals()
     }
@@ -918,7 +927,7 @@ struct DashboardTotalsDetailView: View {
                         // Loans Breakdown
                         if !filteredLoans.isEmpty {
                             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                                Text(L10n.string("dashboard_detail_from_loans_and_expenses"))
+                                Text(sourcesLabel)
                                     .font(MonetiqTheme.Typography.caption)
                                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                                     .textCase(.uppercase)
