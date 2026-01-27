@@ -1,14 +1,84 @@
-# Expenses v1 Implementation — Phase 1.5 Complete (Polished)
+# Expenses v1 Implementation — Phase 2 Complete (Dashboard Integration)
 
 **Date:** 2026-01-27  
 **Branch:** `develop`  
-**Status:** ✅ Phase 1.5 Polish Complete (Uncommitted)
+**Status:** ✅ Phase 2 Complete (Dashboard + Fixes + Wording Update)
 
 ---
 
 ## 📋 Overview
 
 This document tracks the implementation of **Expenses v1**, the third major financial tracking module in Ypsilon (after Loans and Income). Phase 1 focuses on core CRUD functionality with full localization. Phase 2 will integrate Expenses into Dashboard, Upcoming Payments, Cashflow, and Notifications.
+
+---
+
+## ✅ Phase 2 Complete — Dashboard Integration + Fixes
+
+### Phase 2.1: Dashboard Integration (2026-01-27)
+
+**Goal:** Integrate Expenses into Dashboard totals (FREE version - aggregated totals only).
+
+#### Changes Made:
+
+**1. Dashboard TO PAY Card**
+- ✅ Added `@Query private var expenses: [Expense]` to `DashboardView`
+- ✅ Updated `calculateToPayByCurrency()` to include expenses within 30-day window
+- ✅ Filters: active expenses (`!isArchived`), planned occurrences, within next 30 days
+- ✅ Added DEBUG logging to show expense breakdown in console
+
+**2. Cashflow Chart (30 days)**
+- ✅ Added `expenses` parameter to `CashflowCardView` init
+- ✅ Updated `calculateNetByCurrency()` to subtract expense payments
+- ✅ Updated `buildChartData()` to fetch expense occurrences in 30-day window
+- ✅ Renamed `buildCumulativeSeries` → `buildCumulativeSeriesWithExpenses`
+- ✅ Added `calculateExpenseScheduledPayments()` helper method
+- ✅ Updated `shouldShowLowActivityHint()` to count expense occurrences
+
+**Result:** Dashboard now reflects real cashflow including both loan and expense obligations!
+
+### Phase 2.2: Verification & Fixes (2026-01-27)
+
+**Goal:** Verify correct filtering and fix recurring date stability issues.
+
+#### Issues Found & Fixed:
+
+**Issue 1: TO PAY Was Counting ALL Future Occurrences (12 months)**
+- ❌ **Problem:** Was summing all planned occurrences from rolling 12-month window
+- ✅ **Fix:** Applied 30-day window filter to match Cashflow behavior
+- ✅ Now only includes expenses due within next 30 days
+
+**Issue 2: Recurring Day-of-Month Could Drift**
+- ❌ **Problem:** Jan 31 → Feb 28 → Mar 28 (should return to 31 in March)
+- ✅ **Fix:** Updated `ExpenseScheduleGenerator.nextOccurrenceDate()` to preserve original day
+- ✅ For monthly/quarterly: Always tries to use original day-of-month, clamps if invalid
+- ✅ Added `originalStartDate` parameter to pass billing day intent
+
+**Issue 3: Cashflow Already Correct**
+- ✅ No changes needed - was already filtering to 30-day window correctly
+
+### Phase 2.3: Dashboard Wording Update (2026-01-27)
+
+**Goal:** Update "TO PAY" breakdown modal text to reflect expenses inclusion.
+
+#### Changes Made:
+
+**1. Code Update**
+- ✅ Changed section label from "FROM LOANS" to "From loans and expenses"
+- ✅ Updated localization key: `dashboard_detail_from_loans` → `dashboard_detail_from_loans_and_expenses`
+
+**2. Localization (All 9 Languages)**
+- ✅ Added new key `dashboard_detail_from_loans_and_expenses` to all language files
+- ✅ English: "From loans and expenses"
+- ✅ Romanian: "Din împrumuturi și cheltuieli"
+- ✅ German: "Aus Darlehen und Ausgaben"
+- ✅ Spanish: "De préstamos y gastos"
+- ✅ French: "Des prêts et dépenses"
+- ✅ Italian: "Da prestiti e spese"
+- ✅ Russian: "Из займов и расходов"
+- ✅ Hindi: "ऋणों और खर्चों से"
+- ✅ Simplified Chinese: "来自贷款和支出"
+
+**Result:** Text now accurately reflects that totals include both loans and expenses!
 
 ---
 

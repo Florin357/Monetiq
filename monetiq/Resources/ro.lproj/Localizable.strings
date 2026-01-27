@@ -34,6 +34,7 @@
 "dashboard_detail_empty_state" = "Niciun împrumut activ în această categorie";
 "dashboard_detail_total" = "Total";
 "dashboard_detail_from_loans" = "Din Împrumuturi";
+"dashboard_detail_from_loans_and_expenses" = "Din împrumuturi și cheltuieli";
 "dashboard_detail_from_income" = "Venituri";
 "dashboard_income_unknown" = "Venit Necunoscut";
 "dashboard_income_badge" = "Venit";

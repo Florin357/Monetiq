@@ -12,13 +12,15 @@ import Charts
 struct CashflowCardView: View {
     let loans: [Loan]
     let incomePayments: [IncomePayment]
+    let expenses: [Expense]
     let windowDays: Int
     
     @State private var appState = AppState.shared
     
-    init(loans: [Loan], incomePayments: [IncomePayment] = [], windowDays: Int = 30) {
+    init(loans: [Loan], incomePayments: [IncomePayment] = [], expenses: [Expense] = [], windowDays: Int = 30) {
         self.loans = loans
         self.incomePayments = incomePayments
+        self.expenses = expenses
         self.windowDays = windowDays
     }
     
@@ -238,7 +240,13 @@ struct CashflowCardView: View {
             .filter { $0.status == .planned }
             .filter { $0.dueDate >= today && $0.dueDate <= endDate }
         
-        let totalPayments = loanPayments.count + plannedIncomePayments.count
+        let expenseOccurrences = expenses
+            .filter { !$0.isArchived }
+            .flatMap { $0.occurrences }
+            .filter { $0.status == .planned }
+            .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+        
+        let totalPayments = loanPayments.count + plannedIncomePayments.count + expenseOccurrences.count
         
         // Show hint if there are 1-3 payments total (very low activity)
         return totalPayments > 0 && totalPayments <= 3
@@ -264,6 +272,7 @@ struct CashflowCardView: View {
         let loanReceive = calculateTotalsForRole(.lent)
         let incomeReceive = calculateIncomeScheduledPayments()
         let pay = calculateTotalsForRoles([.borrowed, .bankCredit])
+        let expensePay = calculateExpenseScheduledPayments()
         
         var net: [String: Double] = [:]
         
@@ -277,8 +286,11 @@ struct CashflowCardView: View {
             net[currency, default: 0] += amount
         }
         
-        // Subtract all pay currencies
+        // Subtract all pay currencies (loans + expenses)
         for (currency, amount) in pay {
+            net[currency, default: 0] -= amount
+        }
+        for (currency, amount) in expensePay {
             net[currency, default: 0] -= amount
         }
         
@@ -302,6 +314,13 @@ struct CashflowCardView: View {
             .filter { $0.status == .planned }
             .filter { $0.dueDate >= today && $0.dueDate <= endDate }
         
+        // Get all planned expense occurrences in the window
+        let allExpenseOccurrences = expenses
+            .filter { !$0.isArchived }
+            .flatMap { $0.occurrences }
+            .filter { $0.status == .planned }
+            .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+        
         // Separate loan payments by role
         let loanReceivePayments = allLoanPayments.filter { payment in
             payment.loan?.role == .lent
@@ -320,8 +339,9 @@ struct CashflowCardView: View {
             windowDays: windowDays
         )
         
-        let payData = buildCumulativeSeries(
-            payments: payPayments,
+        let payData = buildCumulativeSeriesWithExpenses(
+            loanPayments: payPayments,
+            expenseOccurrences: allExpenseOccurrences,
             startDate: today,
             windowDays: windowDays
         )
@@ -329,21 +349,32 @@ struct CashflowCardView: View {
         return (receiveData, payData)
     }
     
-    /// Build a cumulative series from payments
+    /// Build a cumulative series combining loan payments and expense occurrences
+    /// Used for the "To Pay" line which includes both sources
     /// Creates calm, smooth lines that increase gradually without dramatic jumps
     /// Uses strategic point placement + smooth interpolation to reduce spike perception
-    private func buildCumulativeSeries(
-        payments: [Payment],
+    private func buildCumulativeSeriesWithExpenses(
+        loanPayments: [Payment],
+        expenseOccurrences: [ExpenseOccurrence],
         startDate: Date,
         windowDays: Int
     ) -> [CashflowDataPoint] {
         // Group payments by day and sum amounts
         var dailyTotals: [Int: Double] = [:]
         
-        for payment in payments {
+        // Add loan payments
+        for payment in loanPayments {
             let dayOffset = Calendar.current.dateComponents([.day], from: startDate, to: payment.dueDate).day ?? 0
             if dayOffset >= 0 && dayOffset <= windowDays {
                 dailyTotals[dayOffset, default: 0] += payment.amount
+            }
+        }
+        
+        // Add expense occurrences
+        for occurrence in expenseOccurrences {
+            let dayOffset = Calendar.current.dateComponents([.day], from: startDate, to: occurrence.dueDate).day ?? 0
+            if dayOffset >= 0 && dayOffset <= windowDays {
+                dailyTotals[dayOffset, default: 0] += occurrence.amount
             }
         }
         
@@ -529,6 +560,26 @@ struct CashflowCardView: View {
         
         for payment in plannedIncomePayments {
             totals[payment.currencyCode, default: 0] += payment.amount
+        }
+        
+        return totals
+    }
+    
+    /// Calculate scheduled expense payment totals by currency for the next 30 days
+    private func calculateExpenseScheduledPayments() -> [String: Double] {
+        let today = Calendar.current.startOfDay(for: Date())
+        let endDate = Calendar.current.date(byAdding: .day, value: windowDays, to: today)!
+        
+        var totals: [String: Double] = [:]
+        
+        for expense in expenses where !expense.isArchived {
+            let plannedOccurrences = expense.occurrences
+                .filter { $0.status == .planned }
+                .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+            
+            for occurrence in plannedOccurrences {
+                totals[expense.currencyCode, default: 0] += occurrence.amount
+            }
         }
         
         return totals

@@ -35,6 +35,7 @@
 "dashboard_detail_empty_state" = "Нет активных займов в этой категории";
 "dashboard_detail_total" = "Всего";
 "dashboard_detail_from_loans" = "Из Займов";
+"dashboard_detail_from_loans_and_expenses" = "Из займов и расходов";
 "dashboard_detail_from_income" = "Доходы";
 "dashboard_income_unknown" = "Неизвестный Доход";
 "dashboard_income_badge" = "Доход";

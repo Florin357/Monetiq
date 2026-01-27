@@ -34,6 +34,7 @@
 "dashboard_detail_empty_state" = "No active loans in this category";
 "dashboard_detail_total" = "Total";
 "dashboard_detail_from_loans" = "From Loans";
+"dashboard_detail_from_loans_and_expenses" = "From loans and expenses";
 "dashboard_detail_from_income" = "Income";
 "dashboard_income_unknown" = "Unknown Income";
 "dashboard_income_badge" = "Income";

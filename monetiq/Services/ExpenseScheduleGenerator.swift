@@ -147,7 +147,7 @@ class ExpenseScheduleGenerator {
         if expense.startDate < today {
             // Fast-forward to first occurrence >= today
             while currentDate < today {
-                guard let next = nextOccurrenceDate(after: currentDate, frequency: expense.frequency, calendar: calendar) else {
+                guard let next = nextOccurrenceDate(after: currentDate, frequency: expense.frequency, calendar: calendar, originalStartDate: expense.startDate) else {
                     break
                 }
                 currentDate = next
@@ -168,7 +168,7 @@ class ExpenseScheduleGenerator {
             items.append(ScheduleItem(dueDate: currentDate, amount: expense.amount))
             
             // Calculate next occurrence date based on frequency
-            guard let nextDate = nextOccurrenceDate(after: currentDate, frequency: expense.frequency, calendar: calendar) else {
+            guard let nextDate = nextOccurrenceDate(after: currentDate, frequency: expense.frequency, calendar: calendar, originalStartDate: expense.startDate) else {
                 break
             }
             
@@ -187,16 +187,43 @@ class ExpenseScheduleGenerator {
     }
     
     /// Calculate the next occurrence date based on frequency
-    private static func nextOccurrenceDate(after date: Date, frequency: ExpenseFrequency, calendar: Calendar) -> Date? {
+    /// For monthly/quarterly: preserves original day-of-month (with clamping for invalid dates)
+    private static func nextOccurrenceDate(after date: Date, frequency: ExpenseFrequency, calendar: Calendar, originalStartDate: Date) -> Date? {
         switch frequency {
         case .oneTime:
             return nil // One-time expenses don't repeat
+            
         case .weekly:
             return calendar.date(byAdding: .weekOfYear, value: 1, to: date)
+            
         case .monthly:
-            return calendar.date(byAdding: .month, value: 1, to: date)
+            // Extract intended day-of-month from original start date
+            let intendedDay = calendar.component(.day, from: originalStartDate)
+            
+            // Add 1 month to current date
+            guard let nextMonth = calendar.date(byAdding: .month, value: 1, to: date) else {
+                return nil
+            }
+            
+            // Try to set to intended day (will clamp if invalid, e.g., Jan 31 → Feb 28)
+            var components = calendar.dateComponents([.year, .month, .day], from: nextMonth)
+            components.day = intendedDay
+            
+            return calendar.date(from: components)
+            
         case .quarterly:
-            return calendar.date(byAdding: .month, value: 3, to: date)
+            // Same logic for quarterly - preserve original day
+            let intendedDay = calendar.component(.day, from: originalStartDate)
+            
+            guard let nextQuarter = calendar.date(byAdding: .month, value: 3, to: date) else {
+                return nil
+            }
+            
+            var components = calendar.dateComponents([.year, .month, .day], from: nextQuarter)
+            components.day = intendedDay
+            
+            return calendar.date(from: components)
+            
         case .yearly:
             return calendar.date(byAdding: .year, value: 1, to: date)
         }

@@ -64,6 +64,7 @@ struct DashboardView: View {
     @Query private var payments: [Payment]
     @Query private var incomeSources: [IncomeSource]
     @Query private var incomePayments: [IncomePayment]
+    @Query private var expenses: [Expense]
     
     @State private var showToReceiveDetail = false
     @State private var showToPayDetail = false
@@ -229,7 +230,7 @@ struct DashboardView: View {
                 }
                 
                 // Cashflow Chart - 30 days preview
-                CashflowCardView(loans: loans, incomePayments: incomePayments, windowDays: 30)
+                CashflowCardView(loans: loans, incomePayments: incomePayments, expenses: expenses, windowDays: 30)
                     .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
                 
                 // Recent Loans - Premium section
@@ -358,15 +359,58 @@ struct DashboardView: View {
         // Don't access loan properties during reset
         guard !appState.isResetting else { return [:] }
         
-        let borrowedLoans = loans.filter { $0.role == .borrowed || $0.role == .bankCredit }
         var totals: [String: Double] = [:]
         
+        // 1. Loans (borrowed + bank credits)
+        let borrowedLoans = loans.filter { $0.role == .borrowed || $0.role == .bankCredit }
         for loan in borrowedLoans {
             let remaining = (loan.totalToRepay ?? loan.principalAmount) - loan.totalPaid
             if remaining > 0 {
                 totals[loan.currencyCode, default: 0] += remaining
             }
         }
+        
+        // 2. Expenses (active, next 30 days only - matches Cashflow window)
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let endDate = calendar.date(byAdding: .day, value: 30, to: today)!
+        
+        #if DEBUG
+        var expenseDebugInfo: [(name: String, frequency: String, amount: Double, nextDue: Date?, occurrenceCount: Int, inWindow: Int)] = []
+        #endif
+        
+        for expense in expenses where !expense.isArchived {
+            let upcomingInWindow = expense.occurrences
+                .filter { $0.status == .planned }
+                .filter { $0.dueDate >= today && $0.dueDate <= endDate }
+            
+            let upcomingTotal = upcomingInWindow.reduce(0) { $0 + $1.amount }
+            
+            #if DEBUG
+            let allUpcoming = expense.upcomingOccurrences.filter { $0.status == .planned }
+            expenseDebugInfo.append((
+                name: expense.title,
+                frequency: expense.frequency.rawValue,
+                amount: upcomingTotal,
+                nextDue: expense.nextDueDate,
+                occurrenceCount: allUpcoming.count,
+                inWindow: upcomingInWindow.count
+            ))
+            #endif
+            
+            if upcomingTotal > 0 {
+                totals[expense.currencyCode, default: 0] += upcomingTotal
+            }
+        }
+        
+        #if DEBUG
+        print("💰 TO PAY - Expense Summary (30-day window):")
+        print("   Total expenses included: \(expenseDebugInfo.count)")
+        print("   Window: \(today) to \(endDate)")
+        for info in expenseDebugInfo {
+            print("   - \(info.name) (\(info.frequency)): \(info.amount) | Next: \(info.nextDue?.description ?? "nil") | In window: \(info.inWindow)/\(info.occurrenceCount)")
+        }
+        #endif
         
         return totals
     }
@@ -874,7 +918,7 @@ struct DashboardTotalsDetailView: View {
                         // Loans Breakdown
                         if !filteredLoans.isEmpty {
                             VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.md) {
-                                Text(L10n.string("dashboard_detail_from_loans"))
+                                Text(L10n.string("dashboard_detail_from_loans_and_expenses"))
                                     .font(MonetiqTheme.Typography.caption)
                                     .foregroundColor(MonetiqTheme.Colors.textSecondary)
                                     .textCase(.uppercase)

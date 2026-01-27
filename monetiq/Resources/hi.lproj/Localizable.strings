@@ -35,6 +35,7 @@
 "dashboard_detail_empty_state" = "इस श्रेणी में कोई सक्रिय ऋण नहीं";
 "dashboard_detail_total" = "कुल";
 "dashboard_detail_from_loans" = "ऋणों से";
+"dashboard_detail_from_loans_and_expenses" = "ऋणों और खर्चों से";
 "dashboard_detail_from_income" = "आय";
 "dashboard_income_unknown" = "अज्ञात आय";
 "dashboard_income_badge" = "आय";
