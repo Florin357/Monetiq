@@ -205,6 +205,11 @@ struct AddEditExpenseView: View {
             return
         }
         
+        // Schedule/update notification for this expense
+        Task {
+            await NotificationManager.shared.scheduleExpenseNotification(for: expense)
+        }
+        
         dismiss()
     }
     

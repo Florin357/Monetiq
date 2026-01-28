@@ -389,6 +389,8 @@
 "notification_weekly_review_body" = "Este timpul să îți revizuiești împrumuturile și plățile viitoare în Ypsilon";
 "notification_test_title" = "Notificare de Test";
 "notification_test_body" = "Aceasta este o notificare de test de la Ypsilon";
+"notification_expense_reminder_title" = "Plată Viitoare";
+"notification_expense_reminder_body" = "%@ – %@ scade în %d zile";
 
 // Payment due date labels
 "payment_due_today" = "Scadent azi";

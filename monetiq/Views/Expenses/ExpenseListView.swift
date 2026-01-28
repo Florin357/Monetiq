@@ -325,6 +325,11 @@ struct ExpenseListView: View {
     }
     
     private func deleteExpense(_ expense: Expense) {
+        // Cancel notifications for this expense before deleting
+        Task {
+            await NotificationManager.shared.cancelExpenseNotifications(for: expense)
+        }
+        
         withAnimation {
             modelContext.delete(expense)
             expenseToDelete = nil
@@ -335,6 +340,10 @@ struct ExpenseListView: View {
         withAnimation {
             for index in offsets {
                 let expense = sources[index]
+                // Cancel notifications before deleting
+                Task {
+                    await NotificationManager.shared.cancelExpenseNotifications(for: expense)
+                }
                 modelContext.delete(expense)
             }
         }

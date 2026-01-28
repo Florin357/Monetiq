@@ -523,6 +523,141 @@ class NotificationManager {
         print("Canceled weekly review notification")
     }
     
+    // MARK: - Expense Notifications
+    
+    /// Schedule notification for a single recurring expense
+    func scheduleExpenseNotification(for expense: Expense) async {
+        guard let settings = appSettings,
+              settings.notificationsEnabled,
+              !expense.isArchived,
+              expense.frequency != .oneTime else {
+            #if DEBUG
+            print("⏭️ Skipping expense notification - not eligible: \(expense.title)")
+            #endif
+            return
+        }
+        
+        // Cancel existing notifications first to avoid duplicates
+        await cancelExpenseNotifications(for: expense)
+        
+        guard let nextDue = expense.nextDueDate else {
+            #if DEBUG
+            print("⏭️ Skipping expense notification - no nextDueDate: \(expense.title)")
+            #endif
+            return
+        }
+        
+        let calendar = Calendar.current
+        let daysBefore = settings.daysBeforeDueNotification
+        
+        // Calculate trigger date: nextDueDate - N days
+        guard let triggerDate = calendar.date(
+            byAdding: .day,
+            value: -daysBefore,
+            to: nextDue
+        ) else {
+            return
+        }
+        
+        // Set notification time to 9:00 AM local time
+        var components = calendar.dateComponents(
+            [.year, .month, .day],
+            from: triggerDate
+        )
+        components.hour = 9
+        components.minute = 0
+        
+        guard let notificationDate = calendar.date(from: components),
+              notificationDate > Date() else {
+            #if DEBUG
+            print("⏭️ Skipping past notification for expense: \(expense.title) (trigger would be: \(String(describing: calendar.date(from: components))))")
+            #endif
+            return
+        }
+        
+        // Build notification content
+        let content = UNMutableNotificationContent()
+        content.title = L10n.string("notification_expense_reminder_title")
+        content.body = L10n.string(
+            "notification_expense_reminder_body",
+            expense.title,
+            CurrencyFormatter.shared.format(
+                amount: expense.amount,
+                currencyCode: expense.currencyCode
+            ),
+            daysBefore
+        )
+        content.sound = .default
+        content.categoryIdentifier = "EXPENSE_REMINDER"
+        content.userInfo = ["type": "expense_reminder", "expenseId": expense.id.uuidString]
+        
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: components,
+            repeats: false
+        )
+        
+        let identifier = "expense.\(expense.id.uuidString)"
+        let request = UNNotificationRequest(
+            identifier: identifier,
+            content: content,
+            trigger: trigger
+        )
+        
+        do {
+            try await notificationCenter.add(request)
+            #if DEBUG
+            print("✅ Scheduled expense notification: \(expense.title) at \(notificationDate) (\(daysBefore) days before \(nextDue))")
+            #endif
+        } catch {
+            print("❌ Failed to schedule expense notification: \(error)")
+        }
+    }
+    
+    /// Cancel all notifications for a specific expense
+    func cancelExpenseNotifications(for expense: Expense) async {
+        let identifier = "expense.\(expense.id.uuidString)"
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        
+        #if DEBUG
+        print("🗑️ Canceled notifications for expense: \(expense.title)")
+        #endif
+    }
+    
+    /// Reschedule all expense notifications
+    func rescheduleAllExpenseNotifications(for expenses: [Expense]) async {
+        guard let settings = appSettings, settings.notificationsEnabled else {
+            await cancelAllExpenseNotifications()
+            return
+        }
+        
+        // Cancel all existing expense notifications
+        await cancelAllExpenseNotifications()
+        
+        // Schedule for all eligible recurring expenses
+        for expense in expenses {
+            await scheduleExpenseNotification(for: expense)
+        }
+        
+        #if DEBUG
+        let eligible = expenses.filter { !$0.isArchived && $0.frequency != .oneTime && $0.nextDueDate != nil }
+        print("🔄 Rescheduled notifications for \(eligible.count) eligible expenses (out of \(expenses.count) total)")
+        #endif
+    }
+    
+    /// Cancel all expense notifications
+    func cancelAllExpenseNotifications() async {
+        let pending = await notificationCenter.pendingNotificationRequests()
+        let expenseIdentifiers = pending
+            .filter { $0.identifier.hasPrefix("expense.") }
+            .map { $0.identifier }
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: expenseIdentifiers)
+        
+        #if DEBUG
+        print("🗑️ Canceled all expense notifications (\(expenseIdentifiers.count) total)")
+        #endif
+    }
+    
     // MARK: - Bulk Operations
     
     func rescheduleAllNotifications(for loans: [Loan]) async {

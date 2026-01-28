@@ -302,6 +302,8 @@
 "notification_weekly_review_body" = "Time to review your loans and upcoming payments in Ypsilon";
 "notification_test_title" = "Test Notification";
 "notification_test_body" = "This is a test notification from Ypsilon";
+"notification_expense_reminder_title" = "Upcoming Payment";
+"notification_expense_reminder_body" = "%@ – %@ due in %d days";
 
 // MARK: - Settings - Notifications
 "settings_notifications_denied_title" = "Notifications Disabled";

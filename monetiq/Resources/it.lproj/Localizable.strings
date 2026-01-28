@@ -388,6 +388,8 @@
 "notification_weekly_review_body" = "È ora di rivedere i tuoi prestiti e i pagamenti imminenti in Ypsilon";
 "notification_test_title" = "Notifica di Test";
 "notification_test_body" = "Questa è una notifica di test da Ypsilon";
+"notification_expense_reminder_title" = "Prossimo Pagamento";
+"notification_expense_reminder_body" = "%@ – %@ scade tra %d giorni";
 
 // Payment due date labels
 "payment_due_today" = "In scadenza oggi";

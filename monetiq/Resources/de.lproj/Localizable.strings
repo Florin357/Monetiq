@@ -379,6 +379,8 @@
 "notification_weekly_review_body" = "Zeit, Ihre Darlehen und anstehenden Zahlungen in Ypsilon zu überprüfen";
 "notification_test_title" = "Test-Benachrichtigung";
 "notification_test_body" = "Dies ist eine Test-Benachrichtigung von Ypsilon";
+"notification_expense_reminder_title" = "Bevorstehende Zahlung";
+"notification_expense_reminder_body" = "%@ – %@ fällig in %d Tagen";
 
 // MARK: - Biometric Authentication
 "biometric_unlock_reason" = "Entsperre Ypsilon, um auf deine Finanzdaten zuzugreifen";

@@ -369,6 +369,8 @@
 "notification_weekly_review_body" = "Es hora de revisar tus préstamos y próximos pagos en Ypsilon";
 "notification_test_title" = "Notificación de Prueba";
 "notification_test_body" = "Esta es una notificación de prueba de Ypsilon";
+"notification_expense_reminder_title" = "Próximo Pago";
+"notification_expense_reminder_body" = "%@ – %@ vence en %d días";
 
 
 

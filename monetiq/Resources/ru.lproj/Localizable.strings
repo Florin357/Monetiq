@@ -369,6 +369,8 @@
 "notification_weekly_review_body" = "Время просмотреть ваши займы и предстоящие платежи в Ypsilon";
 "notification_test_title" = "Тестовое уведомление";
 "notification_test_body" = "Это тестовое уведомление от Ypsilon";
+"notification_expense_reminder_title" = "Предстоящий платёж";
+"notification_expense_reminder_body" = "%@ – %@ через %d дней";
 
 
 

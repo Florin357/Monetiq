@@ -361,6 +361,8 @@
 "notification_weekly_review_body" = "Ypsilon में अपने लोन और आगामी भुगतानों की समीक्षा करने का समय है";
 "notification_test_title" = "टेस्ट नोटिफिकेशन";
 "notification_test_body" = "यह Ypsilon से एक टेस्ट नोटिफिकेशन है";
+"notification_expense_reminder_title" = "आगामी भुगतान";
+"notification_expense_reminder_body" = "%@ – %@ %d दिनों में देय";
 
 
 
