@@ -40,6 +40,11 @@ struct LoansListView: View {
         }
     }
     
+    private var hasLoans: Bool {
+        guard !appState.isResetting else { return false }
+        return !loans.isEmpty
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             // Header - Premium styling
@@ -56,7 +61,7 @@ struct LoansListView: View {
             .monetiqHeader()
             .padding(.bottom, MonetiqTheme.Spacing.sm)
             
-            if loans.isEmpty {
+            if !hasLoans {
                 Spacer()
                 VStack(spacing: MonetiqTheme.Spacing.md) {
                     Image(systemName: "banknote")
@@ -100,7 +105,7 @@ struct LoansListView: View {
         .toolbar {
             #if os(macOS)
             ToolbarItem(placement: .navigationBarLeading) {
-                if !loans.isEmpty {
+                if hasLoans {
                     EditButton()
                 }
             }

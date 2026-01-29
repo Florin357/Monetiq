@@ -60,6 +60,11 @@ struct ExpenseListView: View {
             .sorted { $0.key > $1.key } // Most recent first
     }
     
+    private var hasExpenses: Bool {
+        guard !appState.isResetting else { return false }
+        return !allExpenses.isEmpty
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             // Header - Premium styling
@@ -76,7 +81,7 @@ struct ExpenseListView: View {
             .monetiqHeader()
             .padding(.bottom, MonetiqTheme.Spacing.sm)
             
-            if allExpenses.isEmpty {
+            if !hasExpenses {
                 Spacer()
                 VStack(spacing: MonetiqTheme.Spacing.md) {
                     Image(systemName: "cart")

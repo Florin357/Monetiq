@@ -230,8 +230,14 @@ struct DashboardView: View {
                 }
                 
                 // Cashflow Chart - 30 days preview
-                CashflowCardView(loans: loans, incomePayments: incomePayments, expenses: expenses, windowDays: 30)
-                    .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
+                // Guard: Pass empty arrays during reset to prevent accessing deleted objects
+                CashflowCardView(
+                    loans: appState.isResetting ? [] : loans,
+                    incomePayments: appState.isResetting ? [] : incomePayments,
+                    expenses: appState.isResetting ? [] : expenses,
+                    windowDays: 30
+                )
+                .padding(.horizontal, MonetiqTheme.Spacing.screenPadding)
                 
                 // Recent Loans - Premium section
                 VStack(alignment: .leading, spacing: MonetiqTheme.Spacing.lg) {
