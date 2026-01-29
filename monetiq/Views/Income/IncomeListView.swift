@@ -47,6 +47,11 @@ struct IncomeListView: View {
             }
     }
     
+    private var hasIncomeSources: Bool {
+        guard !appState.isResetting else { return false }
+        return !allIncomeSources.isEmpty
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             // Header - Premium styling
@@ -63,7 +68,7 @@ struct IncomeListView: View {
             .monetiqHeader()
             .padding(.bottom, MonetiqTheme.Spacing.sm)
             
-            if allIncomeSources.isEmpty {
+            if !hasIncomeSources {
                 Spacer()
                 VStack(spacing: MonetiqTheme.Spacing.md) {
                     Image(systemName: "banknote")

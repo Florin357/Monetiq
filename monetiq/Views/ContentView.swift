@@ -91,6 +91,13 @@ struct ContentView: View {
             }
             
             NavigationStack {
+                ExpenseListView()
+            }
+            .tabItem {
+                Label(L10n.string("tab_expenses"), systemImage: "cart.fill")
+            }
+            
+            NavigationStack {
                 IncomeListView()
             }
             .tabItem {
@@ -105,19 +112,13 @@ struct ContentView: View {
             }
             
             NavigationStack {
-                CalculatorView()
+                MoreView()
             }
             .tabItem {
-                Label(L10n.string("tab_calculator"), systemImage: "function")
-            }
-            
-            NavigationStack {
-                SettingsView()
-            }
-            .tabItem {
-                Label(L10n.string("tab_settings"), systemImage: "gearshape.fill")
+                Label(L10n.string("tab_more"), systemImage: "ellipsis.circle.fill")
             }
         }
+        .environment(\.horizontalSizeClass, .compact)
         .monetiqBackground()
         .preferredColorScheme(appSettings.appearanceMode.colorScheme)
         .environment(\.locale, effectiveLocale)

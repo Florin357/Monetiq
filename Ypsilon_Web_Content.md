@@ -19,6 +19,7 @@ Ypsilon is for anyone who wants to:
 - Manage income sources and upcoming paydays
 - See a clear overview of upcoming payments and cash flow
 - Maintain full control over their financial data
+- Track recurring subscriptions and one-time expenses
 
 ### What Problems It Solves
 
@@ -29,6 +30,8 @@ Managing personal loans and income can be challenging without the right tools. Y
 - **Cash Flow Uncertainty:** A 30-day projection of your financial flow
 - **Privacy Concerns:** Your data never leaves your device
 - **Complexity:** Simple, straightforward interface focused on what matters
+- **Recurring Subscriptions:** Track monthly, yearly, and one-time expenses without spreadsheets
+- **Past Clutter:** Automatic monthly archiving keeps your view focused on what's next
 
 ### Core Features
 
@@ -40,13 +43,17 @@ Track money you've lent to others, borrowed from friends, or owe to banks. Add l
 
 Add income sources with recurring paydays—weekly, monthly, quarterly, yearly, or one-time. Track salary, freelance income, or any other revenue stream. See upcoming income alongside loan payments for a complete financial picture.
 
+#### Expenses & Subscriptions
+
+Track recurring subscriptions (monthly, quarterly, yearly, weekly) and one-time expenses. Set your payment day once, and Ypsilon preserves it across months (e.g., the 14th stays the 14th). See "subscription age" labels showing how long you've been subscribed (months, quarters, or years). Past expenses are automatically organized into a monthly archive (grouped by month and year), so your active view stays focused on what's coming next.
+
 #### Dashboard Overview
 
-View totals for money to receive and money to pay. See all upcoming payments in one unified list, sorted by due date. Quickly identify overdue items and take action.
+View totals for money to receive and money to pay. See all upcoming payments in one unified list, sorted by due date. Quickly identify overdue items and take action. Dashboard totals and the upcoming list reflect what's coming next from Loans, Income, and Expenses. Past items are automatically archived, keeping the dashboard focused and clutter-free.
 
 #### Cashflow Projection
 
-A 30-day chart shows your expected cash flow based on scheduled payments and income. Track net flow over time and plan ahead with confidence.
+A 30-day chart shows your expected cash flow based on scheduled payments and income. The projection includes scheduled payments and income from Loans, Income sources, and Expenses based on what you've entered. Track net flow over time and plan ahead with confidence.
 
 #### Loan Calculator
 
@@ -70,7 +77,7 @@ Mark payments as paid or postpone reminders with a single tap. Stay in control o
 
 ### Designed for Simplicity & Control
 
-Ypsilon is built with a focus on clarity and ease of use. No complicated features, no overwhelming dashboards—just the information you need, when you need it. The app respects your time and your intelligence by presenting financial data in a straightforward, actionable format.
+Ypsilon is built with a focus on clarity and ease of use. No complicated features, no overwhelming dashboards—just the information you need, when you need it. The app respects your time and your intelligence by presenting financial data in a straightforward, actionable format. Ypsilon does not tell you what to do with your money. It helps you see it clearly.
 
 ### Privacy & Data Ownership
 
@@ -106,6 +113,7 @@ Ypsilon collects and stores the following information locally on your device:
 - Loan information (principal amount, interest rate, counterparty details, payment schedules)
 - Income sources and payment schedules
 - Payment history (marked as paid or postponed)
+- Expense and subscription entries (including recurring schedules)
 - App preferences and settings (currency, language, notification preferences, appearance mode)
 
 **Important:** All data is stored exclusively on your device. Ypsilon does not transmit, upload, or sync any of your financial information to external servers or third-party services.
@@ -184,6 +192,7 @@ Ypsilon is a personal finance application designed to help users track loans, ma
 
 - Recording and tracking loans (lent, borrowed, or owed to financial institutions)
 - Managing income sources and paydays
+- Recording recurring subscriptions and one-time expenses, and viewing upcoming obligations
 - Viewing upcoming payments and cash flow projections
 - Calculating loan payments with various interest rates and terms
 

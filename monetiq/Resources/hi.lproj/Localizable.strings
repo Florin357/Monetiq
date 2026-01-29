@@ -19,10 +19,13 @@
 
 // MARK: - Tab Bar
 "tab_dashboard" = "डैशबोर्ड";
+"tab_expenses" = "खर्चे";
 "tab_income" = "आय";
 "tab_loans" = "लोन";
 "tab_calculator" = "कैलकुलेटर";
 "tab_settings" = "सेटिंग्स";
+"tab_more" = "अधिक";
+"calculator_subtitle" = "ऋण भुगतान कैलकुलेटर";
 
 // MARK: - Dashboard
 "dashboard_title" = "डैशबोर्ड";
@@ -34,6 +37,8 @@
 "dashboard_detail_empty_state" = "इस श्रेणी में कोई सक्रिय ऋण नहीं";
 "dashboard_detail_total" = "कुल";
 "dashboard_detail_from_loans" = "ऋणों से";
+"dashboard_detail_from_loans_and_expenses" = "ऋणों और खर्चों से";
+"dashboard_detail_from_loans_and_income" = "ऋणों और आय से";
 "dashboard_detail_from_income" = "आय";
 "dashboard_income_unknown" = "अज्ञात आय";
 "dashboard_income_badge" = "आय";
@@ -78,6 +83,51 @@
 "income_section_completed" = "पूर्ण";
 "income_status_done" = "पूर्ण";
 "income_ended_date" = "समाप्त: %@";
+
+// MARK: - Expenses
+"expenses_title" = "खर्चे";
+"expenses_subtitle" = "अपने खर्चों को ट्रैक करें";
+"expenses_empty_title" = "अभी तक कोई खर्च नहीं";
+"expenses_empty_subtitle" = "शुरू करने के लिए अपना पहला खर्च जोड़ें";
+"expenses_add_title" = "खर्च जोड़ें";
+"expenses_edit_title" = "खर्च संपादित करें";
+"expenses_section_active" = "सक्रिय";
+"expenses_section_completed" = "पूर्ण";
+"expenses_section_archived" = "संग्रहीत";
+"expenses_section_active_recurring" = "सक्रिय सदस्यताएं";
+"expenses_section_one_time" = "एकबारगी व्यय";
+"expenses_field_title" = "शीर्षक";
+"expenses_field_amount" = "राशि";
+"expenses_field_currency" = "मुद्रा";
+"expenses_field_frequency" = "आवृत्ति";
+"expenses_field_start_date" = "प्रारंभ तिथि";
+"expenses_field_end_date" = "समाप्ति तिथि";
+"expenses_field_category" = "श्रेणी (वैकल्पिक)";
+"expenses_field_notes" = "नोट्स (वैकल्पिक)";
+"expenses_form_details_section" = "खर्च विवरण";
+"expenses_form_has_end_date" = "समाप्ति तिथि है";
+"expenses_delete_title" = "खर्च हटाएं?";
+"expenses_delete_message" = "यह इस खर्च और इसके सभी भुगतान रिकॉर्ड को स्थायी रूप से हटा देगा।";
+"expenses_next" = "अगला: %@";
+"expenses_one_time_on" = "पर: %@";
+"expenses_ended_date" = "समाप्त: %@";
+"expenses_status_completed" = "पूर्ण";
+"expenses_subscribed_months" = "सदस्यता: %d महीने";
+"expenses_subscribed_years" = "सदस्यता: %d वर्ष";
+"expenses_subscribed_weeks" = "सदस्यता: %d सप्ताह";
+"expenses_subscribed_quarters" = "सदस्यता: %d तिमाही";
+"expenses_starts_in_days" = "%d दिनों में शुरू होगा";
+
+// MARK: - Frequencies (shared)
+"frequency_onetime" = "एक बार";
+"frequency_weekly" = "साप्ताहिक";
+"frequency_monthly" = "मासिक";
+"frequency_quarterly" = "त्रैमासिक";
+"frequency_yearly" = "वार्षिक";
+
+// MARK: - Status (shared)
+"status_planned" = "नियोजित";
+"status_paid" = "भुगतान";
 
 // MARK: - Loans
 "loans_title" = "लोन";
@@ -311,6 +361,8 @@
 "notification_weekly_review_body" = "Ypsilon में अपने लोन और आगामी भुगतानों की समीक्षा करने का समय है";
 "notification_test_title" = "टेस्ट नोटिफिकेशन";
 "notification_test_body" = "यह Ypsilon से एक टेस्ट नोटिफिकेशन है";
+"notification_expense_reminder_title" = "आगामी भुगतान";
+"notification_expense_reminder_body" = "%@ – %@ %d दिनों में देय";
 
 
 

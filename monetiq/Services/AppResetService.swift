@@ -53,10 +53,16 @@ class AppResetService {
     private func cancelAllNotifications() async {
         print("🔄 Cancelling all notifications...")
         
-        let center = UNUserNotificationCenter.current()
+        // Cancel loan notifications
+        await NotificationManager.shared.cancelAllNotifications()
         
-        // Cancel all pending notifications
-        center.removeAllPendingNotificationRequests()
+        // Cancel expense notifications
+        await NotificationManager.shared.cancelAllExpenseNotifications()
+        
+        // Cancel weekly review
+        await NotificationManager.shared.cancelWeeklyReviewNotification()
+        
+        let center = UNUserNotificationCenter.current()
         
         // Remove all delivered notifications
         center.removeAllDeliveredNotifications()
@@ -115,6 +121,22 @@ class AppResetService {
                 modelContext.delete(incomeSource)
             }
             print("✅ Deleted \(incomeSources.count) income sources")
+            
+            // Delete all Expense Occurrences (must be deleted before Expenses)
+            let expenseOccurrenceDescriptor = FetchDescriptor<ExpenseOccurrence>()
+            let expenseOccurrences = try modelContext.fetch(expenseOccurrenceDescriptor)
+            for occurrence in expenseOccurrences {
+                modelContext.delete(occurrence)
+            }
+            print("✅ Deleted \(expenseOccurrences.count) expense occurrences")
+            
+            // Delete all Expenses
+            let expenseDescriptor = FetchDescriptor<Expense>()
+            let expenses = try modelContext.fetch(expenseDescriptor)
+            for expense in expenses {
+                modelContext.delete(expense)
+            }
+            print("✅ Deleted \(expenses.count) expenses")
             
             // Delete all AppSettings (they will be recreated with defaults)
             let settingsDescriptor = FetchDescriptor<AppSettings>()

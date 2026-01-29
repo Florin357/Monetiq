@@ -284,8 +284,9 @@ struct SettingsView: View {
                     }
                 }
             } else {
-                // Cancel all notifications and clear badge
+                // Cancel all notifications (loans + expenses) and clear badge
                 await notificationManager.cancelAllNotifications()
+                await notificationManager.cancelAllExpenseNotifications()
                 await notificationManager.updateBadgeCount(payments: allPayments)
             }
         }
@@ -310,13 +311,18 @@ struct SettingsView: View {
     }
     
     private func rescheduleAllNotifications() async {
-        // Fetch all loans and reschedule notifications
-        let descriptor = FetchDescriptor<Loan>()
+        // Fetch all loans and expenses, then reschedule notifications
+        let loanDescriptor = FetchDescriptor<Loan>()
+        let expenseDescriptor = FetchDescriptor<Expense>()
+        
         do {
-            let loans = try modelContext.fetch(descriptor)
+            let loans = try modelContext.fetch(loanDescriptor)
+            let expenses = try modelContext.fetch(expenseDescriptor)
+            
             await notificationManager.rescheduleAllNotifications(for: loans)
+            await notificationManager.rescheduleAllExpenseNotifications(for: expenses)
         } catch {
-            print("Failed to fetch loans for notification rescheduling: \(error)")
+            print("Failed to fetch data for notification rescheduling: \(error)")
         }
     }
     
